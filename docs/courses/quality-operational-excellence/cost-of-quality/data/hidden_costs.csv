@@ -1,7 +1,0 @@
-hidden_cost,annual_estimate,basis
-Expediting and premium freight for remakes,96000,freight invoices flagged 'quality'
-Lost capacity on bottleneck (hours x margin per hour),310000,"MES downtime coded quality x $1,150/h"
-Engineering time on firefighting,140000,time sampling of 6 engineers over 4 weeks
-Excess safety stock held because of yield loss,45000,inventory carrying cost on buffer
-Sales lost from two customers who reduced orders,420000,sales manager estimate (contribution margin)
-Management time in customer escalation meetings,38000,calendar review

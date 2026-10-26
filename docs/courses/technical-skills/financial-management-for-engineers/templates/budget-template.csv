@@ -1,9 +1,0 @@
-line_item,driver,standard_per_unit,static_units,static_budget,actual_units,flexible_budget,actual,variance_vs_flexible,explanation
-revenue,price,,,,,,,,
-material,material per unit,,,,,,,,
-direct labor,hours per unit x rate,,,,,,,,
-variable overhead,per unit,,,,,,,,
-contribution,,,,,,,,,
-fixed overhead,fixed,,,,,,,,
-cell SG&A,fixed,,,,,,,,
-operating profit,,,,,,,,,
