@@ -250,6 +250,8 @@
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const gh = p => `${REPO}/blob/main/${p}`;
   const slug = id => id.replace(/^course:/, '');
+  const reader = (c, f) => `course.html?c=${slug(c.id)}` + (f ? '&f=' + encodeURIComponent(f) : '');
+  const relIn = (c, p) => p.slice(c.path.length - 'README.md'.length);
 
   // ---- local progress (this browser only)
   const KEY = 'iekb-done';
@@ -354,8 +356,8 @@
     h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
-    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => `<tr><td class="n">${i}</td><td><a href="${gh(m.path)}" target="_blank" rel="noopener">${esc(m.label)}</a></td><td class="t">${esc(m.note)}</td></tr>`).join('') + '</table>';
-    h += `<a class="btn-primary" href="${gh(c.path)}" target="_blank" rel="noopener">Open course on GitHub</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button>`;
+    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => `<tr><td class="n">${i}</td><td><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a></td><td class="t">${esc(m.note)}</td></tr>`).join('') + '</table>';
+    h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">GitHub</a>`;
     body.innerHTML = h;
   }
   function openCategory(cat) {
@@ -370,7 +372,7 @@
   }
   function openModule(m) {
     const c = byId.get(m.parent);
-    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${gh(m.path)}" target="_blank" rel="noopener">Open module on GitHub</a>`;
+    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">GitHub</a>`;
   }
   function open(d) {
     selected = d;

@@ -1,0 +1,40 @@
+# Glossary
+
+- **Accrual accounting:** revenue is recorded when earned and costs when incurred, regardless of when cash moves.
+- **Accumulated depreciation:** total depreciation charged on assets to date.
+- **Amortization (loan):** paying off a loan through scheduled payments of interest and principal.
+- **Annuity:** a series of equal payments at regular intervals.
+- **APR:** nominal annual interest rate before the effect of compounding.
+- **Beta (β):** a stock's sensitivity to market movements, used in CAPM.
+- **Book value:** an asset's cost less accumulated depreciation.
+- **Break-even:** the volume at which total contribution equals fixed costs.
+- **Capital expenditure (capex):** spending on long-lived assets.
+- **CAPM:** capital asset pricing model. Cost of equity = risk-free rate + β × market risk premium.
+- **Cash conversion cycle:** days from paying suppliers to collecting from customers.
+- **COGS:** cost of goods sold. Material, labor and overhead of the products sold.
+- **Contribution margin:** price minus variable cost per unit.
+- **Covenant:** a condition in a loan agreement, such as a maximum debt/EBITDA.
+- **DCF:** discounted cash flow valuation.
+- **Depreciation:** allocation of an asset's cost over its useful life.
+- **Depreciation tax shield:** tax saved because depreciation is deductible (depreciation × tax rate).
+- **EBIT / EBITDA:** earnings before interest and taxes, and before depreciation and amortization.
+- **Enterprise value (EV):** value of the operating business to all capital providers.
+- **Equivalent annual cost (EAC):** a PV of costs spread as an equal annual amount over an asset's life.
+- **Fixed cost:** a cost that does not vary with volume within a relevant range.
+- **Flexible budget:** the budget recalculated at actual volume.
+- **Free cash flow:** cash from operations minus capital expenditure.
+- **Hurdle rate:** the minimum return a project must earn to be approved.
+- **IRR:** internal rate of return. The discount rate at which NPV = 0.
+- **Net debt:** total debt minus cash.
+- **NOPAT:** net operating profit after tax = EBIT × (1 − t).
+- **NPV:** net present value. The sum of discounted cash flows, including the investment.
+- **Operating leverage:** sensitivity of operating profit to volume, driven by the share of fixed costs.
+- **Payback period:** time until cumulative cash flow recovers the investment.
+- **Profit center:** a unit accountable for both revenue and cost.
+- **Retained earnings:** cumulative net income kept in the business (not paid as dividends).
+- **Sunk cost:** money already spent that no decision can recover. Exclude it from analysis.
+- **Terminal value:** value of cash flows beyond the forecast horizon.
+- **Transfer price:** internal price charged between units of one company.
+- **Variance (budget):** difference between budget and actual; favorable if it raises profit.
+- **WACC:** weighted average cost of capital.
+- **Working capital:** current assets minus current liabilities; operationally, receivables + inventory − payables.

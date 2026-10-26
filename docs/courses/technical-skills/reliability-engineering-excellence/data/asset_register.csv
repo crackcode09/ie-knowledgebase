@@ -1,0 +1,9 @@
+asset,production_impact,quality_impact,repair_cost,failure_frequency,safety_environment
+Grinder spindle,5,4,4,3,2
+Hydraulic press,5,4,3,4,4
+Coolant system,3,3,2,4,1
+Transfer conveyor,4,2,1,4,1
+Robot loader,4,3,2,2,3
+Air compressor,5,2,1,2,1
+Parts washer,2,2,2,3,2
+Chip conveyor,3,2,1,3,1

@@ -1,0 +1,9 @@
+line_item,"static budget (10,000 units)","flexible budget (11,200 units)",actual
+revenue,620000,694400,677600
+material,140000,156800,166880
+labor,102000,114240,114400
+var_oh,40000,44800,45920
+contribution,338000,378560,350400
+fixed_oh,118000,118000,124500
+cell_sga,36000,36000,35200
+operating_profit,184000,224560,190700
