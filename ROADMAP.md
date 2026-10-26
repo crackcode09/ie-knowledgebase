@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 4 of 101 topics covered.**
+**Progress: 5 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked)
 - [ ] = not started
@@ -68,7 +68,7 @@ Folder: [`courses/leadership-project-management/`](courses/leadership-project-ma
 - [ ] Technical Leadership
 - [ ] The Art and Science of Team Facilitation
 
-## Lean & Six Sigma (4/24)
+## Lean & Six Sigma (5/24)
 
 Folder: [`courses/lean-six-sigma/`](courses/lean-six-sigma/README.md)
 
@@ -89,7 +89,7 @@ Folder: [`courses/lean-six-sigma/`](courses/lean-six-sigma/README.md)
 - [x] [Design for Six Sigma](courses/lean-six-sigma/design-for-six-sigma/README.md)
 - [x] [Fundamentals of Hypothesis Testing](courses/lean-six-sigma/fundamentals-of-hypothesis-testing/README.md)
 - [x] [Measurement & Basic Statistics](courses/lean-six-sigma/measurement-and-basic-statistics/README.md)
-- [ ] Root Cause Analysis
+- [x] [Root Cause Analysis](courses/lean-six-sigma/root-cause-analysis/README.md)
 - [ ] Lean Six Sigma Yellow Belt
 - [ ] Lean Six Sigma Green Belt
 - [ ] Lean Six Sigma Black Belt

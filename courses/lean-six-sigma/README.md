@@ -4,7 +4,7 @@ Lean, Six Sigma, and the statistical tools behind them: process behavior charts,
 
 ## Courses
 
-Suggested order: Measurement & Basic Statistics, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma.
+Suggested order: Measurement & Basic Statistics, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis.
 
 | Course | Topic | Length | Status |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Suggested order: Measurement & Basic Statistics, then Charting Process Behavior,
 | [Charting Process Behavior](charting-process-behavior/README.md) | Statistical Process Control: run charts, XmR, X̄–R, attribute charts, capability | ~12 h + capstone | v1.0 |
 | [Fundamentals of Hypothesis Testing](fundamentals-of-hypothesis-testing/README.md) | Hypotheses, errors, power, CIs; t, ANOVA, proportion, chi-square, variance and nonparametric tests | ~14 h + capstone | v1.0 |
 | [Design for Six Sigma](design-for-six-sigma/README.md) | DCDOV: VOC, QFD, Pugh, FMEA, error-proofing, scorecards, DOE, tolerance stack-up, flow simulation, line balancing, reliability | ~45 h incl. capstone | v1.0 |
+| [Root Cause Analysis & Problem Solving](root-cause-analysis/README.md) | Problem statements, Pareto, process maps, fishbone, 5-Why, root cause trees, stratification, regression, logistic regression, corrective actions | ~14 h | v1.0 |
 
 ## License
 

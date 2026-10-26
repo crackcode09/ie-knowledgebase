@@ -1,0 +1,201 @@
+week,defect,machine,shift,cost_usd
+1,Bore oversize,MC1,Day,95
+1,Bore oversize,MC3,Day,95
+1,Burr,MC1,Day,20
+1,Burr,MC2,Night,20
+1,Burr,MC2,Night,20
+1,Burr,MC3,Night,20
+1,Leak at test,MC1,Day,140
+1,Leak at test,MC1,Night,140
+1,Leak at test,MC2,Day,140
+1,Leak at test,MC2,Night,140
+1,Leak at test,MC3,Day,140
+1,Leak at test,MC3,Day,140
+1,Leak at test,MC3,Day,140
+1,Leak at test,MC3,Night,140
+1,Leak at test,MC3,Night,140
+1,Leak at test,MC3,Night,140
+1,Leak at test,MC3,Night,140
+1,Leak at test,MC3,Night,140
+1,Thread damage,MC1,Day,95
+1,Thread damage,MC1,Night,95
+1,Thread damage,MC2,Day,95
+1,Thread damage,MC3,Day,95
+1,Thread damage,MC3,Day,95
+1,Thread damage,MC3,Day,95
+1,Wrong marking,MC2,Day,10
+2,Bore oversize,MC2,Day,95
+2,Bore oversize,MC2,Day,95
+2,Bore oversize,MC3,Night,95
+2,Bore oversize,MC3,Night,95
+2,Bore oversize,MC3,Night,95
+2,Burr,MC1,Day,20
+2,Burr,MC1,Night,20
+2,Burr,MC1,Night,20
+2,Burr,MC2,Day,20
+2,Burr,MC2,Day,20
+2,Burr,MC2,Night,20
+2,Leak at test,MC1,Day,140
+2,Leak at test,MC1,Day,140
+2,Leak at test,MC1,Night,140
+2,Leak at test,MC2,Day,140
+2,Leak at test,MC3,Day,140
+2,Leak at test,MC3,Day,140
+2,Leak at test,MC3,Night,140
+2,Leak at test,MC3,Night,140
+2,Leak at test,MC3,Night,140
+2,Leak at test,MC3,Night,140
+2,Leak at test,MC3,Night,140
+2,Porosity,MC1,Night,140
+2,Porosity,MC2,Day,140
+2,Porosity,MC3,Day,140
+2,Thread damage,MC1,Day,95
+3,Bore oversize,MC1,Day,95
+3,Bore oversize,MC1,Day,95
+3,Bore oversize,MC1,Day,95
+3,Bore oversize,MC1,Night,95
+3,Bore oversize,MC2,Day,95
+3,Bore oversize,MC2,Day,95
+3,Bore oversize,MC3,Day,95
+3,Bore oversize,MC3,Day,95
+3,Burr,MC2,Night,20
+3,Burr,MC2,Night,20
+3,Burr,MC3,Day,20
+3,Leak at test,MC1,Night,140
+3,Leak at test,MC2,Day,140
+3,Leak at test,MC2,Day,140
+3,Leak at test,MC2,Night,140
+3,Leak at test,MC3,Day,140
+3,Leak at test,MC3,Day,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Leak at test,MC3,Night,140
+3,Scratch,MC2,Night,15
+3,Scratch,MC2,Night,15
+3,Wrong marking,MC1,Night,10
+4,Bore oversize,MC1,Night,95
+4,Bore oversize,MC2,Day,95
+4,Bore oversize,MC2,Day,95
+4,Bore oversize,MC2,Night,95
+4,Bore oversize,MC2,Night,95
+4,Burr,MC1,Night,20
+4,Burr,MC1,Night,20
+4,Leak at test,MC2,Day,140
+4,Leak at test,MC2,Day,140
+4,Leak at test,MC2,Day,140
+4,Leak at test,MC2,Night,140
+4,Leak at test,MC3,Day,140
+4,Leak at test,MC3,Day,140
+4,Leak at test,MC3,Night,140
+4,Leak at test,MC3,Night,140
+4,Porosity,MC1,Day,140
+4,Porosity,MC3,Day,140
+4,Scratch,MC1,Day,15
+4,Scratch,MC3,Night,15
+4,Thread damage,MC1,Day,95
+4,Thread damage,MC1,Night,95
+4,Thread damage,MC2,Night,95
+4,Wrong marking,MC2,Night,10
+5,Bore oversize,MC2,Night,95
+5,Bore oversize,MC3,Night,95
+5,Bore oversize,MC3,Night,95
+5,Bore oversize,MC3,Night,95
+5,Bore oversize,MC3,Night,95
+5,Burr,MC1,Day,20
+5,Burr,MC2,Day,20
+5,Burr,MC3,Day,20
+5,Burr,MC3,Night,20
+5,Burr,MC3,Night,20
+5,Leak at test,MC1,Day,140
+5,Leak at test,MC1,Day,140
+5,Leak at test,MC2,Day,140
+5,Leak at test,MC2,Day,140
+5,Leak at test,MC2,Day,140
+5,Leak at test,MC2,Night,140
+5,Leak at test,MC3,Day,140
+5,Leak at test,MC3,Night,140
+5,Leak at test,MC3,Night,140
+5,Porosity,MC1,Night,140
+5,Porosity,MC2,Day,140
+5,Porosity,MC3,Day,140
+5,Scratch,MC2,Day,15
+5,Thread damage,MC1,Day,95
+5,Thread damage,MC1,Night,95
+6,Bore oversize,MC1,Day,95
+6,Bore oversize,MC1,Night,95
+6,Bore oversize,MC2,Day,95
+6,Bore oversize,MC3,Night,95
+6,Bore oversize,MC3,Night,95
+6,Bore oversize,MC3,Night,95
+6,Burr,MC1,Night,20
+6,Burr,MC2,Night,20
+6,Burr,MC3,Day,20
+6,Leak at test,MC2,Day,140
+6,Leak at test,MC2,Night,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Day,140
+6,Leak at test,MC3,Night,140
+6,Porosity,MC1,Day,140
+6,Porosity,MC1,Night,140
+6,Scratch,MC1,Day,15
+6,Scratch,MC2,Day,15
+6,Scratch,MC2,Night,15
+6,Wrong marking,MC3,Night,10
+7,Bore oversize,MC1,Day,95
+7,Bore oversize,MC1,Night,95
+7,Bore oversize,MC2,Day,95
+7,Bore oversize,MC2,Night,95
+7,Bore oversize,MC3,Day,95
+7,Bore oversize,MC3,Day,95
+7,Bore oversize,MC3,Night,95
+7,Burr,MC1,Day,20
+7,Leak at test,MC1,Day,140
+7,Leak at test,MC1,Night,140
+7,Leak at test,MC1,Night,140
+7,Leak at test,MC1,Night,140
+7,Leak at test,MC2,Day,140
+7,Leak at test,MC3,Day,140
+7,Leak at test,MC3,Night,140
+7,Leak at test,MC3,Night,140
+7,Porosity,MC3,Day,140
+7,Porosity,MC3,Day,140
+7,Scratch,MC2,Day,15
+7,Thread damage,MC1,Night,95
+8,Bore oversize,MC1,Day,95
+8,Bore oversize,MC2,Day,95
+8,Burr,MC1,Night,20
+8,Burr,MC1,Night,20
+8,Burr,MC2,Day,20
+8,Burr,MC2,Night,20
+8,Burr,MC2,Night,20
+8,Burr,MC3,Night,20
+8,Leak at test,MC1,Day,140
+8,Leak at test,MC1,Day,140
+8,Leak at test,MC1,Day,140
+8,Leak at test,MC1,Night,140
+8,Leak at test,MC2,Day,140
+8,Leak at test,MC2,Night,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Day,140
+8,Leak at test,MC3,Night,140
+8,Thread damage,MC1,Day,95
+8,Thread damage,MC1,Night,95
+8,Thread damage,MC2,Day,95
+8,Thread damage,MC3,Day,95
+8,Thread damage,MC3,Night,95
+8,Wrong marking,MC1,Day,10
+8,Wrong marking,MC3,Day,10
