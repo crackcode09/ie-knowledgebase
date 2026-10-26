@@ -1,0 +1,7 @@
+op,description,machine_s,manual_s,setup_min
+OP10,Shear blank,14,10,15
+OP20,Turret punch,48,14,20
+OP30,Brake 4 bends,18,34,12
+OP40,Spot weld corners,22,18,8
+OP50,Press hardware (PEM),6,20,5
+OP60,"Inspect, load to paint rack",0,24,0

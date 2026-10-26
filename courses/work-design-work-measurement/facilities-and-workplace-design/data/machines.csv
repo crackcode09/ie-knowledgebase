@@ -1,0 +1,11 @@
+dept,machine,length_m,width_m,qty
+SHR,Shear 3 m,4.5,2.5,2
+PUN,Turret punch,6.0,5.0,2
+BRK,Press brake 3 m,4.0,2.5,3
+BRK,Press brake 2 m,3.0,2.0,1
+WLD,Weld booth,3.0,3.0,4
+WLD,Spot welder,1.5,1.5,2
+PNT,Powder booth + cure oven (footprint),9.0,6.0,1
+ASM,Assembly bench,2.4,1.2,12
+TST,Test bench,2.0,1.2,4
+TLR,Tool storage + bench,4.0,3.0,2
