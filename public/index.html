@@ -471,7 +471,14 @@
       [[right, 1], [left, -1]].forEach(([set, dir]) => {
         const r = d3.hierarchy({ id: 'side', children: set }, d => d.children);
         tree(r);
-        r.each(n => { if (n.depth === 0) return; n.x0 = n.x; n.y0 = n.y; n.px = dir * n.y; n.py = n.x; n.dir = dir; out.push(n); });
+        // Column spacing follows the longest label in the previous column, so a long course name
+        // never runs underneath an expanded branch beside it.
+        const est = n => (n.data.label || '').length * 6.6 + 44;
+        const widest = [];
+        r.each(n => { if (n.depth > 0) widest[n.depth] = Math.max(widest[n.depth] || 0, est(n)); });
+        const colX = [0, 230];
+        for (let d = 2; d < widest.length + 1; d++) colX[d] = colX[d - 1] + Math.max(widest[d - 1] || 0, 170);
+        r.each(n => { if (n.depth === 0) return; n.y = colX[n.depth]; n.x0 = n.x; n.y0 = n.y; n.px = dir * n.y; n.py = n.x; n.dir = dir; out.push(n); });
       });
       return out;
     }
