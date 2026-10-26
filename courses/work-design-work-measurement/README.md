@@ -4,7 +4,9 @@ Work measurement, standard data, predetermined time systems, facilities and work
 
 ## Courses
 
-No courses yet. See the [root README](../../README.md) for how to add one.
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Standard Data Systems](standard-data-systems/README.md) | Microscopic vs macroscopic data; advantages and disadvantages; element structure and data sheets; correlation and regression (Excel LINEST/ToolPak); developing models with dummies, transformations and VIF; evaluating with residuals, intervals and hold-out validation; quoting, capacity and maintenance | ~2 days | v1.0 |
 
 ## License
 

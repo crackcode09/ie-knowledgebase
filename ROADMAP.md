@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 22 of 101 topics covered.**
+**Progress: 23 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
@@ -133,7 +133,7 @@ Folder: [`courses/technical-skills/`](courses/technical-skills/README.md)
 - [x] [Technical Communications](courses/technical-skills/technical-communications/README.md)
 - [ ] Value Management Fundamentals
 
-## Work Design & Work Measurement (0/6)
+## Work Design & Work Measurement (1/6)
 
 Folder: [`courses/work-design-work-measurement/`](courses/work-design-work-measurement/README.md)
 
@@ -141,7 +141,7 @@ Folder: [`courses/work-design-work-measurement/`](courses/work-design-work-measu
 - [ ] Methods Time Measurement (MTM-1)
 - [ ] MODAPTS
 - [ ] Staffing Models and Human Capital Management
-- [ ] Standard Data Systems
+- [x] [Standard Data Systems](courses/work-design-work-measurement/standard-data-systems/README.md)
 - [ ] Work Measurement
 
 ## Microlearning Refreshers (0/13)
