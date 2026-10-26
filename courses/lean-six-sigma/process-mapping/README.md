@@ -46,7 +46,7 @@ python tools/make_figures.py
 
 ## Related courses
 
-[Kaizen Leader](../kaizen-leader/README.md) (uses these maps during an event) · [Root Cause Analysis](../root-cause-analysis/README.md) · [Design for Six Sigma](../design-for-six-sigma/README.md) (VOC and QFD in depth)
+[Voice of the Customer](../voice-of-the-customer/README.md) (VOC in depth: segmentation, Kano, surveys, margin of error, C&E matrix) · [Kaizen Leader](../kaizen-leader/README.md) (uses these maps during an event) · [Root Cause Analysis](../root-cause-analysis/README.md) · [Design for Six Sigma](../design-for-six-sigma/README.md) (VOC and QFD in depth)
 
 ## License
 

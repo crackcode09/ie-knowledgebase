@@ -4,12 +4,13 @@ Lean, Six Sigma, and the statistical tools behind them: process behavior charts,
 
 ## Courses
 
-Suggested order: Measurement & Basic Statistics and Process Mapping, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader has no prerequisites and can be taken at any point.
+Suggested order: Measurement & Basic Statistics, Process Mapping and Voice of the Customer, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader has no prerequisites and can be taken at any point.
 
 | Course | Topic | Length | Status |
 |---|---|---|---|
 | [Measurement & Basic Statistics](measurement-and-basic-statistics/README.md) | Data types, accuracy vs precision, Pareto charts, histograms, center, spread, the normal distribution | ~6 h | v1.0 |
 | [Process Mapping](process-mapping/README.md) | SIPOC, flow charts, swim lanes, value-added flow charts, spaghetti diagrams, VSM, VOC, affinity diagrams, CTQ trees, VOC as specifications | ~6 h | v1.0 |
+| [Voice of the Customer](voice-of-the-customer/README.md) | Customers and segments, Kano, surveys and margin of error, affinity and CTQ trees, operational definitions, VOC as specifications, cause-and-effect matrix | ~7 h | v1.0 |
 | [Charting Process Behavior](charting-process-behavior/README.md) | Statistical Process Control: run charts, XmR, X̄–R, attribute charts, capability | ~12 h + capstone | v1.0 |
 | [Fundamentals of Hypothesis Testing](fundamentals-of-hypothesis-testing/README.md) | Hypotheses, errors, power, CIs; t, ANOVA, proportion, chi-square, variance and nonparametric tests | ~14 h + capstone | v1.0 |
 | [Design for Six Sigma](design-for-six-sigma/README.md) | DCDOV: VOC, QFD, Pugh, FMEA, error-proofing, scorecards, DOE, tolerance stack-up, flow simulation, line balancing, reliability | ~45 h incl. capstone | v1.0 |
