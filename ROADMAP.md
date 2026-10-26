@@ -1,0 +1,160 @@
+# Course Roadmap
+
+Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
+
+**Progress: 3 of 101 topics covered.**
+
+- [x] = course exists in this repo (linked)
+- [ ] = not started
+- To claim a topic you are working on, add your name after it, e.g. `- [ ] Root Cause Analysis — _Nidhin, in progress_`
+
+## Analytics, Data Science & AI (0/9)
+
+Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai/README.md)
+
+- [ ] AI Essentials for Industrial & Systems Engineers
+- [ ] Artificial Intelligence Using Design Thinking
+- [ ] Analytics-Based Enterprise Performance Management
+- [ ] Data Analytics for Business Results
+- [ ] Efficient AI
+- [ ] Engineering Analytics – Introduction
+- [ ] Engineering Analytics – Advanced
+- [ ] Human-Centered AI
+- [ ] Operational Analytics
+
+## Ergonomics & Safety (0/5)
+
+Folder: [`courses/ergonomics-safety/`](courses/ergonomics-safety/README.md)
+
+- [ ] Applied Ergonomics
+- [ ] Advanced Ergonomics Analysis and Design
+- [ ] Ergonomic Process Specialist
+- [ ] OSHA and Ergonomics
+- [ ] Principles of Occupational Ergonomics
+
+## Healthcare Process Improvement (0/12)
+
+Folder: [`courses/healthcare-process-improvement/`](courses/healthcare-process-improvement/README.md)
+
+- [ ] Healthcare Labor Management
+- [ ] Introduction to IE in Healthcare
+- [ ] Lean Black Belt for Healthcare
+- [ ] Lean Green Belt for Healthcare
+- [ ] Lean Management Systems for Healthcare
+- [ ] Lean Six Sigma Black Belt for Healthcare
+- [ ] Lean Six Sigma Green Belt for Healthcare
+- [ ] Patient Scheduling Design
+- [ ] Principles in Patient Flow and Throughput
+- [ ] Six Sigma Black Belt for Healthcare
+- [ ] Six Sigma Green Belt for Healthcare
+- [ ] Teamwork, Communication & Safety
+
+## Leadership & Project Management (0/11)
+
+Folder: [`courses/leadership-project-management/`](courses/leadership-project-management/README.md)
+
+- [ ] Agile Process Design
+- [ ] Engineering Ethics Essentials
+- [ ] Ethical Decision Quality
+- [ ] Integrating AI and Ethics Into Team Decision Quality
+- [ ] Introduction to Project Management
+- [ ] Project Management Fundamentals
+- [ ] Public Speaking for STEM Professionals
+- [ ] Scrum Master
+- [ ] Systematic Strategic Planning
+- [ ] Technical Leadership
+- [ ] The Art and Science of Team Facilitation
+
+## Lean & Six Sigma (3/24)
+
+Folder: [`courses/lean-six-sigma/`](courses/lean-six-sigma/README.md)
+
+- [ ] Lean Yellow Belt
+- [ ] Lean Green Belt
+- [ ] Lean Black Belt
+- [ ] Lean Master Black Belt
+- [ ] Kaizen Leader
+- [ ] Lean IT Essentials for Leaders and Teams
+- [ ] Lean Methods Accelerator
+- [ ] Process Mapping
+- [ ] Voice of the Customer
+- [ ] Six Sigma Yellow Belt
+- [ ] Six Sigma Green Belt
+- [ ] Six Sigma Black Belt
+- [ ] Six Sigma Master Black Belt
+- [x] [Charting Process Behavior](courses/lean-six-sigma/charting-process-behavior/README.md)
+- [ ] Design for Six Sigma
+- [x] [Fundamentals of Hypothesis Testing](courses/lean-six-sigma/fundamentals-of-hypothesis-testing/README.md)
+- [x] [Measurement & Basic Statistics](courses/lean-six-sigma/measurement-and-basic-statistics/README.md)
+- [ ] Root Cause Analysis
+- [ ] Lean Six Sigma Yellow Belt
+- [ ] Lean Six Sigma Green Belt
+- [ ] Lean Six Sigma Black Belt
+- [ ] Lean Six Sigma Master Black Belt
+- [ ] Lean and Six Sigma Facilitator
+- [ ] Sustainable Lean Sigma
+
+## Logistics & Supply Chain (0/6)
+
+Folder: [`courses/logistics-supply-chain/`](courses/logistics-supply-chain/README.md)
+
+- [ ] Supply Chain Transformation Architect
+- [ ] Supply Chain Analyst
+- [ ] Introduction to Supply Chain Management
+- [ ] Demand Forecasting
+- [ ] Inventory Management
+- [ ] Warehousing Management
+
+## Quality & Operational Excellence (0/4)
+
+Folder: [`courses/quality-operational-excellence/`](courses/quality-operational-excellence/README.md)
+
+- [ ] Cost of Quality
+- [ ] Quality 101
+- [ ] Quality Engineering Essentials
+- [ ] Statistical Quality Control
+
+## Technical Skills (0/11)
+
+Folder: [`courses/technical-skills/`](courses/technical-skills/README.md)
+
+- [ ] Design of Experiments
+- [ ] Financial Management for Engineers
+- [ ] Introduction to Industrial Engineering
+- [ ] Introduction to Process Modeling
+- [ ] PE Exam Review for Industrial Engineers
+- [ ] Predictive Maintenance Technologies
+- [ ] Product Value Analysis / Value Engineering (VA/VE)
+- [ ] Reliability Engineering Excellence
+- [ ] Statistics
+- [ ] Technical Communications
+- [ ] Value Management Fundamentals
+
+## Work Design & Work Measurement (0/6)
+
+Folder: [`courses/work-design-work-measurement/`](courses/work-design-work-measurement/README.md)
+
+- [ ] Facilities and Workplace Design
+- [ ] Methods Time Measurement (MTM-1)
+- [ ] MODAPTS
+- [ ] Staffing Models and Human Capital Management
+- [ ] Standard Data Systems
+- [ ] Work Measurement
+
+## Microlearning Refreshers (0/13)
+
+Folder: [`courses/microlearning-refreshers/`](courses/microlearning-refreshers/README.md)
+
+- [ ] Advanced Excel Tools for ISEs
+- [ ] Affordability
+- [ ] Change Management
+- [ ] Healthcare Crisis Management and the ISE
+- [ ] Honing Your FMEA Skills
+- [ ] Lean Accounting and ABC
+- [ ] Lean Healthcare Primer
+- [ ] Regression Refresher
+- [ ] Systems Engineering Tools for Process Improvement
+- [ ] The Basics of Industrial Ergonomics
+- [ ] The Basics of Scheduling in Project Management
+- [ ] The Basics of Simulation
+- [ ] Using Excel for Creating Control Charts
