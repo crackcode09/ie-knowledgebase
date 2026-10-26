@@ -61,4 +61,4 @@ python tools/htest.py all       # run every worked example
 
 ## License
 
-Content CC BY 4.0, code MIT — see [LICENSE](../../LICENSE). Contributions: [CONTRIBUTING.md](../../CONTRIBUTING.md).
+Content CC BY 4.0, code MIT — see [LICENSE](../../../LICENSE). Contributions: [CONTRIBUTING.md](../../../CONTRIBUTING.md).

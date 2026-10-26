@@ -76,5 +76,5 @@ python tools/spc.py xmr data/shaft_diameter.csv value --baseline 20
 - Course content (Markdown, figures, data): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Code in `tools/`: MIT
 
-See [LICENSE](../../LICENSE). Contributions welcome — see [CONTRIBUTING.md](../../CONTRIBUTING.md).
+See [LICENSE](../../../LICENSE). Contributions welcome — see [CONTRIBUTING.md](../../../CONTRIBUTING.md).
 

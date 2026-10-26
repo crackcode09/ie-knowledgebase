@@ -58,7 +58,7 @@ In a DMAIC project, tests live mostly in **Analyze** (is this factor really rela
 ## 5. Setup
 
 ```bash
-cd ie-knowledgebase/courses/fundamentals-of-hypothesis-testing
+cd ie-knowledgebase/courses/lean-six-sigma/fundamentals-of-hypothesis-testing
 pip install -r requirements.txt
 python tools/make_data.py
 python tools/htest.py all      # every worked example in the course

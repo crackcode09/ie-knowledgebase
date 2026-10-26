@@ -63,7 +63,7 @@ Shewhart's own cycle (later Deming's **PDSA**: Plan–Do–Study–Act) uses cha
 
 ```bash
 git clone <this-repo-url>
-cd ie-knowledgebase/courses/charting-process-behavior
+cd ie-knowledgebase/courses/lean-six-sigma/charting-process-behavior
 pip install numpy matplotlib scipy
 python tools/make_data.py        # regenerates data/*.csv
 python tools/spc.py xmr data/shaft_diameter.csv value
