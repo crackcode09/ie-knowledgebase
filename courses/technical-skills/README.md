@@ -4,7 +4,9 @@ Core IE technical topics: statistics, design of experiments, process modeling, r
 
 ## Courses
 
-No courses yet. See the [root README](../../README.md) for how to add one.
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Introduction to Industrial Engineering](introduction-to-industrial-engineering/README.md) | What IEs do; methods and motion study; time study, work sampling and standards; ergonomics; layout; job analysis, evaluation and pay; Lean, Six Sigma, RCA; basic statistics | ~3 days | v1.0 |
 
 ## License
 

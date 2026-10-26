@@ -4,6 +4,8 @@ Free, open courses on industrial engineering, quality and continuous improvement
 
 ## Courses
 
+New to industrial engineering? Start with [Introduction to Industrial Engineering](courses/technical-skills/introduction-to-industrial-engineering/README.md), the broad entry point, then pick a category.
+
 See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still open in each category.
 
 [![Roadmap graph](docs/roadmap.svg)](docs/roadmap.svg)
@@ -50,7 +52,9 @@ _No courses yet._
 
 ### [Technical Skills](courses/technical-skills/README.md)
 
-_No courses yet._
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Introduction to Industrial Engineering](courses/technical-skills/introduction-to-industrial-engineering/README.md) | What IEs do; methods and motion study; time study, work sampling and standards; ergonomics; layout; job analysis, evaluation and pay; Lean, Six Sigma, RCA; basic statistics | ~3 days | v1.0 |
 
 ### [Work Design & Work Measurement](courses/work-design-work-measurement/README.md)
 
