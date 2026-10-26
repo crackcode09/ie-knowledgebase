@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1850 1850" font-family="Roboto, Arial, sans-serif" font-size="11">
 <rect width="1850" height="1850" fill="#FFFFFF"/>
 <text x="1820" y="1806" text-anchor="end" font-size="22" font-weight="700" fill="#1F2A33">IE Knowledgebase roadmap</text>
-<text x="1820" y="1828" text-anchor="end" font-size="13" fill="#7A8A96">11 of 101 courses built</text>
+<text x="1820" y="1828" text-anchor="end" font-size="13" fill="#7A8A96">12 of 101 courses built</text>
 <circle cx="30" cy="1822" r="6" fill="#2E8B57"/><text x="42" y="1826" fill="#1F2A33">built</text><circle cx="100" cy="1822" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/><text x="112" y="1826" fill="#1F2A33">not started</text>
 <line x1="925.0" y1="925.0" x2="1007.9" y2="636.7" stroke="#D5DDE3" stroke-width="2"/>
 <line x1="1007.9" y1="636.7" x2="949.2" y2="345.5" stroke="#D5DDE3" stroke-width="1"/>
@@ -90,7 +90,7 @@
 <line x1="625.3" y1="911.0" x2="345.6" y2="897.9" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="625.3" y1="911.0" x2="348.3" y2="863.2" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="625.3" y1="911.0" x2="353.0" y2="828.8" stroke="#D5DDE3" stroke-width="1"/>
-<line x1="625.3" y1="911.0" x2="359.8" y2="794.6" stroke="#D5DDE3" stroke-width="1"/>
+<line x1="625.3" y1="911.0" x2="359.8" y2="794.6" stroke="#2E8B57" stroke-width="1.6"/>
 <line x1="625.3" y1="911.0" x2="368.7" y2="760.9" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="625.3" y1="911.0" x2="379.5" y2="727.9" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="925.0" y1="925.0" x2="673.3" y2="761.7" stroke="#D5DDE3" stroke-width="2"/>
@@ -200,7 +200,7 @@
 <circle cx="345.6" cy="897.9" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="348.3" cy="863.2" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="353.0" cy="828.8" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
-<circle cx="359.8" cy="794.6" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
+<circle cx="359.8" cy="794.6" r="6" fill="#2E8B57" stroke="#2E8B57" stroke-width="1.5"/>
 <circle cx="368.7" cy="760.9" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="379.5" cy="727.9" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="625.3" cy="911.0" r="36" fill="#0078E6"/>
@@ -331,12 +331,12 @@
 <text transform="translate(334.6,897.4) rotate(362.7)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Predictive Maintenance Technologies</text>
 <text transform="translate(337.4,862.1) rotate(366.1)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Product Value Analysis / Value Engineering (VA/VE)</text>
 <text transform="translate(342.2,826.9) rotate(369.6)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Reliability Engineering Excellence</text>
-<text transform="translate(349.1,792.1) rotate(373.0)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Statistics</text>
+<text transform="translate(349.1,792.1) rotate(373.0)" text-anchor="end" dominant-baseline="middle" fill="#1F2A33" font-weight="700">Applied Statistics</text>
 <text transform="translate(358.1,757.8) rotate(376.4)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Technical Communications</text>
 <text transform="translate(369.2,724.1) rotate(379.9)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Value Management Fundamentals</text>
 <text x="625.3" y="900.0" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="500">Technical</text>
 <text x="625.3" y="911.0" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="500">Skills</text>
-<text x="625.3" y="922.0" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="700">2/11</text>
+<text x="625.3" y="922.0" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="700">3/11</text>
 <text transform="translate(387.8,678.7) rotate(384.6)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Facilities and Workplace Design</text>
 <text transform="translate(403.0,647.8) rotate(388.0)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Methods Time Measurement (MTM-1)</text>
 <text transform="translate(420.0,617.9) rotate(391.3)" text-anchor="end" dominant-baseline="middle" fill="#7A8A96" font-weight="400">MODAPTS</text>
