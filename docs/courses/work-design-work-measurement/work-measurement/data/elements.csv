@@ -1,7 +1,0 @@
-element,description,type
-E1,"Get housing, place in fixture",manual
-E2,Insert impeller and shaft,manual
-E3,"Fit seal and cover, run 6 screws (power driver)",manual
-E4,Leak test (machine-controlled),machine
-E5,"Attach label, inspect visually",manual
-E6,Place in tote,manual

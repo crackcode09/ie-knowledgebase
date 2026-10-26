@@ -1,5 +1,6 @@
-"""Draw ROADMAP.md as a radial knowledge graph (docs/roadmap.svg) and build the
-interactive course map (docs/index.html) from the roadmap and course READMEs.
+"""Draw ROADMAP.md as a radial knowledge graph (roadmap.svg) and build the
+interactive site (public/index.html, public/course.html) from the roadmap and course READMEs.
+GitHub Pages publishes the repo root; the site lives in public/ and reads courses/ in place.
 
 Usage:  python tools/roadmap_graph.py
 Re-run after editing ROADMAP.md or adding a course. Standard library only.
@@ -7,17 +8,16 @@ Re-run after editing ROADMAP.md or adding a course. Standard library only.
 import json
 import math
 import re
-import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "ROADMAP.md"
-OUT = ROOT / "docs" / "roadmap.svg"
-HTML_OUT = ROOT / "docs" / "index.html"
+PUBLIC = ROOT / "public"
+OUT = PUBLIC / "roadmap.svg"
+HTML_OUT = PUBLIC / "index.html"
 TEMPLATE = ROOT / "tools" / "roadmap_template.html"
-READER_OUT = ROOT / "docs" / "course.html"
+READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
-COURSES_OUT = ROOT / "docs" / "courses"
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
@@ -277,22 +277,6 @@ def course_extras(readme_path):
     return out
 
 
-def copy_courses(cats):
-    """Copy every built course folder into docs/courses so the reader can fetch it on GitHub Pages."""
-    if COURSES_OUT.exists():
-        shutil.rmtree(COURSES_OUT)
-    ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".ipynb_checkpoints")
-    n = 0
-    for c in cats:
-        for _title, ok, path, folded in c["items"]:
-            if ok and path and not folded:
-                src = ROOT / Path(path).parent
-                dst = COURSES_OUT / Path(path).parent.relative_to("courses")
-                shutil.copytree(src, dst, ignore=ignore)
-                n += 1
-    return n
-
-
 def build_model(cats):
     nodes = [{"id": "hub", "type": "hub", "label": "IE Knowledgebase"}]
     links = []
@@ -368,11 +352,12 @@ def write_html(cats):
 
 
 if __name__ == "__main__":
+    PUBLIC.mkdir(exist_ok=True)
     cats = parse(SRC.read_text(encoding="utf-8"))
     OUT.write_text(render(cats), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: {sum(len(c['items']) for c in cats)} courses in {len(cats)} categories")
     model = write_html(cats)
-    print(f"wrote {READER_OUT.relative_to(ROOT)}; copied {copy_courses(cats)} course folders into {COURSES_OUT.relative_to(ROOT)}")
+    print(f"wrote {READER_OUT.relative_to(ROOT)}")
     kinds, edges = {}, {}
     for n in model["nodes"]:
         kinds[n["type"]] = kinds.get(n["type"], 0) + 1
