@@ -7,6 +7,7 @@ Free, open courses on industrial engineering, quality and continuous improvement
 | Course | Topic | Length | Status |
 |---|---|---|---|
 | [Charting Process Behavior](courses/charting-process-behavior/README.md) | Statistical Process Control: run charts, XmR, X̄–R, attribute charts, capability | ~12 h + capstone | v1.0 |
+| [Fundamentals of Hypothesis Testing](courses/fundamentals-of-hypothesis-testing/README.md) | Hypotheses, errors, power, CIs; t, ANOVA, proportion, chi-square, variance and nonparametric tests | ~14 h + capstone | v1.0 |
 
 ## Adding a course
 
