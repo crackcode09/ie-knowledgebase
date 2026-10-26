@@ -44,7 +44,8 @@ def parse(md):
             lm = LINK_RE.search(m.group(2))
             title = LINK_RE.sub(r"\1", m.group(2))
             title = re.split(r" — ", title)[0].strip()
-            cur["items"].append((title, m.group(1) == "x", lm.group(2) if lm else None))
+            folded = "folded into" in m.group(2)
+            cur["items"].append((title, m.group(1) == "x", lm.group(2) if lm else None, folded))
     return cats
 
 
@@ -59,7 +60,7 @@ def render(cats):
     cx = cy = size / 2
     r_cat, r_leaf = 300, 580
     total = sum(len(c["items"]) for c in cats)
-    done = sum(ok for c in cats for _, ok, _p in c["items"])
+    done = sum(ok for c in cats for _, ok, _p, _f in c["items"])
     gap = 0.012  # radians of padding between category sectors
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" '
              f'font-family="Roboto, Arial, sans-serif" font-size="11">',
@@ -77,7 +78,7 @@ def render(cats):
         x1, y1 = cx + r_cat * math.cos(a_cat), cy + r_cat * math.sin(a_cat)
         edges.append(f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x1:.1f}" y2="{y1:.1f}" stroke="{LINK}" stroke-width="2"/>')
         inner = span - 2 * gap
-        for i, (title, ok, _p) in enumerate(c["items"]):
+        for i, (title, ok, _p, _f) in enumerate(c["items"]):
             a = ang + gap + inner * (i + 0.5) / n
             x2, y2 = cx + r_leaf * math.cos(a), cy + r_leaf * math.sin(a)
             edges.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
@@ -93,7 +94,7 @@ def render(cats):
             labels.append(f'<text transform="translate({tx:.1f},{ty:.1f}) rotate({rot:.1f})" '
                           f'text-anchor="{anchor}" dominant-baseline="middle" '
                           f'fill="{INK if ok else MUTED}" font-weight="{700 if ok else 400}">{esc(title)}</text>')
-        k = sum(ok for _, ok, _p in c["items"])
+        k = sum(ok for _, ok, _p, _f in c["items"])
         nodes.append(f'<circle cx="{x1:.1f}" cy="{y1:.1f}" r="36" fill="{CAT}"/>')
         name = c["name"].replace(" & ", " &amp; ")
         words = name.split()
@@ -281,8 +282,8 @@ def copy_courses(cats):
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".ipynb_checkpoints")
     n = 0
     for c in cats:
-        for _title, ok, path in c["items"]:
-            if ok and path:
+        for _title, ok, path, folded in c["items"]:
+            if ok and path and not folded:
                 src = ROOT / Path(path).parent
                 dst = COURSES_OUT / Path(path).parent.relative_to("courses")
                 shutil.copytree(src, dst, ignore=ignore)
@@ -306,9 +307,12 @@ def build_model(cats):
                       "path": f"courses/{slug}/README.md"})
         links.append({"source": "hub", "target": cid, "type": "tree"})
         table = category_table(slug)
-        for i, (title, ok, path) in enumerate(c["items"]):
+        for i, (title, ok, path, folded) in enumerate(c["items"]):
             a = round(ang + span * (i + 0.5) / len(c["items"]), 4)
-            if ok and path:
+            if ok and path and folded:
+                nid = "topic:" + slugify(title)
+                nodes.append({"id": nid, "type": "topic", "label": title, "parent": cid, "a": a, "covered_path": path})
+            elif ok and path:
                 nid = "course:" + Path(path).parent.name
                 topic, length = table.get(path, ("", ""))
                 desc, modules, prereq, related = course_info(path)
@@ -344,9 +348,13 @@ def build_model(cats):
                 continue
             links.append({"source": nid, "target": other, "type": "related"})
             seen.add(key)
+    for n in nodes:
+        if n.get("covered_path"):
+            n["covered"] = by_path.get(n.pop("covered_path"))
     total = sum(len(c["items"]) for c in cats)
-    built = sum(ok for c in cats for _, ok, _p in c["items"])
-    return {"repo": REPO_URL, "total": total, "built": built, "nodes": nodes, "links": links}
+    built = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and not f)
+    covered = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and f)
+    return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "nodes": nodes, "links": links}
 
 
 def write_html(cats):
