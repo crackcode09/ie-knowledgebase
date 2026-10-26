@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 20 of 101 topics covered.**
+**Progress: 21 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
@@ -108,11 +108,11 @@ Folder: [`courses/logistics-supply-chain/`](courses/logistics-supply-chain/READM
 - [ ] Inventory Management
 - [ ] Warehousing Management
 
-## Quality & Operational Excellence (3/4)
+## Quality & Operational Excellence (4/4)
 
 Folder: [`courses/quality-operational-excellence/`](courses/quality-operational-excellence/README.md)
 
-- [ ] Cost of Quality
+- [x] [Cost of Quality](courses/quality-operational-excellence/cost-of-quality/README.md)
 - [x] Quality 101 — folded into [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md) as Module 00, Foundations of Quality
 - [x] [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md)
 - [x] [Statistical Quality Control](courses/quality-operational-excellence/statistical-quality-control/README.md)

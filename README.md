@@ -55,6 +55,7 @@ _No courses yet._
 | Course | Topic | Length | Status |
 |---|---|---|---|
 | [Statistical Quality Control](courses/quality-operational-excellence/statistical-quality-control/README.md) | Descriptive statistics; common vs special cause; X̄–R, I–MR, p, c and short-run charts; Cp/Cpk; acceptance sampling: risks, OC curves, AOQ/AOQL, ASN, ATI, ANSI/ASQ Z1.4 use | ~3 days | v1.0 |
+| [Cost of Quality](courses/quality-operational-excellence/cost-of-quality/README.md) | CoQ models (PAF, process cost, activity-based); prevention, appraisal, internal and external failure; hidden costs and quality loss; cost assessments; cost drivers; project selection and savings; CoQ reports; Excel tracker | ~2 days | v1.0 |
 | [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md) | DMAIC quality toolkit: charter, 8 wastes, basic statistics, distribution ID, data cleansing, gauge R&R and attribute MSA, baseline/DPMO, SPC with transformations and stage variables, capability, root cause (fishbone, 5-Why, stratification, regression), FMEA, reliability, error-proofing, pilots, change management, control plans, 5S, standard work | ~39 h | v1.0 |
 
 ### [Technical Skills](courses/technical-skills/README.md)
