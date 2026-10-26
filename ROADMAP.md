@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 18 of 101 topics covered.**
+**Progress: 19 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked)
 - [ ] = not started
@@ -108,13 +108,13 @@ Folder: [`courses/logistics-supply-chain/`](courses/logistics-supply-chain/READM
 - [ ] Inventory Management
 - [ ] Warehousing Management
 
-## Quality & Operational Excellence (1/4)
+## Quality & Operational Excellence (2/4)
 
 Folder: [`courses/quality-operational-excellence/`](courses/quality-operational-excellence/README.md)
 
 - [ ] Cost of Quality
 - [ ] Quality 101
-- [ ] Quality Engineering Essentials
+- [x] [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md)
 - [x] [Statistical Quality Control](courses/quality-operational-excellence/statistical-quality-control/README.md)
 
 ## Technical Skills (7/11)
