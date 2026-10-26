@@ -1,6 +1,6 @@
 ## 2026-10-26 — Plan: Port the playbook "warm terminal" design and add an on-site course reader
 
-### Status: IN PROGRESS
+### Status: COMPLETE (pending merge of PRs #4, #5, #6)
 
 ### What is being built or changed
 - Restyle the site (catalog, learning path, mind map, drawer) with the design system from `D:\nidhin.dev\my-claude.md`: warm terminal palette, Space Grotesk / Inter / JetBrains Mono, editor-style top bar, hero with status pill, reading progress bar, reduced-motion support. Light and dark variants.
@@ -27,5 +27,8 @@
 - None outstanding; defaults above applied after "okay".
 
 ### Outcome (filled in after completion)
-- Pending.
+- PR #4 `feat/warm-theme`: tokens, fonts, top bar, hero, progress bar, light/dark toggle; all views restyled.
+- PR #5 `feat/course-reader`: `docs/course.html` reader with module nav, pager, done ticks, Raw/Copy, Mermaid; generator copies courses into `docs/courses/`; drawer links to the reader.
+- PR #6 `feat/reader-polish`: module-level progress on cards and in the drawer, `/` focuses search, arrow keys / `d` / `r` in the reader, print stylesheet.
+- Deviation: print output was generated but not visually verified (no PDF renderer on this machine).
 
