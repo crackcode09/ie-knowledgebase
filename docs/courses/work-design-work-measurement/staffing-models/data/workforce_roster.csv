@@ -1,0 +1,36 @@
+emp_id,role,age,service_years
+E001,Inspector,50,11
+E002,Inspector,57,17
+E003,Inspector,51,17
+E004,Inspector,46,14
+E005,Inspector,45,6
+E006,Inspector,41,7
+E007,Inspector,64,17
+E008,Inspector,33,6
+E009,Inspector,51,16
+E010,Inspector,51,17
+E011,Inspector,55,17
+E012,Inspector,47,16
+E013,Inspector,43,7
+E014,Inspector,54,19
+E015,Inspector,50,15
+E016,Inspector,51,13
+E017,Inspector,60,17
+E018,Inspector,49,14
+E019,Inspector,35,8
+E020,Inspector,57,18
+E021,Inspector,51,26
+E022,Plan reviewer,60,21
+E023,Plan reviewer,30,4
+E024,Plan reviewer,41,0
+E025,Plan reviewer,44,13
+E026,Plan reviewer,31,5
+E027,Plan reviewer,30,7
+E028,Permit technician,52,10
+E029,Permit technician,37,6
+E030,Permit technician,41,0
+E031,Permit technician,31,8
+E032,Supervisor,48,11
+E033,Supervisor,49,16
+E034,Supervisor,41,9
+E035,Supervisor,50,5
