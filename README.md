@@ -1,4 +1,4 @@
-﻿# Open IE Courses
+# IE Knowledgebase
 
 Free, open courses on industrial engineering, quality and continuous improvement. Each course is self-contained under `courses/`.
 
