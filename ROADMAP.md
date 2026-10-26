@@ -2,9 +2,9 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 19 of 101 topics covered.**
+**Progress: 21 of 101 topics covered.**
 
-- [x] = course exists in this repo (linked)
+- [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
 - To claim a topic you are working on, add your name after it, e.g. `- [ ] Root Cause Analysis — _Nidhin, in progress_`
 - After editing this file, run `python tools/roadmap_graph.py` to redraw the graph below and rebuild the [interactive map](https://nidhy.dev/ie-knowledgebase/).
@@ -108,13 +108,13 @@ Folder: [`courses/logistics-supply-chain/`](courses/logistics-supply-chain/READM
 - [ ] Inventory Management
 - [ ] Warehousing Management
 
-## Quality & Operational Excellence (2/4)
+## Quality & Operational Excellence (4/4)
 
 Folder: [`courses/quality-operational-excellence/`](courses/quality-operational-excellence/README.md)
 
 - [x] [Cost of Quality](courses/quality-operational-excellence/cost-of-quality/README.md)
-- [ ] Quality 101
-- [ ] Quality Engineering Essentials
+- [x] Quality 101 — folded into [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md) as Module 00, Foundations of Quality
+- [x] [Quality Engineering Essentials](courses/quality-operational-excellence/quality-engineering-essentials/README.md)
 - [x] [Statistical Quality Control](courses/quality-operational-excellence/statistical-quality-control/README.md)
 
 ## Technical Skills (7/11)

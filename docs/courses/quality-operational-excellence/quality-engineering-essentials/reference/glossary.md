@@ -1,0 +1,29 @@
+# Glossary
+
+- **5S:** Sort, Set in order, Shine, Standardize, Sustain.
+- **5-Why / 1-How:** repeatedly ask why to reach a controllable cause, then ask how to fix it.
+- **Attribute agreement analysis:** an MSA for pass/fail or categorical judgments.
+- **Baseline:** process performance before improvement.
+- **Calibration:** comparing a gauge against a traceable standard and adjusting it.
+- **Cause-and-effect (C&E) matrix:** a scoring of inputs against weighted outputs to prioritize what to measure or study.
+- **Control plan:** the document that lists controlled characteristics, methods, frequencies and reaction plans.
+- **Corrective action matrix:** a table of root causes and candidate actions, scored on impact, cost and effort.
+- **DMAIC:** Define, Measure, Analyze, Improve, Control.
+- **DPMO:** defects per million opportunities.
+- **Error-proofing (poka-yoke):** a device or method that prevents an error or detects it immediately.
+- **Fishbone (Ishikawa) diagram:** a cause-and-effect diagram grouped by category.
+- **FMEA:** failure mode and effects analysis.
+- **Gauge R&R:** a study of measurement repeatability and reproducibility.
+- **Kappa:** agreement corrected for chance.
+- **ndc:** number of distinct categories the measurement system can resolve.
+- **Pilot:** a limited-scale trial of a solution.
+- **Project charter:** a one-page agreement on the problem, goal, scope, team and timeline.
+- **Rational subgroup:** a subgroup that contains only common-cause variation.
+- **Repeatability / reproducibility:** variation from the equipment (same operator) / from different operators or setups.
+- **Rolled throughput yield (RTY):** the probability that a unit passes every step defect-free.
+- **Root cause tree:** a hierarchical breakdown of possible causes, each marked verified, ruled out or open.
+- **Stage variable:** a variable that marks process phases so each phase gets its own control limits.
+- **Standard work:** the current best sequence, timing and key points for a task.
+- **Stratification:** splitting data by factor (machine, shift and so on) to find where a problem concentrates.
+- **Visual management:** making status and abnormalities visible at a glance.
+- **Y = f(X):** outputs are a function of inputs.
