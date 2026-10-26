@@ -183,7 +183,7 @@ def course_info(readme_path):
     for line in lines:
         is_prereq_line = "prerequisite" in line.lower()
         # On a prerequisites line, links after "Helpful" are recommendations, not requirements.
-        hard, soft = (re.split(r"helpful|helps", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
+        hard, soft = (re.split(r"helpful|helps\b", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
         for part, bucket in ((hard, prereq), (soft, related)):
             for _label, href in LINK_RE.findall(part):
                 if not href.startswith("../") or not href.endswith("/README.md"):
