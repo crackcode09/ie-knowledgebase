@@ -431,7 +431,7 @@
     function onClick(n) {
       const d = n.data.data;
       if (type(n) === 'group' || isCat(n)) { toggle(n.data); render(); return; }
-      if (type(n) === 'course') { if (!n.data.children && n.data._children) toggle(n.data); }
+      if (type(n) === 'course' && (n.data.children || n.data._children)) toggle(n.data);
       selectedId = n.data.id;
       open(byId.get(n.data.id) || d);
       render();
