@@ -400,7 +400,7 @@
       link.enter().append('path').attr('class', 'link').attr('fill', 'none').attr('stroke', css('--line')).attr('stroke-width', l => isCat(l.t) ? 2 : 1.2).attr('opacity', 0)
         .attr('d', path).merge(link).transition().duration(dur).attr('opacity', 1).attr('d', path).attr('stroke', css('--line'));
       // nodes
-      const node = nodeLayer.selectAll('g.node').data(ns, n => n.data.id);
+      const node = nodeLayer.selectAll('g.node:not(.hub)').data(ns, n => n.data.id);
       node.exit().transition().duration(dur).attr('opacity', 0).remove();
       const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => `translate(${n.parent && n.parent.depth > 0 ? n.parent.px : 0},${n.parent && n.parent.depth > 0 ? n.parent.py : 0})`)
         .on('click', (e, n) => { e.stopPropagation(); onClick(n); });
