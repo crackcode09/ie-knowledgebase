@@ -44,6 +44,8 @@
     background: rgba(var(--bg-rgb), .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
   .status b { color: var(--green); font-weight: 500; }
+  .status[hidden] { display: none; }
+  .topbar .status { margin: 0; }
   nav.toggle a.btn { color: var(--text); } nav.toggle a.btn:hover { color: var(--accent); text-decoration: none; }
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text); background: var(--surface); border: 1px solid var(--line);
     border-radius: 6px; padding: 6px 12px; cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s, transform .08s var(--ease-out); }
@@ -53,7 +55,7 @@
   .btn svg { width: 14px; height: 14px; flex: none; }
   .toggle { display: flex; } .toggle .btn { border-radius: 0; } .toggle .btn:first-child { border-radius: 6px 0 0 6px; } .toggle .btn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
 
-  .hero { max-width: 1280px; margin: 0 auto; padding: var(--s7) var(--s7) var(--s6); }
+  .hero { display: none; }
   .hero .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--green); margin-bottom: var(--s4); }
   .hero .eyebrow::before { content: "$ "; color: var(--muted); }
   .hero h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 52px); font-weight: 700; letter-spacing: -.02em; line-height: 1.08; }
@@ -63,11 +65,13 @@
   .chip.green { color: var(--green); border-color: var(--green); } .chip.accent { color: var(--accent); border-color: var(--accent); }
   .hero .lede { margin-top: var(--s4); color: var(--muted); font-size: 16px; }
 
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--s7) 100px; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--s7); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: var(--s6) var(--s7) 100px; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--s7); }
 
-  nav.toc { position: sticky; top: 112px; align-self: start; font-size: 13.5px; border-left: 1px solid var(--line); max-height: calc(100vh - 80px); overflow: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  nav.toc { position: sticky; top: 64px; align-self: start; font-size: 13.5px; border-left: 1px solid var(--line); max-height: calc(100vh - 80px); overflow: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
   nav.toc .toc-title { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: var(--s1) 0 var(--s3) var(--s4); }
   nav.toc .toc-title + .toc-title { padding-top: var(--s5); }
+  nav.toc a.course { display: block; padding: 2px var(--s4) 10px; font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); border-left: 0; margin: 0; }
+  nav.toc a.course:hover { color: var(--accent); padding-left: var(--s4); }
   nav.toc a { display: flex; gap: 8px; align-items: baseline; padding: 5px var(--s4); color: var(--muted); text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; transition: color .15s, border-color .15s, padding-left .15s var(--ease-out); }
   nav.toc a:hover { color: var(--text); padding-left: 20px; }
   nav.toc a.current { color: var(--accent); border-left-color: var(--accent); }
@@ -76,9 +80,18 @@
   nav.toc a .t { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: auto; white-space: nowrap; }
 
   .doc { min-width: 0; }
+  .dochead { display: flex; flex-direction: column; gap: 10px; padding-bottom: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--line); }
+  .dochead-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; }
+  .dochead-row .docmeta { flex: 1 1 auto; }
+  .dochead .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--green); } .dochead .eyebrow::before { content: "$ "; color: var(--muted); }
+  .dochead h1 { margin: 0; font-family: var(--display); font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+  .dochead h1 .num { color: var(--muted); font-weight: 500; }
+  .docmeta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .dochead-actions { display: flex; gap: 8px; flex: none; flex-wrap: wrap; }
+  .btn.done { background: var(--green-soft); border-color: var(--green); color: var(--green); }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); padding: var(--s2) var(--s3); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: inline-block; box-shadow: var(--shadow-1); }
   .status b { color: var(--green); font-weight: 500; }
-  .doc h1, .doc h2, .doc h3, .doc h4 { font-family: var(--display); scroll-margin-top: 128px; }
+  .doc h1, .doc h2, .doc h3, .doc h4 { font-family: var(--display); scroll-margin-top: 80px; }
   .doc h1 { font-size: 30px; margin: var(--s5) 0 var(--s4); letter-spacing: -.01em; line-height: 1.2; }
   .doc h2 { font-size: 23px; margin: var(--s7) 0 var(--s3); padding-top: var(--s5); border-top: 1px solid var(--line); }
   .doc h2::before, .doc h3::before { content: "# "; color: var(--accent); font-family: var(--mono); font-weight: 400; }
@@ -135,23 +148,23 @@
   <span class="status" id="siteStatus"></span>
   <button type="button" class="btn" id="btnTheme" aria-label="Toggle light or dark theme">theme</button>
 </div>
-<div class="toolbar">
-  <a class="btn" id="btnBack" href="index.html">← catalog</a>
-  <span class="spacer"></span>
-  <div class="toggle" role="group" aria-label="View mode"><button type="button" class="btn active" id="btnRendered">Rendered</button><button type="button" class="btn" id="btnRaw">Raw</button></div>
-  <button type="button" class="btn" id="btnCopy">Copy</button>
-  <a class="btn" id="btnGithub" target="_blank" rel="noopener">GitHub</a>
-</div>
-<header class="hero">
-  <div class="eyebrow">cat <span id="eyebrowFile">README.md</span></div>
-  <h1 id="title"></h1>
-  <div class="byline" id="byline"></div>
-  <p class="lede" id="lede"></p>
-</header>
 <div class="wrap">
   <nav class="toc" id="toc" aria-label="Course contents"></nav>
   <main class="doc">
-    <div class="status" id="status">loading…</div>
+    <div class="dochead">
+      <div class="eyebrow">cat <span id="eyebrowFile">README.md</span></div>
+      <h1 id="title"></h1>
+      <div class="dochead-row">
+      <div class="docmeta" id="docMeta"></div>
+      <div class="dochead-actions">
+        <div class="toggle" role="group" aria-label="View mode"><button type="button" class="btn active" id="btnRendered">Rendered</button><button type="button" class="btn" id="btnRaw">Raw</button></div>
+        <button type="button" class="btn" id="btnCopy">Copy</button>
+        <a class="btn" id="btnGithub" target="_blank" rel="noopener">GitHub</a>
+        <button type="button" class="btn" id="btnMark">mark done</button>
+      </div>
+      </div>
+    </div>
+    <div class="status" id="status" hidden>loading…</div>
     <div class="rendered" id="rendered"></div>
     <div class="raw" id="rawView"><pre id="rawPre"></pre></div>
     <div class="pager" id="pager"></div>
@@ -200,28 +213,34 @@
 
   // ---- site status and back link
   $('siteStatus').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
-  if (file !== 'README.md') { $('btnBack').href = `course.html?c=${encodeURIComponent(slug)}`; $('btnBack').textContent = '← course overview'; }
-  else { $('btnBack').href = `index.html#course:${encodeURIComponent(slug)}`; $('btnBack').textContent = '← catalog'; }
 
   // ---- hero and nav
   $('pathCourse').innerHTML = `<a href="index.html#course:${esc(slug)}">${esc(slug)}</a>`;
-  $('pathFile').textContent = file.split('/').pop(); $('eyebrowFile').textContent = file;
+  const curMod = modules.find(m => m.rel === file);
+  $('pathFile').textContent = curMod ? String(modules.indexOf(curMod)).padStart(2, '0') : file.split('/').pop(); $('eyebrowFile').textContent = file;
   document.title = `${course.label} · IE Knowledgebase`;
   $('btnGithub').href = `${REPO}/blob/main/${courseRoot}/${file}`;
+  let docLines = 0;
+  const kindWord = m => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
   function renderHero() {
     const cur = modules.find(m => m.rel === file);
-    $('title').innerHTML = cur ? `${esc(course.label)} <span class="md">· ${esc(cur.label)}</span>` : `${esc(course.label)}<span class="md">.</span>`;
-    const done = doneCourses.has(course.id);
-    $('byline').innerHTML = `<span class="chip"><a href="index.html" style="color:inherit;text-decoration:none">${esc(cat.label)}</a></span>` +
-      (course.length ? `<span class="chip">${esc(course.length)}</span>` : '') +
-      `<span class="chip">${modules.length} modules · ${modules.filter(m => doneMods.has(modKey(m.rel))).length} done</span>` +
-      (done ? '<span class="chip green">✓ course done</span>' : '');
-    $('lede').textContent = isReadme ? '' : (course.description || '');
-    $('lede').style.display = isReadme ? 'none' : '';
+    const extra = extras.find(x => x.path === file);
+    if (cur) $('title').innerHTML = `<span class="num">${String(modules.indexOf(cur)).padStart(2, '0')}</span> ${esc(cur.label)}`;
+    else if (extra) $('title').textContent = extra.label;
+    else $('title').textContent = course.label;
+    const parts = [];
+    if (cur) { if (cur.note) parts.push(cur.note); if (kindWord(cur)) parts.push(kindWord(cur)); }
+    else if (isReadme) { parts.push(cat.label); if (course.length) parts.push(course.length); parts.push(`${modules.length} modules`); }
+    if (docLines) parts.push(`${docLines} lines`);
+    $('docMeta').innerHTML = parts.map(esc).join(' · ');
+    const d = cur ? doneMods.has(modKey(file)) : doneCourses.has(course.id);
+    const b = $('btnMark'); b.classList.toggle('done', d); b.textContent = cur ? (d ? '✓ module done' : 'mark done') : (d ? '✓ course done' : 'mark course done');
+    b.style.display = (cur || isReadme) ? '' : 'none';
   }
   function renderToc() {
-    let h = '<div class="toc-title">Course</div>' + `<a href="course.html?c=${esc(slug)}" class="${isReadme ? 'current' : ''}"><span class="n">#</span>Overview</a>`;
-    h += '<div class="toc-title">Modules</div>' + modules.map((m, i) => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(m.rel)}" class="${m.rel === file ? 'current' : ''} ${doneMods.has(modKey(m.rel)) ? 'mdone' : ''}" title="${esc(m.topics || '')}"><span class="n">${doneMods.has(modKey(m.rel)) ? '✓' : i}</span><span>${esc(m.label)}</span>${m.note ? `<span class="t">${esc(m.note)}</span>` : ''}</a>`).join('');
+    const doneN = modules.filter(m => doneMods.has(modKey(m.rel))).length;
+    let h = '<div class="toc-title">Course</div>' + `<a href="course.html?c=${esc(slug)}" class="course">${esc(course.label)}</a>` + `<a href="course.html?c=${esc(slug)}" class="${isReadme ? 'current' : ''}"><span class="n">#</span>Overview</a>`;
+    h += `<div class="toc-title">Modules · ${doneN} of ${modules.length} done</div>` + modules.map((m, i) => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(m.rel)}" class="${m.rel === file ? 'current' : ''} ${doneMods.has(modKey(m.rel)) ? 'mdone' : ''}" title="${esc(m.topics || '')}"><span class="n">${doneMods.has(modKey(m.rel)) ? '✓' : i}</span><span>${esc(m.label)}</span>${m.note ? `<span class="t">${esc(m.note)}</span>` : ''}</a>`).join('');
     if (extras.length) h += '<div class="toc-title">Reference</div>' + extras.map(x => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(x.path)}" class="${x.path === file ? 'current' : ''}"><span class="n">·</span><span>${esc(x.label)}</span></a>`).join('');
     $('toc').innerHTML = h;
     const cur = $('toc').querySelector('a.current'); if (cur) cur.scrollIntoView({ block: 'nearest' });
@@ -269,6 +288,7 @@
     marked.use({ gfm: true, breaks: false });
     const el = $('rendered');
     el.innerHTML = marked.parse(md);
+    const firstH1 = el.querySelector('h1'); if (firstH1 && firstH1 === el.firstElementChild) firstH1.remove();  // the document header already shows the title
     el.querySelectorAll('h1, h2, h3, h4').forEach(h => { if (!h.id) h.id = h.textContent.toLowerCase().replace(/[^a-z0-9 -]/g, '').trim().replace(/\s+/g, '-'); });
     rewriteLinks(el);
     const mer = [...el.querySelectorAll('pre > code.language-mermaid')];
@@ -279,7 +299,7 @@
       document.body.appendChild(s);
     }
     $('rawPre').innerHTML = renderRaw(md);
-    $('status').innerHTML = `source: <b>${esc(courseRoot)}/${esc(file)}</b> · ${md.split('\n').length} lines · ${(md.length / 1024).toFixed(1)} KB`;
+    docLines = md.split('\n').length; renderHero();
     if (location.hash) { const t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
     updateProgress();
   }
@@ -301,6 +321,7 @@
   // ---- chrome
   function setMode(raw) { document.body.classList.toggle('raw-mode', raw); $('btnRaw').classList.toggle('active', raw); $('btnRendered').classList.toggle('active', !raw); }
   $('btnRendered').addEventListener('click', () => setMode(false)); $('btnRaw').addEventListener('click', () => setMode(true));
+  $('btnMark').addEventListener('click', () => { const b = $('markMod') || $('markCourse'); if (b) b.click(); });
   $('btnCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(RAW); $('btnCopy').textContent = 'Copied'; setTimeout(() => $('btnCopy').textContent = 'Copy', 1500); } catch (e) { setMode(true); } });
   function updateProgress() { const h = document.documentElement; const max = h.scrollHeight - h.clientHeight; $('progress').style.width = (max > 0 ? 100 * h.scrollTop / max : 0) + '%'; }
   window.addEventListener('scroll', updateProgress, { passive: true });
@@ -317,7 +338,7 @@
   fetch(`courses/${courseRoot.replace(/^courses\//, '')}/${file}`, { cache: 'no-store' })
     .then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))
     .then(mount)
-    .catch(() => { $('status').innerHTML = `could not load <b>${esc(file)}</b>. <a href="${REPO}/blob/main/${esc(courseRoot)}/${esc(file)}">Read it on GitHub</a>.`; });
+    .catch(() => { $('status').hidden = false; $('status').innerHTML = `could not load <b>${esc(file)}</b>. <a href="${REPO}/blob/main/${esc(courseRoot)}/${esc(file)}">Read it on GitHub</a>.`; });
 })();
 </script>
 </body>
