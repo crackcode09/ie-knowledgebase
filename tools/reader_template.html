@@ -201,7 +201,7 @@
   }
   function renderToc() {
     let h = '<div class="toc-title">Course</div>' + `<a href="course.html?c=${esc(slug)}" class="${isReadme ? 'current' : ''}"><span class="n">#</span>Overview</a>`;
-    h += '<div class="toc-title">Modules</div>' + modules.map((m, i) => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(m.rel)}" class="${m.rel === file ? 'current' : ''} ${doneMods.has(modKey(m.rel)) ? 'mdone' : ''}"><span class="n">${doneMods.has(modKey(m.rel)) ? '✓' : i}</span><span>${esc(m.label)}</span>${m.note && m.note.length <= 18 ? `<span class="t">${esc(m.note)}</span>` : ''}</a>`).join('');
+    h += '<div class="toc-title">Modules</div>' + modules.map((m, i) => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(m.rel)}" class="${m.rel === file ? 'current' : ''} ${doneMods.has(modKey(m.rel)) ? 'mdone' : ''}" title="${esc(m.topics || '')}"><span class="n">${doneMods.has(modKey(m.rel)) ? '✓' : i}</span><span>${esc(m.label)}</span>${m.note ? `<span class="t">${esc(m.note)}</span>` : ''}</a>`).join('');
     if (extras.length) h += '<div class="toc-title">Reference</div>' + extras.map(x => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(x.path)}" class="${x.path === file ? 'current' : ''}"><span class="n">·</span><span>${esc(x.label)}</span></a>`).join('');
     $('toc').innerHTML = h;
   }

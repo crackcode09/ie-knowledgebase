@@ -170,15 +170,31 @@ def course_info(readme_path):
             desc = re.sub(r"\*\*([^*]+)\*\*", r"\1", LINK_RE.sub(r"\1", s))
             break
     modules = []
+    time_idx = topics_idx = None
     for line in lines:
         if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if time_idx is None and topics_idx is None and not any("](" in c for c in cells):
+            # header row of the syllabus table: learn which column holds time and which holds topics
+            for i, c in enumerate(cells):
+                if re.search(r"time|duration|length", c, re.I):
+                    time_idx = i
+                elif re.search(r"body of knowledge|topics?|covers?|contents?", c, re.I):
+                    topics_idx = i
             continue
         m = re.search(r"\[([^\]]+)\]\((modules/[^)\s]+)\)", line)
         if not m:
             continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        note = cells[-1] if len(cells) > 1 and "](" not in cells[-1] else ""
-        modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note})
+        note = cells[time_idx] if time_idx is not None and time_idx < len(cells) else ""
+        topics = cells[topics_idx] if topics_idx is not None and topics_idx < len(cells) else ""
+        if not note and not topics and len(cells) > 1 and "](" not in cells[-1]:
+            last = cells[-1]
+            if re.search(r"\d\s*(min|h\b|hour|day)", last):
+                note = last
+            else:
+                topics = last
+        modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note, "topics": topics})
     prereq, related = [], []
     for line in lines:
         is_prereq_line = "prerequisite" in line.lower()
@@ -257,7 +273,7 @@ def build_model(cats):
                 for i, m in enumerate(modules):
                     mid = f"{nid}/{i}"
                     nodes.append({"id": mid, "type": "module", "label": m["title"], "parent": nid, "a": a,
-                                  "path": m["path"], "note": m["note"]})
+                                  "path": m["path"], "note": m["note"], "topics": m["topics"]})
                     links.append({"source": nid, "target": mid, "type": "tree"})
             else:
                 nid = "topic:" + slugify(title)
