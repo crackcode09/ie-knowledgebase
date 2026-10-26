@@ -159,6 +159,44 @@ def category_description(slug):
     return ""
 
 
+def module_summary(path, limit=220):
+    """Topics line for a module whose syllabus row has none: its learning objectives
+    joined with semicolons; else its section headings; else its first paragraph."""
+    try:
+        lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return ""
+    items, grab = [], False
+    for line in lines:
+        if re.match(r"^#+\s*(learning\s+)?objectives", line, re.I):
+            grab = True
+            continue
+        if grab and line.startswith("#"):
+            break
+        if grab:
+            m = re.match(r"^\s*(?:\d+[.)]|[-*])\s+(.+)", line)
+            if m:
+                items.append(m.group(1).strip())
+    if not items:
+        items = [re.sub(r"^\d+\.\s*", "", h[3:]).strip() for h in lines if h.startswith("## ")]
+    if not items:
+        for line in lines[1:]:
+            s = line.strip()
+            if s and not re.match(r"^(#|\||\*\*Time|\*\*Data|!|`|<|-|\*|\d+[.)])", s):
+                items = [s]
+                break
+    def clean(s):
+        s = LINK_RE.sub(r"\1", s)
+        s = re.sub(r"(\*\*|\*|_|`)([^*_`]+)\1", r"\2", s)
+        return re.sub(r"[.;:]\s*$", "", s.strip())
+    out = "; ".join(clean(i) for i in items if i)
+    if len(out) > limit:
+        head = out[:limit]
+        cut = head.rsplit(";", 1)[0] if ";" in head else head.rsplit(" ", 1)[0]
+        out = cut.rstrip(" ;,") + " …"
+    return out
+
+
 def course_info(readme_path):
     """Description, module rows, prerequisite and related course paths from a course README."""
     base = Path(readme_path).parent
@@ -194,7 +232,8 @@ def course_info(readme_path):
                 note = last
             else:
                 topics = last
-        modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note, "topics": topics})
+        mpath = rel(base / m.group(2))
+        modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics or module_summary(mpath)})
     prereq, related = [], []
     for line in lines:
         is_prereq_line = "prerequisite" in line.lower()
