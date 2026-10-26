@@ -199,7 +199,7 @@
   const isReadme = file === 'README.md';
 
   // ---- site status and back link
-  $('siteStatus').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
+  $('siteStatus').innerHTML = `<b>${DATA.built}</b> built${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
   if (file !== 'README.md') { $('btnBack').href = `course.html?c=${encodeURIComponent(slug)}`; $('btnBack').textContent = '← course overview'; }
   else { $('btnBack').href = `index.html#course:${encodeURIComponent(slug)}`; $('btnBack').textContent = '← catalog'; }
 

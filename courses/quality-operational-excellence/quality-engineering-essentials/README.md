@@ -9,11 +9,12 @@ A free, open course in the quality engineer's core toolkit, organized along the 
 - root-cause investigation
 - corrective actions and control
 
-**Length:** about 38 hours of self-study, in six sessions plus a capstone. About half of that time is hands-on practice.  
+**Length:** about 39 hours of self-study, in a foundations module, six sessions and a capstone. About half of that time is hands-on practice.  
 **Prerequisites:** none.
 
 ## What you will be able to do
 
+- Explain what quality means, how the field developed, and the difference between quality control, assurance and improvement, including where ISO 9001 fits.
 - Explain why each quality engineering tool is used, when to apply it in DMAIC, and how to use it.
 - Evaluate a measurement system (gauge R&R and attribute agreement).
 - Chart process behavior and assess capability.
@@ -37,6 +38,7 @@ All data is simulated with a fixed seed.
 
 | # | Session | Topics |
 |---|---|---|
+| 00 | [Foundations of quality](modules/00-foundations-of-quality.md) | What quality means; history from Shewhart to Lean Six Sigma; quality control vs assurance vs improvement; obstacles to continuous improvement; what a process map gives you; ISO 9001:2015 in outline |
 | 01 | [Introduction to quality engineering](modules/01-introduction-to-quality-engineering.md) | Y = f(X), Lean principles, 3 M's and 8 wastes, the 99.9% problem, DMAIC, project charter, using AI tools responsibly |
 | 02 | [Measurement and basic statistics](modules/02-measurement-and-basic-statistics.md) | Statistical terms, data types, selecting measurements, Pareto, histogram, center and spread, normal distribution, distribution identification, data cleansing |
 | 03 | [Measurement system analysis](modules/03-measurement-system-analysis.md) | Measurement as a process, cause-and-effect matrix, gauge R&R, attribute MSA, calibration, data collection, sample size, baseline (DPMO, sigma level) |
