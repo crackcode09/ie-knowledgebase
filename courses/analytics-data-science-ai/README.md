@@ -4,7 +4,9 @@ Engineering analytics, operational analytics, and applied AI for industrial and 
 
 ## Courses
 
-No courses yet. See the [root README](../../README.md) for how to add one.
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Introduction to Engineering Analytics](engineering-analytics/README.md) | Analytics types and process; visualization and dashboards; data models, star schema, SQL; k-means segmentation, ABC classification, logistic and tree classifiers, accuracy measures; regression case study; PCA; forecasting; Big Data technology and enterprise data models; linear-programming optimization; strategy | ~2 days | v1.0 |
 
 ## License
 

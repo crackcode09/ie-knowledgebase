@@ -16,7 +16,9 @@ Suggested order: Measurement & Basic Statistics, Process Mapping and Voice of th
 
 ### [Analytics, Data Science & AI](courses/analytics-data-science-ai/README.md)
 
-_No courses yet._
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Introduction to Engineering Analytics](courses/analytics-data-science-ai/engineering-analytics/README.md) | Analytics types and process; visualization and dashboards; data models, star schema, SQL; k-means segmentation, ABC classification, logistic and tree classifiers, accuracy measures; regression case study; PCA; forecasting; Big Data technology and enterprise data models; linear-programming optimization; strategy | ~2 days | v1.0 |
 
 ### [Ergonomics & Safety](courses/ergonomics-safety/README.md)
 
