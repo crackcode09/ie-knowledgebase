@@ -78,7 +78,7 @@
   main { flex: 1; position: relative; min-height: 0; overflow: hidden; }
   .view { position: absolute; inset: 0; overflow: auto; display: none; }
   .view.active { display: block; }
-  .page { max-width: 1100px; margin: 0 auto; padding: var(--s5) var(--s5) 100px; }
+  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) 100px; }
 
   /* hero */
   .hero { padding: var(--s7) 0 var(--s6); }
@@ -91,7 +91,7 @@
   .hero .byline { margin-top: var(--s5); color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
   .chip { font-family: var(--mono); font-size: 12.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; color: var(--text); box-shadow: var(--shadow-1); }
   .chip a { color: inherit; } .chip a:hover { color: var(--accent); text-decoration: none; }
-  .hero .lede { margin: var(--s5) 0 0; max-width: 640px; color: var(--muted); font-size: 16px; }
+  .hero .lede { margin: var(--s5) 0 0; color: var(--muted); font-size: 16px; }
   .intro { color: var(--muted); margin: 0 0 var(--s4); }
   .start { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: var(--s3) var(--s4); margin-bottom: var(--s5); }
   .start b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -121,6 +121,8 @@
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
   .card.locked { opacity: .55; }
+  .card .mprog { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+  .card .mprog i { display: block; height: 100%; background: var(--green); }
   .card .tick { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
   .card.done .tick { background: var(--green); border-color: var(--green); }
   .planned { padding: 0 var(--s4) var(--s4); display: flex; flex-wrap: wrap; gap: 6px; }
@@ -176,6 +178,7 @@
   .pill.built, .pill.todo { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
   .pill.next { background: var(--accent); color: var(--bg); } .pill.done { background: var(--green); color: var(--bg); }
   footer { border-top: 1px solid var(--line); padding: var(--s3) var(--s5); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
+  @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
   @media (max-width: 640px) { .level { flex-wrap: wrap; } .level .lvl { flex-basis: 100%; padding-top: 0; } .level .card { width: 100%; } .hero { padding-top: var(--s6); } }
 </style>
 </head>
@@ -259,6 +262,9 @@
   try { done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) {}
   function saveDone() { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch (e) {} }
   const isDone = id => done.has(id);
+  let doneMods = new Set();
+  try { doneMods = new Set(JSON.parse(localStorage.getItem('iekb-mods') || '[]')); } catch (e) {}
+  const modsDone = c => modulesOf(c.id).filter(m => doneMods.has(m.path)).length;
   const unlocked = id => !isDone(id) && prereqsOf(id).every(p => isDone(p.id));
   // 'up next' only lights up once the learner has marked something done; before that it would mark every foundation course.
   const isNext = id => done.size > 0 && unlocked(id);
@@ -287,6 +293,7 @@
       ${withCat ? `<div class="cat-tag">${esc(byId.get(c.parent).label)}</div>` : ''}
       <div class="meta">${esc(c.length || '')}${n ? ` · ${n} modules` : ''}${isNext(c.id) ? ' · <b style="color:var(--next)">up next</b>' : ''}</div>
       <div class="topic">${esc(c.search || c.description)}</div>
+      ${n && modsDone(c) && !isDone(c.id) ? `<div class="mprog" title="${modsDone(c)} of ${n} modules done"><i style="width:${100 * modsDone(c) / n}%"></i></div>` : ''}
     </div>`;
   }
 
@@ -351,12 +358,12 @@
   function openCourse(c) {
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
     const st = isDone(c.id) ? '<span class="pill done">done</span>' : isNext(c.id) ? '<span class="pill next">up next</span>' : unlocked(c.id) ? '<span class="pill built">available</span>' : '<span class="pill built">locked</span>';
-    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}</div>`;
+    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}</div>`;
     if (c.description) h += `<p>${esc(c.description)}</p>`;
     h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
-    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => `<tr><td class="n">${i}</td><td><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a></td><td class="t">${esc(m.note)}</td></tr>`).join('') + '</table>';
+    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => `<tr><td class="n">${doneMods.has(m.path) ? '<span style="color:var(--green)">✓</span>' : i}</td><td><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a></td><td class="t">${esc(m.note)}</td></tr>`).join('') + '</table>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">GitHub</a>`;
     body.innerHTML = h;
   }
@@ -395,6 +402,7 @@
   document.body.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.classList && e.target.classList.contains('card')) open(byId.get(e.target.dataset.id));
     if (e.key === 'Escape') open(null);
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(e.target.tagName)) { e.preventDefault(); document.getElementById('search').focus(); }
   });
 
   // ---- tabs and search
@@ -415,7 +423,7 @@
 
   function refresh() {
     document.getElementById('count').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built`;
-    document.getElementById('mine').innerHTML = done.size ? `you: <b>${done.size}</b> done` : '';
+    document.getElementById('mine').innerHTML = done.size ? ` · you: <b>${done.size}</b> done` : '';
     renderStart(); renderCatalog(); renderPath();
     if (graphReady) graphRestyle();
   }
@@ -573,6 +581,7 @@
   const hash = decodeURIComponent(location.hash.slice(1));
   if (hash.startsWith('tab=')) showTab(hash.slice(4));
   else if (byId.has(hash)) open(byId.get(hash));
+  window.addEventListener('pageshow', () => { try { done = new Set(JSON.parse(localStorage.getItem('iekb-done') || '[]')); doneMods = new Set(JSON.parse(localStorage.getItem('iekb-mods') || '[]')); } catch (e) {} refresh(); });
   window.addEventListener('hashchange', () => { const h = decodeURIComponent(location.hash.slice(1)); if (byId.has(h)) open(byId.get(h)); });
 })();
 </script>
