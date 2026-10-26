@@ -274,7 +274,7 @@
     container.querySelectorAll('img[src]').forEach(img => {
       const src = img.getAttribute('src');
       if (/^(https?:|data:)/.test(src)) return;
-      img.src = courseRoot + '/' + resolve(file, src);
+      img.src = '../' + courseRoot + '/' + resolve(file, src);
     });
   }
 
@@ -335,7 +335,7 @@
 
   // ---- boot
   renderHero(); renderToc(); renderPager();
-  fetch(`${courseRoot}/${file}`, { cache: 'no-store' })
+  fetch(`../${courseRoot}/${file}`, { cache: 'no-store' })
     .then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))
     .then(mount)
     .catch(() => { $('status').hidden = false; $('status').innerHTML = `could not load <b>${esc(file)}</b>. <a href="${REPO}/blob/main/${esc(courseRoot)}/${esc(file)}">Read it on GitHub</a>.`; });

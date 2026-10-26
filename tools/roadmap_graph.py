@@ -1,6 +1,6 @@
 """Draw ROADMAP.md as a radial knowledge graph (roadmap.svg) and build the
-interactive site (index.html, course.html) from the roadmap and course READMEs.
-The site is published from the repo root, so the reader fetches courses/ directly.
+interactive site (public/index.html, public/course.html) from the roadmap and course READMEs.
+GitHub Pages publishes the repo root; the site lives in public/ and reads courses/ in place.
 
 Usage:  python tools/roadmap_graph.py
 Re-run after editing ROADMAP.md or adding a course. Standard library only.
@@ -12,10 +12,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "ROADMAP.md"
-OUT = ROOT / "roadmap.svg"
-HTML_OUT = ROOT / "index.html"
+PUBLIC = ROOT / "public"
+OUT = PUBLIC / "roadmap.svg"
+HTML_OUT = PUBLIC / "index.html"
 TEMPLATE = ROOT / "tools" / "roadmap_template.html"
-READER_OUT = ROOT / "course.html"
+READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
@@ -349,6 +350,7 @@ def write_html(cats):
 
 
 if __name__ == "__main__":
+    PUBLIC.mkdir(exist_ok=True)
     cats = parse(SRC.read_text(encoding="utf-8"))
     OUT.write_text(render(cats), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: {sum(len(c['items']) for c in cats)} courses in {len(cats)} categories")
