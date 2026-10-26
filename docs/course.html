@@ -40,6 +40,11 @@
   .path { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .path .dot { color: var(--green); } .path b { color: var(--text); font-weight: 500; } .path a { color: var(--muted); text-decoration: none; } .path a:hover { color: var(--accent); }
   .spacer { flex: 1; }
+  .toolbar { position: sticky; top: 49px; z-index: 19; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); padding: var(--s2) var(--s5);
+    background: rgba(var(--bg-rgb), .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
+  .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
+  .status b { color: var(--green); font-weight: 500; }
+  nav.toggle a.btn { color: var(--text); } nav.toggle a.btn:hover { color: var(--accent); text-decoration: none; }
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text); background: var(--surface); border: 1px solid var(--line);
     border-radius: 6px; padding: 6px 12px; cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s, transform .08s var(--ease-out); }
   .btn:hover { border-color: var(--accent); } .btn:active { transform: scale(.96); }
@@ -60,7 +65,7 @@
 
   .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--s7) 100px; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--s7); }
 
-  nav.toc { position: sticky; top: 64px; align-self: start; font-size: 13.5px; border-left: 1px solid var(--line); max-height: calc(100vh - 80px); overflow: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  nav.toc { position: sticky; top: 112px; align-self: start; font-size: 13.5px; border-left: 1px solid var(--line); max-height: calc(100vh - 80px); overflow: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
   nav.toc .toc-title { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: var(--s1) 0 var(--s3) var(--s4); }
   nav.toc .toc-title + .toc-title { padding-top: var(--s5); }
   nav.toc a { display: flex; gap: 8px; align-items: baseline; padding: 5px var(--s4); color: var(--muted); text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; transition: color .15s, border-color .15s, padding-left .15s var(--ease-out); }
@@ -73,7 +78,7 @@
   .doc { min-width: 0; }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); padding: var(--s2) var(--s3); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: inline-block; box-shadow: var(--shadow-1); }
   .status b { color: var(--green); font-weight: 500; }
-  .doc h1, .doc h2, .doc h3, .doc h4 { font-family: var(--display); scroll-margin-top: 80px; }
+  .doc h1, .doc h2, .doc h3, .doc h4 { font-family: var(--display); scroll-margin-top: 128px; }
   .doc h1 { font-size: 30px; margin: var(--s5) 0 var(--s4); letter-spacing: -.01em; line-height: 1.2; }
   .doc h2 { font-size: 23px; margin: var(--s7) 0 var(--s3); padding-top: var(--s5); border-top: 1px solid var(--line); }
   .doc h2::before, .doc h3::before { content: "# "; color: var(--accent); font-family: var(--mono); font-weight: 400; }
@@ -121,11 +126,21 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="topbar">
   <span class="path"><span class="dot">~</span>/<a href="index.html">ie-knowledgebase</a>/<span id="pathCourse"></span>/<b id="pathFile">README.md</b></span>
+  <nav class="toggle" aria-label="Site views">
+    <a class="btn" href="index.html">Catalog</a>
+    <a class="btn" href="index.html#tab=path">Learning path</a>
+    <a class="btn" href="index.html#tab=graph">Mind map</a>
+  </nav>
+  <span class="spacer"></span>
+  <span class="status" id="siteStatus"></span>
+  <button type="button" class="btn" id="btnTheme" aria-label="Toggle light or dark theme">theme</button>
+</div>
+<div class="toolbar">
+  <a class="btn" id="btnBack" href="index.html">← catalog</a>
   <span class="spacer"></span>
   <div class="toggle" role="group" aria-label="View mode"><button type="button" class="btn active" id="btnRendered">Rendered</button><button type="button" class="btn" id="btnRaw">Raw</button></div>
   <button type="button" class="btn" id="btnCopy">Copy</button>
   <a class="btn" id="btnGithub" target="_blank" rel="noopener">GitHub</a>
-  <button type="button" class="btn" id="btnTheme" aria-label="Toggle light or dark theme">theme</button>
 </div>
 <header class="hero">
   <div class="eyebrow">cat <span id="eyebrowFile">README.md</span></div>
@@ -183,6 +198,11 @@
   const modKey = rel => `${courseRoot}/${rel}`;
   const isReadme = file === 'README.md';
 
+  // ---- site status and back link
+  $('siteStatus').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
+  if (file !== 'README.md') { $('btnBack').href = `course.html?c=${encodeURIComponent(slug)}`; $('btnBack').textContent = '← course overview'; }
+  else { $('btnBack').href = `index.html#course:${encodeURIComponent(slug)}`; $('btnBack').textContent = '← catalog'; }
+
   // ---- hero and nav
   $('pathCourse').innerHTML = `<a href="index.html#course:${esc(slug)}">${esc(slug)}</a>`;
   $('pathFile').textContent = file.split('/').pop(); $('eyebrowFile').textContent = file;
@@ -204,6 +224,7 @@
     h += '<div class="toc-title">Modules</div>' + modules.map((m, i) => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(m.rel)}" class="${m.rel === file ? 'current' : ''} ${doneMods.has(modKey(m.rel)) ? 'mdone' : ''}" title="${esc(m.topics || '')}"><span class="n">${doneMods.has(modKey(m.rel)) ? '✓' : i}</span><span>${esc(m.label)}</span>${m.note ? `<span class="t">${esc(m.note)}</span>` : ''}</a>`).join('');
     if (extras.length) h += '<div class="toc-title">Reference</div>' + extras.map(x => `<a href="course.html?c=${esc(slug)}&f=${encodeURIComponent(x.path)}" class="${x.path === file ? 'current' : ''}"><span class="n">·</span><span>${esc(x.label)}</span></a>`).join('');
     $('toc').innerHTML = h;
+    const cur = $('toc').querySelector('a.current'); if (cur) cur.scrollIntoView({ block: 'nearest' });
   }
 
   // ---- path helpers for rewriting links and images
