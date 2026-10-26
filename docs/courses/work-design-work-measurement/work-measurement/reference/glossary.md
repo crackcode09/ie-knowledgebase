@@ -1,0 +1,28 @@
+# Glossary
+
+- **Allowance:** time added to normal time for personal needs, fatigue and unavoidable delay.
+- **Breakpoint:** a clear, observable event that marks the end of an element.
+- **Continuous timing:** the watch runs throughout the study, and element times are the differences between readings.
+- **Earned hours:** units produced × standard hours per unit.
+- **Efficiency (performance):** earned hours ÷ hours worked on standard.
+- **Element:** a distinct, timed part of a task.
+- **Foreign element:** an activity that is not part of the method, excluded from the standard.
+- **Job analysis:** a systematic study of a job's tasks, requirements and conditions.
+- **Learning curve:** the reduction in unit time as cumulative output doubles.
+- **Leveling:** rating by adding factors for skill, effort, conditions and consistency.
+- **Normal pace:** the pace a qualified worker can sustain over a shift without undue fatigue.
+- **Normal time:** observed time adjusted by the rating.
+- **Off-standard time:** time not spent on measured work (waiting, meetings, training, rework).
+- **PF&D:** personal, fatigue and delay allowance.
+- **PMTS:** predetermined motion time system.
+- **Qualified worker:** a worker with the training, experience and physical attributes to do the job to the required standard.
+- **Rating:** a judgment of the observed operator's pace relative to normal pace.
+- **Snapback timing:** the watch is reset after each element.
+- **Standard data:** element times or formulas used to build standards without new studies.
+- **Standard practice:** the policy and procedures for setting, documenting and maintaining standards.
+- **Standard time:** the time a qualified worker should take, at normal pace, using the defined method, including allowances.
+- **Takt time:** available time ÷ customer demand.
+- **TMU:** time measurement unit, equal to 0.00001 hour.
+- **Utilization:** hours on standard ÷ paid hours.
+- **Work sampling:** estimating time shares from random, instantaneous observations.
+- **Worker–machine chart:** a chart of worker and machine activities against time.
