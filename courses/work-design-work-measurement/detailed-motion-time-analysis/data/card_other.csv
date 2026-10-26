@@ -1,0 +1,22 @@
+code,cs,meaning
+RL,2,normal release: open the fingers
+RLc,0,contact release
+AP,30,apply pressure
+APR,45,apply pressure with regrasp
+FM,25,foot motion
+LM,30,leg motion
+SS,50,sidestep
+TBD,55,turn body
+WK,45,"walk, per step"
+BD,90,bend
+ABD,95,arise from bend
+SIT,120,sit
+STD,140,stand from sitting
+EF,20,eye focus
+DL,4,"loose: no effort, little recoil"
+DC,10,"close: some effort, recoil"
+DT,30,"tight: high effort, marked recoil"
+T<deg>L/M/H,(3 + 0.05 x deg) x 1.0/1.5/2.5,turn
+ET<cm>,2 + 0.3 x cm,eye travel
+WK<n>,45 x n,walk n steps
+PT<cs>,as measured,process time

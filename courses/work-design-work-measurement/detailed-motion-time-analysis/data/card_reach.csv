@@ -1,0 +1,5 @@
+case,meaning,5cm,10cm,15cm,20cm,30cm,40cm,50cm,60cm,70cm,80cm
+a,"fixed, known location, or to the other hand",12.5,17.0,21.5,26.0,35.0,44.0,53.0,62.0,71.0,80.0
+b,location varies slightly from cycle to cycle,14.5,20.0,25.5,31.0,42.0,53.0,64.0,75.0,86.0,97.0
+c,object mixed with others: search and select,18.5,25.0,31.5,38.0,51.0,64.0,77.0,90.0,103.0,116.0
+d,"very small object, or a precise grasp is needed",19.0,26.0,33.0,40.0,54.0,68.0,82.0,96.0,110.0,124.0
