@@ -1,0 +1,34 @@
+family,step,dept
+F1 wall box,1,RCV
+F1 wall box,2,SHR
+F1 wall box,3,PUN
+F1 wall box,4,BRK
+F1 wall box,5,WLD
+F1 wall box,6,PNT
+F1 wall box,7,ASM
+F1 wall box,8,TST
+F1 wall box,9,PKG
+F2 floor cabinet,1,RCV
+F2 floor cabinet,2,SHR
+F2 floor cabinet,3,PUN
+F2 floor cabinet,4,BRK
+F2 floor cabinet,5,WLD
+F2 floor cabinet,6,PNT
+F2 floor cabinet,7,ASM
+F2 floor cabinet,8,TST
+F2 floor cabinet,9,WHS
+F2 floor cabinet,10,PKG
+F3 junction box,1,RCV
+F3 junction box,2,PUN
+F3 junction box,3,BRK
+F3 junction box,4,PNT
+F3 junction box,5,ASM
+F3 junction box,6,PKG
+F4 custom,1,RCV
+F4 custom,2,SHR
+F4 custom,3,BRK
+F4 custom,4,WLD
+F4 custom,5,PNT
+F4 custom,6,ASM
+F4 custom,7,TST
+F4 custom,8,PKG

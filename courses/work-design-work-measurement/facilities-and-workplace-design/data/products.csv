@@ -1,0 +1,41 @@
+sku,family,annual_units,units_per_load
+C001,F1 wall box,25900,20
+C002,F1 wall box,22990,20
+C003,F1 wall box,14910,20
+C004,F1 wall box,12700,20
+C005,F1 wall box,12520,20
+C006,F1 wall box,10300,20
+C007,F1 wall box,10150,20
+C008,F1 wall box,7430,20
+C009,F1 wall box,5700,20
+C010,F1 wall box,4230,20
+C011,F1 wall box,2740,20
+C012,F1 wall box,2160,20
+C013,F2 floor cabinet,3790,2
+C014,F2 floor cabinet,2660,2
+C015,F2 floor cabinet,2410,2
+C016,F2 floor cabinet,2040,2
+C017,F2 floor cabinet,1510,2
+C018,F2 floor cabinet,1020,2
+C019,F2 floor cabinet,840,2
+C020,F2 floor cabinet,200,2
+C021,F3 junction box,22130,40
+C022,F3 junction box,18850,40
+C023,F3 junction box,11220,40
+C024,F3 junction box,10860,40
+C025,F3 junction box,4850,40
+C026,F3 junction box,4190,40
+C027,F3 junction box,3880,40
+C028,F3 junction box,1740,40
+C029,F3 junction box,1680,40
+C030,F3 junction box,730,40
+C031,F4 custom,1370,4
+C032,F4 custom,1340,4
+C033,F4 custom,330,4
+C034,F4 custom,250,4
+C035,F4 custom,250,4
+C036,F4 custom,200,4
+C037,F4 custom,200,4
+C038,F4 custom,180,4
+C039,F4 custom,80,4
+C040,F4 custom,50,4
