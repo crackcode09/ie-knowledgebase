@@ -1,0 +1,7 @@
+code,cs,meaning,high_control
+Gc,0,"contact grasp: touch, push, slide; no finger closure",False
+Gp,3,"pick-up: easy, isolated object",False
+Gs,8,small or flat object: precise finger closure,True
+Gr,6,regrasp: change grip without letting go,False
+Gt,6,transfer to the other hand,False
+Gx,14,"select from a jumble: search, separate, then grasp",True

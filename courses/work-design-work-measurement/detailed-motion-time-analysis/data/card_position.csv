@@ -1,0 +1,10 @@
+code,fit,symmetry,cs,cs_if_difficult,high_control
+PLS,"loose: no pressure, visible clearance",symmetric: any orientation fits,9.0,15.0,False
+PLM,"loose: no pressure, visible clearance",semi-symmetric: a few orientations fit,13.0,19.0,True
+PLN,"loose: no pressure, visible clearance",non-symmetric: one orientation fits,19.0,25.0,True
+PCS,"close: light pressure, small clearance",symmetric: any orientation fits,20.0,26.0,True
+PCM,"close: light pressure, small clearance",semi-symmetric: a few orientations fit,24.0,30.0,True
+PCN,"close: light pressure, small clearance",non-symmetric: one orientation fits,30.0,36.0,True
+PTS,tight: heavy pressure or interference,symmetric: any orientation fits,45.0,51.0,True
+PTM,tight: heavy pressure or interference,semi-symmetric: a few orientations fit,49.0,55.0,True
+PTN,tight: heavy pressure or interference,non-symmetric: one orientation fits,55.0,61.0,True
