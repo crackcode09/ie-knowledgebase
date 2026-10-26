@@ -1,0 +1,34 @@
+# Glossary
+
+- **Asset management:** coordinated activity to realize value from assets over their whole life.
+- **Autonomous maintenance:** operators doing basic care (clean, inspect, lubricate, tighten) and spotting abnormalities.
+- **Availability:** the fraction of time an item can perform when required.
+- **B10 life:** the age by which 10% of units are expected to fail.
+- **Bathtub curve:** a hazard pattern of early failures, then a random period, then wear-out.
+- **Condition-based maintenance:** action triggered by a measured condition rather than by age.
+- **Criticality:** the importance of an asset or failure mode, based on consequence and likelihood.
+- **Crow-AMSAA:** a power-law model for reliability growth during testing.
+- **Failure:** loss of a required function or performance below an acceptable standard.
+- **Failure-finding task:** a periodic test to reveal a hidden failure.
+- **Failure mode:** the way an item fails.
+- **FMECA:** failure modes, effects and criticality analysis.
+- **FRACAS:** failure reporting, analysis and corrective action system.
+- **Hazard rate:** the instantaneous failure rate of surviving units.
+- **Hidden failure:** a failure not evident to operators under normal conditions.
+- **Infant mortality:** a decreasing hazard early in life (Weibull β < 1).
+- **Latent cause:** an organizational or system weakness that allowed a human error.
+- **Life-cycle cost (LCC):** the present value of all costs over an asset's life.
+- **Maintainability:** ease and speed of restoration.
+- **Management of change (MOC):** a formal review and approval of changes to equipment, materials, procedures or limits.
+- **MLE:** maximum likelihood estimation.
+- **MTBF / MTTF / MTTR:** mean time between failures (repairable items), mean time to failure (non-repairable items), mean time to repair.
+- **P-F interval:** time between a detectable potential failure (P) and functional failure (F).
+- **PdM:** predictive maintenance (condition monitoring).
+- **PM / PMO:** preventive maintenance; PM optimization.
+- **RBD:** reliability block diagram.
+- **RCM:** reliability-centered maintenance.
+- **Reliability:** the probability of performing the required function under stated conditions for a stated time.
+- **RPN:** risk priority number = severity × occurrence × detection.
+- **Suspension:** a unit removed or still running without the failure mode of interest (right-censored).
+- **TPM:** total productive maintenance.
+- **Weibull β / η:** shape (failure pattern) and scale (characteristic life, when 63.2% have failed).
