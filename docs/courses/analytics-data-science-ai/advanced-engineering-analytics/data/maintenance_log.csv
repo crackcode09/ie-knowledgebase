@@ -1,0 +1,81 @@
+date,line,type,failure_mode,downtime_min,cost
+2026-01-09,L1,PM,,60,350.0
+2026-01-15,L1,breakdown,heater element,285,200.0
+2026-01-16,L1,PM,,60,350.0
+2026-01-30,L1,PM,,60,350.0
+2026-02-06,L1,PM,,60,350.0
+2026-02-27,L1,PM,,60,350.0
+2026-03-06,L1,PM,,60,350.0
+2026-03-13,L1,PM,,60,350.0
+2026-05-12,L1,breakdown,sealing jaw wear,59,280.0
+2026-05-29,L1,breakdown,PLC fault,49,360.0
+2026-05-29,L1,PM,,60,350.0
+2026-06-05,L1,PM,,60,350.0
+2026-06-09,L1,breakdown,PLC fault,60,440.0
+2026-06-19,L1,PM,,60,350.0
+2026-01-30,L2,breakdown,conveyor jam,32,380.0
+2026-02-06,L2,PM,,60,350.0
+2026-02-13,L2,PM,,60,350.0
+2026-03-13,L2,PM,,60,350.0
+2026-03-27,L2,PM,,60,350.0
+2026-04-13,L2,breakdown,heater element,81,970.0
+2026-05-01,L2,breakdown,heater element,48,1210.0
+2026-05-06,L2,breakdown,conveyor jam,91,850.0
+2026-05-14,L2,breakdown,film tracking,50,750.0
+2026-05-18,L2,breakdown,heater element,61,270.0
+2026-05-22,L2,PM,,60,350.0
+2026-06-12,L2,PM,,60,350.0
+2026-06-19,L2,breakdown,sealing jaw wear,43,1080.0
+2026-06-19,L2,PM,,60,350.0
+2026-06-26,L2,PM,,60,350.0
+2026-01-30,L3,PM,,60,350.0
+2026-02-06,L3,PM,,60,350.0
+2026-02-13,L3,PM,,60,350.0
+2026-02-20,L3,PM,,60,350.0
+2026-02-27,L3,breakdown,film tracking,77,880.0
+2026-03-13,L3,PM,,60,350.0
+2026-03-20,L3,PM,,60,350.0
+2026-04-03,L3,PM,,60,350.0
+2026-04-10,L3,PM,,60,350.0
+2026-04-24,L3,PM,,60,350.0
+2026-05-01,L3,PM,,60,350.0
+2026-05-05,L3,breakdown,film tracking,127,740.0
+2026-05-08,L3,PM,,60,350.0
+2026-05-15,L3,PM,,60,350.0
+2026-05-29,L3,PM,,60,350.0
+2026-06-03,L3,breakdown,heater element,78,590.0
+2026-06-26,L3,PM,,60,350.0
+2026-01-09,L4,breakdown,heater element,48,640.0
+2026-01-09,L4,PM,,60,350.0
+2026-01-16,L4,breakdown,PLC fault,106,2510.0
+2026-01-16,L4,PM,,60,350.0
+2026-01-20,L4,breakdown,film tracking,121,1110.0
+2026-01-29,L4,breakdown,sealing jaw wear,133,1450.0
+2026-01-30,L4,PM,,60,350.0
+2026-02-13,L4,breakdown,film tracking,368,290.0
+2026-02-18,L4,breakdown,conveyor jam,166,630.0
+2026-02-20,L4,PM,,60,350.0
+2026-02-27,L4,PM,,60,350.0
+2026-03-06,L4,breakdown,conveyor jam,111,540.0
+2026-03-10,L4,breakdown,conveyor jam,574,840.0
+2026-03-17,L4,breakdown,conveyor jam,126,4090.0
+2026-03-19,L4,breakdown,sealing jaw wear,68,680.0
+2026-03-20,L4,PM,,60,350.0
+2026-03-27,L4,PM,,60,350.0
+2026-04-02,L4,breakdown,film tracking,81,610.0
+2026-04-09,L4,breakdown,PLC fault,340,1180.0
+2026-04-10,L4,PM,,60,350.0
+2026-04-13,L4,breakdown,conveyor jam,226,630.0
+2026-04-27,L4,breakdown,heater element,449,850.0
+2026-05-06,L4,breakdown,sealing jaw wear,164,940.0
+2026-05-08,L4,PM,,60,350.0
+2026-05-15,L4,PM,,60,350.0
+2026-05-20,L4,breakdown,sealing jaw wear,273,1510.0
+2026-05-27,L4,breakdown,conveyor jam,96,1010.0
+2026-05-29,L4,PM,,60,350.0
+2026-06-05,L4,PM,,60,350.0
+2026-06-09,L4,breakdown,conveyor jam,197,1070.0
+2026-06-11,L4,breakdown,PLC fault,315,650.0
+2026-06-17,L4,breakdown,heater element,419,850.0
+2026-06-19,L4,breakdown,PLC fault,55,870.0
+2026-06-26,L4,PM,,60,350.0
