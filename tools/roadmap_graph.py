@@ -159,6 +159,47 @@ def category_description(slug):
     return ""
 
 
+def module_summary(path, limit=220):
+    """Topics line for a module whose syllabus row has none: its learning objectives
+    joined with semicolons; else its section headings; else its first paragraph."""
+    try:
+        lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return "", "", 0
+    items, grab, kind = [], False, "objectives"
+    for line in lines:
+        if re.match(r"^#+\s*(learning\s+)?objectives", line, re.I):
+            grab = True
+            continue
+        if grab and line.startswith("#"):
+            break
+        if grab:
+            m = re.match(r"^\s*(?:\d+[.)]|[-*])\s+(.+)", line)
+            if m:
+                items.append(m.group(1).strip())
+    if not items:
+        items = [re.sub(r"^\d+\.\s*", "", h[3:]).strip() for h in lines if h.startswith("## ")]
+        kind = "sections"
+    if not items:
+        kind = "summary"
+        for line in lines[1:]:
+            s = line.strip()
+            if s and not re.match(r"^(#|\||\*\*Time|\*\*Data|!|`|<|-|\*|\d+[.)])", s):
+                items = [s]
+                break
+    def clean(s):
+        s = LINK_RE.sub(r"\1", s)
+        s = re.sub(r"(\*\*|\*|_|`)([^*_`]+)\1", r"\2", s)
+        return re.sub(r"[.;:]\s*$", "", s.strip())
+    cleaned = [clean(i) for i in items if i]
+    out = "; ".join(cleaned)
+    if len(out) > limit:
+        head = out[:limit]
+        cut = head.rsplit(";", 1)[0] if ";" in head else head.rsplit(" ", 1)[0]
+        out = cut.rstrip(" ;,") + " …"
+    return out, kind, len(cleaned)
+
+
 def course_info(readme_path):
     """Description, module rows, prerequisite and related course paths from a course README."""
     base = Path(readme_path).parent
@@ -167,23 +208,44 @@ def course_info(readme_path):
     for line in lines[1:]:
         s = line.strip()
         if s and not s.startswith(("#", "|", "**", "-", "!", "`")):
-            desc = re.sub(r"\*\*([^*]+)\*\*", r"\1", LINK_RE.sub(r"\1", s))
+            desc = re.sub(r"(\*\*|\*|_)([^*_]+)\1", r"\2", LINK_RE.sub(r"\1", s))
             break
     modules = []
+    time_idx = topics_idx = None
     for line in lines:
         if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if time_idx is None and topics_idx is None and not any("](" in c for c in cells):
+            # header row of the syllabus table: learn which column holds time and which holds topics
+            for i, c in enumerate(cells):
+                if re.search(r"time|duration|length", c, re.I):
+                    time_idx = i
+                elif re.search(r"body of knowledge|topics?|covers?|contents?", c, re.I):
+                    topics_idx = i
             continue
         m = re.search(r"\[([^\]]+)\]\((modules/[^)\s]+)\)", line)
         if not m:
             continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        note = cells[-1] if len(cells) > 1 and "](" not in cells[-1] else ""
-        modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note})
+        note = cells[time_idx] if time_idx is not None and time_idx < len(cells) else ""
+        topics = cells[topics_idx] if topics_idx is not None and topics_idx < len(cells) else ""
+        if not note and not topics and len(cells) > 1 and "](" not in cells[-1]:
+            last = cells[-1]
+            if re.search(r"\d\s*(min|h\b|hour|day)", last):
+                note = last
+            else:
+                topics = last
+        mpath = rel(base / m.group(2))
+        if topics:
+            tkind, tcount = "topics", len([x for x in re.split(r"[;,]", topics) if x.strip()])
+        else:
+            topics, tkind, tcount = module_summary(mpath)
+        modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics, "tkind": tkind, "tcount": tcount})
     prereq, related = [], []
     for line in lines:
         is_prereq_line = "prerequisite" in line.lower()
         # On a prerequisites line, links after "Helpful" are recommendations, not requirements.
-        hard, soft = (re.split(r"helpful", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
+        hard, soft = (re.split(r"helpful|helps\b", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
         for part, bucket in ((hard, prereq), (soft, related)):
             for _label, href in LINK_RE.findall(part):
                 if not href.startswith("../") or not href.endswith("/README.md"):
@@ -257,7 +319,8 @@ def build_model(cats):
                 for i, m in enumerate(modules):
                     mid = f"{nid}/{i}"
                     nodes.append({"id": mid, "type": "module", "label": m["title"], "parent": nid, "a": a,
-                                  "path": m["path"], "note": m["note"]})
+                                  "path": m["path"], "note": m["note"], "topics": m["topics"],
+                                  "tkind": m["tkind"], "tcount": m["tcount"]})
                     links.append({"source": nid, "target": mid, "type": "tree"})
             else:
                 nid = "topic:" + slugify(title)

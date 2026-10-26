@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 16 of 101 topics covered.**
+**Progress: 17 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked)
 - [ ] = not started
@@ -11,7 +11,7 @@ Coverage checklist for the IE Knowledgebase. The categories and course topics fo
 
 ![Roadmap graph](docs/roadmap.svg)
 
-## Analytics, Data Science & AI (0/9)
+## Analytics, Data Science & AI (1/9)
 
 Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai/README.md)
 
@@ -20,7 +20,7 @@ Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai
 - [ ] Analytics-Based Enterprise Performance Management
 - [ ] Data Analytics for Business Results
 - [ ] Efficient AI
-- [ ] Engineering Analytics – Introduction
+- [x] [Introduction to Engineering Analytics](courses/analytics-data-science-ai/engineering-analytics/README.md)
 - [ ] Engineering Analytics – Advanced
 - [ ] Human-Centered AI
 - [ ] Operational Analytics
