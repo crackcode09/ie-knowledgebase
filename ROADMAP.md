@@ -7,7 +7,7 @@ Coverage checklist for the IE Knowledgebase. The categories and course topics fo
 - [x] = course exists in this repo (linked)
 - [ ] = not started
 - To claim a topic you are working on, add your name after it, e.g. `- [ ] Root Cause Analysis — _Nidhin, in progress_`
-- After editing this file, run `python tools/roadmap_graph.py` to redraw the graph below.
+- After editing this file, run `python tools/roadmap_graph.py` to redraw the graph below and rebuild the [interactive map](https://nidhy.dev/ie-knowledgebase/).
 
 ![Roadmap graph](docs/roadmap.svg)
 

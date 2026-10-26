@@ -1,8 +1,10 @@
-"""Draw ROADMAP.md as a radial knowledge graph (docs/roadmap.svg).
+"""Draw ROADMAP.md as a radial knowledge graph (docs/roadmap.svg) and build the
+interactive course map (docs/index.html) from the roadmap and course READMEs.
 
 Usage:  python tools/roadmap_graph.py
-Re-run after editing ROADMAP.md. No dependencies beyond the standard library.
+Re-run after editing ROADMAP.md or adding a course. Standard library only.
 """
+import json
 import math
 import re
 from pathlib import Path
@@ -10,24 +12,35 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "ROADMAP.md"
 OUT = ROOT / "docs" / "roadmap.svg"
+HTML_OUT = ROOT / "docs" / "index.html"
+TEMPLATE = ROOT / "tools" / "roadmap_template.html"
+REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
     "#2E8B57", "#C9D2D8", "#0078E6", "#005BA6", "#D5DDE3", "#1F2A33", "#7A8A96")
 
+LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+
 
 def parse(md):
+    """ROADMAP.md -> [{name, slug, items: [(title, done, link_path)]}]"""
     cats, cur = [], None
     for line in md.splitlines():
         m = re.match(r"^## (.+?) \(\d+/\d+\)", line)
         if m:
-            cur = {"name": m.group(1), "items": []}
+            cur = {"name": m.group(1), "items": [], "slug": None}
             cats.append(cur)
+            continue
+        m = re.match(r"^Folder: \[`courses/([a-z0-9-]+)/`\]", line)
+        if m and cur is not None:
+            cur["slug"] = m.group(1)
             continue
         m = re.match(r"^- \[([ x])\] (.+)", line)
         if m and cur is not None:
-            title = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", m.group(2))
+            lm = LINK_RE.search(m.group(2))
+            title = LINK_RE.sub(r"\1", m.group(2))
             title = re.split(r" — ", title)[0].strip()
-            cur["items"].append((title, m.group(1) == "x"))
+            cur["items"].append((title, m.group(1) == "x", lm.group(2) if lm else None))
     return cats
 
 
@@ -35,12 +48,14 @@ def esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+# ----------------------------------------------------------------- static SVG
+
 def render(cats):
     size = 1850
     cx = cy = size / 2
     r_cat, r_leaf = 300, 580
     total = sum(len(c["items"]) for c in cats)
-    done = sum(ok for c in cats for _, ok in c["items"])
+    done = sum(ok for c in cats for _, ok, _p in c["items"])
     gap = 0.012  # radians of padding between category sectors
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" '
              f'font-family="Roboto, Arial, sans-serif" font-size="11">',
@@ -58,7 +73,7 @@ def render(cats):
         x1, y1 = cx + r_cat * math.cos(a_cat), cy + r_cat * math.sin(a_cat)
         edges.append(f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x1:.1f}" y2="{y1:.1f}" stroke="{LINK}" stroke-width="2"/>')
         inner = span - 2 * gap
-        for i, (title, ok) in enumerate(c["items"]):
+        for i, (title, ok, _p) in enumerate(c["items"]):
             a = ang + gap + inner * (i + 0.5) / n
             x2, y2 = cx + r_leaf * math.cos(a), cy + r_leaf * math.sin(a)
             edges.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
@@ -74,7 +89,7 @@ def render(cats):
             labels.append(f'<text transform="translate({tx:.1f},{ty:.1f}) rotate({rot:.1f})" '
                           f'text-anchor="{anchor}" dominant-baseline="middle" '
                           f'fill="{INK if ok else MUTED}" font-weight="{700 if ok else 400}">{esc(title)}</text>')
-        k = sum(ok for _, ok in c["items"])
+        k = sum(ok for _, ok, _p in c["items"])
         nodes.append(f'<circle cx="{x1:.1f}" cy="{y1:.1f}" r="36" fill="{CAT}"/>')
         name = c["name"].replace(" & ", " &amp; ")
         words = name.split()
@@ -104,7 +119,147 @@ def render(cats):
     return "\n".join(parts + edges + nodes + labels + ["</svg>"])
 
 
+# ------------------------------------------------------------ interactive map
+
+def slugify(s):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
+def rel(path):
+    return str(path).replace("\\", "/")
+
+
+def category_table(slug):
+    """Course README path -> (topic, length) from the category README table."""
+    out = {}
+    p = ROOT / "courses" / slug / "README.md"
+    if not p.exists():
+        return out
+    for line in p.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("| ["):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        m = LINK_RE.match(cells[0])
+        if m and len(cells) >= 3:
+            out[f"courses/{slug}/{m.group(2)}"] = (cells[1], cells[2])
+    return out
+
+
+def category_description(slug):
+    p = ROOT / "courses" / slug / "README.md"
+    if not p.exists():
+        return ""
+    for line in p.read_text(encoding="utf-8").splitlines()[1:]:
+        if line.strip() and not line.startswith("#"):
+            return line.strip()
+    return ""
+
+
+def course_info(readme_path):
+    """Description, module rows, prerequisite and related course paths from a course README."""
+    base = Path(readme_path).parent
+    lines = (ROOT / readme_path).read_text(encoding="utf-8").splitlines()
+    desc = ""
+    for line in lines[1:]:
+        s = line.strip()
+        if s and not s.startswith(("#", "|", "**", "-", "!", "`")):
+            desc = re.sub(r"\*\*([^*]+)\*\*", r"\1", LINK_RE.sub(r"\1", s))
+            break
+    modules = []
+    for line in lines:
+        if not line.startswith("|"):
+            continue
+        m = re.search(r"\[([^\]]+)\]\((modules/[^)\s]+)\)", line)
+        if not m:
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        note = cells[-1] if len(cells) > 1 and "](" not in cells[-1] else ""
+        modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note})
+    prereq, related = [], []
+    for line in lines:
+        for _label, href in LINK_RE.findall(line):
+            if not href.startswith("../") or not href.endswith("/README.md"):
+                continue
+            target = rel((ROOT / base / href).resolve().relative_to(ROOT))
+            bucket = prereq if "prerequisite" in line.lower() else related
+            if target not in bucket:
+                bucket.append(target)
+    return desc, modules, prereq, related
+
+
+def build_model(cats):
+    nodes = [{"id": "hub", "type": "hub", "label": "IE Knowledgebase"}]
+    links = []
+    by_path = {}
+    pending = []  # (course node id, prereq paths, related paths)
+    total_items = sum(len(c["items"]) for c in cats) or 1
+    ang = -math.pi / 2
+    for c in cats:
+        slug = c["slug"] or slugify(c["name"])
+        cid = "cat:" + slug
+        span = 2 * math.pi * len(c["items"]) / total_items
+        nodes.append({"id": cid, "type": "category", "label": c["name"], "a": round(ang + span / 2, 4),
+                      "description": category_description(slug),
+                      "path": f"courses/{slug}/README.md"})
+        links.append({"source": "hub", "target": cid, "type": "tree"})
+        table = category_table(slug)
+        for i, (title, ok, path) in enumerate(c["items"]):
+            a = round(ang + span * (i + 0.5) / len(c["items"]), 4)
+            if ok and path:
+                nid = "course:" + Path(path).parent.name
+                topic, length = table.get(path, ("", ""))
+                desc, modules, prereq, related = course_info(path)
+                nodes.append({"id": nid, "type": "course", "label": title, "parent": cid, "path": path, "a": a,
+                              "length": length, "description": desc, "search": topic})
+                by_path[path] = nid
+                pending.append((nid, prereq, related))
+                for i, m in enumerate(modules):
+                    mid = f"{nid}/{i}"
+                    nodes.append({"id": mid, "type": "module", "label": m["title"], "parent": nid, "a": a,
+                                  "path": m["path"], "note": m["note"]})
+                    links.append({"source": nid, "target": mid, "type": "tree"})
+            else:
+                nid = "topic:" + slugify(title)
+                nodes.append({"id": nid, "type": "topic", "label": title, "parent": cid, "a": a})
+            links.append({"source": cid, "target": nid, "type": "tree"})
+        ang += span
+    seen = set()
+    for nid, prereq, related in pending:
+        for tp in prereq:
+            src = by_path.get(tp)
+            if src and (src, nid) not in seen:
+                links.append({"source": src, "target": nid, "type": "prereq"})
+                seen.add((src, nid))
+    for nid, prereq, related in pending:
+        for tp in related:
+            other = by_path.get(tp)
+            if not other:
+                continue
+            key = tuple(sorted((other, nid)))
+            if key in seen or (other, nid) in seen or (nid, other) in seen:
+                continue
+            links.append({"source": nid, "target": other, "type": "related"})
+            seen.add(key)
+    total = sum(len(c["items"]) for c in cats)
+    built = sum(ok for c in cats for _, ok, _p in c["items"])
+    return {"repo": REPO_URL, "total": total, "built": built, "nodes": nodes, "links": links}
+
+
+def write_html(cats):
+    model = build_model(cats)
+    data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/")
+    HTML_OUT.write_text(TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", data), encoding="utf-8")
+    return model
+
+
 if __name__ == "__main__":
     cats = parse(SRC.read_text(encoding="utf-8"))
     OUT.write_text(render(cats), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: {sum(len(c['items']) for c in cats)} courses in {len(cats)} categories")
+    model = write_html(cats)
+    kinds, edges = {}, {}
+    for n in model["nodes"]:
+        kinds[n["type"]] = kinds.get(n["type"], 0) + 1
+    for l in model["links"]:
+        edges[l["type"]] = edges.get(l["type"], 0) + 1
+    print(f"wrote {HTML_OUT.relative_to(ROOT)}: nodes {kinds}, edges {edges}")

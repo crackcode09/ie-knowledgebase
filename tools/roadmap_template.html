@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IE Knowledgebase map</title>
+<meta name="description" content="Interactive map of the IE Knowledgebase: categories, courses, modules and prerequisites.">
+<style>
+  :root {
+    --bg: #ffffff; --ink: #1f2a33; --muted: #6b7a86; --line: #d5dde3; --panel: #f5f8fa;
+    --hub: #005ba6; --cat: #0078e6; --built: #2e8b57; --todo: #c9d2d8; --module: #8fa3b0;
+    --prereq: #e07b00; --related: #9fb3c0; --accent: #0078e6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1418; --ink: #e6edf3; --muted: #93a1ad; --line: #2b3640; --panel: #171e25;
+      --todo: #3a4650; --module: #5f7280; --related: #4a5a66;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1418; --ink: #e6edf3; --muted: #93a1ad; --line: #2b3640; --panel: #171e25;
+    --todo: #3a4650; --module: #5f7280; --related: #4a5a66;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 Roboto, -apple-system, "Segoe UI", Arial, sans-serif; }
+  body { display: flex; flex-direction: column; }
+  header { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+    padding: 10px 16px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 17px; margin: 0; font-weight: 700; }
+  header .count { color: var(--muted); font-size: 13px; }
+  header input[type=search] { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;
+    background: var(--bg); color: var(--ink); min-width: 200px; }
+  header label { color: var(--muted); font-size: 13px; display: inline-flex; gap: 6px; align-items: center; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dash { width: 18px; height: 0; border-top: 2px dashed var(--prereq); display: inline-block; }
+  main { flex: 1; position: relative; min-height: 0; overflow: hidden; }
+  svg { width: 100%; height: 100%; display: block; cursor: grab; }
+  svg:active { cursor: grabbing; }
+  .node { cursor: pointer; }
+  .node text { pointer-events: none; fill: var(--ink); font-size: 10px; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+  .node.dim { opacity: 0.12; }
+  .link.dim { opacity: 0.05; }
+  aside { position: absolute; top: 0; right: 0; height: 100%; width: min(380px, 100%);
+    background: var(--panel); border-left: 1px solid var(--line); overflow: auto;
+    padding: 16px; transform: translateX(100%); transition: transform .2s; }
+  aside.open { transform: none; }
+  aside h2 { font-size: 16px; margin: 0 36px 4px 0; }
+  aside .meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  aside .close { position: absolute; top: 10px; right: 12px; background: none; border: 0;
+    color: var(--muted); font-size: 20px; cursor: pointer; }
+  aside p { margin: 8px 0; }
+  aside h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 16px 0 6px; }
+  aside table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  aside td { padding: 4px 6px 4px 0; vertical-align: top; border-top: 1px solid var(--line); }
+  aside td.n { color: var(--muted); width: 2em; }
+  aside td.t { color: var(--muted); white-space: nowrap; }
+  aside a { color: var(--accent); text-decoration: none; }
+  aside a:hover { text-decoration: underline; }
+  aside .btn { display: inline-block; margin-top: 12px; padding: 7px 12px; border-radius: 6px;
+    background: var(--accent); color: #fff; font-weight: 500; }
+  aside ul { padding-left: 18px; margin: 4px 0; }
+  .status { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+  .status.built { background: var(--built); color: #fff; }
+  .status.todo { background: var(--todo); color: var(--ink); }
+  footer { padding: 6px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  @media (max-width: 600px) { header { padding: 8px 16px; } .legend { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>IE Knowledgebase map</h1>
+  <span class="count" id="count"></span>
+  <input type="search" id="search" placeholder="Search courses and modules…" aria-label="Search">
+  <label><input type="checkbox" id="modules"> Show modules</label>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--cat)"></i>category</span>
+    <span><i class="dot" style="background:var(--built)"></i>built course</span>
+    <span><i class="dot" style="background:var(--bg);border:1.5px solid var(--todo)"></i>not started</span>
+    <span><i class="dot" style="background:var(--module);width:7px;height:7px"></i>module</span>
+    <span><i class="dash"></i>prerequisite</span>
+  </div>
+</header>
+<main>
+  <svg id="map" role="img" aria-label="Course map"></svg>
+  <aside id="panel"><button class="close" id="close" aria-label="Close">×</button><div id="panel-body"></div></aside>
+</main>
+<footer>Click a node for details. Drag to pan, scroll to zoom. Generated from ROADMAP.md and the course READMEs.</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const REPO = DATA.repo;
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  const allNodes = DATA.nodes.map(d => Object.assign({}, d));
+  const byId = new Map(allNodes.map(d => [d.id, d]));
+  const allLinks = DATA.links.map(l => ({ source: byId.get(l.source), target: byId.get(l.target), type: l.type }));
+
+  const svg = d3.select('#map');
+  const g = svg.append('g');
+  svg.append('defs').append('marker').attr('id', 'arrow').attr('viewBox', '0 -4 8 8')
+    .attr('refX', 12).attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
+    .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', css('--prereq'));
+  const linkLayer = g.append('g');
+  const nodeLayer = g.append('g');
+
+  let showModules = false;
+  let expanded = new Set();
+  let selected = null;
+  let query = '';
+
+  const radius = d => ({ hub: 26, category: 15, course: 8, topic: 4.5, module: 3 })[d.type];
+  const fill = d => d.type === 'hub' ? css('--hub') : d.type === 'category' ? css('--cat')
+    : d.type === 'course' ? css('--built') : d.type === 'module' ? css('--module') : css('--bg');
+  const stroke = d => d.type === 'topic' ? css('--todo') : d.type === 'module' ? css('--module') : 'none';
+
+  function visible() {
+    const nodes = allNodes.filter(d => d.type !== 'module' || showModules || expanded.has(d.parent));
+    const ids = new Set(nodes.map(d => d.id));
+    const links = allLinks.filter(l => ids.has(l.source.id) && ids.has(l.target.id));
+    return { nodes, links };
+  }
+
+  const L = 1400, cx = L / 2, cy = L / 2;
+  const hub = byId.get('hub'); hub.fx = cx; hub.fy = cy; hub.x = cx; hub.y = cy;
+  const ring = d => ({ hub: 0, category: 0.19 * L, course: 0.45 * L, topic: 0.38 * L, module: 0.57 * L })[d.type];
+  // fan each course's modules out beyond it
+  const kids = new Map();
+  allNodes.forEach(d => { if (d.type === 'module') { if (!kids.has(d.parent)) kids.set(d.parent, []); kids.get(d.parent).push(d); } });
+  kids.forEach(list => list.forEach((d, i) => { d.a = d.a + (i - (list.length - 1) / 2) * 0.02; }));
+  allNodes.forEach(d => { if (d.a !== undefined) { const r = ring(d); d.x = cx + r * Math.cos(d.a); d.y = cy + r * Math.sin(d.a); } });
+  const home = (d, k) => d.a === undefined ? (k === 'x' ? cx : cy) : (k === 'x' ? cx + ring(d) * Math.cos(d.a) : cy + ring(d) * Math.sin(d.a));
+
+  const sim = d3.forceSimulation()
+    .force('link', d3.forceLink().id(d => d.id)
+      .distance(l => l.target.type === 'category' ? ring(l.target) : ring(l.target) - ring(l.source))
+      .strength(l => l.type !== 'tree' ? 0 : l.target.type === 'module' ? 0.2 : 0.15))
+    .force('charge', d3.forceManyBody().strength(d => d.type === 'module' ? -12 : d.type === 'category' ? -250 : -40).distanceMax(300))
+    .force('radial', d3.forceRadial(ring, cx, cy).strength(d => d.type === 'module' ? 0.3 : 0.8))
+    .force('x', d3.forceX(d => home(d, 'x')).strength(d => d.type === 'module' ? 0.25 : d.type === 'course' ? 0.08 : 0.12))
+    .force('y', d3.forceY(d => home(d, 'y')).strength(d => d.type === 'module' ? 0.25 : d.type === 'course' ? 0.08 : 0.12))
+    .force('collide', d3.forceCollide(d => ({ hub: 40, category: 48, course: 16, topic: 9, module: 9 })[d.type]).strength(0.9))
+    .on('tick', tick);
+
+  let link = linkLayer.selectAll('line'), node = nodeLayer.selectAll('g');
+
+  function update() {
+    const v = visible();
+    link = link.data(v.links, l => l.source.id + '>' + l.target.id);
+    link.exit().remove();
+    link = link.enter().append('line').attr('class', 'link').merge(link)
+      .attr('stroke', l => l.type === 'prereq' ? css('--prereq') : l.type === 'related' ? css('--related') : css('--line'))
+      .attr('stroke-width', l => l.type === 'prereq' ? 1.6 : 1)
+      .attr('stroke-dasharray', l => l.type === 'tree' ? null : '4 3')
+      .attr('marker-end', l => l.type === 'prereq' ? 'url(#arrow)' : null);
+
+    node = node.data(v.nodes, d => d.id);
+    node.exit().remove();
+    const enter = node.enter().append('g').attr('class', 'node')
+      .call(d3.drag().on('start', dragStart).on('drag', dragged).on('end', dragEnd))
+      .on('click', (e, d) => { e.stopPropagation(); select(d); });
+    enter.append('circle');
+    enter.append('text').attr('dy', '0.35em');
+    enter.append('title');
+    node = enter.merge(node);
+    node.select('circle').attr('r', radius).attr('fill', fill).attr('stroke', stroke).attr('stroke-width', 1.5);
+    node.select('text').text(d => d.label)
+      .attr('x', d => d.type === 'hub' ? 0 : radius(d) + 4)
+      .attr('y', d => d.type === 'hub' ? radius(d) + 12 : 0)
+      .attr('text-anchor', d => d.type === 'hub' ? 'middle' : null)
+      .attr('font-weight', d => d.type === 'category' || d.type === 'course' ? 600 : 400)
+      .attr('font-size', d => d.type === 'category' ? 12 : d.type === 'module' ? 8.5 : 10);
+    node.select('title').text(d => d.label);
+    sim.nodes(v.nodes); sim.force('link').links(v.links); sim.alpha(0.3).restart();
+    applyHighlight();
+  }
+
+  const RADIAL = new Set(['course', 'topic', 'module']);
+  function tick() {
+    link.attr('x1', l => l.source.x).attr('y1', l => l.source.y).attr('x2', l => l.target.x).attr('y2', l => l.target.y);
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+    node.filter(d => RADIAL.has(d.type)).select('text').each(function (d) {
+      let deg = Math.atan2(d.y - cy, d.x - cx) * 180 / Math.PI;
+      const flip = deg > 90 || deg < -90;
+      d3.select(this).attr('transform', `rotate(${flip ? deg + 180 : deg})`)
+        .attr('text-anchor', flip ? 'end' : 'start').attr('x', (radius(d) + 4) * (flip ? -1 : 1));
+    });
+  }
+  function dragStart(e, d) { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; }
+  function dragged(e, d) { d.fx = e.x; d.fy = e.y; }
+  function dragEnd(e, d) { if (!e.active) sim.alphaTarget(0); if (d.type !== 'hub') { d.fx = null; d.fy = null; } }
+
+  let k = 1, keepSet = null;
+  function labelVisibility() {
+    node.select('text').style('display', d => {
+      if (d.type === 'topic') return (k >= 1.6 || (keepSet && keepSet.has(d.id))) ? null : 'none';
+      if (d.type === 'module') return (k >= 1.3 || (keepSet && keepSet.has(d.id))) ? null : 'none';
+      return null;
+    });
+  }
+  const zoom = d3.zoom().scaleExtent([0.3, 5]).on('zoom', e => { g.attr('transform', e.transform); k = e.transform.k; labelVisibility(); });
+  svg.call(zoom).on('click', () => select(null));
+  function fit() {
+    const { width, height } = svg.node().getBoundingClientRect();
+    const pts = allNodes.filter(d => d.type !== 'module');
+    const xs = pts.map(d => d.x), ys = pts.map(d => d.y);
+    const x0 = Math.min(...xs) - 170, x1 = Math.max(...xs) + 170, y0 = Math.min(...ys) - 150, y1 = Math.max(...ys) + 150;
+    const s = Math.min(width / (x1 - x0), height / (y1 - y0));
+    svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2 - s * (x0 + x1) / 2, height / 2 - s * (y0 + y1) / 2).scale(s));
+  }
+
+  function neighbors(d) {
+    const s = new Set([d.id]);
+    allLinks.forEach(l => { if (l.source.id === d.id) s.add(l.target.id); if (l.target.id === d.id) s.add(l.source.id); });
+    return s;
+  }
+  function applyHighlight() {
+    const q = query.toLowerCase();
+    let keep = null;
+    if (q) keep = new Set(allNodes.filter(d => (d.label + ' ' + (d.search || '')).toLowerCase().includes(q)).map(d => d.id));
+    else if (selected) keep = neighbors(selected);
+    keepSet = keep;
+    node.classed('dim', d => keep && !keep.has(d.id));
+    link.classed('dim', l => keep && !(keep.has(l.source.id) && keep.has(l.target.id)));
+    labelVisibility();
+  }
+
+  function focus(d, animate = true) {
+    const { width, height } = svg.node().getBoundingClientRect();
+    const panelW = width > 700 ? Math.min(380, width) : 0;
+    const s = Math.max(k, 1.5);
+    const tf = d3.zoomIdentity.translate((width - panelW) / 2 - s * d.x, height / 2 - s * d.y).scale(s);
+    if (animate) svg.transition().duration(500).call(zoom.transform, tf); else svg.call(zoom.transform, tf);
+  }
+  function select(d, animate = true) {
+    selected = d;
+    if (d && d.type === 'course') { expanded.add(d.id); update(); }
+    renderPanel(d);
+    applyHighlight();
+    if (d && d.type !== 'hub') focus(d, animate);
+  }
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const panel = document.getElementById('panel'), body = document.getElementById('panel-body');
+  function renderPanel(d) {
+    if (!d || d.type === 'hub') { panel.classList.remove('open'); return; }
+    let h = '';
+    if (d.type === 'category') {
+      const kids = allNodes.filter(n => n.parent === d.id);
+      const built = kids.filter(n => n.type === 'course');
+      h += `<h2>${esc(d.label)}</h2><div class="meta">${built.length} of ${kids.length} courses built</div>`;
+      if (d.description) h += `<p>${esc(d.description)}</p>`;
+      h += '<h3>Courses</h3><ul>' + kids.map(n => n.type === 'course'
+        ? `<li><a href="#" data-id="${n.id}">${esc(n.label)}</a></li>`
+        : `<li style="color:var(--muted)">${esc(n.label)}</li>`).join('') + '</ul>';
+      h += `<a class="btn" href="${REPO}/blob/main/${d.path}" target="_blank" rel="noopener">Open category on GitHub</a>`;
+    } else if (d.type === 'course') {
+      h += `<h2>${esc(d.label)}</h2><div class="meta"><span class="status built">built</span> · ${esc(byId.get(d.parent).label)}${d.length ? ' · ' + esc(d.length) : ''}</div>`;
+      if (d.description) h += `<p>${esc(d.description)}</p>`;
+      const pre = allLinks.filter(l => l.type === 'prereq' && l.target.id === d.id).map(l => l.source);
+      const rel = allLinks.filter(l => l.type === 'related' && (l.source.id === d.id || l.target.id === d.id)).map(l => l.source.id === d.id ? l.target : l.source);
+      if (pre.length) h += '<h3>Prerequisites</h3><ul>' + pre.map(n => `<li><a href="#" data-id="${n.id}">${esc(n.label)}</a></li>`).join('') + '</ul>';
+      if (rel.length) h += '<h3>Related</h3><ul>' + rel.map(n => `<li><a href="#" data-id="${n.id}">${esc(n.label)}</a></li>`).join('') + '</ul>';
+      const mods = allNodes.filter(n => n.parent === d.id);
+      if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) =>
+        `<tr><td class="n">${i}</td><td><a href="${REPO}/blob/main/${m.path}" target="_blank" rel="noopener">${esc(m.label)}</a></td><td class="t">${esc(m.note || '')}</td></tr>`).join('') + '</table>';
+      h += `<a class="btn" href="${REPO}/blob/main/${d.path}" target="_blank" rel="noopener">Open course on GitHub</a>`;
+    } else if (d.type === 'topic') {
+      h += `<h2>${esc(d.label)}</h2><div class="meta"><span class="status todo">not started</span> · ${esc(byId.get(d.parent).label)}</div>`;
+      h += `<p>No course yet. See <a href="${REPO}/blob/main/ROADMAP.md" target="_blank" rel="noopener">ROADMAP.md</a> to claim it.</p>`;
+    } else if (d.type === 'module') {
+      const c = byId.get(d.parent);
+      h += `<h2>${esc(d.label)}</h2><div class="meta">Module of <a href="#" data-id="${c.id}">${esc(c.label)}</a>${d.note ? ' · ' + esc(d.note) : ''}</div>`;
+      h += `<a class="btn" href="${REPO}/blob/main/${d.path}" target="_blank" rel="noopener">Open module on GitHub</a>`;
+    }
+    body.innerHTML = h;
+    body.querySelectorAll('a[data-id]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); select(byId.get(a.dataset.id)); }));
+    panel.classList.add('open');
+  }
+
+  document.getElementById('close').addEventListener('click', () => select(null));
+  document.getElementById('modules').addEventListener('change', e => { showModules = e.target.checked; update(); });
+  document.getElementById('search').addEventListener('input', e => { query = e.target.value.trim(); applyHighlight(); });
+  document.getElementById('count').textContent = `${DATA.built} of ${DATA.total} courses built`;
+
+  const hash = decodeURIComponent(location.hash.slice(1));
+  update();
+  sim.stop(); for (let i = 0; i < 300; i++) sim.tick(); tick(); sim.alpha(0.05);
+  fit();
+  window.addEventListener('resize', () => selected ? focus(selected, false) : fit());
+  if (hash && byId.has(hash)) { select(byId.get(hash), false); sim.stop(); for (let i = 0; i < 120; i++) sim.tick(); tick(); }
+})();
+</script>
+</body>
+</html>
