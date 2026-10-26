@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 6 of 101 topics covered.**
+**Progress: 7 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked)
 - [ ] = not started
@@ -68,7 +68,7 @@ Folder: [`courses/leadership-project-management/`](courses/leadership-project-ma
 - [ ] Technical Leadership
 - [ ] The Art and Science of Team Facilitation
 
-## Lean & Six Sigma (6/24)
+## Lean & Six Sigma (7/24)
 
 Folder: [`courses/lean-six-sigma/`](courses/lean-six-sigma/README.md)
 
@@ -79,7 +79,7 @@ Folder: [`courses/lean-six-sigma/`](courses/lean-six-sigma/README.md)
 - [x] [Kaizen Leader](courses/lean-six-sigma/kaizen-leader/README.md)
 - [ ] Lean IT Essentials for Leaders and Teams
 - [ ] Lean Methods Accelerator
-- [ ] Process Mapping
+- [x] [Process Mapping](courses/lean-six-sigma/process-mapping/README.md)
 - [ ] Voice of the Customer
 - [ ] Six Sigma Yellow Belt
 - [ ] Six Sigma Green Belt
