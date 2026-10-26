@@ -1,0 +1,22 @@
+# Glossary
+
+- **A3:** a one-page (A3-size) report that tells a problem-solving story: background, current state, analysis, countermeasures, plan, follow-up.
+- **Action title:** a slide title written as a full sentence stating the slide's takeaway.
+- **Active listening:** hearing the whole question, checking your understanding, answering what was asked, then confirming.
+- **Answer first:** opening with the conclusion and the request, then giving the support.
+- **Appendix (backup):** labeled slides or sections with detail some of the audience may ask for.
+- **Audience analysis:** working out who decides, what they know, what they care about and what worries them.
+- **Chartjunk:** decoration that doesn't carry information (3-D effects, heavy gridlines, meaningless color).
+- **Critical-to-quality (CTQ):** a measurable requirement derived from the customer's (here, the audience's) needs.
+- **Direct labeling:** putting labels on the data instead of in a legend.
+- **Executive summary:** a short opening paragraph with the finding, its impact and the ask.
+- **Flesch reading ease / Flesch–Kincaid grade:** readability formulas based on sentence length and syllables per word.
+- **MECE:** mutually exclusive, collectively exhaustive. Supporting points that don't overlap and together cover the case.
+- **Pre-wiring:** sharing the message and numbers with key people before the meeting.
+- **Pyramid structure:** one governing idea, supported by a few key points, each backed by evidence.
+- **Rubric:** a scoring guide with defined criteria and levels.
+- **SCR:** situation, complication, resolution. A framing for an opening.
+- **Small multiples:** a series of small charts with the same scale, one per category.
+- **Speaker notes:** the script or prompts kept off the slide.
+- **Storyboard:** the sequence of slide titles, planned before the slides are built.
+- **Voice of the audience:** what the audience says it needs, captured before building the presentation.
