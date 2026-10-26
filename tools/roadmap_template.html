@@ -128,6 +128,7 @@
   .planned { padding: 0 var(--s4) var(--s4); display: flex; flex-wrap: wrap; gap: 6px; }
   .planned span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px dashed var(--todo); border-radius: 12px; padding: 2px 9px; }
   .planned .label { border: 0; padding-left: 0; }
+  .planned .covered { border-style: solid; border-color: var(--green); color: var(--text); } .planned .covered a { color: var(--accent); }
 
   /* path */
   .path-wrap { position: relative; }
@@ -319,12 +320,12 @@
       const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
       const csv = cs.filter(match), tsv = ts.filter(t => !q || t.label.toLowerCase().includes(q));
       if (q && !csv.length && !tsv.length) return '';
-      const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length;
+      const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length, cov = ts.filter(t => t.covered).length;
       return `<details class="cat" ${(!q && !cs.length) ? '' : 'open'}>
         <summary><h2>${esc(cat.label)}</h2><div class="desc">${esc(cat.description)}</div>
-          <div class="bar">${cs.length} of ${total} built${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * cs.length / total : 0}%"></b></i></div></summary>
+          <div class="bar">${cs.length} built${cov ? ` + ${cov} folded` : ''} of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
-        ${tsv.length ? `<div class="planned"><span class="label">Planned:</span>${tsv.map(t => `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
+        ${tsv.length ? `<div class="planned"><span class="label">Planned:</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
       </details>`;
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
@@ -383,6 +384,7 @@
       `<a class="btn-primary" href="${gh(cat.path)}" target="_blank" rel="noopener">Open category on GitHub</a>`;
   }
   function openTopic(t) {
+    if (t.covered) { const c = byId.get(t.covered); body.innerHTML = `<h2>${esc(t.label)}</h2><div class="meta"><span class="pill done">covered</span> · ${esc(byId.get(t.parent).label)}</div><p>Not a separate course. This topic is covered inside <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>.</p><a class="btn-primary" href="${reader(c)}">Read ${esc(c.label)}</a>`; return; }
     body.innerHTML = `<h2>${esc(t.label)}</h2><div class="meta"><span class="pill todo">planned</span> · ${esc(byId.get(t.parent).label)}</div><p>No course yet. See <a href="${gh('ROADMAP.md')}" target="_blank" rel="noopener">ROADMAP.md</a> to claim it.</p>`;
   }
   function openModule(m) {
@@ -430,7 +432,7 @@
   window.addEventListener('resize', () => { drawPathEdges(); if (graphReady) graphResize(); });
 
   function refresh() {
-    document.getElementById('count').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built`;
+    document.getElementById('count').innerHTML = `<b>${DATA.built}</b> built${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics`;
     document.getElementById('mine').innerHTML = done.size ? ` · you: <b>${done.size}</b> done` : '';
     renderStart(); renderCatalog(); renderPath();
     if (graphReady) graphRestyle();
@@ -451,8 +453,8 @@
     const catNodes = cats.map(cat => {
       const cs = courses.filter(c => c.parent === cat.id).sort((a, b) => a.label.localeCompare(b.label))
         .map(c => { const n = mk(c, modulesOf(c.id).map(m => mk(m))); n._children = n.children; n.children = null; return n; });
-      const ts = topics.filter(x => x.parent === cat.id).map(x => mk(x));
-      const kids = cs.slice();
+      const ts = topics.filter(x => x.parent === cat.id && !x.covered).map(x => mk(x));
+      const kids = cs.slice().concat(topics.filter(x => x.parent === cat.id && x.covered).map(x => mk(x)));
       if (ts.length) { const grp = { id: 'group:' + cat.id, data: { type: 'group', label: `${ts.length} planned`, parent: cat.id }, label: `${ts.length} planned`, children: null, _children: ts }; kids.push(grp); }
       return mk(cat, kids);
     });
@@ -477,7 +479,7 @@
     const type = n => n.data.data.type;
     const r = n => ({ category: 7, course: 5.5, topic: 3.5, module: 2.5, group: 4 })[type(n)] || 4;
     const fill = n => ({ category: css('--cat'), course: css('--built'), module: css('--module'), group: css('--bg'), topic: css('--bg') })[type(n)];
-    const strokeOf = n => type(n) === 'topic' ? css('--todo') : type(n) === 'group' ? css('--muted') : type(n) === 'course' && isDone(n.data.id) ? css('--ink') : 'none';
+    const strokeOf = n => type(n) === 'topic' ? (n.data.data.covered ? css('--green') : css('--todo')) : type(n) === 'group' ? css('--muted') : type(n) === 'course' && isDone(n.data.id) ? css('--ink') : 'none';
     const glyph = n => type(n) === 'course' ? (isDone(n.data.id) ? '✓ ' : '') : '';
 
     function render(animate = true) {
@@ -500,7 +502,7 @@
       const all = enter.merge(node);
       all.transition().duration(dur).attr('opacity', 1).attr('transform', n => `translate(${n.px},${n.py})`);
       all.select('circle').attr('r', r).attr('fill', fill).attr('stroke', strokeOf).attr('stroke-width', 1.5);
-      all.select('text').text(n => glyph(n) + n.data.label + ((n._children && !n.children) ? (isCat(n) ? '' : ' ▸') : ''))
+      all.select('text').text(n => glyph(n) + n.data.label + (type(n) === 'topic' && n.data.data.covered ? ' · folded in' : '') + ((n._children && !n.children) ? (isCat(n) ? '' : ' ▸') : ''))
         .attr('x', n => n.dir * (r(n) + 6)).attr('text-anchor', n => n.dir > 0 ? 'start' : 'end')
         .attr('font-weight', n => isCat(n) ? 700 : type(n) === 'course' ? 600 : 400).attr('font-size', n => isCat(n) ? 13 : type(n) === 'module' || type(n) === 'topic' ? 10 : 11)
         .attr('fill', n => type(n) === 'topic' || type(n) === 'group' || type(n) === 'module' ? css('--muted') : css('--ink'));

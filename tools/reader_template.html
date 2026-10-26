@@ -212,7 +212,7 @@
   const isReadme = file === 'README.md';
 
   // ---- site status and back link
-  $('siteStatus').innerHTML = `<b>${DATA.built}</b> of ${DATA.total} courses built` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
+  $('siteStatus').innerHTML = `<b>${DATA.built}</b> built${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics` + (doneCourses.size ? ` · you: <b>${doneCourses.size}</b> done` : '');
 
   // ---- hero and nav
   $('pathCourse').innerHTML = `<a href="index.html#course:${esc(slug)}">${esc(slug)}</a>`;
