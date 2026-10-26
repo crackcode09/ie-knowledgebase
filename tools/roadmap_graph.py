@@ -165,8 +165,8 @@ def module_summary(path, limit=220):
     try:
         lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
     except OSError:
-        return ""
-    items, grab = [], False
+        return "", "", 0
+    items, grab, kind = [], False, "objectives"
     for line in lines:
         if re.match(r"^#+\s*(learning\s+)?objectives", line, re.I):
             grab = True
@@ -179,7 +179,9 @@ def module_summary(path, limit=220):
                 items.append(m.group(1).strip())
     if not items:
         items = [re.sub(r"^\d+\.\s*", "", h[3:]).strip() for h in lines if h.startswith("## ")]
+        kind = "sections"
     if not items:
+        kind = "summary"
         for line in lines[1:]:
             s = line.strip()
             if s and not re.match(r"^(#|\||\*\*Time|\*\*Data|!|`|<|-|\*|\d+[.)])", s):
@@ -189,12 +191,13 @@ def module_summary(path, limit=220):
         s = LINK_RE.sub(r"\1", s)
         s = re.sub(r"(\*\*|\*|_|`)([^*_`]+)\1", r"\2", s)
         return re.sub(r"[.;:]\s*$", "", s.strip())
-    out = "; ".join(clean(i) for i in items if i)
+    cleaned = [clean(i) for i in items if i]
+    out = "; ".join(cleaned)
     if len(out) > limit:
         head = out[:limit]
         cut = head.rsplit(";", 1)[0] if ";" in head else head.rsplit(" ", 1)[0]
         out = cut.rstrip(" ;,") + " …"
-    return out
+    return out, kind, len(cleaned)
 
 
 def course_info(readme_path):
@@ -233,7 +236,11 @@ def course_info(readme_path):
             else:
                 topics = last
         mpath = rel(base / m.group(2))
-        modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics or module_summary(mpath)})
+        if topics:
+            tkind, tcount = "topics", len([x for x in re.split(r"[;,]", topics) if x.strip()])
+        else:
+            topics, tkind, tcount = module_summary(mpath)
+        modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics, "tkind": tkind, "tcount": tcount})
     prereq, related = [], []
     for line in lines:
         is_prereq_line = "prerequisite" in line.lower()
@@ -312,7 +319,8 @@ def build_model(cats):
                 for i, m in enumerate(modules):
                     mid = f"{nid}/{i}"
                     nodes.append({"id": mid, "type": "module", "label": m["title"], "parent": nid, "a": a,
-                                  "path": m["path"], "note": m["note"], "topics": m["topics"]})
+                                  "path": m["path"], "note": m["note"], "topics": m["topics"],
+                                  "tkind": m["tkind"], "tcount": m["tcount"]})
                     links.append({"source": nid, "target": mid, "type": "tree"})
             else:
                 nid = "topic:" + slugify(title)
