@@ -6,6 +6,8 @@ Free, open courses on industrial engineering, quality and continuous improvement
 
 See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still open in each category.
 
+[![Roadmap graph](docs/roadmap.svg)](docs/roadmap.svg)
+
 Suggested order: Measurement & Basic Statistics, then Charting Process Behavior, then Fundamentals of Hypothesis Testing.
 
 ### [Analytics, Data Science & AI](courses/analytics-data-science-ai/README.md)
