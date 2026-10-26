@@ -177,13 +177,16 @@ def course_info(readme_path):
         modules.append({"title": m.group(1), "path": rel(base / m.group(2)), "note": note})
     prereq, related = [], []
     for line in lines:
-        for _label, href in LINK_RE.findall(line):
-            if not href.startswith("../") or not href.endswith("/README.md"):
-                continue
-            target = rel((ROOT / base / href).resolve().relative_to(ROOT))
-            bucket = prereq if "prerequisite" in line.lower() else related
-            if target not in bucket:
-                bucket.append(target)
+        is_prereq_line = "prerequisite" in line.lower()
+        # On a prerequisites line, links after "Helpful" are recommendations, not requirements.
+        hard, soft = (re.split(r"helpful", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
+        for part, bucket in ((hard, prereq), (soft, related)):
+            for _label, href in LINK_RE.findall(part):
+                if not href.startswith("../") or not href.endswith("/README.md"):
+                    continue
+                target = rel((ROOT / base / href).resolve().relative_to(ROOT))
+                if target not in prereq and target not in related:
+                    bucket.append(target)
     return desc, modules, prereq, related
 
 
