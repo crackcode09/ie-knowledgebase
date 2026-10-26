@@ -1,0 +1,60 @@
+task,step,description,codes
+A_kit_current,1,"Reach to bolt bin, get one bolt from mixed bin",A6 G5
+A_kit_current,2,"Move bolt to bag held open by left hand, release",A6 P0
+A_kit_current,3,"Reach to washer bin, get one washer (small, flat)",A6 G5
+A_kit_current,4,"Move washer to bag, release",A6 P0
+A_kit_current,5,"Reach to nut bin, get one nut",A6 G5
+A_kit_current,6,"Move nut to bag, release",A6 P0
+A_kit_current,7,"Grasp bag top with both hands, press seal closed",A3 G2 X5
+A_kit_current,8,"Move bag to tote, release",A6 P0
+A_kit_current,9,"Reach for next empty bag, get from stack (selective: thin film)",A8 G5
+A_kit_current,10,"Move bag to opening position, open bag (fingers)",A6 P3 A2
+A_kit_improved,1,"Reach both hands to gravity trays (bolt RH, nut LH, pre-oriented), get both at once",A4 G2
+A_kit_improved,2,"Move both to bag on holder, release (low control: simultaneous)",A4 P0
+A_kit_improved,3,"Reach to washer tray (pre-singulated), get washer",A4 G2
+A_kit_improved,4,"Move washer to bag, release",A4 P0
+A_kit_improved,5,Press seal: both hands,A3 G0 X5
+A_kit_improved,6,Slide bag off holder into chute,A4 P0
+A_kit_improved,7,"Pull next bag from roll on holder (perforated, self-opening)",A3 G0 A3
+B_pin_assembly,1,"Reach to tote, get housing",A6 G2
+B_pin_assembly,2,"Move housing to fixture, place on two locating pins",A6 P6
+B_pin_assembly,3,"Reach to pin tray, get one dowel pin",A4 G5
+B_pin_assembly,4,"Move pin to bore, insert (tight fit, one correction)",A4 P6 C2
+B_pin_assembly,5,Seat pin with thumb,X5
+B_pin_assembly,6,"Reach to hanging power driver, get",A4 G2
+B_pin_assembly,7,"Move driver to screw 1, engage (bit to recess)",A4 P6
+B_pin_assembly,8,Drive screw 1 (tool time),PT18
+B_pin_assembly,9,"Move driver to screw 2, engage",A3 P6
+B_pin_assembly,10,Drive screw 2 (tool time),PT18
+B_pin_assembly,11,Release driver to balancer,A4 P0
+B_pin_assembly,12,"Look at assembly, decide: pin flush and screws seated?",E3 D3
+B_pin_assembly,13,Get assembly from fixture,A2 G2
+B_pin_assembly,14,"Move to outgoing conveyor, place",A6 P3
+C_pack_current,1,Walk to carton pallet (3 steps),W6x3
+C_pack_current,2,Bend to pallet (floor level) and arise with carton,B22
+C_pack_current,3,Get carton with both hands (8 kg),G2
+C_pack_current,4,"Walk back to bench (3 steps), carrying",W6x3
+C_pack_current,5,"Move carton to bench, place against stop (loaded move: 4 kg per hand)",A6 L1 P3
+C_pack_current,6,Read label: part number and quantity (4 groups),R2x4
+C_pack_current,7,Decide: label matches order?,D3
+C_pack_current,8,"Reach to tape gun, get",A6 G2
+C_pack_current,9,"Move tape gun to carton seam, place",A6 P3
+C_pack_current,10,Pull tape across lid (whole arm),A8
+C_pack_current,11,Aside tape gun,A6 P0
+C_pack_current,12,Slide carton to outgoing roller,A8 G0 A8 P0
+C_pack_improved,1,"Turn to carton lift table at bench height (no walking), get carton (8 kg)",A6 G2
+C_pack_improved,2,"Move carton to bench, place against stop (loaded)",A6 L1 P3
+C_pack_improved,3,"Scan label with fixed scanner (look, decide on beep/light)",E3 D3
+C_pack_improved,4,"Reach to tape gun on holder at seam start, get",A4 G2
+C_pack_improved,5,Pull tape across lid,A8
+C_pack_improved,6,Return tape gun to holder,A4 P3
+C_pack_improved,7,Push carton to outgoing roller,A8 G0 A8 P0
+D_cable_capstone,1,"Reach to cable pile on bench, get one cable end (tangled)",A8 G5
+D_cable_capstone,2,"Move cable end to coiling jig, hook on peg",A6 P3
+D_cable_capstone,3,Turn coiling crank 4 revolutions,K6x4
+D_cable_capstone,4,"Reach to twist-tie dispenser, get one tie",A4 G2
+D_cable_capstone,5,"Move tie around coil, align both ends",A4 P6
+D_cable_capstone,6,Twist tie ends with fingers (3 twists),A2x3
+D_cable_capstone,7,Get coil off jig,A3 G2
+D_cable_capstone,8,"Move coil to bag on holder, drop in",A6 P0
+D_cable_capstone,9,Read cable label (2 groups) and decide: right length code?,R2x2 D3
