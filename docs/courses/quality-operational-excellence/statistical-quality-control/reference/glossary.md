@@ -1,0 +1,25 @@
+# Glossary
+
+- **Acceptance number (c):** the maximum number of defectives in the sample for which the lot is accepted.
+- **AOQ / AOQL:** average outgoing quality (after rectifying inspection) and its maximum over all incoming quality levels.
+- **AQL:** acceptable quality level. A process-average quality level considered acceptable.
+- **ASN:** average sample number per lot (for double, multiple and sequential plans).
+- **ATI:** average total inspection per lot, including sorting of rejected lots.
+- **Capability (Cp, Cpk):** how well a stable process's spread and centering fit the specification.
+- **Common cause:** variation inherent in the process.
+- **Consumer's risk (β):** the probability of accepting a lot at LTPD quality.
+- **Control limits:** limits (usually ±3σ) showing the expected range of a statistic when only common causes act.
+- **Defect / defective:** a single nonconformity / an item with one or more nonconformities.
+- **DNOM chart:** a deviation-from-nominal chart for short runs.
+- **LTPD / RQL:** lot tolerance percent defective or rejectable quality level. Poor quality the consumer wants rejected.
+- **OC curve:** operating characteristic curve. Probability of acceptance against incoming quality.
+- **Performance indices (Pp, Ppk):** capability indices computed with the overall standard deviation.
+- **Phase I / Phase II:** setting limits from historical data / monitoring with those limits.
+- **Producer's risk (α):** the probability of rejecting a lot at AQL quality.
+- **Rational subgroup:** a subgroup formed so that within-subgroup variation contains only common causes.
+- **Rectifying inspection:** rejected lots are 100% inspected and defectives replaced.
+- **Run rules:** pattern tests that detect special causes (e.g. 8 points in a row on one side).
+- **Special (assignable) cause:** an identifiable source of unusual variation.
+- **Stable process:** a process showing only common-cause variation.
+- **Switching rules:** rules in sampling standards for moving between normal, tightened and reduced inspection.
+- **Tampering:** adjusting a stable process in response to common-cause variation, which increases variation.
