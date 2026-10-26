@@ -168,7 +168,10 @@
   aside h3 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: var(--s5) 0 var(--s2); }
   aside table { width: 100%; border-collapse: collapse; font-size: 13px; }
   aside td { padding: 5px 6px 5px 0; vertical-align: top; border-top: 1px solid var(--line); }
-  aside td.n { color: var(--muted); font-family: var(--mono); width: 2em; } aside td.t { color: var(--muted); font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+  aside td.n { color: var(--muted); font-family: var(--mono); width: 2em; } aside td.t { color: var(--muted); font-family: var(--mono); font-size: 11.5px; }
+  aside td.t.short { white-space: nowrap; } aside td.t.long { display: block; padding-top: 0; font-size: 11px; }
+  aside table tr.wrap td { display: block; padding-left: 2.4em; } aside table tr.wrap td.n { display: inline-block; padding-left: 0; position: absolute; }
+  aside table tr.wrap { position: relative; display: block; border-top: 1px solid var(--line); padding: 5px 0; } aside table tr.wrap td { border-top: 0; padding-top: 0; padding-bottom: 0; }
   aside ul { padding-left: 18px; margin: 4px 0; } aside li::marker { color: var(--accent); }
   .btn-primary { display: inline-block; margin-top: var(--s4); padding: 7px 12px; border-radius: 6px; background: var(--accent); color: var(--bg) !important; font-family: var(--mono); font-size: 12.5px; font-weight: 500; border: 0; cursor: pointer; }
   .btn-primary:hover { text-decoration: none; filter: brightness(1.08); }
@@ -363,7 +366,7 @@
     h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
-    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => `<tr><td class="n">${doneMods.has(m.path) ? '<span style="color:var(--green)">✓</span>' : i}</td><td><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a></td><td class="t">${esc(m.note)}</td></tr>`).join('') + '</table>';
+    if (mods.length) h += '<h3>Syllabus</h3><table>' + mods.map((m, i) => { const long = (m.note || '').length > 18; return `<tr class="${long ? 'wrap' : ''}"><td class="n">${doneMods.has(m.path) ? '<span style="color:var(--green)">✓</span>' : i}</td><td><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a></td><td class="t ${long ? 'long' : 'short'}">${esc(m.note)}</td></tr>`; }).join('') + '</table>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">GitHub</a>`;
     body.innerHTML = h;
   }
