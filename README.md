@@ -8,7 +8,7 @@ See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still 
 
 [![Roadmap graph](docs/roadmap.svg)](docs/roadmap.svg)
 
-Suggested order: Measurement & Basic Statistics, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis.
+Suggested order: Measurement & Basic Statistics, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader has no prerequisites and can be taken at any point.
 
 ### [Analytics, Data Science & AI](courses/analytics-data-science-ai/README.md)
 
@@ -35,6 +35,7 @@ _No courses yet._
 | [Fundamentals of Hypothesis Testing](courses/lean-six-sigma/fundamentals-of-hypothesis-testing/README.md) | Hypotheses, errors, power, CIs; t, ANOVA, proportion, chi-square, variance and nonparametric tests | ~14 h + capstone | v1.0 |
 | [Design for Six Sigma](courses/lean-six-sigma/design-for-six-sigma/README.md) | DCDOV: VOC, QFD, Pugh, FMEA, error-proofing, scorecards, DOE, tolerance stack-up, flow simulation, line balancing, reliability | ~45 h incl. capstone | v1.0 |
 | [Root Cause Analysis & Problem Solving](courses/lean-six-sigma/root-cause-analysis/README.md) | Problem statements, Pareto, process maps, fishbone, 5-Why, root cause trees, stratification, regression, logistic regression, corrective actions | ~14 h | v1.0 |
+| [Kaizen Leader](courses/lean-six-sigma/kaizen-leader/README.md) | Planning and leading kaizen events: charter, VSM, takt, TOC, flow, balancing, kanban, SMED, 5S, TPM, standard work, A3; includes a one-day team-member track | ~22 h | v1.0 |
 
 ### [Logistics & Supply Chain](courses/logistics-supply-chain/README.md)
 
