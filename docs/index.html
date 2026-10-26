@@ -107,7 +107,7 @@
   .cat > summary h2 { font-family: var(--display); font-size: 17px; margin: 0; display: flex; align-items: center; gap: 8px; letter-spacing: -.01em; }
   .cat > summary h2::before { content: "#"; color: var(--accent); font-family: var(--mono); font-weight: 400; }
   .cat > summary .desc { grid-column: 1; color: var(--muted); font-size: 13px; }
-  .bar { grid-column: 2; grid-row: 1 / span 2; width: 160px; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .bar { grid-column: 2; grid-row: 1 / span 2; min-width: 160px; white-space: nowrap; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .bar i { display: block; height: 4px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
   .bar i b { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); }
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s3); padding: 0 var(--s4) var(--s4); }
@@ -323,9 +323,9 @@
       const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length, cov = ts.filter(t => t.covered).length;
       return `<details class="cat" ${(!q && !cs.length) ? '' : 'open'}>
         <summary><h2>${esc(cat.label)}</h2><div class="desc">${esc(cat.description)}</div>
-          <div class="bar">${cs.length} built${cov ? ` + ${cov} folded` : ''} of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
+          <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
-        ${tsv.length ? `<div class="planned"><span class="label">Planned:</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
+        ${tsv.length ? `<div class="planned"><span class="label">${tsv.every(t => t.covered) ? 'Folded in:' : 'Planned:'}</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
       </details>`;
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
