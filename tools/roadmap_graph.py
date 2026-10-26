@@ -167,7 +167,7 @@ def course_info(readme_path):
     for line in lines[1:]:
         s = line.strip()
         if s and not s.startswith(("#", "|", "**", "-", "!", "`")):
-            desc = re.sub(r"\*\*([^*]+)\*\*", r"\1", LINK_RE.sub(r"\1", s))
+            desc = re.sub(r"(\*\*|\*|_)([^*_]+)\1", r"\2", LINK_RE.sub(r"\1", s))
             break
     modules = []
     time_idx = topics_idx = None
