@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 15 of 101 topics covered.**
+**Progress: 16 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked)
 - [ ] = not started
@@ -117,7 +117,7 @@ Folder: [`courses/quality-operational-excellence/`](courses/quality-operational-
 - [ ] Quality Engineering Essentials
 - [ ] Statistical Quality Control
 
-## Technical Skills (6/11)
+## Technical Skills (7/11)
 
 Folder: [`courses/technical-skills/`](courses/technical-skills/README.md)
 
@@ -128,7 +128,7 @@ Folder: [`courses/technical-skills/`](courses/technical-skills/README.md)
 - [ ] PE Exam Review for Industrial Engineers
 - [ ] Predictive Maintenance Technologies
 - [ ] Product Value Analysis / Value Engineering (VA/VE)
-- [ ] Reliability Engineering Excellence
+- [x] [Reliability Engineering Excellence](courses/technical-skills/reliability-engineering-excellence/README.md)
 - [x] [Applied Statistics](courses/technical-skills/applied-statistics/README.md)
 - [x] [Technical Communications](courses/technical-skills/technical-communications/README.md)
 - [ ] Value Management Fundamentals
