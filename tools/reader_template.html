@@ -95,14 +95,21 @@
   .doc { min-width: 0; font-size: 17px; max-width: 78ch; }
   .dochead { display: flex; flex-direction: column; gap: 10px; padding-bottom: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--line); }
   /* One row on every page: meta on the left, buttons pinned right. A long meta line wraps inside its own space instead of pushing the buttons down. */
-  .dochead-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: nowrap; }
-  .dochead-row .docmeta { flex: 1 1 0; min-width: 0; }
-  .dochead-actions { justify-content: flex-end; }
+  .dochead-row { display: flex; align-items: flex-start; gap: var(--s4); flex-wrap: nowrap; }
+  .dochead-row .docmeta { flex: 1 1 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .docmeta .chip { font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; white-space: nowrap; line-height: 1.2; }
+  .viewmenu { position: relative; flex: none; }
+  .viewmenu summary { list-style: none; cursor: pointer; user-select: none; }
+  .viewmenu summary::-webkit-details-marker { display: none; }
+  .viewmenu[open] summary { border-color: var(--accent); background: var(--surface-2); }
+  .viewmenu-list { position: absolute; right: 0; top: calc(100% + 6px); z-index: 5; min-width: 190px; display: flex; flex-direction: column; padding: 6px 0; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+  .vm { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 14px; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 12.5px; cursor: pointer; text-decoration: none; }
+  .vm:hover, .vm:focus-visible { background: var(--surface-2); color: var(--accent); outline: none; }
+  .vm[aria-checked="true"]::before { content: "✓"; color: var(--green); } .vm[aria-checked="false"]::before { content: ""; display: inline-block; width: 1ch; }
   .dochead .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--green); } .dochead .eyebrow::before { content: "$ "; color: var(--muted); }
   .dochead h1 { margin: 0; font-family: var(--display); font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
   .dochead h1 .num { color: var(--muted); font-weight: 500; }
   .docmeta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .docmeta .mp { white-space: nowrap; }
   .dochead-actions { display: flex; gap: 8px; flex: none; flex-wrap: wrap; }
   .btn.done { background: var(--green-soft); border-color: var(--green); color: var(--green); }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); padding: var(--s2) var(--s3); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: inline-block; box-shadow: var(--shadow-1); }
@@ -131,20 +138,25 @@
   .doc figure img { display: inline-block; margin: 0; }
   .doc figcaption { margin-top: var(--s2); font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-align: center; }
   .doc figcaption b { color: var(--text); font-weight: 500; }
-  .doc details { border: 1px solid var(--line); border-radius: 8px; padding: var(--s2) var(--s4); margin: 0 0 var(--s4); background: var(--surface); }
-  .doc details summary { cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--accent); }
-  .doc details[open] summary { margin-bottom: var(--s2); }
+  .doc details:not(.viewmenu) { border: 1px solid var(--line); border-radius: 8px; padding: var(--s2) var(--s4); margin: 0 0 var(--s4); background: var(--surface); }
+  .doc details:not(.viewmenu) summary { cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--accent); }
+  .doc details:not(.viewmenu)[open] summary { margin-bottom: var(--s2); }
   .raw { display: none; } body.raw-mode .rendered { display: none; } body.raw-mode .raw { display: block; }
   .raw pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px; padding: var(--s5); overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; color: var(--code-text); counter-reset: ln; }
   .raw .ln { display: block; } .raw .ln::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 3ch; margin-right: 2ch; color: var(--muted); text-align: right; user-select: none; }
   .raw .ln.h { color: var(--accent); font-weight: 500; } .raw .ln.fence { color: var(--green); }
   /* Three fixed slots: previous | mark | next. A missing side card leaves its slot empty, so the mark button is centred on every page. */
-  .pager { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--s3); margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--line); }
-  .pager a.prev, .pager > span { grid-column: 1; } .pager .btn.mark { grid-column: 2; } .pager a.next { grid-column: 3; }
-  .pager a { display: block; padding: var(--s3) var(--s4); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); text-decoration: none; font-family: var(--mono); font-size: 13px; cursor: pointer; text-align: left; }
-  .pager a:hover { border-color: var(--accent); }
-  .pager a small { display: block; color: var(--muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
-  .pager .next { text-align: right; } .pager .btn.mark { justify-self: center; display: inline-flex; padding: 0 14px; border-radius: 6px; }
+  /* Progress strip: a position line, then three buttons in fixed slots (back | done | forward). A missing side is a disabled button, so the row has the same shape on every page. */
+  .pager { margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--line); }
+  .pager-pos { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pager-pos .track { flex: 1; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .pager-pos .fill { height: 100%; background: var(--green); }
+  .pager-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--s3); }
+  .pager-row .btn { max-width: 100%; min-width: 0; text-decoration: none; }
+  .pager-row .btn .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pager-row .btn.prev { grid-column: 1; justify-self: start; } .pager-row .btn.mark { grid-column: 2; justify-self: center; } .pager-row .btn.next { grid-column: 3; justify-self: end; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); box-shadow: none; } .btn.primary:hover { background: var(--accent); color: var(--bg); filter: brightness(1.08); }
+  .btn[aria-disabled="true"] { opacity: .45; cursor: default; box-shadow: none; pointer-events: none; }
   footer { border-top: 1px solid var(--line); padding: var(--s5); text-align: center; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
   .toc-toggle { display: none; }
   .btn.icon { padding: 6px 9px; }
@@ -161,17 +173,17 @@
     .toc-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; margin-bottom: var(--s2); }
     nav.toc.collapsed > :not(.toc-toggle) { display: none; }
   }
-  @media (pointer: coarse) { .btn, .pager a { min-height: 40px; } nav.toc a { padding-top: 8px; padding-bottom: 8px; } }
-  @media (max-width: 820px) { .wrap, .hero { padding-left: var(--s4); padding-right: var(--s4); } .wrap { grid-template-columns: 1fr; gap: 0; } nav.toc { position: static; max-height: none; margin-bottom: var(--s5); border-left: 0; } .pager { grid-template-columns: 1fr; } .pager a.prev, .pager > span, .pager .btn.mark, .pager a.next { grid-column: 1; } .pager .btn.mark { justify-self: stretch; justify-content: center; order: 3; } .dochead-row { flex-direction: column; align-items: flex-start; gap: var(--s3); } .dochead-row .docmeta { flex: none; } .dochead-actions { justify-content: flex-start; } .status .long { display: none; } .hero { padding-top: var(--s6); } }
+  @media (pointer: coarse) { .btn { min-height: 40px; } nav.toc a { padding-top: 8px; padding-bottom: 8px; } }
+  @media (max-width: 820px) { .wrap, .hero { padding-left: var(--s4); padding-right: var(--s4); } .wrap { grid-template-columns: 1fr; gap: 0; } nav.toc { position: static; max-height: none; margin-bottom: var(--s5); border-left: 0; } .pager-row { grid-template-columns: 1fr 1fr; } .pager-row .btn.prev { grid-column: 1; } .pager-row .btn.next { grid-column: 2; } .pager-row .btn.mark { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; }  .viewmenu-list { right: auto; left: 0; } .status .long { display: none; } .hero { padding-top: var(--s6); } }
   .skip { position: absolute; left: -9999px; top: 8px; z-index: 40; padding: 6px 10px; background: var(--accent); color: var(--bg); border-radius: 6px; font-family: var(--mono); font-size: 12.5px; } .skip:focus { left: 8px; }
   kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; color: var(--muted); }
   @media print {
     :root { --bg: #fff; --surface: #fff; --surface-2: #f4f4f4; --line: #ccc; --text: #000; --muted: #444; --accent: #000; --accent-soft: #eee; --green: #000; --code-bg: #f4f4f4; --code-text: #000; }
-    .progress, .topbar, nav.toc, .pager, .status, footer, .cursor, .hero .lede, .dochead-actions, .dochead .eyebrow, .skip { display: none !important; }
+    .progress, .topbar, nav.toc, .pager, .status, footer, .cursor, .hero .lede, .viewmenu, .dochead .eyebrow, .skip { display: none !important; }
     .doc pre { white-space: pre-wrap; overflow: visible; } .doc .tablewrap { overflow: visible; }
     .wrap { grid-template-columns: 1fr; padding: 0; } .hero { padding: 0 0 12px; } .hero h1 { font-size: 26px; }
     .doc h2 { break-after: avoid; } .doc pre, .doc img, .doc figure { break-inside: avoid; } .doc tr { break-inside: avoid; }
-    .doc details { border: 0; padding: 0; } .doc details summary { display: none; } .doc details > * { display: block; }
+    .doc details:not(.viewmenu) { border: 0; padding: 0; } .doc details:not(.viewmenu) summary { display: none; } .doc details:not(.viewmenu) > * { display: block; }
     a { color: #000; text-decoration: none; } .doc a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: #444; }
   }
 </style>
@@ -197,11 +209,15 @@
       <h1 id="title"></h1>
       <div class="dochead-row">
       <div class="docmeta" id="docMeta"></div>
-      <div class="dochead-actions">
-        <div class="toggle" role="group" aria-label="View mode"><button type="button" class="btn active" id="btnRendered" aria-pressed="true">Rendered</button><button type="button" class="btn" id="btnRaw" aria-pressed="false" title="Shortcut: r">Raw</button></div>
-        <button type="button" class="btn" id="btnCopy">Copy</button>
-        <a class="btn" id="btnGithub" target="_blank" rel="noopener">__ICON:github:14__ GitHub</a>
-      </div>
+      <details class="viewmenu" id="viewMenu">
+        <summary class="btn" aria-label="View options">view __ICON:chevron-down:12__</summary>
+        <div class="viewmenu-list" role="menu">
+          <button type="button" class="vm" id="btnRendered" role="menuitemradio" aria-checked="true">Rendered</button>
+          <button type="button" class="vm" id="btnRaw" role="menuitemradio" aria-checked="false" title="Shortcut: r">Raw markdown</button>
+          <button type="button" class="vm" id="btnCopy" role="menuitem">Copy markdown</button>
+          <a class="vm" id="btnGithub" role="menuitem" target="_blank" rel="noopener">__ICON:github:13__ Open on GitHub</a>
+        </div>
+      </details>
       </div>
     </div>
     <div class="notice" id="notice" hidden></div>
@@ -284,7 +300,7 @@
     if (cur) { if (cur.note) parts.push(cur.note); if (kindWord(cur)) parts.push(kindWord(cur)); }
     else if (isReadme) { parts.push(cat.label); if (course.length) parts.push(course.length); parts.push(`${modules.length} modules`); }
     if (docLines) parts.push(`${docLines} lines`);
-    $('docMeta').innerHTML = parts.map(x => `<span class="mp">${esc(x)}</span>`).join(' · ');
+    $('docMeta').innerHTML = parts.map(x => `<span class="chip">${esc(x)}</span>`).join('');
   }
   function renderToc() {
     const doneN = modules.filter(m => doneMods.has(modKey(m.rel))).length;
@@ -407,11 +423,19 @@
     const i = modules.findIndex(m => m.rel === file);
     const prev = i > 0 ? modules[i - 1] : (i === 0 ? { rel: 'README.md', label: 'Overview' } : null);
     const next = i >= 0 && i < modules.length - 1 ? modules[i + 1] : (isReadme && modules.length ? modules[0] : null);
-    const link = (m, cls, lab) => m ? `<a class="${cls}" title="Shortcut: ${cls === 'prev' ? '←' : '→'}" href="course.html?c=${esc(slug)}${m.rel === 'README.md' ? '' : '&f=' + encodeURIComponent(m.rel)}"><small>${lab}</small>${esc(m.label)}</a>` : '<span style="flex:1"></span>';
+    const href = m => `course.html?c=${esc(slug)}${m.rel === 'README.md' ? '' : '&f=' + encodeURIComponent(m.rel)}`;
+    const back = prev ? `<a class="btn prev" title="Shortcut: ←" href="${href(prev)}">← <span class="lbl">${esc(prev.label)}</span></a>` : '<span class="btn prev" aria-disabled="true">← <span class="lbl">back</span></span>';
+    let fwd;
+    if (next) fwd = `<a class="btn next ${isReadme ? 'primary' : ''}" title="Shortcut: →" href="${href(next)}"><span class="lbl">${isReadme ? 'Start: ' : ''}${esc(next.label)}</span> →</a>`;
+    else if (i >= 0) fwd = `<a class="btn next" title="Shortcut: →" href="${href({ rel: 'README.md' })}"><span class="lbl">Course overview</span> →</a>`;
+    else fwd = '<span class="btn next" aria-disabled="true"><span class="lbl">next</span> →</span>';
+    const doneN = modules.filter(m => doneMods.has(modKey(m.rel))).length, n = modules.length;
+    const pos = i >= 0 ? `module ${i + 1} of ${n}` : 'overview';
+    const strip = n ? `<div class="pager-pos"><span>${pos}</span><div class="track"><div class="fill" style="width:${Math.round(100 * doneN / n)}%"></div></div><span>${doneN} of ${n} done</span></div>` : '';
     let mark = '';
     if (i >= 0) { const k = modKey(file), d = doneMods.has(k); mark = `<button type="button" class="btn mark ${d ? 'done' : ''}" id="markMod" title="Shortcut: d">${d ? '✓ module done' : 'mark module done'}</button>`; }
     else if (isReadme) { const d = doneCourses.has(course.id); mark = `<button type="button" class="btn mark ${d ? 'done' : ''}" id="markCourse" title="Shortcut: d">${d ? '✓ course done' : 'mark course done'}</button>`; }
-    $('pager').innerHTML = link(prev, 'prev', 'previous') + mark + link(next, 'next', 'next');
+    $('pager').innerHTML = strip + `<div class="pager-row">${back}${mark}${fwd}</div>`;
     const mm = $('markMod'); if (mm) mm.addEventListener('click', () => { const k = modKey(file); if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); save('iekb-mods', doneMods);
       if (modules.every(m => doneMods.has(modKey(m.rel)))) doneCourses.add(course.id); else doneCourses.delete(course.id);
       save('iekb-done', doneCourses);
@@ -420,9 +444,11 @@
   }
 
   // ---- chrome
-  function setMode(raw) { document.body.classList.toggle('raw-mode', raw); $('btnRaw').classList.toggle('active', raw); $('btnRendered').classList.toggle('active', !raw); $('btnRaw').setAttribute('aria-pressed', String(raw)); $('btnRendered').setAttribute('aria-pressed', String(!raw)); }
+  function setMode(raw) { document.body.classList.toggle('raw-mode', raw); $('btnRaw').setAttribute('aria-checked', String(raw)); $('btnRendered').setAttribute('aria-checked', String(!raw)); $('viewMenu').open = false; }
   $('btnRendered').addEventListener('click', () => setMode(false)); $('btnRaw').addEventListener('click', () => setMode(true));
-  $('btnCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(RAW); $('btnCopy').textContent = 'Copied'; setTimeout(() => $('btnCopy').textContent = 'Copy', 1500); } catch (e) { setMode(true); } });
+  document.addEventListener('click', e => { const m = $('viewMenu'); if (m.open && !m.contains(e.target)) m.open = false; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') $('viewMenu').open = false; });
+  $('btnCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(RAW); $('btnCopy').textContent = 'Copied'; setTimeout(() => { $('btnCopy').textContent = 'Copy markdown'; $('viewMenu').open = false; }, 900); } catch (e) { setMode(true); } });
   function updateProgress() { const h = document.documentElement; const max = h.scrollHeight - h.clientHeight; $('progress').style.width = (max > 0 ? 100 * h.scrollTop / max : 0) + '%'; }
   window.addEventListener('scroll', updateProgress, { passive: true });
   document.addEventListener('keydown', e => {
