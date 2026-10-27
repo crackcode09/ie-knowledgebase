@@ -23,7 +23,8 @@ REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
     "#2E8B57", "#C9D2D8", "#0078E6", "#005BA6", "#D5DDE3", "#1F2A33", "#7A8A96")
 
-LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+# Link text may hold one level of brackets, e.g. "[Cost Management [ABC/M]](...)".
+LINK_RE = re.compile(r"\[((?:[^\[\]]|\[[^\[\]]*\])+)\]\(([^)\s]+)\)")
 
 
 def parse(md):
@@ -32,12 +33,13 @@ def parse(md):
     for line in md.splitlines():
         m = re.match(r"^## (.+?) \(\d+/\d+\)", line)
         if m:
-            cur = {"name": m.group(1), "items": [], "slug": None}
+            cur = {"name": m.group(1), "items": [], "slug": None, "tag": ""}
             cats.append(cur)
             continue
-        m = re.match(r"^Folder: \[`courses/([a-z0-9-]+)/`\]", line)
+        m = re.match(r"^Folder: \[`courses/([a-z0-9-]+)/`\][^—]*(?:— *(.+))?", line)
         if m and cur is not None:
             cur["slug"] = m.group(1)
+            cur["tag"] = (m.group(2) or "").strip()   # e.g. "beyond the IISE catalog"
             continue
         m = re.match(r"^- \[([ x])\] (.+)", line)
         if m and cur is not None:
@@ -225,7 +227,7 @@ def course_info(readme_path):
                 elif re.search(r"body of knowledge|topics?|covers?|contents?", c, re.I):
                     topics_idx = i
             continue
-        m = re.search(r"\[([^\]]+)\]\((modules/[^)\s]+)\)", line)
+        m = re.search(r"\[((?:[^\[\]]|\[[^\[\]]*\])+)\]\((modules/[^)\s]+)\)", line)
         if not m:
             continue
         note = cells[time_idx] if time_idx is not None and time_idx < len(cells) else ""
@@ -289,7 +291,7 @@ def build_model(cats):
         cid = "cat:" + slug
         span = 2 * math.pi * len(c["items"]) / total_items
         nodes.append({"id": cid, "type": "category", "label": c["name"], "a": round(ang + span / 2, 4),
-                      "description": category_description(slug),
+                      "description": category_description(slug), "tag": c.get("tag", ""),
                       "path": f"courses/{slug}/README.md"})
         links.append({"source": "hub", "target": cid, "type": "tree"})
         table = category_table(slug)
