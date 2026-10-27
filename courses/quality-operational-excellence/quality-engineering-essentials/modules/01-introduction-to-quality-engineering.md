@@ -63,7 +63,17 @@ After 693 steps, fewer than half of the units are defect-free. Complex products 
 | Timeline | D 2 wks, M 4 wks, A 4 wks, I 4 wks, C 2 wks |
 | Metrics | Primary: % defective. Secondary (don't make worse): cycle time, tool cost |
 
-A template is in `templates/project-charter.md`. The numbers in the charter come from `data/production_sample.csv`, the 480-insert sample that Modules 02 to 05 analyse: 40 defective of 480 is the 8.3 %, and the Pareto in Module 02 gives the defect mix.
+A template is in `templates/project-charter.md`.
+
+**Worked example: from the data to the charter.**
+
+**Data:** `data/production_sample.csv`, the 480-insert sample that Modules 02 to 05 analyse: one row per insert with the day, machine, shift, OD and the inspector's defect call.
+
+**Steps:** (1) count the defect calls and sort them by type; (2) split the count by machine; (3) set the goal against the customer's requirement, with a separate target for the largest defect type. Command: `python tools/qekit.py pareto`.
+
+**Result:** 40 of 480 defective, 8.3 %; oversize OD 20 (4.2 % of inserts) and thread damage 11 are the two largest types; M2 has 30 of the 40 (12.5 % of its inserts) against M1's 10 (4.2 %). The customer requires under 1 %.
+
+**What it means:** every number in the problem statement and the goal above is one of these counts. The 8.3 % and the defect mix are the problem; "oversize OD under 0.3 %" targets the largest type; the machine split tells the team where to look first (Module 05), and it is the baseline the pilot in Module 06 is measured against.
 
 ## Learning and problem solving with AI tools
 
