@@ -448,6 +448,7 @@
   function drawPathEdges() {
     const el = document.getElementById('path'), svg = document.getElementById('path-svg');
     if (!svg || !el.offsetParent) return;
+    svg.style.height = '0px';   // the layer is inside the measured box, so reset it or it can only ever grow
     const base = el.getBoundingClientRect();
     const pos = id => { const n = el.querySelector(`.card[data-id="${id}"]`); if (!n) return null; const r = n.getBoundingClientRect(); return { x: r.left - base.left + r.width / 2, top: r.top - base.top, bottom: r.bottom - base.top }; };
     const stroke = getComputedStyle(document.documentElement).getPropertyValue('--prereq').trim();
