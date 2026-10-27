@@ -1,0 +1,1720 @@
+{
+ "code": "17-2112.00",
+ "title": "Industrial Engineers",
+ "description": "Design, develop, test, and evaluate integrated systems for managing industrial production processes, including human work factors, quality control, inventory control, logistics and material flow, cost analysis, and production coordination.",
+ "onet_version": "31.0",
+ "downloaded": "2026-10-27",
+ "attribution": "This file includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.",
+ "tasks": [
+  {
+   "id": "18607",
+   "task": "Estimate production costs, cost saving methods, and the effects of product design changes on expenditures for management review, action, and control.",
+   "type": "Core",
+   "importance": 3.97
+  },
+  {
+   "id": "1394",
+   "task": "Plan and establish sequence of operations to fabricate and assemble parts or products and to promote efficient utilization.",
+   "type": "Core",
+   "importance": 3.92
+  },
+  {
+   "id": "1391",
+   "task": "Analyze statistical data and product specifications to determine standards and establish quality and reliability objectives of finished product.",
+   "type": "Core",
+   "importance": 3.8
+  },
+  {
+   "id": "18609",
+   "task": "Confer with clients, vendors, staff, and management personnel regarding purchases, product and production specifications, manufacturing capabilities, or project status.",
+   "type": "Core",
+   "importance": 3.78
+  },
+  {
+   "id": "1400",
+   "task": "Communicate with management and user personnel to develop production and design standards.",
+   "type": "Core",
+   "importance": 3.71
+  },
+  {
+   "id": "1407",
+   "task": "Evaluate precision and accuracy of production and testing equipment and engineering drawings to formulate corrective action plan.",
+   "type": "Core",
+   "importance": 3.68
+  },
+  {
+   "id": "1393",
+   "task": "Recommend methods for improving utilization of personnel, material, and utilities.",
+   "type": "Core",
+   "importance": 3.67
+  },
+  {
+   "id": "1403",
+   "task": "Record or oversee recording of information to ensure currency of engineering drawings and documentation of production problems.",
+   "type": "Core",
+   "importance": 3.66
+  },
+  {
+   "id": "1398",
+   "task": "Draft and design layout of equipment, materials, and workspace to illustrate maximum efficiency using drafting tools and computer.",
+   "type": "Core",
+   "importance": 3.63
+  },
+  {
+   "id": "1405",
+   "task": "Direct workers engaged in product measurement, inspection, and testing activities to ensure quality control and reliability.",
+   "type": "Core",
+   "importance": 3.59
+  },
+  {
+   "id": "1392",
+   "task": "Develop manufacturing methods, labor utilization standards, and cost analysis systems to promote efficient staff and facility utilization.",
+   "type": "Core",
+   "importance": 3.5
+  },
+  {
+   "id": "1399",
+   "task": "Review production schedules, engineering specifications, orders, and related information to obtain knowledge of manufacturing methods, procedures, and activities.",
+   "type": "Core",
+   "importance": 3.47
+  },
+  {
+   "id": "1408",
+   "task": "Complete production reports, purchase orders, and material, tool, and equipment lists.",
+   "type": "Core",
+   "importance": 3.43
+  },
+  {
+   "id": "18608",
+   "task": "Coordinate and implement quality control objectives, activities, or procedures to resolve production problems, maximize product reliability, or minimize costs.",
+   "type": "Core",
+   "importance": 3.42
+  },
+  {
+   "id": "1406",
+   "task": "Implement methods and procedures for disposition of discrepant material and defective or damaged parts, and assess cost and responsibility.",
+   "type": "Core",
+   "importance": 3.42
+  },
+  {
+   "id": "1395",
+   "task": "Apply statistical methods and perform mathematical calculations to determine manufacturing processes, staff requirements, and production standards.",
+   "type": "Core",
+   "importance": 3.37
+  },
+  {
+   "id": "1404",
+   "task": "Study operations sequence, material flow, functional statements, organization charts, and project information to determine worker functions and responsibilities.",
+   "type": "Core",
+   "importance": 3.28
+  },
+  {
+   "id": "1410",
+   "task": "Regulate and alter workflow schedules according to established manufacturing sequences and lead times to expedite production operations.",
+   "type": "Supplemental",
+   "importance": 3.19
+  },
+  {
+   "id": "1402",
+   "task": "Formulate sampling procedures and designs and develop forms and instructions for recording, evaluating, and reporting quality and reliability data.",
+   "type": "Core",
+   "importance": 3.11
+  },
+  {
+   "id": "1409",
+   "task": "Schedule deliveries based on production forecasts, material substitutions, storage and handling facilities, and maintenance requirements.",
+   "type": "Supplemental",
+   "importance": 3.11
+  }
+ ],
+ "knowledge": [
+  {
+   "id": "2.C.3.b",
+   "name": "Engineering and Technology",
+   "importance": 4.41,
+   "level": 5.02
+  },
+  {
+   "id": "2.C.2.a",
+   "name": "Production and Processing",
+   "importance": 4.28,
+   "level": 4.7
+  },
+  {
+   "id": "2.C.3.e",
+   "name": "Mechanical",
+   "importance": 4.2,
+   "level": 5.05
+  },
+  {
+   "id": "2.C.3.c",
+   "name": "Design",
+   "importance": 4.08,
+   "level": 5.18
+  },
+  {
+   "id": "2.C.7.a",
+   "name": "English Language",
+   "importance": 3.96,
+   "level": 4.38
+  },
+  {
+   "id": "2.C.4.a",
+   "name": "Mathematics",
+   "importance": 3.89,
+   "level": 4.86
+  },
+  {
+   "id": "2.C.3.a",
+   "name": "Computers and Electronics",
+   "importance": 3.77,
+   "level": 4.46
+  },
+  {
+   "id": "2.C.1.a",
+   "name": "Administration and Management",
+   "importance": 3.45,
+   "level": 3.91
+  },
+  {
+   "id": "2.C.1.e",
+   "name": "Customer and Personal Service",
+   "importance": 3.42,
+   "level": 3.88
+  },
+  {
+   "id": "2.C.6",
+   "name": "Education and Training",
+   "importance": 3.34,
+   "level": 4.49
+  },
+  {
+   "id": "2.C.8.a",
+   "name": "Public Safety and Security",
+   "importance": 3.12,
+   "level": 3.65
+  },
+  {
+   "id": "2.C.4.b",
+   "name": "Physics",
+   "importance": 3.1,
+   "level": 3.49
+  },
+  {
+   "id": "2.C.1.b",
+   "name": "Administrative",
+   "importance": 3.01,
+   "level": 3.77
+  },
+  {
+   "id": "2.C.3.d",
+   "name": "Building and Construction",
+   "importance": 2.86,
+   "level": 3.51
+  },
+  {
+   "id": "2.C.1.f",
+   "name": "Personnel and Human Resources",
+   "importance": 2.81,
+   "level": 3.12
+  },
+  {
+   "id": "2.C.4.c",
+   "name": "Chemistry",
+   "importance": 2.65,
+   "level": 3.12
+  },
+  {
+   "id": "2.C.8.b",
+   "name": "Law and Government",
+   "importance": 2.62,
+   "level": 2.69
+  },
+  {
+   "id": "2.C.1.c",
+   "name": "Economics and Accounting",
+   "importance": 2.56,
+   "level": 2.49
+  },
+  {
+   "id": "2.C.1.d",
+   "name": "Sales and Marketing",
+   "importance": 2.35,
+   "level": 2.68
+  },
+  {
+   "id": "2.C.4.e",
+   "name": "Psychology",
+   "importance": 2.29,
+   "level": 2.33
+  },
+  {
+   "id": "2.C.10",
+   "name": "Transportation",
+   "importance": 2.28,
+   "level": 2.15
+  },
+  {
+   "id": "2.C.9.b",
+   "name": "Communications and Media",
+   "importance": 2.25,
+   "level": 2.02
+  },
+  {
+   "id": "2.C.9.a",
+   "name": "Telecommunications",
+   "importance": 2.16,
+   "level": 1.74
+  },
+  {
+   "id": "2.C.4.f",
+   "name": "Sociology and Anthropology",
+   "importance": 1.57,
+   "level": 1.07
+  },
+  {
+   "id": "2.C.4.g",
+   "name": "Geography",
+   "importance": 1.54,
+   "level": 1.32
+  },
+  {
+   "id": "2.C.4.d",
+   "name": "Biology",
+   "importance": 1.5,
+   "level": 1.11
+  },
+  {
+   "id": "2.C.5.a",
+   "name": "Medicine and Dentistry",
+   "importance": 1.4,
+   "level": null
+  },
+  {
+   "id": "2.C.2.b",
+   "name": "Food Production",
+   "importance": 1.35,
+   "level": null
+  },
+  {
+   "id": "2.C.7.c",
+   "name": "Fine Arts",
+   "importance": 1.34,
+   "level": null
+  },
+  {
+   "id": "2.C.5.b",
+   "name": "Therapy and Counseling",
+   "importance": 1.31,
+   "level": null
+  },
+  {
+   "id": "2.C.7.e",
+   "name": "Philosophy and Theology",
+   "importance": 1.3,
+   "level": 0.64
+  },
+  {
+   "id": "2.C.7.d",
+   "name": "History and Archeology",
+   "importance": 1.29,
+   "level": 0.64
+  },
+  {
+   "id": "2.C.7.b",
+   "name": "Foreign Language",
+   "importance": 1.28,
+   "level": null
+  }
+ ],
+ "skills_essential": [
+  {
+   "id": "2.A.1.a",
+   "name": "Reading Comprehension",
+   "importance": 4.0,
+   "level": 4.5
+  },
+  {
+   "id": "2.A.1.b",
+   "name": "Active Listening",
+   "importance": 4.0,
+   "level": 4.12
+  },
+  {
+   "id": "2.A.2.a",
+   "name": "Critical Thinking",
+   "importance": 4.0,
+   "level": 4.12
+  },
+  {
+   "id": "2.A.1.d",
+   "name": "Speaking",
+   "importance": 3.88,
+   "level": 4.12
+  },
+  {
+   "id": "2.A.1.c",
+   "name": "Writing",
+   "importance": 3.75,
+   "level": 4.12
+  },
+  {
+   "id": "2.A.2.d",
+   "name": "Monitoring",
+   "importance": 3.38,
+   "level": 4.25
+  },
+  {
+   "id": "2.A.1.e",
+   "name": "Mathematics",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "2.A.2.b",
+   "name": "Active Learning",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "2.A.2.c",
+   "name": "Learning Strategies",
+   "importance": 2.75,
+   "level": 3.0
+  },
+  {
+   "id": "2.A.1.f",
+   "name": "Science",
+   "importance": 2.12,
+   "level": 1.75
+  }
+ ],
+ "skills_transferable": [
+  {
+   "id": "2.B.2.i",
+   "name": "Complex Problem Solving",
+   "importance": 3.88,
+   "level": 4.12
+  },
+  {
+   "id": "2.B.4.g",
+   "name": "Systems Analysis",
+   "importance": 3.25,
+   "level": 3.75
+  },
+  {
+   "id": "2.B.4.h",
+   "name": "Systems Evaluation",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "2.B.1.b",
+   "name": "Coordination",
+   "importance": 3.12,
+   "level": 3.12
+  },
+  {
+   "id": "2.B.4.e",
+   "name": "Judgment and Decision Making",
+   "importance": 3.12,
+   "level": 4.0
+  },
+  {
+   "id": "2.B.1.a",
+   "name": "Social Perceptiveness",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.1.e",
+   "name": "Instructing",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.5.a",
+   "name": "Time Management",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.5.d",
+   "name": "Management of Personnel Resources",
+   "importance": 2.88,
+   "level": 2.88
+  },
+  {
+   "id": "2.B.1.f",
+   "name": "Service Orientation",
+   "importance": 2.75,
+   "level": 2.75
+  },
+  {
+   "id": "2.B.1.c",
+   "name": "Persuasion",
+   "importance": 2.62,
+   "level": 2.62
+  },
+  {
+   "id": "2.B.3.a",
+   "name": "Operations Analysis",
+   "importance": 2.5,
+   "level": 2.5
+  },
+  {
+   "id": "2.B.5.c",
+   "name": "Management of Material Resources",
+   "importance": 2.5,
+   "level": 2.62
+  },
+  {
+   "id": "2.B.1.d",
+   "name": "Negotiation",
+   "importance": 2.38,
+   "level": 2.38
+  },
+  {
+   "id": "2.B.3.g",
+   "name": "Operations Monitoring",
+   "importance": 2.38,
+   "level": 2.75
+  },
+  {
+   "id": "2.B.3.h",
+   "name": "Operation and Control",
+   "importance": 2.25,
+   "level": 2.25
+  },
+  {
+   "id": "2.B.3.m",
+   "name": "Quality Control Analysis",
+   "importance": 2.25,
+   "level": 2.38
+  },
+  {
+   "id": "2.B.3.b",
+   "name": "Technology Design",
+   "importance": 2.12,
+   "level": 1.88
+  },
+  {
+   "id": "2.B.5.b",
+   "name": "Management of Financial Resources",
+   "importance": 2.12,
+   "level": 2.0
+  },
+  {
+   "id": "2.B.3.k",
+   "name": "Troubleshooting",
+   "importance": 2.0,
+   "level": 1.75
+  },
+  {
+   "id": "2.B.3.e",
+   "name": "Programming",
+   "importance": 1.88,
+   "level": 1.12
+  },
+  {
+   "id": "2.B.3.c",
+   "name": "Equipment Selection",
+   "importance": 1.25,
+   "level": 0.38
+  },
+  {
+   "id": "2.B.3.d",
+   "name": "Installation",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "2.B.3.j",
+   "name": "Equipment Maintenance",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "2.B.3.l",
+   "name": "Repairing",
+   "importance": 1.0,
+   "level": 0.0
+  }
+ ],
+ "abilities": [
+  {
+   "id": "1.A.1.a.1",
+   "name": "Oral Comprehension",
+   "importance": 4.0,
+   "level": 4.25
+  },
+  {
+   "id": "1.A.1.a.2",
+   "name": "Written Comprehension",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "1.A.1.a.3",
+   "name": "Oral Expression",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "1.A.1.a.4",
+   "name": "Written Expression",
+   "importance": 4.0,
+   "level": 4.25
+  },
+  {
+   "id": "1.A.1.b.4",
+   "name": "Deductive Reasoning",
+   "importance": 4.0,
+   "level": 4.12
+  },
+  {
+   "id": "1.A.1.b.5",
+   "name": "Inductive Reasoning",
+   "importance": 4.0,
+   "level": 4.25
+  },
+  {
+   "id": "1.A.1.b.3",
+   "name": "Problem Sensitivity",
+   "importance": 3.88,
+   "level": 4.0
+  },
+  {
+   "id": "1.A.1.b.6",
+   "name": "Information Ordering",
+   "importance": 3.62,
+   "level": 4.0
+  },
+  {
+   "id": "1.A.4.a.1",
+   "name": "Near Vision",
+   "importance": 3.62,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.1.b.7",
+   "name": "Category Flexibility",
+   "importance": 3.38,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.1.g.1",
+   "name": "Selective Attention",
+   "importance": 3.38,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.b.1",
+   "name": "Fluency of Ideas",
+   "importance": 3.25,
+   "level": 3.62
+  },
+  {
+   "id": "1.A.1.b.2",
+   "name": "Originality",
+   "importance": 3.25,
+   "level": 3.5
+  },
+  {
+   "id": "1.A.4.b.4",
+   "name": "Speech Recognition",
+   "importance": 3.25,
+   "level": 3.25
+  },
+  {
+   "id": "1.A.4.b.5",
+   "name": "Speech Clarity",
+   "importance": 3.25,
+   "level": 3.25
+  },
+  {
+   "id": "1.A.1.c.1",
+   "name": "Mathematical Reasoning",
+   "importance": 3.12,
+   "level": 3.5
+  },
+  {
+   "id": "1.A.1.c.2",
+   "name": "Number Facility",
+   "importance": 3.12,
+   "level": 3.38
+  },
+  {
+   "id": "1.A.1.f.2",
+   "name": "Visualization",
+   "importance": 3.12,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.1.e.2",
+   "name": "Flexibility of Closure",
+   "importance": 3.0,
+   "level": 3.12
+  },
+  {
+   "id": "1.A.4.a.2",
+   "name": "Far Vision",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.e.3",
+   "name": "Perceptual Speed",
+   "importance": 2.75,
+   "level": 2.75
+  },
+  {
+   "id": "1.A.1.g.2",
+   "name": "Time Sharing",
+   "importance": 2.75,
+   "level": 2.75
+  },
+  {
+   "id": "1.A.4.a.3",
+   "name": "Visual Color Discrimination",
+   "importance": 2.75,
+   "level": 2.75
+  },
+  {
+   "id": "1.A.4.b.2",
+   "name": "Auditory Attention",
+   "importance": 2.62,
+   "level": 2.75
+  },
+  {
+   "id": "1.A.4.b.1",
+   "name": "Hearing Sensitivity",
+   "importance": 2.5,
+   "level": 2.5
+  },
+  {
+   "id": "1.A.1.d.1",
+   "name": "Memorization",
+   "importance": 2.12,
+   "level": 2.25
+  },
+  {
+   "id": "1.A.1.e.1",
+   "name": "Speed of Closure",
+   "importance": 2.12,
+   "level": 2.12
+  },
+  {
+   "id": "1.A.2.a.1",
+   "name": "Arm-Hand Steadiness",
+   "importance": 2.12,
+   "level": 2.0
+  },
+  {
+   "id": "1.A.2.b.1",
+   "name": "Control Precision",
+   "importance": 2.0,
+   "level": 2.0
+  },
+  {
+   "id": "1.A.2.b.2",
+   "name": "Multilimb Coordination",
+   "importance": 2.0,
+   "level": 1.75
+  },
+  {
+   "id": "1.A.2.c.1",
+   "name": "Reaction Time",
+   "importance": 2.0,
+   "level": 1.88
+  },
+  {
+   "id": "1.A.4.a.6",
+   "name": "Depth Perception",
+   "importance": 2.0,
+   "level": 2.0
+  },
+  {
+   "id": "1.A.2.a.3",
+   "name": "Finger Dexterity",
+   "importance": 1.88,
+   "level": 1.5
+  },
+  {
+   "id": "1.A.2.b.4",
+   "name": "Rate Control",
+   "importance": 1.88,
+   "level": 1.5
+  },
+  {
+   "id": "1.A.2.c.2",
+   "name": "Wrist-Finger Speed",
+   "importance": 1.75,
+   "level": 1.0
+  },
+  {
+   "id": "1.A.3.a.4",
+   "name": "Trunk Strength",
+   "importance": 1.75,
+   "level": 1.38
+  },
+  {
+   "id": "1.A.2.b.3",
+   "name": "Response Orientation",
+   "importance": 1.62,
+   "level": 1.0
+  },
+  {
+   "id": "1.A.1.f.1",
+   "name": "Spatial Orientation",
+   "importance": 1.38,
+   "level": 0.5
+  },
+  {
+   "id": "1.A.3.a.1",
+   "name": "Static Strength",
+   "importance": 1.38,
+   "level": 0.5
+  },
+  {
+   "id": "1.A.3.b.1",
+   "name": "Stamina",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.c.1",
+   "name": "Extent Flexibility",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.3.c.3",
+   "name": "Gross Body Coordination",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.2.a.2",
+   "name": "Manual Dexterity",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.3.a.2",
+   "name": "Explosive Strength",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.3.a.3",
+   "name": "Dynamic Strength",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.3.c.4",
+   "name": "Gross Body Equilibrium",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.4.a.4",
+   "name": "Night Vision",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.2.c.3",
+   "name": "Speed of Limb Movement",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.3.c.2",
+   "name": "Dynamic Flexibility",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.4.a.5",
+   "name": "Peripheral Vision",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.4.a.7",
+   "name": "Glare Sensitivity",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.4.b.3",
+   "name": "Sound Localization",
+   "importance": 1.0,
+   "level": 0.0
+  }
+ ],
+ "work_activities": [
+  {
+   "id": "4.A.2.b.1",
+   "name": "Making Decisions and Solving Problems",
+   "importance": 4.41,
+   "level": 4.99
+  },
+  {
+   "id": "4.A.3.b.1",
+   "name": "Working with Computers",
+   "importance": 4.32,
+   "level": 4.5
+  },
+  {
+   "id": "4.A.1.a.1",
+   "name": "Getting Information",
+   "importance": 4.21,
+   "level": 4.17
+  },
+  {
+   "id": "4.A.4.a.2",
+   "name": "Communicating with Supervisors, Peers, or Subordinates",
+   "importance": 4.04,
+   "level": 4.6
+  },
+  {
+   "id": "4.A.2.b.2",
+   "name": "Thinking Creatively",
+   "importance": 4.02,
+   "level": 5.17
+  },
+  {
+   "id": "4.A.1.b.1",
+   "name": "Identifying Objects, Actions, and Events",
+   "importance": 3.94,
+   "level": 3.84
+  },
+  {
+   "id": "4.A.2.a.2",
+   "name": "Processing Information",
+   "importance": 3.92,
+   "level": 5.14
+  },
+  {
+   "id": "4.A.2.a.4",
+   "name": "Analyzing Data or Information",
+   "importance": 3.91,
+   "level": 4.53
+  },
+  {
+   "id": "4.A.1.a.2",
+   "name": "Monitoring Processes, Materials, or Surroundings",
+   "importance": 3.87,
+   "level": 4.28
+  },
+  {
+   "id": "4.A.2.b.3",
+   "name": "Updating and Using Relevant Knowledge",
+   "importance": 3.86,
+   "level": 5.02
+  },
+  {
+   "id": "4.A.2.b.6",
+   "name": "Organizing, Planning, and Prioritizing Work",
+   "importance": 3.74,
+   "level": 4.88
+  },
+  {
+   "id": "4.A.3.b.2",
+   "name": "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",
+   "importance": 3.7,
+   "level": 4.31
+  },
+  {
+   "id": "4.A.2.a.3",
+   "name": "Evaluating Information to Determine Compliance with Standards",
+   "importance": 3.67,
+   "level": 3.69
+  },
+  {
+   "id": "4.A.1.b.3",
+   "name": "Estimating the Quantifiable Characteristics of Products, Events, or Information",
+   "importance": 3.62,
+   "level": 3.64
+  },
+  {
+   "id": "4.A.4.a.4",
+   "name": "Establishing and Maintaining Interpersonal Relationships",
+   "importance": 3.58,
+   "level": 4.42
+  },
+  {
+   "id": "4.A.3.b.6",
+   "name": "Documenting/Recording Information",
+   "importance": 3.54,
+   "level": 3.72
+  },
+  {
+   "id": "4.A.1.b.2",
+   "name": "Inspecting Equipment, Structures, or Materials",
+   "importance": 3.42,
+   "level": 3.57
+  },
+  {
+   "id": "4.A.4.a.1",
+   "name": "Interpreting the Meaning of Information for Others",
+   "importance": 3.41,
+   "level": 3.42
+  },
+  {
+   "id": "4.A.4.a.3",
+   "name": "Communicating with People Outside the Organization",
+   "importance": 3.33,
+   "level": 3.72
+  },
+  {
+   "id": "4.A.2.b.4",
+   "name": "Developing Objectives and Strategies",
+   "importance": 3.28,
+   "level": 3.36
+  },
+  {
+   "id": "4.A.2.a.1",
+   "name": "Judging the Qualities of Objects, Services, or People",
+   "importance": 3.26,
+   "level": 3.67
+  },
+  {
+   "id": "4.A.3.a.3",
+   "name": "Controlling Machines and Processes",
+   "importance": 3.17,
+   "level": 3.85
+  },
+  {
+   "id": "4.A.4.b.3",
+   "name": "Training and Teaching Others",
+   "importance": 3.11,
+   "level": 3.42
+  },
+  {
+   "id": "4.A.4.b.6",
+   "name": "Providing Consultation and Advice to Others",
+   "importance": 3.06,
+   "level": 3.96
+  },
+  {
+   "id": "4.A.2.b.5",
+   "name": "Scheduling Work and Activities",
+   "importance": 2.95,
+   "level": 3.43
+  },
+  {
+   "id": "4.A.4.c.1",
+   "name": "Performing Administrative Activities",
+   "importance": 2.92,
+   "level": 3.34
+  },
+  {
+   "id": "4.A.4.b.2",
+   "name": "Developing and Building Teams",
+   "importance": 2.86,
+   "level": 3.37
+  },
+  {
+   "id": "4.A.4.b.1",
+   "name": "Coordinating the Work and Activities of Others",
+   "importance": 2.85,
+   "level": 3.4
+  },
+  {
+   "id": "4.A.3.a.1",
+   "name": "Performing General Physical Activities",
+   "importance": 2.64,
+   "level": 3.28
+  },
+  {
+   "id": "4.A.4.b.5",
+   "name": "Coaching and Developing Others",
+   "importance": 2.64,
+   "level": 2.94
+  },
+  {
+   "id": "4.A.4.c.3",
+   "name": "Monitoring and Controlling Resources",
+   "importance": 2.58,
+   "level": 3.23
+  },
+  {
+   "id": "4.A.4.a.7",
+   "name": "Resolving Conflicts and Negotiating with Others",
+   "importance": 2.5,
+   "level": 2.72
+  },
+  {
+   "id": "4.A.4.b.4",
+   "name": "Guiding, Directing, and Motivating Subordinates",
+   "importance": 2.49,
+   "level": 2.4
+  },
+  {
+   "id": "4.A.3.b.4",
+   "name": "Repairing and Maintaining Mechanical Equipment",
+   "importance": 2.46,
+   "level": 2.81
+  },
+  {
+   "id": "4.A.3.b.5",
+   "name": "Repairing and Maintaining Electronic Equipment",
+   "importance": 2.43,
+   "level": 2.53
+  },
+  {
+   "id": "4.A.3.a.2",
+   "name": "Handling and Moving Objects",
+   "importance": 2.41,
+   "level": 3.43
+  },
+  {
+   "id": "4.A.4.a.6",
+   "name": "Selling or Influencing Others",
+   "importance": 2.39,
+   "level": 2.23
+  },
+  {
+   "id": "4.A.3.a.4",
+   "name": "Operating Vehicles, Mechanized Devices, or Equipment",
+   "importance": 2.22,
+   "level": 2.03
+  },
+  {
+   "id": "4.A.4.a.5",
+   "name": "Assisting and Caring for Others",
+   "importance": 2.03,
+   "level": 1.74
+  },
+  {
+   "id": "4.A.4.c.2",
+   "name": "Staffing Organizational Units",
+   "importance": 1.88,
+   "level": 1.64
+  },
+  {
+   "id": "4.A.4.a.8",
+   "name": "Performing for or Working Directly with the Public",
+   "importance": 1.37,
+   "level": 0.69
+  }
+ ],
+ "technology": [
+  {
+   "example": "3D Static Strength Prediction Program 3DSSPP",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "A mathematical programming language AMPL",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Allen Bradley PanelView",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Assembly line balancing software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Autodesk AutoCAD",
+   "category": "Computer aided design CAD software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Automatic dynamic incremental nonlinear analysis ADINA",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Bentley MicroStation",
+   "category": "Computer aided design CAD software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "C++",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Computer numerical control CNC software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dassault Systemes Abaqus",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dassault Systemes CATIA",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dassault Systemes SolidWorks",
+   "category": "Computer aided design CAD software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Data acquisition software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dataxiom StatMost",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Decision support software",
+   "category": "Expert system software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Design of experiments DOE software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Discrete event simulation software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "ECHIP",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "EGS FeatureCAM",
+   "category": "Computer aided manufacturing CAM software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Electronic breadboard software",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "ETA Dynaform",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Extensible markup language XML",
+   "category": "Enterprise application integration software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Facilities design software",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Facilities planning software",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Finite element method FEM software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "GitHub",
+   "category": "Application server software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Hewlett Packard LoadRunner",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Human machine interface HMI software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Human modeling software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "IBM Notes",
+   "category": "Electronic mail software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "ILOG CPLEX",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Integrated development environment IDE software",
+   "category": "Development environment software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "International TechneGroup IGESworks",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "JUnit",
+   "category": "Program testing software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Linux",
+   "category": "Operating system software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Logic programming software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "MAGMA MAGMASOFT",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Main Injector Neutrino Oscillation Search MINOS software",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Manhattan Associates PkMS Pickticket",
+   "category": "Inventory management software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Maplesoft Maple",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Materials requirement planning MRP software",
+   "category": "Materials requirements planning logistics and supply chain software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Mathsoft Mathcad",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Maya HTT I-DEAS",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Access",
+   "category": "Data base user interface and query software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Excel",
+   "category": "Spreadsheet software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft Office software",
+   "category": "Office suite software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft PowerPoint",
+   "category": "Presentation software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft Project",
+   "category": "Project management software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft SharePoint",
+   "category": "Document management software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft SQL Server",
+   "category": "Data base user interface and query software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visio",
+   "category": "Process mapping and design software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visual Basic",
+   "category": "Development environment software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visual Basic for Applications VBA",
+   "category": "Development environment software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visual Basic Scripting Edition VBScript",
+   "category": "Development environment software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visual Studio",
+   "category": "Development environment software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Word",
+   "category": "Word processing software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Minitab",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Modular arrangement of predetermined time standards software MODAPTS",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "National Instruments LabVIEW",
+   "category": "Development environment software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Neural network modeling software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "NeuralWare",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Numerical control software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Nupro CastView",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Optimization software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Oracle Retek",
+   "category": "Inventory management software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Personnel scheduling software",
+   "category": "Human resources software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "PMC KanbanSIM",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Process reengineering software",
+   "category": "Project management software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Production flow analysis software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Production scheduling and planning software",
+   "category": "Materials requirements planning logistics and supply chain software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "ProModel",
+   "category": "Process mapping and design software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "PTC Creo Parametric",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Python",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Quality control software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "R",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Robotic control software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Robotic simulation software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Rockwell Automation Arena",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Rockwell RSLogix",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "SAP software",
+   "category": "Enterprise resource planning ERP software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "SAS",
+   "category": "Analytical or scientific software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Shell script",
+   "category": "Operating system software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Siemens UGS Jack",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Statgraphics",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Statistical software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Stratasys FDM MedModeler",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Structured query language SQL",
+   "category": "Data base user interface and query software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Sun Microsystems Java",
+   "category": "Object or component oriented development software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Supervisory control and data acquisition SCADA software",
+   "category": "Industrial control software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Supply chain capacity planning software",
+   "category": "Materials requirements planning logistics and supply chain software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Task analysis software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "The MathWorks MATLAB",
+   "category": "Analytical or scientific software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Three-dimensional simulation translation software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Time and motion analysis software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "UGS Solid Edge",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "UNIX Shell",
+   "category": "Operating system software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "User interface design software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Warehouse management system WMS",
+   "category": "Inventory management software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Windward Technologies GRG2",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Wolfram Research Mathematica",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Workcell simulation software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Yield management systems",
+   "category": "Project management software",
+   "hot": false,
+   "in_demand": false
+  }
+ ]
+}

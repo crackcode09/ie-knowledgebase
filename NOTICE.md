@@ -29,6 +29,8 @@ IISE, Institute of Industrial and Systems Engineers, MODAPTS, MTM, MTM-1, Six Si
 
 ## Licences
 
+The role profiles under `roles/onet/` include information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence; the release version and download date are stamped in each file. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.
+
 The site's interface icons are from [Bootstrap Icons](https://github.com/twbs/icons) (MIT, The Bootstrap Authors), vendored under `tools/icons/` with its licence and inlined into the pages by the generator.
 
 Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Code: [MIT](https://opensource.org/licenses/MIT). See [LICENSE](LICENSE). Attribution line: `From the IE Knowledgebase (github.com/crackcode09/ie-knowledgebase), CC BY 4.0.`

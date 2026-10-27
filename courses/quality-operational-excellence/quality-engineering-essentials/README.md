@@ -10,7 +10,8 @@ A free, open course in the quality engineer's core toolkit, organized along the 
 - corrective actions and control
 
 **Length:** about 39 hours of self-study, in a foundations module, six sessions and a capstone. About half of that time is hands-on practice with the course data.  
-**Prerequisites:** none.
+**Prerequisites:** none.  
+**Roles:** 17-2112.00 (quality engineer), 17-2112.03
 
 **About this course.** It follows the public IISE catalog's course title and topic list for Quality Engineering Essentials, and module 00 covers the topics the catalog lists as a separate "Quality 101" course. Only those public titles and topic lists were used; every lesson, dataset, figure and exercise here is original, and the course is not affiliated with or endorsed by IISE. See the repository's [NOTICE](../../../NOTICE.md).
 
