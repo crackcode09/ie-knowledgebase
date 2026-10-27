@@ -20,7 +20,7 @@ TEMPLATE = ROOT / "tools" / "roadmap_template.html"
 READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
 LEGAL_TEMPLATE = ROOT / "tools" / "legal_template.html"
-LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use"}   # tools/legal/<key>.html -> public/<key>.html
+LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use", "roadmap": "Site roadmap"}   # tools/legal/<key>.html -> public/<key>.html
 ICON_DIR = ROOT / "tools" / "icons"   # Bootstrap Icons (MIT), vendored; see tools/icons/LICENSE
 CATEGORY_ICONS = {
     "analytics-data-science-ai": "graph-up-arrow",

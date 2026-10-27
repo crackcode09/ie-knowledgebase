@@ -154,6 +154,13 @@
   .card .tick { margin-left: auto; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
   .card.done .tick { background: var(--green); border-color: var(--green); }
   .planned { padding: 0 var(--s4) var(--s4); display: flex; flex-wrap: wrap; gap: 6px; }
+  .planned-wrap { margin: 0 var(--s4) var(--s4); }
+  .planned-wrap > summary { list-style: none; cursor: pointer; font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 6px 0; display: inline-flex; align-items: center; gap: 6px; }
+  .planned-wrap > summary::-webkit-details-marker { display: none; }
+  .planned-wrap > summary::before { content: "+"; color: var(--accent); width: 1em; }
+  .planned-wrap[open] > summary::before { content: "−"; }
+  .planned-wrap > summary:hover { color: var(--text); }
+  .planned-wrap .planned { padding: 4px 0 0; }
   .planned span { font-family: var(--mono); font-size: 12.5px; color: var(--muted); border: 1px dashed var(--todo); border-radius: 12px; padding: 2px 9px; }
   .planned .label { border: 0; padding-left: 0; }
   .planned .covered { border-style: solid; border-color: var(--green); color: var(--text); } .planned .covered a { color: var(--accent); }
@@ -304,6 +311,7 @@
         <span class="chip">content CC BY 4.0 · code MIT</span>
         <span class="chip" id="countChip"></span>
         <span class="chip" id="verifiedChip"></span>
+        <span class="chip"><a href="roadmap.html">where this is going →</a></span>
         <span class="chip" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
       </div>
       <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
@@ -311,7 +319,7 @@
     </div>
     <div class="start" id="start"></div>
     <div id="catalog"></div>
-    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
+    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">roadmap</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </div></section>
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
     <p class="intro">Courses arranged by prerequisite level.<span class="more"> Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</span></p>
@@ -322,7 +330,7 @@
       <span><i style="width:18px;border-top:2px dashed var(--prereq);display:inline-block"></i>prerequisite</span>
     </div>
     <div class="path-wrap" id="path"></div>
-    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
+    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">roadmap</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </div></section>
   <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
     <svg id="graph" aria-label="Course mind map"></svg>
@@ -335,7 +343,7 @@
       <span><i class="dot" style="background:var(--module);width:7px;height:7px"></i>module</span>
     </div>
     <div class="outline" id="outline" aria-label="Course map as a list"></div>
-    <div class="pfoot outline-foot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
+    <div class="pfoot outline-foot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">roadmap</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </section>
   <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
@@ -425,7 +433,8 @@
         <summary><h2>${cat.icon}${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
           <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
-        ${tsv.length ? `<div class="planned"><span class="label">${tsv.every(t => t.covered) ? 'Folded in:' : 'Planned:'}</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
+        ${tsv.some(t => t.covered) ? `<div class="planned"><span class="label">Folded in:</span>${tsv.filter(t => t.covered).map(t => `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${esc(t.covered)}">${esc(byId.get(t.covered).label)}</a></span>`).join('')}</div>` : ''}
+        ${tsv.some(t => !t.covered) ? `<details class="planned-wrap" ${q ? 'open' : ''}><summary>${tsv.filter(t => !t.covered).length} planned ${tsv.filter(t => !t.covered).length === 1 ? 'topic' : 'topics'} not built yet</summary><div class="planned">${tsv.filter(t => !t.covered).map(t => `<span>${esc(t.label)}</span>`).join('')}</div></details>` : ''}
       </details>`;
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
