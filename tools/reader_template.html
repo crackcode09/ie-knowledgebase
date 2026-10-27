@@ -103,9 +103,12 @@
   .viewmenu summary::-webkit-details-marker { display: none; }
   .viewmenu[open] summary { border-color: var(--accent); background: var(--surface-2); }
   .viewmenu-list { position: absolute; right: 0; top: calc(100% + 6px); z-index: 5; min-width: 190px; display: flex; flex-direction: column; padding: 6px 0; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
-  .vm { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 14px; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 12.5px; cursor: pointer; text-decoration: none; }
+  /* Every item has the same 16px leading slot: a tick on the active view, the GitHub mark, or nothing. Text starts at one left edge. */
+  .vm { display: grid; grid-template-columns: 16px 1fr; align-items: center; column-gap: 8px; width: 100%; text-align: left; padding: 7px 14px; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 12.5px; line-height: 1.3; cursor: pointer; text-decoration: none; }
   .vm:hover, .vm:focus-visible { background: var(--surface-2); color: var(--accent); outline: none; }
-  .vm[aria-checked="true"]::before { content: "✓"; color: var(--green); } .vm[aria-checked="false"]::before { content: ""; display: inline-block; width: 1ch; }
+  .vm::before { content: ""; display: block; width: 16px; text-align: center; color: var(--green); }
+  .vm[aria-checked="true"]::before { content: "✓"; }
+  .vm .bi { width: 14px; height: 14px; justify-self: center; } .vm.icon::before { display: none; }
   .dochead .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--green); } .dochead .eyebrow::before { content: "$ "; color: var(--muted); }
   .dochead h1 { margin: 0; font-family: var(--display); font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
   .dochead h1 .num { color: var(--muted); font-weight: 500; }
@@ -215,7 +218,7 @@
           <button type="button" class="vm" id="btnRendered" role="menuitemradio" aria-checked="true">Rendered</button>
           <button type="button" class="vm" id="btnRaw" role="menuitemradio" aria-checked="false" title="Shortcut: r">Raw markdown</button>
           <button type="button" class="vm" id="btnCopy" role="menuitem">Copy markdown</button>
-          <a class="vm" id="btnGithub" role="menuitem" target="_blank" rel="noopener">__ICON:github:13__ Open on GitHub</a>
+          <a class="vm icon" id="btnGithub" role="menuitem" target="_blank" rel="noopener">__ICON:github:14__<span>Open on GitHub</span></a>
         </div>
       </details>
       </div>
