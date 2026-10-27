@@ -133,4 +133,4 @@
 - O*NET 31.0 at the time of writing; refresh quarterly and review the diff.
 
 ### Outcome (filled in after completion)
-- Delivered with the first map pending.
+- Delivered. First map run on Quality Engineering Essentials (two runs, consolidated, 17 differing rows, 10 questions) at `roles/mappings/quality-engineering-essentials.md`, state proposed.
