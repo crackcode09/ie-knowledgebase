@@ -1,0 +1,25 @@
+resource,activity,share
+Customer service staff,Process orders,0.25
+Customer service staff,Handle returns,0.1
+Customer service staff,Support customers,0.65
+Order processing staff,Process orders,0.45
+Order processing staff,Enter order lines,0.55
+Warehouse labour,Pick and ship,0.9
+Warehouse labour,Handle returns,0.1
+Sales force,Sales visits,0.8
+Sales force,Engineer specials,0.2
+Engineering support,Engineer specials,0.45
+Engineering support,Sustain products,0.4
+Engineering support,Support customers,0.15
+IT,Process orders,0.3
+IT,Enter order lines,0.2
+IT,Pick and ship,0.15
+IT,Support customers,0.15
+IT,Sales visits,0.1
+IT,Sustain products,0.1
+Facilities,Pick and ship,0.65
+Facilities,Handle returns,0.05
+Facilities,Inspect production runs,0.2
+Facilities,Process orders,0.1
+Quality staff,Inspect production runs,0.85
+Quality staff,Handle returns,0.15
