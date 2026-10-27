@@ -1,0 +1,15 @@
+function,idea,ai_type,annual_volume,minutes_per_item,time_saved_pct,waste_avoidable_usd,data_readiness_1to5,complexity_1to5,risk_1to5,simpler_fix
+Finance,Match supplier invoices to POs and receipts,ML + rules,42000,4.0,0.6,15000,4,2,2,
+Finance,Flag unusual expense claims,ML anomaly detection,9000,3.0,0.3,20000,3,3,3,
+Finance,AI to chase late approvals,GenAI agent,6000,6.0,0.5,0,3,3,2,Fix the approval workflow: approval limits and an escalation rule
+Customer service,Triage and route incoming tickets,ML classification,24000,3.0,0.5,10000,3,2,2,
+Customer service,Draft replies to common questions,GenAI with human review,24000,8.0,0.35,0,3,3,3,
+Operations,Predict unplanned stops on CNC cells,ML predictive maintenance,1200,30.0,0.25,180000,2,4,3,
+Operations,Visual inspection of machined surfaces,Computer vision,300000,0.15,0.7,60000,2,5,4,
+Operations,Reduce changeover time with AI scheduling,Optimization,4000,25.0,0.1,30000,3,4,3,SMED first: separate internal and external setup
+Supply chain,"Forecast demand for 2,000 SKUs",ML forecasting,24000,5.0,0.4,90000,4,3,2,
+Supply chain,Predict late supplier deliveries,ML classification,20000,2.0,0.3,70000,4,2,2,
+Knowledge,Search work instructions and specs by question,GenAI retrieval (RAG),30000,6.0,0.5,0,3,3,3,
+Knowledge,Summarize customer complaints for 8D reports,GenAI summarization,900,45.0,0.4,0,3,2,3,
+HR,Screen job applicants automatically,ML ranking,5000,10.0,0.6,0,2,3,5,Structured screening checklist; high bias and legal risk
+Sales,Generate quotes for standard configurations,Rules engine,8000,20.0,0.7,25000,5,2,1,"Rules-based configurator, not AI"

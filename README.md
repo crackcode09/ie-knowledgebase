@@ -22,6 +22,7 @@ Suggested order: Measurement & Basic Statistics, Process Mapping and Voice of th
 | [Advanced Engineering Analytics](courses/analytics-data-science-ai/advanced-engineering-analytics/README.md) | Business impact of data science; managing and merging multi-source data (Excel + exports); data preparation; descriptive statistics; ANOVA; regression; nonparametric tests and bootstrap; DOE; improving prediction accuracy (CV, features, leakage); dashboards | ~2 days | v1.0 |
 
 | [Analytics-Based Enterprise Performance Management](courses/analytics-data-science-ai/analytics-based-epm/README.md) | EPM and ERM; BI vs BA, forecasting vs predictive analytics; ABC/M and chargebacks; strategy maps, balanced scorecards, KPIs vs PIs; customer profitability, cost-to-serve, CLV; unit costing, cost of quality, value-stream costing; driver-based budgets, rolling forecasts, risk-adjusted Monte Carlo, outsourcing; intangible-asset ROI; adoption barriers | 1 day (+ exercises) | v1.0 |
+| [Efficient AI](courses/analytics-data-science-ai/efficient-ai/README.md) | AI foundations (ML, GenAI, rules); problem-first thinking; cross-functional use cases; AI with Lean Six Sigma (PICK chart, DMAIC pilots); risks, limitations, misconceptions (GenAI pilot evaluation); data readiness audit; from ideas to a phased roadmap with business case | ~4 h | v1.0 |
 ### [Ergonomics & Safety](courses/ergonomics-safety/README.md)
 
 _No courses yet._
