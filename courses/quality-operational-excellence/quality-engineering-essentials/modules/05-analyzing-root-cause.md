@@ -56,7 +56,7 @@ Is/is-not thinking helps: oversize **is** on M2 (19 of 20) and worst on shift B;
 **Steps:**
 
 1. **Stratify:** split the inserts by machine and shift and compare the mean OD and the share oversize in each group; test whether oversize is spread evenly across machines with a chi-square test. Command: `python tools/qekit.py stratify`.
-2. **Look:** box plots of OD by machine and shift, and a scatter plot of OD against tool age (figure below).
+2. **Look:** box plots of OD by machine and shift, and a scatter plot of OD against tool age (figure below). Command: `python tools/make_figures.py` (writes `figures/05_box_scatter.png` with the other figures).
 3. **Regress:** fit OD against tool age alone, then against tool age, coolant temperature and machine together, and read the coefficients and R² (the share of OD variation the model explains). Command: `python tools/qekit.py regression`.
 
 **Result, stratification:**
@@ -108,7 +108,7 @@ Failure mode and effects analysis rates each failure mode for **severity (S)** o
 
 Act on the highest RPNs, **and** review any severity of 9 or more regardless of RPN (undersize inserts pull out in service). Thread damage's D = 6 reflects the unreliable visual inspection found in Module 03.
 
-**RPN and its replacement.** RPN has a known weakness: it treats S, O and D as interchangeable, so a 9 × 3 × 5 and a 5 × 9 × 3 score the same although a severe, undetectable failure deserves more attention than a frequent trivial one. The AIAG-VDA FMEA Handbook (aiag-vda-fmea) therefore replaced RPN with an **Action Priority** table that looks up S first, then O, then D, and returns high, medium or low. Many customers now require the AP method. This course teaches RPN because it is simple and still widespread, and shows the S ≥ 9 override as the minimum correction; use the AP table when your customer or industry asks for it.
+**RPN and its replacement.** RPN has a known weakness: it treats S, O and D as interchangeable, so a 9 × 3 × 5 and a 5 × 9 × 3 score the same although a severe, undetectable failure deserves more attention than a frequent trivial one. The AIAG-VDA FMEA Handbook (aiag-vda-fmea) therefore replaced RPN with an **Action Priority** table that looks up S first, then O, then D, and returns high, medium or low. Where a customer applies that handbook, AP is the required method, and automotive customers increasingly do: Ford's production part approval requirement has accepted the handbook format since 2024 (iatf-ford-ppap-2024), so check your customer-specific requirements. This course teaches RPN because it is simple and still widespread, and shows the S ≥ 9 override as the minimum correction; the customer's requirement overrides anything assumed here.
 
 ## Product and process reliability
 

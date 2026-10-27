@@ -20,7 +20,7 @@ A **control chart** adds limits so you can tell signals from noise. The limits s
 - **Common-cause variation** is the routine, built-in variation of a stable process: dozens of small influences nobody can point at. The only way to reduce it is to change the process.
 - **Special-cause variation** is a signal that something specific changed: a worn tool, a new batch of bar stock, a hot afternoon. Find it and remove it.
 
-A chart signals a special cause when a point falls outside a limit, when 8 points in a row sit on one side of the center, when a run trends steadily up or down, and under similar run rules. Do not adjust a stable process in response to noise; that is tampering (Module 00).
+A chart signals a special cause when a point falls outside a limit. It also signals when 8 points in a row sit on one side of the center, when a run trends steadily up or down, and under similar run rules. Do not adjust a stable process in response to noise; that is tampering (Module 00).
 
 ## Chart selection
 
@@ -31,6 +31,8 @@ A chart signals a special cause when a point falls outside a limit, when 8 point
 | Continuous | 10 or more | X̄–S | the subgroup mean, and the subgroup standard deviation |
 | Defectives (pass/fail) | any size n | **p** (np if n is constant) | the fraction (or number) of defective units |
 | Defects (counts per unit) | equal area or opportunity | c; unequal: **u** | the count (or rate) of defects |
+
+Reading the table: X̄ (x-bar) is the subgroup mean, R the subgroup range and S the subgroup standard deviation; p is the fraction defective and np the number defective; c is the count of defects and u the defects per unit. Every chart has a center line and an upper and lower control limit (UCL, LCL), three standard errors either side of the center; p̄ (p-bar) is the average fraction defective that sets the p chart's center.
 
 **Rational subgrouping:** a subgroup should contain only common-cause variation (for example 5 consecutive inserts from one machine), so that differences **between** subgroups reveal special causes. Don't mix M1 and M2 in one subgroup.
 
@@ -51,13 +53,13 @@ Back-transformed, the log-scale limits are **3.2 to 102.9 hours**.
 
 ![Individuals charts of quote turnaround: on the raw scale (top) two slow quotes cross the upper limit and the lower limit is below zero; on the log scale (bottom) all 120 points sit inside the limits.](../figures/04_individuals_transform.png)
 
-**What it means:** on the raw scale the chart flags two slow quotes that are the normal long tail of a skewed process, false alarms, and it shows a lower limit below zero, which a time cannot reach. On the log scale the process is stable.
+**What it means:** on the raw scale the chart flags two slow quotes that are only the normal long tail of a skewed process, so they are false alarms. It also shows a lower limit below zero, which a time cannot reach. On the log scale the process is stable.
 
-**Two schools, and where this course stands.** Transforming is one answer to skewed data, and it is the one most software offers. Wheeler and other practitioners argue the opposite: the individuals chart's limits are robust enough that transforming is rarely needed, transformations hide the original units from the people who must act on the chart, and a few extra signals are a cheaper error than a chart nobody understands. Both views agree on two things: X̄ charts of subgroup averages are much less sensitive to skewness than individuals charts, and limits computed from a distribution that fits the data (Module 02) are better than either. The course transforms here because the raw-scale lower limit is physically impossible, which is the clearest sign the raw chart is wrong; where the raw chart's limits are merely a little wide, leave the data in its own units.
+**Two schools, and where this course stands.** Transforming is one answer to skewed data, and it is the one most software offers. Wheeler and other practitioners argue the opposite. The individuals chart's limits are robust enough that transforming is rarely needed. Transformations hide the original units from the people who must act on the chart. And a few extra signals are a cheaper error than a chart nobody understands. Both views agree on two things. X̄ charts of subgroup averages are much less sensitive to skewness than individuals charts. Limits computed from a distribution that fits the data (Module 02) are better than either. The course transforms here because the raw-scale lower limit is physically impossible, which is the clearest sign the raw chart is wrong. Where the raw chart's limits are merely a little wide, leave the data in its own units.
 
 ## X̄–R on OD
 
-For OD, Bayline charts 5 consecutive inserts per hour **per machine**. The limits use tabulated constants that depend only on the subgroup size: for n = 5, A₂ = 0.577 sets the width of the X̄ limits around the grand mean, and D₃ = 0 and D₄ = 2.114 set the limits of the range chart (formulas and symbols in `reference/formulas.md`; construction in depth in the Statistical Quality Control course). Because OD grows with tool wear and resets at each tool change (Module 05), expect a saw-tooth pattern: a slow climb, then a drop. That pattern is a special cause with a known reason, and the fix is in Module 06, not in the chart.
+For OD, Bayline charts 5 consecutive inserts per hour **per machine**. The limits use tabulated constants that depend only on the subgroup size. For n = 5, A₂ = 0.577 sets the width of the X̄ limits around the grand mean. D₃ = 0 and D₄ = 2.114 set the limits of the range chart. Formulas and symbols are in `reference/formulas.md`; the Statistical Quality Control course builds the charts in depth. Because OD grows with tool wear and resets at each tool change (Module 05), expect a saw-tooth pattern: a slow climb, then a drop. That pattern is a special cause with a known reason, and the fix is in Module 06, not in the chart.
 
 ## Worked example 2: stage variables, before and after a change
 
@@ -76,13 +78,13 @@ When a process is deliberately changed, compute **separate limits for each stage
 
 ![Staged p chart of daily percent oversize on M2 over 20 days, with separate limits for the 10 days before and the 10 days after the corrective action: both stages are stable, at 7.92 % and 0.33 %.](../figures/04_staged_p_chart.png)
 
-**What it means:** each stage is stable at its own level, and the levels differ by a factor of 24. The chart is the picture of the change holding. The **proof** that the change is real is the two-proportion test in Module 06 (z = 11.5, p < 0.001), not the chart, for a reason worth knowing: in the after stage the expected number of oversize inserts per day is about 0.6, and with counts that small the p-chart's limits, which assume a normal approximation, are not reliable. With rare events use the test for the comparison and the chart for monitoring, or use exact limits.
+**What it means:** each stage is stable at its own level, and the levels differ by a factor of 24. The chart is the picture of the change holding. The **proof** that the change is real is the two-proportion test in Module 06 (z = 11.5, p < 0.001), not the chart. The reason is worth knowing: in the after stage the expected number of oversize inserts per day is about 0.6. With counts that small the p-chart's limits, which assume a normal approximation, are not reliable. With rare events use the test for the comparison and the chart for monitoring, or use exact limits.
 
 ## Worked example 3: process capability
 
 A process is **capable** when its natural spread fits inside the specification with room to spare, and it is **centered** when its mean sits near the target. Capability indices put numbers on both. They compare the voice of the process (what it produces) with the voice of the customer (the specification limits).
 
-- **Cp** = (USL − LSL) / 6σ_within: how many times the process spread fits in the tolerance. It ignores where the process is centered, so it is *potential* capability.
+- **Cp** = (USL − LSL) / 6σ_within, where σ_within is the standard deviation estimated from within the subgroups (from R̄/d₂): how many times the process spread fits in the tolerance. It ignores where the process is centered, so it is *potential* capability.
 - **Cpk** = distance from the mean to the nearest limit / 3σ_within: the same idea, penalized for running off-center. It is *actual* capability.
 - **Pp and Ppk** use the overall standard deviation of all the data instead of the short-term σ, so they describe performance over the whole period, drift included.
 

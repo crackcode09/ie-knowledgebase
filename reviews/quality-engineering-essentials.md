@@ -5,7 +5,7 @@
 | Course | `courses/quality-operational-excellence/quality-engineering-essentials/` (8 modules, including the folded-in `00-foundations-of-quality.md` that covers the catalog's separate "Quality 101" topic) |
 | Board run | 2, plus a targeted run-3 re-check of the run-2 findings (accuracy section) |
 | Date | 2026-10-27 |
-| State | ready for sign-off (no FAIL remains after PR #36; ten questions open, none blocking) |
+| State | open questions (no FAIL remains; questions 17 to 26 answered on 2026-10-27 and applied in PR #37, except the 7.1.5 / 7.5 / 10.2 confirmation under 17) |
 | Verified by | |
 
 ## Verdict summary
@@ -49,25 +49,29 @@ The accuracy reviewer re-checked each one on the fixed branch (run 3, targeted):
 Run 1's sixteen questions and their answers are kept below under "Run 1 record". New or still open:
 
 17. **ISO 9001:2026 clause structure.** Module 00 says the 2026 edition keeps the 2015 structure; reachable sources say the architecture is retained but clause 6.1 is restructured with new sub-clauses, and the IAF transition rules were not yet published in them. The module already tells readers to check numbers against the auditor's edition. *Resolved by:* confirming from the standard or the IAF notice whether 7.1.5, 7.5 and 10.2 keep their numbers and the transition end date; otherwise soften "keeps" to "largely keeps".
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Research first; do not assume the structure. Chair's research the same day: DNV's revision summary and the Global ACI transition notice report that clauses 4 to 10 carry over, 6.1 is split into 6.1.1 to 6.1.3, 10.1 and 10.3 are consolidated into a new 10.1, 6.3 is strengthened and a quality-culture requirement is added under 5.1, 7.1.4 and 7.3; 2015 certificates end 30 September 2029. None of the reachable sources renumbers 7.1.5, 7.5 or 10.2, and none confirms them either. Applied: module 00 now says "largely keeps", lists those reported changes with two new source entries (dnv-iso9001-2026, global-aci-2026), keeps the "(2015 numbering)" caveat and adds the 2029 date. Still open for a reader with the published standard: confirm 7.1.5, 7.5 and 10.2 keep their numbers.
 18. **Bayline name.** No company called Bayline Fasteners exists, but "Bay Fastening Systems" and "Bay Fasteners & Components" do, in the same industry. *Resolved by:* a ruling that the name is distinct enough, or a rename.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Bayline is a fictional name made up for the case; distinct enough. No change.
 19. **Change model attribution.** The four stages (awareness, understanding, acceptance, commitment) are the course's own; "condensation of Kotter" overstates the link. *Resolved by:* labelling the model as the course's own with Kotter cited as background.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Yes, with research. Chair's research found no published model with the awareness, understanding, acceptance, commitment sequence (the nearest is Prosci's ADKAR, which differs). Applied: module 06 labels the three ideas as the course's own summary, not a published model, with Kotter's eight steps cited as the standard reference.
 20. **Module 06 "growth inside about 0.004 mm".** The regression gives about 0.0024 mm of growth per 400-part offset step. *Resolved by:* stating the basis (two steps, or an allowance) or changing to 0.0025.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Agreed. Applied: "about 0.0025 mm (0.0145 mm × 400 / 2,400)" per offset step.
 21. **"Many customers now require the AP method"** (module 05) is plausible but unsourced. *Resolved by:* citing the AIAG-VDA handbook's adoption statement or softening to "some automotive customers".
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Where a standard or customer policy exists it overrides anything the course assumes. Chair's research: the AIAG-VDA handbook (2019) replaced RPN with AP; Ford's PPAP requirement has accepted the handbook format since 2024 (IATF Global Oversight notice, 17 October 2024); no OEM document reached says AP is mandatory across the board. Applied: module 05 now says AP is the required method where a customer applies the handbook, cites the Ford notice (iatf-ford-ppap-2024) as evidence of adoption, and says the customer's requirement overrides the course.
 22. **Rolled throughput yield and the 1.5σ shift cited to montgomery-8e.** The reviewer could not confirm the book presents RTY. *Resolved by:* a reviewer with the book, or citing george-2005 for RTY.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Reviewer supplied the standard definition (RTY = product of the first-pass yields of the sequential steps; step yield = 1 − DPU or e^−DPU), which matches module 01 and the formula sheet. Applied: rolled throughput yield, DPU and DPMO are now cited to george-2005 (The Lean Six Sigma Pocket Toolbook) in module 01 and the formula sheet; montgomery-8e keeps the sigma-level convention and the 1.5σ shift. The reviewer also checked Montgomery (the edition to hand, the 4th) and found no rolled throughput yield formula there, which confirms the move.
 23. **Module 04 long sentences** (the Wheeler paragraph, the constants sentence, the staged-chart proof sentence) and **abbreviations** (UCL, LCL, p̄, σ_within, np, c, u, X̄–S used in the chart table without a gloss). *Resolved by:* a yes to splitting and glossing, or a ruling that the chart table is a pointer to the SQC course.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Agreed. Applied: the Wheeler paragraph, the constants sentence, the staged-chart proof sentence, the run-rules sentence and the raw-scale meaning sentence are split; a "Reading the table" line under the chart table glosses X̄, R, S, p, np, c, u, UCL, LCL and p̄; σ_within is defined where Cp is introduced.
 24. **Module 02:** skewness, Kolmogorov–Smirnov and Akaike are glossed functionally, not defined; two sentences near 40 words. *Resolved by:* accept or split.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Split for readability. Applied: skewness, AIC and the KS statistic are defined in one sentence each; the two long sentences (statistic versus parameter; descriptive versus inferential) are split.
 25. **Worked example in modules 00 and 01.** Module 00 is a concept module with an exercise and no worked example; module 01's worked example is the charter table with a one-sentence data link. *Resolved by:* a ruling that a concept module and a charter are exempt from the dataset-steps-result-meaning shape, or a short data-to-charter chain in module 01.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Concept modules are not exempt; give them a layout that presents the example properly. Applied: module 00 gets a worked example in the course's shape (data: the production sample's defect calls and the calibration record; steps; a result table classifying three Bayline activities as control, assurance, improvement; meaning), and module 01's one-line data link becomes a short data-to-charter chain (data, steps, command, result, meaning) tying every charter number to the sample. Counts reproduced with `python tools/qekit.py pareto`.
 26. **Module 05 step 2** (box and scatter plots) names no command; the figure comes from `tools/make_figures.py`. *Resolved by:* adding the command.
-    - **Answer:**
+    - **Answer:** (Nidhin, 2026-10-27) Agreed. Applied: step 2 of module 05's worked example names `python tools/make_figures.py` and the file it writes.
+
+## Follow-up after the question round (2026-10-27)
+
+The answers to 17 to 26 were applied in PR #37 (modules 00, 01, 02, 04, 05, 06 and the sources table). Three source entries were added: dnv-iso9001-2026, global-aci-2026, iatf-ford-ppap-2024. Module 00 and module 01 now carry worked examples in the dataset, steps, command, result, meaning shape, so item 4.1 no longer has an open question. Items 2.3 and 4.5 move to PASS pending the board's next run; the chair has not marked them PASS here because no reviewer has re-read the changed text. Before sign-off the board should be re-run so the report reflects the changed modules.
 
 ## Not checked (run 2)
 

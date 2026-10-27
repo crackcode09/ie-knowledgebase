@@ -102,7 +102,7 @@ For the sampling, control-chart and capability standards the course teaches the 
 
 ## ISO 9001 in outline
 
-ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. ISO 9001:2015 (with Amendment 1 of 2024) is the edition most organizations hold certificates to; ISO 9001:2026 was published on 16 September 2026 with a three-year transition, so certificates move to the new edition through 2029. The outline below follows the 2015 structure, which the 2026 edition keeps; check clause numbers against the edition your auditor uses. It does not specify product quality; it specifies how the organization manages quality.
+ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. ISO 9001:2015 (with Amendment 1 of 2024) is the edition most organizations hold certificates to; ISO 9001:2026 was published on 16 September 2026 with a three-year transition, so certificates move to the new edition through 2029. The outline below follows the 2015 structure, which the 2026 edition largely keeps: clauses 4 to 10 and their main sub-clauses carry over. The changes reported by certification bodies and the accreditation transition notice are a split of risk and opportunity planning into 6.1.1 to 6.1.3, a consolidated continual-improvement clause 10.1, stronger change management in 6.3, and a quality-culture requirement added under 5.1, 7.1.4 and 7.3 (dnv-iso9001-2026, global-aci-2026). Check clause numbers against the edition your auditor uses; 2015 certificates stop being valid after 30 September 2029. It does not specify product quality; it specifies how the organization manages quality.
 
 **Seven quality management principles** sit under the standard: customer focus, leadership, engagement of people, process approach, improvement, evidence-based decision making, and relationship management. Every clause can be traced back to one of them.
 
@@ -125,6 +125,28 @@ ISO 9001 is the international standard for a quality management system (QMS): th
 **Certification.** An accredited certification body audits the organization against the standard and issues a certificate, typically on a three-year cycle with surveillance audits between. Certification shows that a conforming system exists and is followed. It does not show that any particular shipment is good, and a certified supplier can still ship defects, as Bayline did. Customers in regulated or high-consequence sectors add their own requirements on top: IATF 16949 (automotive), AS9100 (aerospace), ISO 13485 (medical devices).
 
 **Where this course fits.** A DMAIC project is how clause 10 gets done. The customer returns at Bayline are nonconformities under clause 10.2 (2015 numbering); the root cause analysis in Module 05 and the corrective actions in Module 06 are the evidence an auditor would ask for; the control plan is documented information under clause 7.5; gauge R&R and calibration (Module 03) satisfy clause 7.1.5 on monitoring and measuring resources.
+
+## Worked example: sorting Bayline's quality activities
+
+A concept module still needs one example tied to data, so the test above is applied to three things Bayline already does.
+
+**Data:** `data/production_sample.csv`, 480 inserts from 20 production days, one row per insert with the machine, the shift and the inspector's defect call (blank when the insert passed); and the calibration record for the micrometer that measured them (Module 03).
+
+**Steps:**
+
+1. Count the defect calls: how many inserts the final inspection rejected, and of what kind. Command: `python tools/qekit.py pareto`.
+2. For each of three activities (the final inspection, the micrometer calibration record, the DMAIC project in Modules 01 to 06), ask what its output is: a decision about units, confidence held by someone else, or a process that performs better.
+3. Place each in the table.
+
+**Result:**
+
+| Activity | Output | Class |
+|---|---|---|
+| Final inspection of the 480 inserts | 40 rejected (20 oversize OD, 11 thread damage, 7 burr, 2 knurl incomplete); 440 passed | Control |
+| Micrometer calibration record | Evidence, for the customer and the auditor, that the 480 readings can be trusted | Assurance |
+| DMAIC project on oversize OD | M2's oversize rate moved from 7.92 % to 0.33 % (Module 06) | Improvement |
+
+**What it means:** inspection found the 40 defectives but did not make the next 480 inserts any better; the calibration record proves the readings but changes nothing on the lathe; only the project changed what the process can do. Bayline had plenty of the first two and none of the third until the customer returns forced it, which is the usual pattern.
 
 ## Exercise 0.1
 

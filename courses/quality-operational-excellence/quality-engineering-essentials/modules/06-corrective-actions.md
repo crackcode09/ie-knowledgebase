@@ -22,7 +22,7 @@ List candidate actions for each verified root cause and score them on impact, co
 | Visual thread inspection unreliable | Go/no-go thread gauge on 1 in 25 | high (detection) | low | low | ✓ |
 | — | Buy a new lathe | high | very high | high | ✗ (not needed: spread is fine, Module 04) |
 
-Why 1,600 parts: in the production sample 12 of M2's 19 oversize inserts came from tools older than 1,600 parts, and the regression gives 0.0145 mm of growth over a 2,400-part life; changing at 1,600 with an offset step every 400 keeps the growth inside about 0.004 mm.
+Why 1,600 parts: in the production sample 12 of M2's 19 oversize inserts came from tools older than 1,600 parts, and the regression gives 0.0145 mm of growth over a 2,400-part life; changing at 1,600 with an offset step every 400 keeps the growth between steps to about 0.0025 mm (0.0145 mm × 400 / 2,400).
 
 ## Error-proofing
 
@@ -73,7 +73,7 @@ Two-proportion test: z = 11.5, p < 0.001; 95 % CI for the reduction **6.5 to 8.8
 
 ## Leading change
 
-Technical solutions fail when people aren't brought along. Three ideas, the course's own condensation of Kotter's eight-step model (kotter-1996):
+Technical solutions fail when people aren't brought along. Three ideas. They are the course's own summary, not a published model; Kotter's eight steps (kotter-1996) are the standard reference for leading change and cover the same ground in more detail:
 
 1. **Leading change**: create a shared need (the customer returns), shape a vision of the better process, involve the people who do the work (the machinists helped set the tool-change interval), and communicate often.
 2. **Change is a process**: people move from awareness to understanding to acceptance to commitment; expect resistance and listen to it, because it often contains real problems.

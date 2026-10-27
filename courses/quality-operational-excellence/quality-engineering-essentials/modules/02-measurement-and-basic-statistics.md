@@ -11,9 +11,9 @@
 
 ## Terms
 
-A **population** is everything you care about (every insert Bayline will make this year). A **sample** is the part of it you actually measured (480 inserts over 20 days). A **parameter** describes the population and is usually unknown: the population mean μ (mu) and standard deviation σ (sigma). A **statistic** is the same quantity computed from the sample: the sample mean x̄ (x-bar) and sample standard deviation s. Plain example: the mean OD of all 480 measured inserts is a statistic; the mean OD of every insert the lathes will ever make is a parameter, and the statistic is our estimate of it.
+A **population** is everything you care about (every insert Bayline will make this year). A **sample** is the part of it you actually measured (480 inserts over 20 days). A **parameter** describes the population and is usually unknown: the population mean μ (mu) and standard deviation σ (sigma). A **statistic** is the same quantity computed from the sample: the sample mean x̄ (x-bar) and sample standard deviation s. Plain example: the mean OD of all 480 measured inserts is a statistic. The mean OD of every insert the lathes will ever make is a parameter, and the statistic is our estimate of it.
 
-**Descriptive statistics** summarize the data you have. **Inferential statistics** draw conclusions about the population from the sample, with a stated uncertainty: a confidence interval (CI) says how far the parameter is likely to be from the statistic; a hypothesis test says whether a difference is bigger than chance would explain (Module 06).
+**Descriptive statistics** summarize the data you have. **Inferential statistics** draw conclusions about the population from the sample, with a stated uncertainty. A confidence interval (CI) says how far the parameter is likely to be from the statistic. A hypothesis test says whether a difference is bigger than chance would explain (Module 06).
 
 ## Measurement and data types
 
@@ -76,10 +76,10 @@ Many measurements are approximately **normal**: symmetric and bell-shaped, with 
 
 **Steps:**
 
-1. Look at the shape: mean 20.8 h, median 17.8 h, skewness 1.54. A mean well above the median and a positive skewness mean a long tail to the right, a few slow quotes.
+1. Look at the shape: mean 20.8 h, median 17.8 h, skewness 1.54. Skewness measures asymmetry: 0 for a symmetric shape, positive when the long tail is to the right, negative when it is to the left. A mean well above the median and a positive skewness mean a long tail to the right, a few slow quotes.
 2. Fit four candidate distributions to the data (normal, lognormal, gamma, Weibull).
-3. Compare them with the Akaike information criterion (AIC), a score that rewards fit and penalises complexity; lower is better.
-4. Read the Kolmogorov–Smirnov (KS) value as a rough check only. Its p-value is computed after the distribution's parameters were fitted to the same data, which flatters it, so it is a guide to the ranking, not a formal test.
+3. Compare them with the Akaike information criterion (AIC). It is computed from how closely each distribution fits the data (its log-likelihood), with a penalty added for every parameter the distribution needs; lower is better.
+4. Read the Kolmogorov–Smirnov (KS) value as a rough check only. The KS statistic is the largest gap between the data's cumulative distribution and the fitted one, and the value printed is its p-value. That p-value is computed after the distribution's parameters were fitted to the same data, which flatters it, so it is a guide to the ranking, not a formal test.
 5. Check what the choice does to a practical number: the 95th percentile, the turnaround time that only 1 quote in 20 exceeds.
 
 Command: `python tools/qekit.py distribution`.
