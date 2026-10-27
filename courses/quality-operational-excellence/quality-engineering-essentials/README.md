@@ -1,28 +1,18 @@
 # Quality Engineering Essentials
 
-A free, open course in the quality engineer's core toolkit, organized along the DMAIC improvement process:
+Learn to run a quality improvement project end to end: measure a process you can trust, find what is really causing defects, fix it, and keep it fixed.
 
-- basic statistics
-- measurement system analysis
-- statistical process control
-- capability and risk assessment
-- root-cause investigation
-- corrective actions and control
-
-**Length:** about 39 hours of self-study, in a foundations module, six sessions and a capstone. About half of that time is hands-on practice with the course data.  
+**Length:** about 39 hours of self-study, half of it hands-on with the course data.  
 **Prerequisites:** none.  
 **Roles:** 17-2112.00 (quality engineer), 17-2112.03
 
-**About this course.** It follows the public IISE catalog's course title and topic list for Quality Engineering Essentials, and module 00 covers the topics the catalog lists as a separate "Quality 101" course. Only those public titles and topic lists were used; every lesson, dataset, figure and exercise here is original, and the course is not affiliated with or endorsed by IISE. See the repository's [NOTICE](../../../NOTICE.md).
-
 ## What you will be able to do
 
-- Explain what quality means, how the field developed, and the difference between quality control, assurance and improvement, including where ISO 9001 and the other standards a quality engineer meets fit.
-- Explain why each quality engineering tool is used, when to apply it in DMAIC, and how to use it.
-- Evaluate a measurement system (gauge R&R and attribute agreement).
+- Evaluate a measurement system with gauge R&R and attribute agreement.
 - Chart process behavior and assess capability.
 - Find and verify root causes, and assess risk with FMEA and reliability calculations.
 - Select, pilot and sustain corrective actions with control plans, visual management and standard work.
+- Explain what quality means, the difference between quality control, assurance and improvement, and where ISO 9001 and the other standards a quality engineer meets fit.
 
 ## Running case
 
@@ -87,6 +77,10 @@ solutions/   key results, exercise answers, facilitator notes
 reference/   formula sheet with symbol definitions, glossary, sources
 templates/   charter, C&E matrix, data collection plan, root cause tree, FMEA, corrective action matrix, control plan
 ```
+
+## About this course
+
+It follows the public IISE catalog's course title and topic list for Quality Engineering Essentials, and module 00 covers the topics the catalog lists as a separate "Quality 101" course. Only those public titles and topic lists were used; every lesson, dataset, figure and exercise here is original, and the course is not affiliated with or endorsed by IISE. See the repository's [NOTICE](../../../NOTICE.md).
 
 ## License
 
