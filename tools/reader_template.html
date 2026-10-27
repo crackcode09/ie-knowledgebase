@@ -91,9 +91,8 @@
   nav.toc a.mdone .n { color: var(--green); }
   nav.toc a .t { font-family: var(--mono); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--muted); margin-left: auto; white-space: nowrap; }
 
-  .doc { min-width: 0; font-size: 17px; }
-  /* Prose keeps a readable measure (about 68 characters); code, tables and figures may use the full column. */
-  .doc p, .doc li, .doc blockquote, .doc h1, .doc h2, .doc h3, .doc h4, .doc h5, .doc h6 { max-width: 68ch; }
+  /* One width for everything in the document: prose, tables, code and figures share the same edge. About 78 characters per line. */
+  .doc { min-width: 0; font-size: 17px; max-width: 78ch; }
   .dochead { display: flex; flex-direction: column; gap: 10px; padding-bottom: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--line); }
   .dochead-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; }
   .dochead-row .docmeta { flex: 1 1 auto; }

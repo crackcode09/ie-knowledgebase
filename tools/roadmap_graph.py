@@ -418,7 +418,22 @@ def fill(template_path, **slots):
     return tpl
 
 
+def lint_templates():
+    """Checkpoint: content inside a page column keeps one width. No rule may narrow the text
+    (max-width on a descendant of .doc, .page or main) while tables and figures keep the column,
+    because that produces two right edges. Fails the build so it cannot regress unnoticed."""
+    checks = [(READER_TEMPLATE, r"\.doc\s+[a-z0-9.,#:\- ]+\{[^}]*max-width"),
+              (TEMPLATE, r"\.page\s+[a-z0-9.,#:\- ]+\{[^}]*max-width"),
+              (LEGAL_TEMPLATE, r"main\s+[a-z0-9.,#:\- ]+\{[^}]*max-width")]
+    for path, pattern in checks:
+        css = path.read_text(encoding="utf-8")
+        hit = re.search(pattern, css)
+        if hit:
+            sys.exit(f"{path.name}: a rule narrows content inside the column: {hit.group(0)[:80]!r}. Keep one width per column (set it on .doc / .page / main only).")
+
+
 def write_html(cats):
+    lint_templates()
     model = build_model(cats)
     data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
     write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))
