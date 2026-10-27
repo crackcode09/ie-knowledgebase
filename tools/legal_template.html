@@ -93,9 +93,8 @@
   nav.toc { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); display: flex; flex-wrap: wrap; gap: 6px 14px; }
   nav.toc a { color: var(--muted); text-decoration: none; } .toc a:hover { color: var(--accent); }
   footer { border-top: 1px solid var(--line); padding: var(--s5); text-align: center; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-  footer a { color: inherit; } footer a:hover { color: var(--accent); }
   .btn.icon { padding: 6px 9px; }
-  footer { line-height: 2; }
+  footer .frow { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 18px; line-height: 1.8; } footer .frow + .frow { margin-top: 4px; } footer .frow.muted { opacity: .8; } footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--accent); text-decoration: underline; }
   @media (max-width: 700px) {
     .topbar { padding: 8px var(--s3); gap: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); } .topbar .path { flex: 1; }
     .topbar nav.toggle { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; padding: 6px var(--s3) calc(6px + env(safe-area-inset-bottom));
@@ -121,7 +120,7 @@
 <main>
 __BODY__
 </main>
-<footer>IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="sources.html">sources</a> · <a href="index.html">catalog</a></footer>
+<footer><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
 <script>
   (function () {
     const root = document.documentElement;
