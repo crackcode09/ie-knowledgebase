@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | Course | `courses/quality-operational-excellence/quality-engineering-essentials/` (8 modules, including the folded-in `00-foundations-of-quality.md` that covers the catalog's separate "Quality 101" topic) |
-| Board run | 2, plus a targeted run-3 re-check of the run-2 findings (accuracy section) |
+| Board run | 3 (run 2 plus a targeted accuracy re-check are kept below) |
 | Date | 2026-10-27 |
-| State | open questions (no FAIL remains; questions 17 to 26 answered on 2026-10-27 and applied in PR #37, except the 7.1.5 / 7.5 / 10.2 confirmation under 17) |
+| State | ready for sign-off (run 3: no FAIL; the run-3 questions were applied in PR #38; one item stays with the human: confirming clauses 7.1.5, 7.5 and 10.2 against the published ISO 9001:2026 text) |
 | Verified by | |
 
 ## Verdict summary
@@ -69,9 +69,54 @@ Run 1's sixteen questions and their answers are kept below under "Run 1 record".
 26. **Module 05 step 2** (box and scatter plots) names no command; the figure comes from `tools/make_figures.py`. *Resolved by:* adding the command.
     - **Answer:** (Nidhin, 2026-10-27) Agreed. Applied: step 2 of module 05's worked example names `python tools/make_figures.py` and the file it writes.
 
+## Run 3 (2026-10-27), after PR #37
+
+The four reviewers re-read the course on `main` at the #37 merge. No FAIL. Trademarks and originality passed every item. Accuracy passed every item, reproduced every count in the new worked examples and confirmed the ISO 9001:2026 change list (including 7.1.4 and 7.3) against the DNV page and the Ford sentence against the IATF notice. Structure confirmed run-2 questions 23, 24, 25 and 26 resolved in shape and raised the items below, all applied in PR #38.
+
+### Verdict summary (run 3)
+
+| Item | Run 3 |
+|---|---|
+| 1.1 to 1.5 Originality | PASS (new text compared with DNV, Global ACI, IATF and Prosci; 3 searches; no copying) |
+| 2.1 Formulas and symbols | PASS |
+| 2.2 Every number reproducible | PASS (scripts rerun; 40/480, 20/11/7/2, M2 30 of 240, M1 10 of 240, 7.92 % → 0.33 % all reproduce; no earlier number changed) |
+| 2.3 Claims current and cited | PASS (ISO 9001:2026 list and 2029 date match DNV; Ford PPAP sentence matches the IATF notice) |
+| 2.4 Exercises | PASS |
+| 2.5 Disagreements fair | PASS |
+| 2.6 Sources table | PASS (Cited-in matches the files; dnv-iso9001-2026 and iatf-ford-ppap-2024 confirmed by the reviewer and can be flipped to Verified by the human) |
+| 3.1 to 3.5 Trademarks and licences | PASS |
+| 4.1 Module structure | QUESTION → applied in PR #38 (see below) |
+| 4.2 Syllabus | PASS (times sum to about 39 h) |
+| 4.3 Links and images | PASS |
+| 4.4 Prerequisites | PASS |
+| 4.5 Readable | QUESTION → applied in PR #38 (see below) |
+| 4.6 Figures and data | PASS |
+
+### Run 3 findings and what was done (PR #38)
+
+Structure, 4.1 (gaps in the new worked examples):
+- Module 00 named a "calibration record" that is not a file. Replaced by the gauge R&R study (`data/gauge_rr.csv`, command `grr`, result 23.7 % of tolerance).
+- Module 00's pilot row claimed 7.92 % → 0.33 % without its dataset or command. Now names `data/pilot_results.csv` (190 of 2,400 before, 6 of 1,800 after) and the `pilot` command.
+- Module 01's machine split had no command that produces it. `qekit.py pareto` now also prints defectives by machine (M1 10 of 240, M2 30 of 240), and the module says so and states the 240 per machine.
+
+Structure, 4.5 (readability), applied: the ISO 9001:2026 changes became a four-item list with "risk and opportunity planning" explained; "Where this course fits" became a four-row table; DMAIC, SIPOC, Y = f(X), AIAG, APQP, PPAP, FMEA, MSA, SPC, X̄ chart glossed or pointed at their module on first use in modules 00 and 01; the Cp, Cpk row points at Module 04; "standard errors" replaced by the chart's own ± 3σ; the chart constants explained as multipliers of R̄ and d₂ given its value; MTBF and PM expanded; module 02's column list became a list; long sentences split in modules 03 (two), 05 (three) and 06 (two).
+
+Accuracy and originality notes, applied: module 06 now says 0.0024 mm (the arithmetic gives 0.00242); the Global ACI citation now carries the document's own issue date (4 September 2026) and in-force date (16 September 2026) and notes the version mismatch between the file name and the front matter.
+
+### Questions for the human reviewer (run 3)
+
+27. **Clauses 7.1.5, 7.5 and 10.2 under ISO 9001:2026.** No reachable source renumbers or confirms them; the module labels its numbers "2015 numbering". *Resolved by:* a reader with the published 2026 text confirming the three numbers, or a ruling that the caveat is enough for release.
+    - **Answer:**
+28. **Verified column.** The accuracy reviewer confirmed dnv-iso9001-2026 and iatf-ford-ppap-2024 against their pages. *Resolved by:* the human flipping those two rows to `yes` at sign-off, or leaving the column for a later pass.
+    - **Answer:**
+
+### Not checked (run 3)
+
+- The Global ACI PDF: the accuracy reviewer could not extract its text (the 2029 date rests on DNV and the file name); the originality reviewer extracted the first page only. The published ISO 9001:2026 text, the AIAG-VDA handbook, Montgomery and George were not opened. Figures were not re-rendered. Modules 03 and 07 and the templates were relied on from run 2 for originality.
+
 ## Follow-up after the question round (2026-10-27)
 
-The answers to 17 to 26 were applied in PR #37 (modules 00, 01, 02, 04, 05, 06 and the sources table). Three source entries were added: dnv-iso9001-2026, global-aci-2026, iatf-ford-ppap-2024. Module 00 and module 01 now carry worked examples in the dataset, steps, command, result, meaning shape, so item 4.1 no longer has an open question. Items 2.3 and 4.5 move to PASS pending the board's next run; the chair has not marked them PASS here because no reviewer has re-read the changed text. Before sign-off the board should be re-run so the report reflects the changed modules.
+The answers to 17 to 26 were applied in PR #37 (modules 00, 01, 02, 04, 05, 06 and the sources table). Three source entries were added: dnv-iso9001-2026, global-aci-2026, iatf-ford-ppap-2024. Module 00 and module 01 now carry worked examples in the dataset, steps, command, result, meaning shape, so item 4.1 no longer has an open question. Items 2.3 and 4.5 move to PASS pending the board's next run; the chair has not marked them PASS here because no reviewer has re-read the changed text. The board was re-run as run 3 (above).
 
 ## Not checked (run 2)
 

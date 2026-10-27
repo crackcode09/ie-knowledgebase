@@ -89,14 +89,14 @@ M2 runs higher on every shift; OD rises with tool age on both machines.
 **What it means.** Three causes are verified, and the data say which shift each one hits:
 
 - **M2's offset**, about +0.008 mm on every insert regardless of shift.
-- **Tool wear without compensation**: OD climbs 0.0145 mm across a tool's life. Shift B is the worst for oversize because its tools are the oldest; the mean tool age in the sample is about 1,700 parts on shift B against about 720 on shifts A and C, since the morning change happens on A and the counter runs through B.
-- **Coolant temperature on shift C**: the coolant runs about 3 °C warmer on shift C (27 °C against 24 °C on A and B in the data), worth about +0.004 mm, which is why C is second-worst even with fresh tools.
+- **Tool wear without compensation**: OD climbs 0.0145 mm across a tool's life. Shift B is the worst for oversize because its tools are the oldest. The mean tool age in the sample is about 1,700 parts on shift B against about 720 on shifts A and C, because the morning change happens on A and the counter runs through B.
+- **Coolant temperature on shift C**: the coolant runs about 3 °C warmer on shift C (27 °C against 24 °C on A and B in the data). That is worth about +0.004 mm, which is why C is second-worst even with fresh tools.
 
 Together the three explain about two-thirds of the OD variation (R² 0.64). Regression shows association; the pilot in Module 06 confirms cause by changing the factors and measuring the result.
 
 ## FMEA
 
-Failure mode and effects analysis rates each failure mode for **severity (S)** of its effect, **occurrence (O)**, how likely it is, and **detection (D)**, how likely current controls are to miss it, each on a 1 to 10 scale where 10 is worst. The classic priority number is RPN = S × O × D. Command: `python tools/qekit.py fmea`; template in `templates/fmea.csv`.
+Failure mode and effects analysis rates each failure mode on three 1-to-10 scales, where 10 is worst: **severity (S)** of its effect, **occurrence (O)**, how likely it is, and **detection (D)**, how likely current controls are to miss it. The classic priority number is RPN = S × O × D. Command: `python tools/qekit.py fmea`; template in `templates/fmea.csv`.
 
 | Step | Failure mode | S | O | D | RPN |
 |---|---|---|---|---|---|
@@ -108,11 +108,11 @@ Failure mode and effects analysis rates each failure mode for **severity (S)** o
 
 Act on the highest RPNs, **and** review any severity of 9 or more regardless of RPN (undersize inserts pull out in service). Thread damage's D = 6 reflects the unreliable visual inspection found in Module 03.
 
-**RPN and its replacement.** RPN has a known weakness: it treats S, O and D as interchangeable, so a 9 × 3 × 5 and a 5 × 9 × 3 score the same although a severe, undetectable failure deserves more attention than a frequent trivial one. The AIAG-VDA FMEA Handbook (aiag-vda-fmea) therefore replaced RPN with an **Action Priority** table that looks up S first, then O, then D, and returns high, medium or low. Where a customer applies that handbook, AP is the required method, and automotive customers increasingly do: Ford's production part approval requirement has accepted the handbook format since 2024 (iatf-ford-ppap-2024), so check your customer-specific requirements. This course teaches RPN because it is simple and still widespread, and shows the S ≥ 9 override as the minimum correction; the customer's requirement overrides anything assumed here.
+**RPN and its replacement.** RPN has a known weakness: it treats S, O and D as interchangeable, so a 9 × 3 × 5 and a 5 × 9 × 3 score the same although a severe, undetectable failure deserves more attention than a frequent trivial one. The AIAG-VDA FMEA Handbook (aiag-vda-fmea) therefore replaced RPN with an **Action Priority** table that looks up S first, then O, then D, and returns high, medium or low. Where a customer applies that handbook, AP is the required method, and automotive customers increasingly do. Ford's production part approval requirement, for example, has accepted the handbook format since 2024 (iatf-ford-ppap-2024). Check your customer-specific requirements. This course teaches RPN because it is simple and still widespread, and shows the S ≥ 9 override as the minimum correction; the customer's requirement overrides anything assumed here.
 
 ## Product and process reliability
 
-Some causes are equipment failures. The coolant chiller that controls coolant temperature is part of a series system (every component must work). The exponential model, R(t) = e^(−t/MTBF), assumes a constant failure rate; the MTBFs here are illustrative. Command: `python tools/qekit.py reliability`.
+Some causes are equipment failures. The coolant chiller that controls coolant temperature is part of a series system (every component must work). The exponential model, R(t) = e^(−t/MTBF), where MTBF is the mean time between failures, assumes a constant failure rate; the MTBFs here are illustrative. Command: `python tools/qekit.py reliability`.
 
 | Component | MTBF | R(720 h, one month) |
 |---|---|---|

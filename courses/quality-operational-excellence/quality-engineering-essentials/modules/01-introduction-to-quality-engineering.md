@@ -40,9 +40,9 @@ After 693 steps, fewer than half of the units are defect-free. Complex products 
 
 | Phase | Question | Typical tools (this course) |
 |---|---|---|
-| **Define** | What is the problem, for whom, and what is the goal? | charter, SIPOC, voice of the customer |
-| **Measure** | How big is it? Can we trust the data? | basic statistics, MSA, baseline, capability, SPC (Modules 02–04) |
-| **Analyze** | What are the root causes? | problem statement, fishbone, 5-Why, stratification, regression, FMEA (Module 05) |
+| **Define** | What is the problem, for whom, and what is the goal? | charter, SIPOC (a one-page map of suppliers, inputs, process, outputs, customers), voice of the customer |
+| **Measure** | How big is it? Can we trust the data? | basic statistics, measurement system analysis (MSA), baseline, capability, statistical process control (SPC) (Modules 02–04) |
+| **Analyze** | What are the root causes? | problem statement, fishbone, 5-Why, stratification, regression, failure mode and effects analysis (FMEA) (Module 05) |
 | **Improve** | What fixes them? Do the fixes work? | error-proofing, pilots (Module 06) |
 | **Control** | How do we keep the gain? | control plan, SPC, visual management, standard work (Module 06) |
 
@@ -69,9 +69,9 @@ A template is in `templates/project-charter.md`.
 
 **Data:** `data/production_sample.csv`, the 480-insert sample that Modules 02 to 05 analyse: one row per insert with the day, machine, shift, OD and the inspector's defect call.
 
-**Steps:** (1) count the defect calls and sort them by type; (2) split the count by machine; (3) set the goal against the customer's requirement, with a separate target for the largest defect type. Command: `python tools/qekit.py pareto`.
+**Steps:** (1) count the defect calls and sort them by type; (2) split the count by machine; (3) set the goal against the customer's requirement, with a separate target for the largest defect type. Command: `python tools/qekit.py pareto` (it prints the counts by type and by machine).
 
-**Result:** 40 of 480 defective, 8.3 %; oversize OD 20 (4.2 % of inserts) and thread damage 11 are the two largest types; M2 has 30 of the 40 (12.5 % of its inserts) against M1's 10 (4.2 %). The customer requires under 1 %.
+**Result:** 40 of 480 defective, 8.3 %; oversize OD 20 (4.2 % of inserts) and thread damage 11 are the two largest types; M2 has 30 of the 40 (12.5 % of its 240 inserts) against M1's 10 (4.2 % of its 240). The customer requires under 1 %.
 
 **What it means:** every number in the problem statement and the goal above is one of these counts. The 8.3 % and the defect mix are the problem; "oversize OD under 0.3 %" targets the largest type; the machine split tells the team where to look first (Module 05), and it is the baseline the pilot in Module 06 is measured against.
 
