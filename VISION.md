@@ -23,7 +23,7 @@ The IISE course catalog gives the map of the discipline; the courses here are th
 |---|---|---|
 | 1. Catalog | Original courses grouped by the IISE catalog categories; roadmap of coverage; site with catalog, learning path, mind map and reader | done (32 courses, 33 of 102 topics) |
 | 2. Trust | Every course verified by a person through the review board (`REVIEW.md`, `/review-course`); status shown on every page; privacy, terms and originality notice | in progress (board built, 0 of 32 verified) |
-| 3. Role profiles | A profile per target position: the official standard's tasks, knowledge and skills, plus the market's current asks, each mapped to the courses and modules that teach it | next; waiting on the two evidence sources |
+| 3. Role profiles | A profile per target position: the official standard's tasks, knowledge and skills, plus the market's current asks, each mapped to the courses and modules that teach it | next; O*NET and BLS sources received, postings signal still to find |
 | 4. Advisor | The user picks a role (and optionally what they already know); the site produces a training plan, the focus points, and the gaps the catalog cannot yet cover, which feed back into the course roadmap | after 3 |
 | 5. Keeping it current | The market signal is refreshed on a schedule and role profiles show what changed, so the advice ages well | after 4 |
 
@@ -40,6 +40,19 @@ How it is used, stage 3:
 5. **Currency.** O*NET releases quarterly; a script diffs each release against the stored profile and flags changed elements.
 
 Attribution to carry wherever the data appears: "This page includes information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 license. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA."
+
+## Using the BLS Occupational Outlook Handbook (the outlook)
+
+Second source, given 2026-10-27: the BLS Occupational Outlook Handbook entry for [Industrial Engineers](https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm). Where O*NET describes the work in detail, the Handbook describes the role's place in the economy: median pay and the pay range, entry education, licences (PE after the FE and PE exams), the "important qualities", the largest employing industries, the 2025 to 2035 outlook (12 percent growth, about 23,100 openings a year) and what drives it (cost reduction, production optimisation, supply chain and logistics, automation). BLS content is U.S. government work and may be reused; cite it as the source.
+
+How it is used:
+
+1. **The "why" column of a role page.** Outlook, pay range, employers and drivers, so a learner sees what the role is worth and where the demand is, with the BLS release date.
+2. **Entry and advancement.** Education, the PE path and the management path, which decide what a training plan should start from and end at.
+3. **Demand drivers as focus points.** The Handbook names what pulls demand (automation, supply chain, cost); those become headline focus points that the O*NET elements and the courses are grouped under.
+4. **Specialties.** The Handbook's named specialties (human factors, manufacturing, validation) line up with the O*NET sub-codes and become the first set of role profiles beside "industrial engineer".
+
+What is still missing is a **postings-based market signal**: what employers list in current job ads for the role, including AI and data tooling. Neither O*NET nor the Handbook carries that at the granularity needed. Candidate sources: a job-postings dataset or API (for example Lightcast open skills data, or a periodic sample of public postings), summarised into the role page's "market asks" column with its date.
 
 ## Principles that do not change
 
