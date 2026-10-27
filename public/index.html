@@ -208,6 +208,12 @@
   .pill.next { background: var(--accent); color: var(--bg); } .pill.done { background: var(--green); color: var(--bg); }
   footer { border-top: 1px solid var(--line); padding: var(--s3) var(--s5); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
+  @media (pointer: coarse) {
+    .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
+    .card .tick { width: 28px; height: 28px; font-size: 14px; }
+    aside .close { padding: 6px 12px; top: 8px; right: 8px; }
+    .syl .body a { padding: 4px 0; display: inline-block; }
+  }
   @media (max-width: 640px) {
     .level { flex-wrap: wrap; } .level .lvl { flex-basis: 100%; padding-top: 0; } .hero { padding-top: var(--s6); }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
@@ -621,8 +627,10 @@
       if (!lastNodes.length) return;
       const xs = lastNodes.map(n => n.px), ys = lastNodes.map(n => n.py);
       const x0 = Math.min(...xs) - 280, x1 = Math.max(...xs) + 280, y0 = Math.min(...ys) - 40, y1 = Math.max(...ys) + 60;
-      const s = Math.min(width / (x1 - x0), height / (y1 - y0), 1.4);
-      const tf = d3.zoomIdentity.translate(width / 2 - s * (x0 + x1) / 2, height / 2 - s * (y0 + y1) / 2).scale(s);
+      let s = Math.min(width / (x1 - x0), height / (y1 - y0), 1.4);
+      let tf;
+      if (width < 700 && s < 0.7) { s = 0.8; tf = d3.zoomIdentity.translate(width / 2, height / 2).scale(s); }   // narrow screen: readable and pannable, hub in view
+      else tf = d3.zoomIdentity.translate(width / 2 - s * (x0 + x1) / 2, height / 2 - s * (y0 + y1) / 2).scale(s);
       (animate ? svg.transition().duration(400) : svg).call(zoom.transform, tf);
     }
     const zoom = d3.zoom().scaleExtent([0.25, 3]).on('zoom', e => g.attr('transform', e.transform));
