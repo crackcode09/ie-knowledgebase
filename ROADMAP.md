@@ -2,7 +2,7 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
 
-**Progress: 28 of 101 topics covered.**
+**Progress: 29 of 101 topics covered.**
 
 - [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
@@ -11,7 +11,7 @@ Coverage checklist for the IE Knowledgebase. The categories and course topics fo
 
 ![Roadmap graph](public/roadmap.svg)
 
-## Analytics, Data Science & AI (2/9)
+## Analytics, Data Science & AI (3/9)
 
 Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai/README.md)
 
@@ -19,7 +19,7 @@ Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai
 - [ ] Artificial Intelligence Using Design Thinking
 - [ ] Analytics-Based Enterprise Performance Management
 - [ ] Data Analytics for Business Results
-- [ ] Efficient AI
+- [x] [Efficient AI](courses/analytics-data-science-ai/efficient-ai/README.md)
 - [x] [Introduction to Engineering Analytics](courses/analytics-data-science-ai/engineering-analytics/README.md)
 - [x] [Advanced Engineering Analytics](courses/analytics-data-science-ai/advanced-engineering-analytics/README.md)
 - [ ] Human-Centered AI

@@ -1,0 +1,61 @@
+question,answer_in_documents,grade
+Q01,True,correct
+Q02,True,correct
+Q03,True,incorrect
+Q04,True,partly correct
+Q05,True,incorrect
+Q06,True,correct
+Q07,True,correct
+Q08,True,partly correct
+Q09,True,correct
+Q10,True,partly correct
+Q11,True,correct
+Q12,True,correct
+Q13,True,correct
+Q14,True,correct
+Q15,True,partly correct
+Q16,True,correct
+Q17,True,correct
+Q18,True,correct
+Q19,False,said it did not know
+Q20,True,correct
+Q21,True,correct
+Q22,True,correct
+Q23,True,correct
+Q24,True,correct
+Q25,True,correct
+Q26,True,correct
+Q27,True,correct
+Q28,False,correct
+Q29,True,correct
+Q30,True,correct
+Q31,True,correct
+Q32,True,correct
+Q33,True,partly correct
+Q34,True,correct
+Q35,True,correct
+Q36,True,correct
+Q37,False,said it did not know
+Q38,False,incorrect
+Q39,True,correct
+Q40,True,correct
+Q41,True,partly correct
+Q42,True,partly correct
+Q43,True,correct
+Q44,False,said it did not know
+Q45,True,incorrect
+Q46,False,fabricated source
+Q47,True,correct
+Q48,False,correct
+Q49,True,correct
+Q50,True,correct
+Q51,True,correct
+Q52,True,correct
+Q53,True,correct
+Q54,True,correct
+Q55,False,fabricated source
+Q56,True,correct
+Q57,True,correct
+Q58,True,correct
+Q59,True,correct
+Q60,True,correct

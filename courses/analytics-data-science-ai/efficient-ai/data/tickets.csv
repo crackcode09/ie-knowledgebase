@@ -1,0 +1,619 @@
+ticket_id,created,channel,customer_id,category_raw,resolution_minutes,final_category
+T00576,2026-08-04,email,,Order change,148.0,Order change
+T00349,2026-03-20,phone,K0186,Delivery,36.0,Delivery
+T00215,2026-04-05,phone,K0059,Billing,20.0,
+T00598,2026-02-16,email,K0420,Tech,19.0,Technical
+T00190,2026-01-07,phone,K0510,Returns,,Returns
+T00197,2026-08-15,email,,Technical,19.0,
+T00524,2026-05-01,phone,K0866,Order change,,
+T00348,2026-08-10,phone,K0661,Order change,15.0,
+T00277,2026-01-22,email,K0557,Billing,22.0,Billing
+T00090,2026-08-08,web,K0350,Delivery,77.0,Delivery
+T00068,2026-09-03,email,,Billing,123.0,Billing
+T00210,2026-06-17,web,K0634,Delivery,51.0,
+T00109,2026-07-06,email,K0706,Order change,20.0,Order change
+T00299,2026-07-26,email,K0584,Delivery,46.0,
+T00304,2026-02-05,web,K0634,Delivery,117.0,Delivery
+T00121,2026-09-20,phone,K0812,Order change,28.0,
+T00054,2026-03-15,web,K0845,Delivery,59.0,Delivery
+T00154,2026-08-20,web,K0510,Billing,17.0,
+T00068,2026-09-03,email,,Billing,123.0,Billing
+T00226,2026-02-21,email,K0828,Returns,38.0,
+T00326,2026-09-13,phone,K0162,Technical,37.0,Technical
+T00549,2026-04-17,web,,Returns,-1.0,Returns
+T00433,2026-01-20,phone,K0077,Delivery,,Delivery
+T00545,2026-05-03,phone,K0338,Returns,65.0,Returns
+T00421,2026-03-19,phone,K0354,Billing,13.0,
+T00588,2026-05-18,phone,K0499,Order change,88.0,Order change
+T00493,2026-05-03,phone,K0173,Billing,55.0,Billing
+T00125,2026-03-04,web,K0024,Billing,54.0,Billing
+T00165,2026-04-10,phone,K0552,Technical,8.0,Technical
+T00066,2026-02-20,web,K0411,Delivery,49.0,Delivery
+T00249,2026-08-05,web,K0817,Order change,,Order change
+T00438,2026-09-11,phone,K0274,Billing,35.0,Billing
+T00107,2026-05-31,phone,K0493,Delivery,56.0,
+T00009,2026-02-02,phone,K0837,Delivery,39.0,Delivery
+T00351,2026-05-25,email,K0627,Technical,27.0,
+T00577,2026-02-02,email,K0826,Technical,81.0,Technical
+T00221,2026-05-25,email,K0875,Delivery,39.0,Delivery
+T00176,2026-06-14,web,K0783,Order change,30.0,Order change
+T00599,2026-07-06,phone,,Delivery,26.0,Delivery
+T00032,2026-05-23,email,K0539,Technical,47.0,Technical
+T00587,2026-01-12,phone,K0094,Order change,21.0,Order change
+T00538,2026-05-03,email,,Delivery,14.0,Delivery
+T00526,2026-02-24,email,K0489,Technical,73.0,Technical
+T00279,2026-01-23,web,K0816,Returns,21.0,
+T00140,02/30/2026,phone,K0166,Billing,98.0,
+T00076,2026-08-09,email,K0112,Order change,28.0,Order change
+T00081,2026-01-08,phone,K0617,Billing,47.0,Billing
+T00291,2026-05-23,web,,Delivery,15.0,
+T00067,2026-02-13,web,K0406,Delivery,70.0,
+T00329,2026-02-28,phone,K0357,Tech,87.0,
+T00564,2026-06-23,phone,K0518,Delivery,44.0,Delivery
+T00532,2026-05-13,web,K0478,Billing,38.0,Billing
+T00012,2026-05-25,web,K0323,Technical,71.0,Technical
+T00283,2026-07-31,phone,K0330,Technical,116.0,Technical
+T00171,2026-02-09,web,K0489,Tech,33.0,Technical
+T00158,2026-03-14,email,K0251,Technical,44.0,Technical
+T00384,2026-13-02,phone,K0368,Billing,30.0,Billing
+T00230,2026-03-19,web,K0743,Billing,11.0,Billing
+T00319,2026-06-02,web,,Returns,52.0,Returns
+T00391,2026-09-21,email,K0655,Billing,38.0,Billing
+T00586,2026-07-31,phone,K0550,Delivery,64.0,Delivery
+T00147,2026-09-18,phone,K0602,RMA,53.0,Returns
+T00315,2026-02-13,email,K0021,Delivery,16.0,Delivery
+T00229,2026-08-30,phone,K0020,Order change,10.0,Order change
+T00594,2026-06-23,email,K0482,Billing,122.0,Billing
+T00211,2026-03-04,web,K0619,Billing,,Billing
+T00167,2026-03-04,phone,K0172,billing,18.0,
+T00330,2026-06-08,web,K0631,Shipping,35.0,Delivery
+T00400,2026-09-16,phone,,Technical,59.0,Technical
+T00071,2026-03-01,web,K0198,Returns,,
+T00287,2026-06-29,email,K0096,RMA,49.0,Returns
+T00411,2026-09-03,web,,Technical,17.0,
+T00455,2026-08-19,email,K0775,Order change,14.0,
+T00399,2026-01-21,phone,K0449,Billing,97.0,Billing
+T00443,2026-03-04,phone,K0283,Technical,116.0,Technical
+T00366,2026-06-21,web,K0659,Technical,24.0,Technical
+T00495,2026-08-30,phone,K0716,Technical,12.0,Technical
+T00275,2026-08-23,phone,K0024,Billing,15.0,Billing
+T00558,2026-06-01,web,K0063,Billing,66.0,Billing
+T00252,2026-03-11,phone,K0030,RMA,27.0,
+T00442,2026-03-19,email,K0667,Returns,54.0,
+T00270,2026-09-01,phone,K0590,Technical,94.0,
+T00084,2026-08-11,web,K0232,Delivery,,
+T00164,2026-04-28,web,K0488,Billing,15.0,Billing
+T00069,2026-06-03,web,K0030,Technical,31.0,Technical
+T00531,2026-01-08,web,K0292,Delivery,75.0,
+T00508,2026-01-09,web,K0570,Order change,22.0,
+T00193,2026-02-04,phone,K0015,Delivery,7.0,Delivery
+T00559,2026-02-06,phone,K0110,RMA,24.0,Returns
+T00555,2026-02-03,phone,K0688,Returns,47.0,Returns
+T00139,2026-02-15,phone,K0342,Billing,41.0,Billing
+T00342,2026-09-10,phone,K0598,delivery ,,Delivery
+T00274,2026-02-24,web,K0277,Returns,138.0,
+T00232,2026-06-11,web,K0701,Technical,29.0,Technical
+T00412,2026-04-06,web,K0606,Delivery,49.0,Delivery
+T00272,2026-03-12,phone,,Billing,34.0,Billing
+T00301,2026-06-14,phone,K0287,Delivery,32.0,
+T00004,2026-09-18,phone,K0252,Tech,19.0,
+T00499,2026-06-25,email,K0239,Returns,60.0,
+T00338,2026-01-16,web,K0381,Technical,6.0,Technical
+T00507,2026-08-09,web,K0476,Delivery,99.0,
+T00261,2026-07-18,web,K0353,Delivery,20.0,
+T00181,2026-03-17,email,K0415,Delivery,39.0,
+T00346,2026-09-18,email,K0444,delivery ,10.0,
+T00437,02/30/2026,web,K0534,Technical,17.0,
+T00387,2026-03-21,web,K0862,Delivery,28.0,
+T00561,2026-05-10,phone,K0524,Billing,53.0,Billing
+T00431,2026-04-23,web,K0747,Technical,6.0,Technical
+T00398,2026-06-08,web,K0246,Technical,16.0,Technical
+T00170,2026-04-03,email,K0009,Technical,-1.0,Technical
+T00589,2026-01-16,email,K0685,Delivery,30.0,
+T00364,2026-01-28,phone,K0611,Order change,179.0,Order change
+T00255,2026-01-21,web,K0328,Order change,55.0,Order change
+T00550,2026-08-31,web,K0818,Delivery,66.0,Delivery
+T00337,2026-02-10,web,,Delivery,31.0,Delivery
+T00573,2026-08-28,web,K0208,Technical,66.0,Technical
+T00407,2026-09-08,email,K0315,Delivery,86.0,Delivery
+T00073,2026-06-14,email,K0474,Delivery,26.0,
+T00582,2026-02-07,phone,K0561,Returns,16.0,
+T00515,2026-09-18,phone,K0126,Technical,20.0,
+T00560,2026-02-13,web,K0559,Returns,74.0,Returns
+T00453,2026-08-15,email,K0433,Returns,37.0,Returns
+T00015,2026-09-07,email,K0748,Billing,16.0,Billing
+T00456,2026-05-03,phone,K0181,Delivery,44.0,
+T00476,2026-07-12,email,K0860,Technical,36.0,Technical
+T00418,2026-08-20,email,K0515,Delivery,101.0,
+T00276,2026-06-25,email,,Technical,17.0,Technical
+T00227,2026-09-06,phone,K0392,Billing,29.0,Billing
+T00569,2026-03-16,phone,K0530,Delivery,8.0,
+T00553,2026-01-18,email,K0505,Order change,15.0,
+T00570,2026-01-12,web,K0787,Order change,79.0,Order change
+T00357,2026-04-05,phone,K0537,billing,72.0,
+T00100,2026-09-10,web,K0778,Delivery,25.0,Delivery
+T00026,2026-06-23,phone,K0053,Order change,23.0,
+T00451,2026-06-09,email,,Delivery,39.0,
+T00491,2026-02-11,phone,K0071,Order change,17.0,Order change
+T00016,2026-01-22,web,K0072,Billing,23.0,
+T00159,2026-05-31,email,K0296,Order change,9.0,Order change
+T00341,2026-04-10,web,K0893,Order change,36.0,
+T00204,2026-09-02,web,K0022,Delivery,29.0,
+T00497,2026-03-26,web,K0251,Technical,8.0,Technical
+T00281,02/30/2026,email,K0045,Delivery,24.0,Delivery
+T00590,2026-03-08,phone,,Order change,59.0,
+T00118,2026-04-23,phone,K0659,Billing,15.0,
+T00160,2026-02-03,web,K0413,Technical,85.0,
+T00192,2026-04-26,email,K0173,Delivery,27.0,Delivery
+T00308,2026-03-29,email,K0113,Technical,27.0,
+T00225,2026-04-30,email,,Order change,90.0,
+T00113,2026-03-09,email,K0792,Tech,45.0,
+T00327,2026-02-27,web,K0297,Technical,48.0,
+T00363,2026-06-26,phone,K0375,Billing,72.0,Billing
+T00019,2026-06-08,web,K0656,Delivery,146.0,
+T00007,2026-05-02,email,K0651,Order change,31.0,
+T00212,2026-03-20,email,K0353,Delivery,19.0,Delivery
+T00454,2026-08-30,email,K0180,Technical,13.0,Technical
+T00064,2026-06-09,email,,Invoice,43.0,
+T00041,2026-09-10,phone,K0766,Delivery,28.0,
+T00292,2026-05-09,phone,K0686,Delivery,25.0,Delivery
+T00480,2026-04-24,web,K0435,Returns,102.0,
+T00238,2026-08-27,phone,K0277,Technical,38.0,Technical
+T00240,2026-01-15,phone,K0744,Returns,10.0,Returns
+T00447,2026-01-19,web,K0798,Order change,83.0,Order change
+T00408,2026-06-10,web,,Billing,31.0,
+T00048,2026-07-08,phone,K0462,billing,13.0,
+T00065,2026-04-26,email,K0595,Tech,21.0,Technical
+T00290,2026-06-20,web,K0135,Technical,17.0,
+T00056,2026-01-21,email,K0582,Technical,13.0,Technical
+T00312,2026-08-15,email,K0798,Technical,51.0,
+T00254,2026-06-26,web,K0803,Technical,11.0,
+T00525,2026-09-02,phone,,Delivery,15.0,Delivery
+T00063,2026-05-27,web,K0237,Returns,33.0,Returns
+T00262,2026-03-16,email,,Returns,36.0,
+T00148,2026-06-18,web,K0553,Technical,78.0,Technical
+T00385,2026-02-09,phone,K0651,Technical,42.0,Technical
+T00134,2026-09-05,web,K0241,Billing,25.0,Billing
+T00104,2026-08-21,email,K0578,Technical,34.0,Technical
+T00025,2026-08-23,web,K0552,Delivery,38.0,Delivery
+T00195,2026-06-26,phone,K0128,Delivery,77.0,Delivery
+T00512,2026-01-26,web,K0798,Technical,37.0,
+T00541,2026-04-29,email,K0041,Delivery,34.0,
+T00356,2026-03-15,web,K0295,Delivery,23.0,
+T00354,2026-04-30,web,K0522,Delivery,37.0,Delivery
+T00239,2026-08-22,phone,K0618,Order change,72.0,
+T00375,2026-05-03,web,K0820,Returns,27.0,Returns
+T00325,2026-05-04,email,K0692,Technical,37.0,
+T00217,2026-08-18,email,K0710,Billing,261.0,Billing
+T00135,2026-02-11,phone,K0038,Order change,93.0,Order change
+T00289,2026-01-31,phone,K0418,Billing,31.0,Billing
+T00350,2026-02-04,email,K0482,Returns,71.0,
+T00300,2026-08-23,phone,K0629,Tech,25.0,Technical
+T00189,2026-02-08,web,K0325,Billing,84.0,Billing
+T00465,2026-05-14,email,K0299,Billing,57.0,
+T00155,2026-02-24,phone,K0846,Technical,77.0,Technical
+T00043,2026-06-07,web,K0196,Delivery,51.0,Delivery
+T00380,2026-06-24,email,K0011,Order change,31.0,
+T00046,2026-05-10,web,K0144,Billing,66.0,
+T00496,2026-08-01,web,K0313,Billing,18.0,Billing
+T00143,2026-04-17,email,,Billing,27.0,Billing
+T00490,2026-01-24,phone,K0334,Returns,10.0,Returns
+T00271,,email,K0868,Billing,195.0,
+T00129,2026-04-16,web,K0123,Delivery,128.0,
+T00161,2026-07-23,web,K0613,Order change,13.0,Order change
+T00355,2026-06-20,web,K0010,Shipping,30.0,
+T00124,2026-09-13,phone,K0728,Delivery,19.0,Delivery
+T00263,2026-02-26,email,K0829,Delivery,44.0,
+T00169,2026-05-19,email,K0102,Technical,19.0,Technical
+T00339,2026-06-11,web,K0559,Delivery,105.0,Delivery
+T00101,2026-03-13,email,K0765,Order change,11.0,
+T00248,2026-01-13,email,K0288,Billing,138.0,Billing
+T00103,2026-08-18,email,K0093,Returns,94.0,
+T00106,2026-08-25,email,K0779,Billing,102.0,Billing
+T00530,2026-07-30,email,K0895,Technical,34.0,
+T00214,2026-02-20,web,,Invoice,,
+T00574,2026-06-30,email,,Billing,49.0,Billing
+T00269,2026-04-23,web,K0256,Returns,37.0,
+T00473,2026-06-13,web,K0072,Billing,,
+T00458,2026-03-19,phone,K0287,RMA,,Returns
+T00529,2026-07-31,phone,,Order change,10.0,Order change
+T00237,2026-07-12,phone,,Technical,98.0,
+T00546,2026-04-24,web,K0874,Billing,,Billing
+T00483,2026-01-25,web,K0815,Billing,49.0,
+T00047,2026-09-01,email,K0859,Delivery,81.0,Delivery
+T00452,2026-05-18,email,K0365,Technical,61.0,
+T00373,2026-03-13,web,,Delivery,36.0,Delivery
+T00089,2026-04-05,phone,K0283,Technical,22.0,Technical
+T00130,2026-08-19,web,K0283,Tech,,
+T00014,2026-03-20,web,K0681,Order change,22.0,Order change
+T00360,2026-03-01,web,K0653,Billing,67.0,Billing
+T00185,2026-08-31,web,K0189,Delivery,43.0,Delivery
+T00501,2026-02-28,web,K0626,Returns,44.0,Returns
+T00093,2026-06-23,phone,K0876,Technical,14.0,Technical
+T00347,2026-08-16,email,K0088,Billing,40.0,
+T00213,2026-02-15,email,K0342,Billing,32.0,Billing
+T00340,2026-01-23,web,K0490,Returns,87.0,
+T00313,2026-07-21,web,,Order change,121.0,
+T00396,2026-03-11,phone,K0269,Returns,,Returns
+T00584,2026-02-19,phone,K0610,Returns,71.0,Returns
+T00002,2026-06-11,phone,,Technical,23.0,Technical
+T00414,2026-06-12,phone,K0105,Technical,124.0,
+T00196,2026-04-30,email,K0884,Delivery,41.0,
+T00345,2026-03-25,phone,K0306,Billing,35.0,
+T00062,2026-08-21,phone,K0860,Delivery,32.0,
+T00077,2026-01-10,web,K0451,Technical,30.0,Technical
+T00450,2026-09-14,phone,K0235,Technical,20.0,Technical
+T00114,2026-03-03,web,K0515,billing,,Billing
+T00302,2026-04-29,email,K0032,Order change,27.0,Order change
+T00439,2026-06-18,email,K0655,Order change,29.0,
+T00320,2026-04-19,web,K0479,Delivery,16.0,
+T00293,2026-03-01,phone,K0572,Technical,63.0,
+T00086,2026-01-25,web,K0716,Returns,,Returns
+T00034,2026-07-18,web,K0202,Delivery,26.0,Delivery
+T00369,2026-02-03,web,K0165,Delivery,34.0,
+T00105,2026-08-17,email,K0428,Technical,40.0,
+T00203,2026-02-09,web,K0624,Billing,20.0,Billing
+T00268,2026-06-27,email,K0058,Delivery,80.0,Delivery
+T00145,2026-02-09,web,K0141,Billing,9.0,
+T00207,2026-06-01,web,,Returns,18.0,Returns
+T00580,2026-01-10,phone,K0287,Billing,32.0,Billing
+T00094,2026-05-30,web,,Delivery,194.0,Delivery
+T00517,2026-04-04,web,,Invoice,19.0,Billing
+T00153,2026-09-10,phone,K0125,Order change,31.0,
+T00083,2026-08-12,web,K0238,Delivery,37.0,
+T00088,2026-07-02,web,K0515,RMA,20.0,Returns
+T00266,2026-07-14,phone,K0155,Delivery,88.0,
+T00142,2026-03-19,phone,K0798,Order change,-1.0,Order change
+T00358,2026-03-26,phone,K0649,Order change,23.0,Order change
+T00257,2026-04-02,web,K0796,Technical,47.0,Technical
+T00402,2026-03-20,phone,K0236,Returns,95.0,Returns
+T00521,2026-06-14,email,K0720,Delivery,128.0,Delivery
+T00051,2026-02-04,phone,K0093,Shipping,89.0,Delivery
+T00040,2026-02-24,email,K0032,Returns,19.0,
+T00222,2026-02-15,phone,K0613,Delivery,,Delivery
+T00038,2026-08-01,email,K0210,Billing,24.0,
+T00220,2026-01-22,phone,K0157,Returns,35.0,Returns
+T00085,2026-03-10,email,,Billing,61.0,
+T00231,2026-04-13,phone,K0057,Billing,58.0,
+T00035,2026-08-17,email,K0196,Delivery,91.0,Delivery
+T00245,2026-03-01,phone,K0126,Tech,22.0,Technical
+T00201,2026-03-20,phone,K0495,billing,30.0,
+T00566,2026-03-28,email,,Technical,20.0,
+T00382,2026-06-04,phone,K0500,Billing,66.0,
+T00307,2026-05-28,email,K0570,Returns,31.0,Returns
+T00548,2026-02-06,web,K0473,Billing,65.0,
+T00377,2026-07-15,phone,,Delivery,30.0,
+T00163,2026-08-19,web,K0543,Shipping,21.0,
+T00481,2026-06-05,web,K0646,Technical,49.0,Technical
+T00318,2026-09-19,email,K0180,Technical,33.0,Technical
+T00311,2026-01-23,email,K0701,Delivery,10.0,Delivery
+T00591,2026-05-11,phone,K0275,Technical,39.0,
+T00554,2026-04-20,web,K0763,Delivery,12.0,Delivery
+T00448,2026-02-07,phone,K0834,Billing,17.0,Billing
+T00151,2026-01-17,web,K0352,Shipping,,Delivery
+T00044,2026-09-16,phone,K0150,Technical,61.0,Technical
+T00173,2026-08-30,web,K0406,Returns,24.0,Returns
+T00198,2026-06-20,email,K0483,Returns,73.0,Returns
+T00580,2026-01-10,phone,K0287,Billing,32.0,Billing
+T00206,2026-05-14,phone,K0244,Shipping,80.0,Delivery
+T00498,2026-02-02,email,K0830,Delivery,42.0,
+T00581,2026-05-13,web,K0733,Order change,31.0,Order change
+T00568,2026-05-01,email,K0661,Technical,113.0,
+T00141,02/30/2026,email,K0856,Delivery,96.0,Delivery
+T00080,2026-09-17,email,K0802,Delivery,40.0,
+T00406,2026-05-03,email,K0464,Delivery,45.0,
+T00533,2026-04-18,phone,,Technical,36.0,
+T00097,2026-05-16,email,K0102,Technical,20.0,
+T00258,2026-04-26,web,K0462,Delivery,54.0,Delivery
+T00317,2026-04-28,phone,K0308,Billing,34.0,
+T00242,2026-05-20,phone,,Delivery,10.0,
+T00468,2026-06-03,web,K0781,Delivery,151.0,Delivery
+T00233,2026-05-02,web,K0442,Order change,41.0,Order change
+T00267,2026-05-28,email,K0494,Delivery,,
+T00540,2026-04-24,web,K0588,Delivery,32.0,Delivery
+T00098,2026-07-01,email,K0638,Delivery,71.0,Delivery
+T00061,2026-02-13,email,K0640,Order change,72.0,Order change
+T00194,2026-08-13,web,K0752,Delivery,87.0,
+T00013,2026-05-10,phone,,Billing,125.0,
+T00505,2026-05-02,phone,,Technical,25.0,Technical
+T00288,2026-02-11,web,K0764,Technical,31.0,Technical
+T00145,2026-02-09,web,K0141,Billing,9.0,
+T00321,2026-06-11,phone,K0591,RMA,130.0,Returns
+T00022,2026-06-02,phone,,Billing,26.0,
+T00542,2026-08-29,email,K0528,Technical,65.0,
+T00539,2026-09-17,phone,,Delivery,24.0,Delivery
+T00174,2026-07-02,email,K0874,Delivery,32.0,Delivery
+T00039,2026-09-03,phone,K0496,Delivery,155.0,
+T00426,2026-07-21,phone,K0372,Delivery,24.0,Delivery
+T00434,2026-06-19,phone,K0856,Delivery,45.0,
+T00273,2026-02-09,phone,K0209,Order change,37.0,Order change
+T00585,2026-09-05,phone,K0201,Technical,47.0,Technical
+T00403,2026-04-16,email,K0428,Order change,20.0,Order change
+T00379,2026-08-25,email,K0155,Technical,135.0,Technical
+T00430,2026-08-12,email,K0472,Delivery,45.0,
+T00246,2026-08-22,phone,K0218,Delivery,36.0,Delivery
+T00475,2026-07-02,email,K0295,Delivery,40.0,
+T00330,2026-06-08,web,K0631,Shipping,35.0,Delivery
+T00095,2026-02-13,web,K0831,Technical,27.0,Technical
+T00518,2026-01-15,web,K0500,Tech,19.0,Technical
+T00303,2026-07-10,email,K0534,Delivery,23.0,Delivery
+T00405,2026-08-20,phone,K0359,Delivery,28.0,Delivery
+T00425,2026-01-29,email,K0364,Order change,19.0,Order change
+T00459,2026-03-08,web,K0123,delivery ,59.0,Delivery
+T00131,2026-04-30,phone,K0167,Billing,69.0,
+T00072,2026-09-03,web,K0857,Order change,17.0,
+T00187,2026-07-25,email,,Delivery,21.0,
+T00393,2026-06-05,phone,K0728,Billing,27.0,
+T00486,2026-03-20,web,,Invoice,31.0,Billing
+T00429,2026-05-17,phone,K0223,Order change,32.0,
+T00168,2026-06-12,web,K0808,Delivery,49.0,Delivery
+T00343,2026-09-11,web,K0798,Order change,62.0,Order change
+T00216,2026-01-24,phone,K0231,Order change,42.0,Order change
+T00111,2026-02-04,email,K0791,Invoice,4.0,Billing
+T00138,2026-09-04,web,K0783,Order change,,Order change
+T00017,2026-03-17,email,K0269,Order change,56.0,
+T00381,2026-04-14,email,K0156,Technical,61.0,Technical
+T00441,2026-09-02,email,K0217,Technical,31.0,Technical
+T00435,2026-02-06,email,K0005,Delivery,49.0,
+T00445,2026-09-19,email,K0781,delivery ,37.0,Delivery
+T00092,2026-01-27,phone,K0896,Delivery,21.0,Delivery
+T00410,2026-03-17,web,K0735,Billing,32.0,
+T00102,2026-05-30,phone,K0071,Delivery,20.0,
+T00522,2026-03-14,web,K0419,Returns,119.0,
+T00205,2026-05-06,phone,K0208,Billing,22.0,
+T00296,2026-05-01,email,K0283,Delivery,64.0,
+T00177,2026-02-04,phone,K0617,Order change,21.0,Order change
+T00324,2026-05-24,phone,,Returns,43.0,
+T00018,2026-02-25,email,K0471,Technical,13.0,Technical
+T00011,2026-06-04,email,K0370,Returns,31.0,Returns
+T00328,2026-05-11,web,K0321,Delivery,50.0,Delivery
+T00021,2026-04-17,phone,K0671,Shipping,17.0,
+T00305,2026-03-03,email,K0701,Order change,20.0,Order change
+T00368,2026-07-06,web,K0703,Delivery,40.0,Delivery
+T00264,2026-03-22,phone,K0264,Delivery,40.0,
+T00092,2026-01-27,phone,K0896,Delivery,21.0,Delivery
+T00509,2026-08-29,phone,K0848,Delivery,50.0,
+T00352,2026-01-25,web,K0493,Billing,211.0,Billing
+T00137,2026-06-15,email,K0581,Tech,5.0,
+T00200,2026-08-30,web,K0152,Billing,62.0,Billing
+T00596,2026-04-01,email,K0307,Technical,24.0,Technical
+T00070,2026-06-22,phone,K0190,Billing,19.0,Billing
+T00224,2026-01-11,web,K0519,Technical,31.0,Technical
+T00474,2026-01-16,web,K0891,Technical,43.0,Technical
+T00556,2026-02-01,email,K0755,Invoice,45.0,Billing
+T00386,2026-02-15,email,K0616,Billing,53.0,Billing
+T00523,2026-05-05,web,,Delivery,18.0,Delivery
+T00477,2026-08-01,email,K0892,Delivery,29.0,Delivery
+T00416,2026-07-16,email,K0646,Delivery,26.0,Delivery
+T00464,2026-05-05,phone,K0543,Technical,60.0,
+T00370,2026-09-10,email,K0287,Order change,40.0,Order change
+T00390,2026-01-25,web,K0533,Returns,136.0,
+T00183,2026-01-07,web,K0803,Delivery,19.0,Delivery
+T00592,2026-02-28,phone,K0651,Order change,21.0,Order change
+T00383,2026-04-28,web,K0182,Technical,27.0,Technical
+T00186,2026-09-18,email,K0862,Delivery,11.0,
+T00484,2026-02-17,web,K0206,Technical,88.0,
+T00133,2026-04-07,web,K0212,Technical,,Technical
+T00424,2026-05-04,web,K0647,Order change,26.0,Order change
+T00178,2026-08-08,email,K0695,Delivery,99.0,Delivery
+T00428,2026-05-18,web,K0715,Delivery,12.0,Delivery
+T00536,2026-01-15,web,K0395,Technical,28.0,Technical
+T00334,2026-06-21,web,K0296,Delivery,42.0,Delivery
+T00235,2026-07-26,web,K0715,Billing,28.0,
+T00335,2026-02-06,web,,Returns,,Returns
+T00466,2026-03-20,phone,K0040,delivery ,9.0,Delivery
+T00020,2026-01-16,email,K0319,Order change,31.0,Order change
+T00593,2026-01-16,web,K0143,Delivery,44.0,
+T00049,2026-09-18,web,K0470,Technical,46.0,Technical
+T00583,2026-02-01,email,K0661,Returns,27.0,
+T00579,2026-06-14,phone,K0766,Delivery,132.0,Delivery
+T00482,2026-01-08,web,,Delivery,63.0,Delivery
+T00322,2026-03-10,web,K0550,Order change,55.0,
+T00537,2026-05-29,web,K0327,Billing,12.0,
+T00117,2026-02-06,web,,Delivery,,Delivery
+T00149,2026-01-10,email,K0429,billing,17.0,Billing
+T00236,2026-03-08,email,K0270,Billing,33.0,
+T00432,2026-09-13,web,K0325,Tech,41.0,
+T00286,2026-03-13,email,K0558,Order change,25.0,Order change
+T00135,2026-02-11,phone,K0038,Order change,93.0,Order change
+T00543,2026-05-17,phone,K0480,Delivery,78.0,Delivery
+T00247,2026-05-11,web,K0480,Technical,43.0,
+T00579,2026-06-14,phone,K0766,Delivery,132.0,Delivery
+T00112,2026-02-01,web,K0402,Technical,63.0,Technical
+T00202,2026-07-01,web,K0492,Technical,45.0,Technical
+T00462,2026-03-26,phone,K0005,Billing,26.0,Billing
+T00038,2026-08-01,email,K0210,Billing,24.0,
+T00367,2026-07-20,phone,K0725,Delivery,111.0,Delivery
+T00119,2026-03-17,phone,K0097,Billing,31.0,Billing
+T00278,2026-01-20,email,K0855,Delivery,71.0,Delivery
+T00234,2026-06-03,phone,K0232,Order change,61.0,
+T00463,2026-07-31,phone,K0340,Technical,19.0,Technical
+T00024,2026-07-31,web,K0777,Order change,40.0,
+T00259,2026-05-09,email,K0585,Delivery,32.0,Delivery
+T00310,2026-02-09,web,K0238,Billing,119.0,Billing
+T00091,2026-01-12,email,K0532,Delivery,19.0,Delivery
+T00333,2026-08-23,email,K0027,Billing,33.0,Billing
+T00365,2026-07-31,phone,K0147,Delivery,19.0,
+T00029,2026-06-14,email,,Delivery,69.0,
+T00378,2026-06-03,email,K0331,Order change,,
+T00419,2026-06-07,web,K0048,Order change,24.0,
+T00036,2026-08-06,email,,Billing,15.0,
+T00578,2026-08-31,email,K0884,Order change,38.0,
+T00208,2026-07-16,email,K0565,Invoice,67.0,Billing
+T00551,2026-07-25,web,K0474,Delivery,27.0,Delivery
+T00179,2026-02-08,email,,Order change,16.0,
+T00082,2026-02-02,phone,K0217,Technical,26.0,
+T00420,2026-05-15,phone,,Technical,21.0,Technical
+T00058,2026-01-10,email,K0869,billing,31.0,Billing
+T00557,2026-05-30,web,K0049,Order change,25.0,
+T00122,2026-02-24,email,K0333,Delivery,28.0,Delivery
+T00027,2026-04-29,email,K0778,Billing,29.0,Billing
+T00243,2026-01-07,web,K0363,Technical,43.0,
+T00397,02/30/2026,phone,K0232,Technical,31.0,Technical
+T00504,2026-04-04,web,,Order change,19.0,
+T00527,2026-02-02,web,K0688,Tech,52.0,Technical
+T00005,2026-06-24,web,K0501,Technical,6.0,Technical
+T00306,2026-08-20,phone,K0119,Technical,31.0,Technical
+T00078,2026-04-03,web,,Delivery,8.0,Delivery
+T00218,2026-09-04,phone,K0626,Billing,15.0,
+T00284,2026-01-09,web,,Technical,28.0,Technical
+T00136,2026-09-11,web,K0435,Delivery,77.0,
+T00319,2026-06-02,web,,Returns,52.0,Returns
+T00470,2026-05-16,email,,Delivery,34.0,Delivery
+T00219,2026-08-24,phone,K0491,Billing,74.0,
+T00336,2026-05-29,phone,K0268,Delivery,26.0,
+T00128,2026-01-26,web,K0339,billing,70.0,
+T00054,2026-03-15,web,K0845,Delivery,59.0,Delivery
+T00297,2026-07-06,web,K0254,Technical,41.0,Technical
+T00156,2026-01-08,web,K0306,Billing,23.0,Billing
+T00469,2026-08-19,email,K0671,Technical,18.0,
+T00472,2026-01-27,email,K0692,Technical,105.0,
+T00436,2026-03-30,email,K0347,Order change,11.0,Order change
+T00401,2026-06-15,email,K0475,Delivery,14.0,Delivery
+T00572,2026-08-06,email,K0372,Billing,26.0,
+T00250,2026-08-19,web,K0604,Delivery,42.0,Delivery
+T00285,2026-04-29,web,K0633,Technical,44.0,Technical
+T00023,2026-05-14,web,K0186,Delivery,31.0,Delivery
+T00228,2026-02-23,web,K0121,Returns,10.0,
+T00514,2026-07-13,phone,K0176,Order change,37.0,Order change
+T00404,2026-06-04,phone,K0881,Billing,25.0,Billing
+T00003,2026-09-08,email,K0288,Order change,60.0,Order change
+T00446,2026-03-15,phone,K0866,Delivery,24.0,Delivery
+T00037,2026-06-23,phone,K0548,Order change,37.0,Order change
+T00478,2026-03-09,phone,K0315,Technical,20.0,Technical
+T00030,2026-02-13,web,K0396,Delivery,45.0,Delivery
+T00409,2026-04-04,web,,Tech,14.0,Technical
+T00331,2026-05-18,email,K0359,Billing,35.0,
+T00458,2026-03-19,phone,K0287,RMA,,Returns
+T00006,2026-04-22,email,K0559,Returns,20.0,
+T00597,2026-02-05,phone,K0634,Order change,118.0,
+T00294,2026-08-04,phone,K0715,Delivery,52.0,
+T00282,2026-03-07,phone,K0350,Delivery,99.0,
+T00033,2026-03-28,email,K0859,Technical,47.0,Technical
+T00422,2026-07-17,phone,K0385,Billing,19.0,
+T00519,2026-03-22,web,K0490,Technical,23.0,Technical
+T00116,2026-05-19,web,K0331,Technical,18.0,Technical
+T00460,2026-04-15,web,K0611,Order change,19.0,Order change
+T00157,2026-08-25,email,K0153,Tech,89.0,Technical
+T00520,2026-06-10,web,K0446,billing,29.0,
+T00362,2026-05-15,web,K0536,Technical,46.0,
+T00513,2026-09-07,email,,delivery ,138.0,
+T00359,2026-04-06,email,K0134,Delivery,43.0,
+T00571,2026-06-07,web,K0880,Order change,35.0,Order change
+T00099,2026-01-12,web,K0340,Technical,26.0,Technical
+T00075,2026-02-15,phone,K0727,Delivery,107.0,Delivery
+T00260,2026-05-18,web,K0314,Delivery,49.0,Delivery
+T00298,2026-06-22,web,K0259,Tech,114.0,Technical
+T00144,2026-07-12,web,K0616,Billing,101.0,Billing
+T00503,2026-04-19,phone,K0563,Technical,87.0,
+T00471,2026-02-15,email,K0568,Technical,35.0,
+T00042,2026-04-04,phone,K0266,Delivery,46.0,Delivery
+T00547,2026-01-16,web,K0089,Invoice,131.0,
+T00011,2026-06-04,email,K0370,Returns,31.0,Returns
+T00180,2026-06-03,phone,K0809,Technical,88.0,Technical
+T00008,2026-07-10,web,,Technical,9.0,Technical
+T00209,2026-03-12,web,,Billing,33.0,Billing
+T00376,2026-04-08,web,K0167,Technical,49.0,Technical
+T00415,2026-07-26,phone,K0270,Billing,,Billing
+T00292,2026-05-09,phone,K0686,Delivery,25.0,Delivery
+T00050,2026-01-28,email,K0284,Order change,11.0,Order change
+T00449,2026-04-25,phone,K0627,Invoice,57.0,Billing
+T00053,2026-09-18,web,,Technical,25.0,Technical
+T00309,2026-07-23,email,K0713,Delivery,31.0,
+T00316,2026-07-16,email,K0338,Technical,,Technical
+T00489,2026-01-14,web,K0036,Technical,55.0,
+T00392,2026-07-30,email,K0827,Delivery,11.0,Delivery
+T00502,2026-08-09,email,K0481,Billing,54.0,
+T00120,2026-06-14,email,K0228,billing,141.0,Billing
+T00553,2026-01-18,email,K0505,Order change,15.0,
+T00395,2026-08-29,web,K0325,Delivery,38.0,Delivery
+T00062,2026-08-21,phone,K0860,Delivery,32.0,
+T00528,2026-04-26,email,K0119,Order change,36.0,Order change
+T00087,2026-09-18,web,K0255,Delivery,75.0,
+T00172,2026-06-09,phone,K0043,Order change,44.0,Order change
+T00028,2026-06-07,web,K0546,Order change,29.0,Order change
+T00511,2026-07-15,phone,K0415,Technical,116.0,Technical
+T00492,2026-05-06,web,,Delivery,101.0,Delivery
+T00253,2026-05-30,phone,K0562,Order change,24.0,Order change
+T00544,2026-09-02,phone,K0033,Delivery,23.0,Delivery
+T00132,2026-09-09,email,K0138,Billing,34.0,
+T00126,2026-05-31,web,K0889,Order change,6.0,
+T00010,2026-05-24,web,K0500,Delivery,21.0,
+T00079,2026-02-08,web,K0387,Delivery,38.0,Delivery
+T00485,2026-03-20,email,K0360,Billing,73.0,
+T00552,2026-09-15,phone,,Billing,34.0,
+T00055,2026-01-23,email,K0424,Delivery,40.0,Delivery
+T00389,2026-03-15,phone,K0333,Delivery,207.0,
+T00353,2026-07-26,phone,K0007,Returns,,Returns
+T00488,2026-05-18,phone,K0721,Delivery,,Delivery
+T00251,2026-03-13,email,K0552,Delivery,30.0,
+T00444,2026-05-30,email,K0553,Technical,34.0,Technical
+T00166,2026-02-05,phone,K0176,Technical,42.0,
+T00506,2026-04-15,phone,K0865,Order change,80.0,
+T00265,2026-06-05,email,K0286,Technical,32.0,Technical
+T00052,2026-05-12,email,K0196,Delivery,26.0,Delivery
+T00108,2026-03-21,phone,K0203,Technical,199.0,
+T00060,2026-04-01,web,K0182,Delivery,94.0,
+T00479,2026-09-04,web,K0204,Billing,50.0,
+T00575,2026-03-24,email,K0825,Billing,178.0,Billing
+T00500,2026-05-12,web,K0327,Delivery,8.0,Delivery
+T00182,2026-01-09,email,K0603,Technical,19.0,Technical
+T00082,2026-02-02,phone,K0217,Technical,26.0,
+T00467,2026-08-14,email,K0599,RMA,16.0,Returns
+T00199,2026-01-10,web,K0176,Delivery,63.0,Delivery
+T00595,2026-03-05,phone,K0735,Delivery,38.0,Delivery
+T00280,2026-09-06,phone,K0701,Delivery,35.0,Delivery
+T00332,2026-04-14,phone,K0610,Technical,11.0,
+T00567,2026-08-27,email,K0602,Shipping,132.0,Delivery
+T00191,2026-06-30,email,K0609,Billing,6.0,
+T00535,2026-05-26,web,K0366,Delivery,20.0,Delivery
+T00223,2026-09-03,phone,K0579,Technical,24.0,Technical
+T00115,2026-07-23,email,,Technical,8.0,
+T00152,2026-01-17,phone,K0367,Order change,124.0,Order change
+T00461,2026-06-10,email,K0387,Invoice,79.0,Billing
+T00188,2026-06-25,web,K0537,Billing,61.0,
+T00074,2026-04-04,email,K0567,Tech,24.0,
+T00241,2026-09-04,web,K0701,Order change,20.0,Order change
+T00146,2026-06-19,phone,K0561,Billing,22.0,
+T00563,2026-05-24,web,K0736,Delivery,49.0,Delivery
+T00256,2026-07-10,phone,K0127,Delivery,109.0,Delivery
+T00096,2026-07-29,email,K0399,Billing,54.0,
+T00372,2026-05-12,phone,K0483,Order change,14.0,Order change
+T00371,2026-03-01,email,K0639,Delivery,23.0,
+T00516,02/30/2026,web,K0788,Billing,41.0,Billing
+T00413,2026-03-20,phone,K0053,Delivery,27.0,Delivery
+T00494,2026-08-10,web,K0018,Technical,,Technical
+T00162,2026-09-10,phone,K0428,Order change,43.0,
+T00427,2026-02-22,email,K0448,Technical,19.0,Technical
+T00244,2026-02-27,web,K0480,billing,30.0,Billing
+T00417,2026-06-09,web,,Delivery,-1.0,
+T00344,2026-07-11,web,K0023,Order change,62.0,
+T00323,2026-05-06,web,K0144,Technical,93.0,
+T00562,2026-07-09,email,K0388,Technical,43.0,Technical
+T00031,2026-03-07,phone,K0835,Order change,28.0,Order change
+T00374,2026-02-08,email,K0404,Delivery,145.0,Delivery
+T00125,2026-03-04,web,K0024,Billing,54.0,Billing
+T00057,2026-05-25,email,K0279,Delivery,,Delivery
+T00487,2026-05-05,email,K0126,Returns,34.0,Returns
+T00510,2026-05-17,web,K0667,Technical,28.0,Technical
+T00423,2026-07-11,web,,Billing,57.0,
+T00150,2026-06-16,web,,Returns,21.0,Returns
+T00534,2026-05-19,phone,K0057,Invoice,40.0,
+T00184,2026-08-17,web,K0497,Technical,17.0,Technical
+T00001,2026-05-08,phone,K0478,Shipping,31.0,Delivery
+T00388,2026-03-27,web,K0469,Delivery,41.0,Delivery
+T00565,2026-06-20,email,K0884,Billing,35.0,Billing
+T00127,2026-07-12,email,K0016,Order change,82.0,Order change
+T00295,2026-05-30,phone,K0665,Delivery,25.0,Delivery
+T00045,2026-07-07,email,K0214,delivery ,33.0,Delivery
+T00314,2026-07-10,phone,K0610,Technical,36.0,
+T00347,2026-08-16,email,K0088,Billing,40.0,
+T00110,2026-03-06,phone,K0644,Delivery,9.0,Delivery
+T00059,2026-05-29,web,K0704,Returns,35.0,Returns
+T00394,2026-01-25,email,K0142,Delivery,34.0,
+T00457,02/30/2026,web,K0018,Delivery,52.0,
+T00600,2026-08-01,email,K0144,Delivery,33.0,
+T00361,2026-06-23,web,K0769,Delivery,134.0,
+T00440,2026-06-28,email,K0737,Order change,40.0,Order change
+T00175,2026-05-03,email,K0366,Delivery,65.0,Delivery
+T00123,2026-08-07,web,K0363,Delivery,14.0,
