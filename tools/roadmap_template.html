@@ -126,6 +126,12 @@
   .card h3 { margin: 0; font-family: var(--display); font-size: 15px; padding-right: 26px; letter-spacing: -.01em; }
   .card .meta { color: var(--muted); font-family: var(--mono); font-size: 11.5px; }
   .card .meta b { color: var(--accent); font-weight: 500; }
+  .tag.draft, .pill.draft { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .02em; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
+  .tag.verified, .pill.verified { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
+  .card h3 .tag { vertical-align: middle; margin-left: 6px; }
+  .notice { margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13.5px; color: var(--muted); }
+  .notice b { color: var(--text); font-weight: 600; }
+  footer a { color: inherit; } footer a:hover { color: var(--accent); }
   .card .topic { font-size: 12.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
@@ -225,8 +231,10 @@
       <div class="byline">
         <span class="chip">Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">github.com/crackcode09/ie-knowledgebase</a></span>
         <span class="chip">content CC BY 4.0 · code MIT</span>
+        <span class="chip" id="verifiedChip"></span>
       </div>
       <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
+      <div class="notice"><b>Preview release.</b> Every course here was written with AI assistance and is marked <span class="tag draft">draft</span> until a reviewer has checked it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only the public IISE course titles and topic outlines were used as a map of what to cover; no IISE material appears here. See the <a href="terms.html#originality">originality notice</a>.</div>
     </div>
     <div class="start" id="start"></div>
     <div id="catalog"></div>
@@ -254,7 +262,7 @@
   </section>
   <aside id="panel"><button class="close" id="close" aria-label="Close">×</button><div id="panel-body"></div></aside>
 </main>
-<footer>generated from <code>ROADMAP.md</code> and the course READMEs by <code>tools/roadmap_graph.py</code> · content CC BY 4.0 · code MIT</footer>
+<footer>generated from <code>ROADMAP.md</code> and the course READMEs by <code>tools/roadmap_graph.py</code> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -309,7 +317,7 @@
     const n = modulesOf(c.id).length;
     return `<div class="card ${stateClass(c)}" data-id="${c.id}" tabindex="0" role="button">
       <button class="tick" data-tick="${c.id}" title="Mark as done" aria-label="Mark ${esc(c.label)} as done">${isDone(c.id) ? '✓' : ''}</button>
-      <h3>${esc(c.label)}</h3>
+      <h3>${esc(c.label)}${c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>'}</h3>
       ${withCat ? `<div class="cat-tag">${esc(byId.get(c.parent).label)}</div>` : ''}
       <div class="meta">${esc(c.length || '')}${n ? ` · ${n} modules` : ''}${isNext(c.id) ? ' · <b style="color:var(--next)">up next</b>' : ''}</div>
       <div class="topic">${esc(c.search || c.description)}</div>
@@ -378,7 +386,8 @@
   function openCourse(c) {
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
     const st = isDone(c.id) ? '<span class="pill done">done</span>' : isNext(c.id) ? '<span class="pill next">up next</span>' : unlocked(c.id) ? '<span class="pill built">available</span>' : '<span class="pill built">locked</span>';
-    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}</div>`;
+    const vf = c.verified ? `<span class="pill verified" title="${esc(c.review)}">verified</span>` : '<span class="pill draft" title="Written with AI assistance, not yet reviewed">draft</span>';
+    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} ${vf} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}</div>`;
     if (c.description) h += `<p>${esc(c.description)}</p>`;
     h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
@@ -446,6 +455,7 @@
 
   function refresh() {
     document.getElementById('count').innerHTML = `<b>${DATA.built}</b> built${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics`;
+    document.getElementById('verifiedChip').textContent = `${DATA.verified} of ${DATA.built} courses verified`;
     document.getElementById('mine').innerHTML = done.size ? ` · you: <b>${done.size}</b> done` : '';
     renderStart(); renderCatalog(); renderPath();
     if (graphReady) graphRestyle();

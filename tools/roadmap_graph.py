@@ -18,6 +18,8 @@ HTML_OUT = PUBLIC / "index.html"
 TEMPLATE = ROOT / "tools" / "roadmap_template.html"
 READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
+LEGAL_TEMPLATE = ROOT / "tools" / "legal_template.html"
+LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use"}   # tools/legal/<key>.html -> public/<key>.html
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
@@ -137,7 +139,7 @@ def rel(path):
 
 
 def category_table(slug):
-    """Course README path -> (topic, length) from the category README table."""
+    """Course README path -> (topic, length, status) from the category README table."""
     out = {}
     p = ROOT / "courses" / slug / "README.md"
     if not p.exists():
@@ -148,7 +150,7 @@ def category_table(slug):
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         m = LINK_RE.match(cells[0])
         if m and len(cells) >= 3:
-            out[f"courses/{slug}/{m.group(2)}"] = (cells[1], cells[2])
+            out[f"courses/{slug}/{m.group(2)}"] = (cells[1], cells[2], cells[3] if len(cells) > 3 else "")
     return out
 
 
@@ -302,10 +304,13 @@ def build_model(cats):
                 nodes.append({"id": nid, "type": "topic", "label": title, "parent": cid, "a": a, "covered_path": path})
             elif ok and path:
                 nid = "course:" + Path(path).parent.name
-                topic, length = table.get(path, ("", ""))
+                topic, length, status = table.get(path, ("", "", ""))
+                # Status cell: "draft" (AI-written, unreviewed) or "verified (Reviewer, YYYY-MM-DD)" per REVIEW.md
+                verified = status.lower().startswith("verified")
                 desc, modules, prereq, related = course_info(path)
                 nodes.append({"id": nid, "type": "course", "label": title, "parent": cid, "path": path, "a": a,
-                              "length": length, "description": desc, "search": topic, "extras": course_extras(path)})
+                              "length": length, "description": desc, "search": topic, "extras": course_extras(path),
+                              "verified": verified, "review": status if verified else ""})
                 by_path[path] = nid
                 pending.append((nid, prereq, related))
                 for i, m in enumerate(modules):
@@ -342,7 +347,8 @@ def build_model(cats):
     total = sum(len(c["items"]) for c in cats)
     built = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and not f)
     covered = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and f)
-    return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "nodes": nodes, "links": links}
+    verified = sum(1 for n in nodes if n["type"] == "course" and n.get("verified"))
+    return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "verified": verified, "nodes": nodes, "links": links}
 
 
 def write_html(cats):
@@ -350,6 +356,10 @@ def write_html(cats):
     data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/")
     HTML_OUT.write_text(TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", data), encoding="utf-8")
     READER_OUT.write_text(READER_TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", data), encoding="utf-8")
+    shell = LEGAL_TEMPLATE.read_text(encoding="utf-8")
+    for key, title in LEGAL_PAGES.items():
+        body = (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
+        (PUBLIC / f"{key}.html").write_text(shell.replace("__TITLE__", title).replace("__KEY__", key).replace("__BODY__", body), encoding="utf-8")
     return model
 
 

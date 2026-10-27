@@ -45,6 +45,11 @@
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
   .status b { color: var(--green); font-weight: 500; }
   .status[hidden] { display: none; }
+  .notice { margin: 0 0 var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13px; color: var(--muted); }
+  .notice b { color: var(--text); font-weight: 600; } .notice[hidden] { display: none; }
+  .notice.verified { border-left-color: var(--green); }
+  footer a { color: inherit; } footer a:hover { color: var(--accent); }
+  @media print { .notice { border: 1px solid #999; } }
   .topbar .status { margin: 0; }
   nav.toggle a.btn { color: var(--text); } nav.toggle a.btn:hover { color: var(--accent); text-decoration: none; }
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text); background: var(--surface); border: 1px solid var(--line);
@@ -164,13 +169,14 @@
       </div>
       </div>
     </div>
+    <div class="notice" id="notice" hidden></div>
     <div class="status" id="status" hidden>loading…</div>
     <div class="rendered" id="rendered"></div>
     <div class="raw" id="rawView"><pre id="rawPre"></pre></div>
     <div class="pager" id="pager"></div>
   </main>
 </div>
-<footer>content CC BY 4.0 · code MIT · <a href="index.html">back to the catalog</a> · keys: <kbd>←</kbd> <kbd>→</kbd> modules · <kbd>d</kbd> done · <kbd>r</kbd> raw</footer>
+<footer>content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="index.html">back to the catalog</a> · keys: <kbd>←</kbd> <kbd>→</kbd> modules · <kbd>d</kbd> done · <kbd>r</kbd> raw</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -222,6 +228,12 @@
   $('btnGithub').href = `${REPO}/blob/main/${courseRoot}/${file}`;
   let docLines = 0;
   const kindWord = m => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
+  function renderNotice() {
+    const n = $('notice');
+    if (course.verified) { n.className = 'notice verified'; n.innerHTML = `<b>Verified.</b> Reviewed against the <a href="${REPO}/blob/main/REVIEW.md" rel="noopener">review checklist</a>: ${esc(course.review)}.`; }
+    else n.innerHTML = `<b>Draft.</b> This course was written with AI assistance and has not yet been verified by a reviewer. Check figures, formulas and claims before relying on them. Only public IISE course titles and topic outlines were used as a map; the text, data and exercises are original. See the <a href="terms.html#originality">originality notice</a>.`;
+    n.hidden = false;
+  }
   function renderHero() {
     const cur = modules.find(m => m.rel === file);
     const extra = extras.find(x => x.path === file);
@@ -334,7 +346,7 @@
   });
 
   // ---- boot
-  renderHero(); renderToc(); renderPager();
+  renderHero(); renderNotice(); renderToc(); renderPager();
   fetch(`../${courseRoot}/${file}`, { cache: 'no-store' })
     .then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))
     .then(mount)
