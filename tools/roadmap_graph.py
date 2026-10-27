@@ -20,7 +20,7 @@ TEMPLATE = ROOT / "tools" / "roadmap_template.html"
 READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
 LEGAL_TEMPLATE = ROOT / "tools" / "legal_template.html"
-LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use", "roadmap": "Site roadmap"}   # tools/legal/<key>.html -> public/<key>.html
+LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use", "roadmap": "Site roadmap", "sources": "Sources"}   # tools/legal/<key>.html -> public/<key>.html
 ICON_DIR = ROOT / "tools" / "icons"   # Bootstrap Icons (MIT), vendored; see tools/icons/LICENSE
 CATEGORY_ICONS = {
     "analytics-data-science-ai": "graph-up-arrow",
@@ -315,6 +315,32 @@ def first_heading(path):
     return path.stem
 
 
+SITE_SOURCES = [
+    ("IISE course catalog (public course titles and topic outlines)", "Used only as a map of what an industrial-engineering curriculum covers; the categories and topic names in ROADMAP.md follow it. No IISE material is used.", "https://www.iise.org/TrainingCenter/"),
+    ("O*NET OnLine, Industrial Engineers 17-2112.00 (U.S. Department of Labor, ETA; CC BY 4.0)", "The occupational standard for the role advisor: rated tasks, knowledge, skills and technology.", "https://www.onetonline.org/link/summary/17-2112.00"),
+    ("BLS Occupational Outlook Handbook, Industrial Engineers (U.S. government work)", "Outlook, pay, entry education, employers and demand drivers for the role advisor.", "https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm"),
+    ("Bootstrap Icons (MIT, The Bootstrap Authors)", "Interface and category icons, vendored under tools/icons/.", "https://github.com/twbs/icons"),
+    ("D3 7.9.0, marked 12.0.2, Mermaid 10.9.1 (cdnjs)", "Mind map layout, Markdown rendering and diagrams in the reader.", "https://cdnjs.com/"),
+    ("Google Fonts: Inter, Space Grotesk, JetBrains Mono", "Typefaces.", "https://fonts.google.com/"),
+]
+
+
+def course_sources(readme_path):
+    """Rows of reference/sources.md: [{id, text, used, cited, verified}] or [] when the course has none."""
+    p = ROOT / Path(readme_path).parent / "reference" / "sources.md"
+    if not p.exists():
+        return []
+    out = []
+    for line in p.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("|") or line.startswith("|---") or line.startswith("| ID"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 5 or not cells[0]:
+            continue
+        out.append({"id": cells[0], "text": cells[1], "used": cells[2], "cited": cells[3], "verified": cells[4].lower().startswith("y")})
+    return out
+
+
 def course_extras(readme_path):
     """Reference, solutions and template markdown files shipped with a course, for the reader's nav."""
     base = ROOT / Path(readme_path).parent
@@ -357,7 +383,8 @@ def build_model(cats):
                 desc, modules, prereq, related = course_info(path)
                 nodes.append({"id": nid, "type": "course", "label": title, "parent": cid, "path": path, "a": a,
                               "length": length, "description": desc, "search": topic, "extras": course_extras(path),
-                              "verified": verified, "review": status if verified else ""})
+                              "verified": verified, "review": status if verified else "",
+                              "sources": course_sources(path)})
                 by_path[path] = nid
                 pending.append((nid, prereq, related))
                 for i, m in enumerate(modules):
@@ -432,6 +459,39 @@ def lint_templates():
             sys.exit(f"{path.name}: a rule narrows content inside the column: {hit.group(0)[:80]!r}. Keep one width per column (set it on .doc / .page / main only).")
 
 
+def sources_page(model):
+    """Body of public/sources.html: what the site rests on, then every course's sources table."""
+    def h(s):
+        return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+    def md_inline(s):
+        s = h(s)
+        s = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", s)
+        s = re.sub(r"&lt;(https?://[^&]+)&gt;", r'<a href="\1" rel="noopener">\1</a>', s)
+        return s
+    courses = [n for n in model["nodes"] if n["type"] == "course"]
+    with_src = [c for c in courses if c.get("sources")]
+    total = sum(len(c["sources"]) for c in with_src)
+    ver = sum(1 for c in with_src for s in c["sources"] if s["verified"])
+    parts = ['<div class="eyebrow">cat sources.html</div>', "<h1>Sources</h1>",
+             f'<div class="meta">What the site and each course rest on · {len(with_src)} of {len(courses)} courses have a sources table · {ver} of {total} entries verified</div>',
+             '<div class="box"><b>How to read this.</b> A source is listed because the course used it; <em>verified</em> means a reviewer has checked the edition and that the course uses it accurately. Until then it is a pointer. Courses without a table yet still carry a further-reading list in their reference folder. Inside a course, modules cite an entry by its ID, for example (montgomery-8e, ch. 6).</div>',
+             '<nav class="toc" aria-label="On this page"><a href="#site">The site</a>' + "".join(f'<a href="#{h(c["id"][7:])}">{h(c["label"])}</a>' for c in with_src) + "</nav>",
+             '<h2 id="site">The site</h2>', "<table><tr><th>Source</th><th>Used for</th></tr>"]
+    for name, used, url in SITE_SOURCES:
+        parts.append(f'<tr><td><a href="{url}" rel="noopener">{h(name)}</a></td><td>{h(used)}</td></tr>')
+    parts.append("</table>")
+    parts.append('<p class="small">O*NET is a trademark of the U.S. Department of Labor, Employment and Training Administration. This site is not affiliated with or endorsed by USDOL/ETA, BLS or IISE.</p>')
+    for c in with_src:
+        n = len(c["sources"]); k = sum(1 for s in c["sources"] if s["verified"])
+        parts.append(f'<h2 id="{h(c["id"][7:])}">{h(c["label"])}</h2>')
+        parts.append(f'<div class="meta">{k} of {n} verified · <a href="course.html?c={h(c["id"][7:])}&amp;f=reference%2Fsources.md">open in the course</a></div>')
+        parts.append("<table><tr><th>ID</th><th>Source</th><th>Used for</th><th>Cited in</th><th>Verified</th></tr>")
+        for s in c["sources"]:
+            parts.append(f'<tr><td><code>{h(s["id"])}</code></td><td>{md_inline(s["text"])}</td><td>{h(s["used"])}</td><td>{h(s["cited"])}</td><td>{"yes" if s["verified"] else "no"}</td></tr>')
+        parts.append("</table>")
+    return "\n".join(parts)
+
+
 def write_html(cats):
     lint_templates()
     model = build_model(cats)
@@ -439,7 +499,7 @@ def write_html(cats):
     write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))
     write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=data)))
     for key, title in LEGAL_PAGES.items():
-        body = (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
+        body = sources_page(model) if key == "sources" else (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
         for k, v in {"COURSES": model["built"], "VERIFIED": model["verified"], "COVERED": model["built"] + model["covered"], "TOTAL": model["total"]}.items():
             body = body.replace(f"__{k}__", str(v))
         write(PUBLIC / f"{key}.html", inject_icons(fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body)))
