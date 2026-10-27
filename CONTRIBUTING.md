@@ -15,6 +15,18 @@ Improvements are welcome: corrections, clearer explanations, new exercises, real
 
 Courses live under `courses/<category>/<course>/`. The categories mirror the IISE course catalog (Lean & Six Sigma, Quality & Operational Excellence, Work Design & Work Measurement, …), plus categories added for subjects the catalog does not cover (Operations Research & Decision Analysis); each category folder has a README listing its courses. A new course goes in the category that fits and gets a row in both that README and the root README.
 
+## Course README
+
+The text under a course title follows one shape, so every overview reads the same way:
+
+1. **One sentence of promise**, in plain words, saying what the reader will be able to do. It is the first line after the title and becomes the course's description in the catalog.
+2. **Three fact lines**, each `**Label:** value` on its own line: `Length`, `Prerequisites` (the word `none`, or links to the courses required), `Roles` (O*NET codes the course maps to). The site renders them as a facts row and reads the prerequisites from this line.
+3. `## What you will be able to do`: four to six outcomes, each starting with a verb.
+4. The rest of the overview (running case and datasets, sessions table, related courses, getting started, folder map).
+5. `## About this course`: the originality statement (what public titles or outlines were used as a map, and that everything else is original) just before `## License`.
+
+No topic bullet list under the title: the sessions table already lists the topics.
+
 ## Site templates
 
 One width per column: inside the reader document, the catalog page and the legal pages, prose, tables, code and figures share the same right edge. Set the width once on the column (`.doc`, `.page`, `main`) and never on the text inside it; `python tools/roadmap_graph.py` refuses to build if a rule narrows content inside a column.
