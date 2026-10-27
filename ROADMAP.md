@@ -13,7 +13,6 @@ Coverage checklist for the IE Knowledgebase. The categories and course topics fo
 
 ![Roadmap graph](public/roadmap.svg)
 
-## Analytics, Data Science & AI (0/0)
 ## Analytics, Data Science & AI (5/9)
 
 Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai/README.md)

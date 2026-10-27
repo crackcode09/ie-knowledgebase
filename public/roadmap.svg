@@ -3,7 +3,6 @@
 <text x="1820" y="1806" text-anchor="end" font-size="22" font-weight="700" fill="#1F2A33">IE Knowledgebase roadmap</text>
 <text x="1820" y="1828" text-anchor="end" font-size="13" fill="#7A8A96">32 of 102 courses built</text>
 <circle cx="30" cy="1822" r="6" fill="#2E8B57"/><text x="42" y="1826" fill="#1F2A33">built</text><circle cx="100" cy="1822" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/><text x="112" y="1826" fill="#1F2A33">not started</text>
-<line x1="925.0" y1="925.0" x2="925.0" y2="625.0" stroke="#D5DDE3" stroke-width="2"/>
 <line x1="925.0" y1="925.0" x2="1007.1" y2="636.5" stroke="#D5DDE3" stroke-width="2"/>
 <line x1="1007.1" y1="636.5" x2="949.0" y2="345.5" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="1007.1" y1="636.5" x2="983.1" y2="347.9" stroke="#D5DDE3" stroke-width="1"/>
@@ -117,7 +116,6 @@
 <line x1="808.1" y1="648.7" x2="831.8" y2="352.5" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="808.1" y1="648.7" x2="866.2" y2="348.0" stroke="#D5DDE3" stroke-width="1"/>
 <line x1="808.1" y1="648.7" x2="900.7" y2="345.5" stroke="#D5DDE3" stroke-width="1"/>
-<circle cx="925.0" cy="625.0" r="36" fill="#0078E6"/>
 <circle cx="949.0" cy="345.5" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="983.1" cy="347.9" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="1017.0" cy="352.3" r="6" fill="#2E8B57" stroke="#2E8B57" stroke-width="1.5"/>
@@ -232,10 +230,6 @@
 <circle cx="900.7" cy="345.5" r="4.5" fill="#FFFFFF" stroke="#C9D2D8" stroke-width="1.5"/>
 <circle cx="808.1" cy="648.7" r="36" fill="#0078E6"/>
 <circle cx="925.0" cy="925.0" r="44" fill="#005BA6"/>
-<text x="925.0" y="608.5" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="500">Analytics,</text>
-<text x="925.0" y="619.5" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="500">Data Science</text>
-<text x="925.0" y="630.5" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="500">&amp; AI</text>
-<text x="925.0" y="641.5" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="700">0/0</text>
 <text transform="translate(949.5,334.5) rotate(-87.6)" text-anchor="start" dominant-baseline="middle" fill="#7A8A96" font-weight="400">AI Essentials for Industrial &amp; Systems Engineers</text>
 <text transform="translate(984.2,337.0) rotate(-84.2)" text-anchor="start" dominant-baseline="middle" fill="#7A8A96" font-weight="400">Artificial Intelligence Using Design Thinking</text>
 <text transform="translate(1018.8,341.5) rotate(-80.9)" text-anchor="start" dominant-baseline="middle" fill="#1F2A33" font-weight="700">Analytics-Based Enterprise Performance Management</text>
