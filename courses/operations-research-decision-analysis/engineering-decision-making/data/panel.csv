@@ -1,0 +1,8 @@
+voter,ranking,grade_A,grade_B,grade_C,grade_D
+E1,C>B>D>A,Poor,Good,Excellent,Acceptable
+E2,C>B>D>A,Poor,Very good,Excellent,Acceptable
+E3,C>B>D>A,Acceptable,Good,Very good,Acceptable
+E4,B>D>A>C,Good,Excellent,Reject,Very good
+E5,B>D>A>C,Good,Very good,Poor,Good
+E6,A>B>D>C,Excellent,Very good,Reject,Good
+E7,A>B>D>C,Very good,Good,Poor,Acceptable

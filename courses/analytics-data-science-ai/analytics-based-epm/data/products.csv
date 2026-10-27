@@ -1,0 +1,13 @@
+product,list_price,direct_cost,production_runs,complexity
+P01,1950.0,755.98,8,configurable
+P02,1330.0,579.3,36,standard
+P03,720.0,352.22,66,standard
+P04,1790.0,809.98,38,standard
+P05,220.0,90.42,64,configurable
+P06,1830.0,839.83,55,standard
+P07,480.0,232.48,74,configurable
+P08,2300.0,1287.48,7,standard
+P09,1560.0,738.54,51,standard
+P10,1660.0,858.07,45,standard
+P11,1190.0,578.85,73,standard
+P12,1250.0,564.02,55,standard

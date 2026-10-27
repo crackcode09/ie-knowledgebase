@@ -1,0 +1,13 @@
+dimension,question,rule_or_check,records_checked,records_passing,score_pct,owner,action
+Completeness,Is required data present?,,,,,,
+Validity,Does it obey the business rule?,,,,,,
+Conformity,Is it in the standard format?,,,,,,
+Consistency,Is it the same everywhere?,,,,,,
+Uniqueness,Is each thing recorded once?,,,,,,
+Integrity,Do references resolve?,,,,,,
+Accuracy,Does it match reality?,,,,,,
+Reasonableness,Is the value plausible?,,,,,,
+Timeliness,Is it current enough?,,,,,,
+Relevance,Is it the data the decision needs?,,,,,,
+Accessibility,Can the right people get it?,,,,,,
+Precision,Is it detailed enough?,,,,,,

@@ -13,7 +13,7 @@ Improvements are welcome: corrections, clearer explanations, new exercises, real
 
 ## Layout
 
-Courses live under `courses/<category>/<course>/`. The categories mirror the IISE course catalog (Lean & Six Sigma, Quality & Operational Excellence, Work Design & Work Measurement, …); each category folder has a README listing its courses. A new course goes in the category that fits and gets a row in both that README and the root README.
+Courses live under `courses/<category>/<course>/`. The categories mirror the IISE course catalog (Lean & Six Sigma, Quality & Operational Excellence, Work Design & Work Measurement, …), plus categories added for subjects the catalog does not cover (Operations Research & Decision Analysis); each category folder has a README listing its courses. A new course goes in the category that fits and gets a row in both that README and the root README.
 
 ## Workflow
 
