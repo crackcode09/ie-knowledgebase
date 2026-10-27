@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | Course | `courses/quality-operational-excellence/quality-engineering-essentials/` (8 modules, including the folded-in `00-foundations-of-quality.md` that covers the catalog's separate "Quality 101" topic) |
-| Board run | 2 (run 1 on 2026-10-27 found 8 blocking findings; all fixed in PR #34; this run reviews the rewritten course) |
+| Board run | 2, plus a targeted run-3 re-check of the run-2 findings (accuracy section) |
 | Date | 2026-10-27 |
-| State | blocked (four small findings, listed below; no originality or trademark issue) |
+| State | ready for sign-off (no FAIL remains after PR #36; ten questions open, none blocking) |
 | Verified by | |
 
 ## Verdict summary
@@ -17,12 +17,12 @@
 | 1.3 No licensed data cards or standards text | PASS | PASS (standards map is names and one-line purposes only) |
 | 1.4 Fictional, seeded data | PASS | PASS (one question on the company name) |
 | 1.5 Quotations short and attributed | PASS | PASS |
-| 2.1 Formulas match a primary source; every symbol defined | FAIL | FAIL (formulas and symbols all correct; one Cpk/Ppk label slip, one attribution slip) |
+| 2.1 Formulas match a primary source; every symbol defined | FAIL | PASS after #36 (run 2 found one Cpk/Ppk label slip and one attribution slip; both fixed and re-checked) |
 | 2.2 Every number reproducible | FAIL | PASS (scripts rerun; data byte-identical; every number matches) |
 | 2.3 Claims current and cited | FAIL | QUESTION (ISO 9001:2026 clause structure; one wrong sentence on Dee's kappa, counted under blocking finding 3) |
-| 2.4 Exercises answered correctly | PASS | FAIL (one answer over-reaches on Ben's offset) |
+| 2.4 Exercises answered correctly | PASS | PASS after #36 (the Ben's-offset answer was corrected and re-checked against the data) |
 | 2.5 Disagreements presented fairly | FAIL | PASS (Wheeler, Action Priority, kappa baseline all present) |
-| 2.6 Sources table complete | not checked | FAIL (editions present; "Cited in" column out of step with the modules; stale line; two missing entries) |
+| 2.6 Sources table complete | not checked | PASS after #36 (entries added, Cited-in rebuilt and re-checked row by row, stale line removed) |
 | 3.1 Marks used descriptively | PASS | PASS |
 | 3.2 Belt names describe content | PASS | PASS |
 | 3.3 Figures are the course's own | PASS | PASS |
@@ -35,9 +35,9 @@
 | 4.5 Readable without a statistics background | QUESTION | QUESTION (glosses added; a few long sentences and abbreviations remain) |
 | 4.6 Figures and data files present | PASS | PASS |
 
-## Blocking findings (run 2)
+## Blocking findings (run 2), all fixed in PR #36
 
-All four are small corrections; none touches originality or trademarks.
+The accuracy reviewer re-checked each one on the fixed branch (run 3, targeted): 1, 2 and 3 confirmed fixed; 4 confirmed except the ISO 9001:2026 row, which was corrected in a follow-up commit, and one further stale sentence in the facilitator notes ("the AIAG baseline passes Dee"), also corrected.
 
 1. **2.1 and 2.4, Cpk versus Ppk label.** `modules/04` exercise 4.1 (1) and `solutions/README.md` call M1's 0.92 "Cpk", but it is computed with the overall standard deviation, which the course's own formula sheet defines as Ppk. The module's result table already says Ppk. Fix: say "Ppk = 0.92; if centred, Pp = 1.42". Also, `reference/formulas.md` credits the kappa formula to landis-koch-1977; the formula is Cohen (1960), Landis and Koch supply the bands. Fix: add a cohen-1960 entry and cite it.
 2. **2.4, exercise 3.1 answer.** The answer says Ben's offset "grows with size". Per part, Ben's excess over the other two operators runs 0.0010 to 0.0043 mm with no trend (part 8 is 0.0010, part 6 is 0.0043). Fix: "Ben reads high on every part, by about 0.001 to 0.004 mm, with no clear trend with size", and point the diagnosis at technique rather than linearity.

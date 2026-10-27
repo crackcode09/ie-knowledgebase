@@ -44,7 +44,7 @@ All values come from `python tools/qekit.py all`, using data generated with seed
 
 - **Session 01:** let teams write the charter for their own problem. Most first drafts state a solution in the problem statement.
 - **Session 02:** the dirty-data exercise works well as a 15-minute competition: find all the issues.
-- **Session 03:** run a live gauge R&R with calipers and 10 parts. The ANOVA in `qekit.py` takes any CSV in the same format. Expect debate on the kappa bar: the AIAG baseline passes Dee, the course's stricter bar does not; the point is to make the team decide what miss rate the customer would accept.
+- **Session 03:** run a live gauge R&R with calipers and 10 parts. The ANOVA in `qekit.py` takes any CSV in the same format. Expect debate on the kappa bar: the AIAG baseline puts Dee in its conditional band and the course's stricter bar does not accept her; the point is to make the team decide what miss rate the customer would accept.
 - **Session 04:** contrast the raw and log-scale I-charts of turnaround times, then raise the Wheeler position: would you leave the raw chart and live with two signals?
 - **Session 05:** build the fishbone before showing the stratification results. Then mark each cause as verified or not verified.
 - **Session 06:** debate "buy a new lathe" against the low-cost actions using the capability numbers (spread is fine; centering isn't). Then run the tooling-cost break-even as a group.
