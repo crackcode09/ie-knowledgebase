@@ -8,6 +8,7 @@ Re-run after editing ROADMAP.md or adding a course. Standard library only.
 import json
 import math
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,34 @@ TEMPLATE = ROOT / "tools" / "roadmap_template.html"
 READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
 LEGAL_TEMPLATE = ROOT / "tools" / "legal_template.html"
-LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use"}   # tools/legal/<key>.html -> public/<key>.html
+LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use", "roadmap": "Site roadmap"}   # tools/legal/<key>.html -> public/<key>.html
+ICON_DIR = ROOT / "tools" / "icons"   # Bootstrap Icons (MIT), vendored; see tools/icons/LICENSE
+CATEGORY_ICONS = {
+    "analytics-data-science-ai": "graph-up-arrow",
+    "ergonomics-safety": "shield-check",
+    "healthcare-process-improvement": "heart-pulse",
+    "leadership-project-management": "people",
+    "lean-six-sigma": "arrow-repeat",
+    "logistics-supply-chain": "truck",
+    "quality-operational-excellence": "patch-check",
+    "technical-skills": "wrench-adjustable",
+    "work-design-work-measurement": "stopwatch",
+    "operations-research-decision-analysis": "diagram-3",
+    "microlearning-refreshers": "lightning-charge",
+}
+
+
+def icon(name, size=16):
+    """Inline SVG for a vendored Bootstrap icon, sized in CSS pixels and coloured by currentColor."""
+    svg = (ICON_DIR / f"{name}.svg").read_text(encoding="utf-8")
+    svg = re.sub(r'\s(width|height|class)="[^"]*"', "", svg, count=3)
+    svg = svg.replace("<svg ", f'<svg class="bi" width="{size}" height="{size}" aria-hidden="true" focusable="false" ', 1)
+    return re.sub(r"\s*\n\s*", "", svg)
+
+
+def inject_icons(html):
+    """Replace __ICON:name__ and __ICON:name:size__ placeholders in a template."""
+    return re.sub(r"__ICON:([a-z0-9-]+)(?::(\d+))?__", lambda m: icon(m.group(1), int(m.group(2) or 16)), html)
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
@@ -38,6 +66,9 @@ def parse(md):
             cur = {"name": m.group(1), "items": [], "slug": None, "tag": ""}
             cats.append(cur)
             continue
+        if line.startswith("## "):
+            cur = None   # a section without a (k/n) count is prose, not a category; its checkboxes are not topics
+            continue
         m = re.match(r"^Folder: \[`courses/([a-z0-9-]+)/`\][^—]*(?:— *(.+))?", line)
         if m and cur is not None:
             cur["slug"] = m.group(1)
@@ -45,11 +76,14 @@ def parse(md):
             continue
         m = re.match(r"^- \[([ x])\] (.+)", line)
         if m and cur is not None:
-            lm = LINK_RE.search(m.group(2))
-            title = LINK_RE.sub(r"\1", m.group(2))
-            title = re.split(r" — ", title)[0].strip()
-            folded = "folded into" in m.group(2)
-            cur["items"].append((title, m.group(1) == "x", lm.group(2) if lm else None, folded))
+            rest = m.group(2)
+            found = LINK_RE.findall(rest)
+            lm = LINK_RE.match(rest)
+            # The title is the link text when the item starts with a link; otherwise the text before a " — note".
+            title = lm.group(1).strip() if lm else re.split(r" — ", LINK_RE.sub(r"\1", rest))[0].strip()
+            folded = "folded into" in rest.lower()
+            path = (found[-1][1] if folded else found[0][1]) if found else None   # folded items point at the covering course
+            cur["items"].append((title, m.group(1) == "x", path, folded))
     return cats
 
 
@@ -100,8 +134,7 @@ def render(cats):
                           f'fill="{INK if ok else MUTED}" font-weight="{700 if ok else 400}">{esc(title)}</text>')
         k = sum(ok for _, ok, _p, _f in c["items"])
         nodes.append(f'<circle cx="{x1:.1f}" cy="{y1:.1f}" r="36" fill="{CAT}"/>')
-        name = c["name"].replace(" & ", " &amp; ")
-        words = name.split()
+        words = c["name"].split()
         lines, line = [], ""
         for w in words:
             if len(line) + len(w) > 13 and line:
@@ -115,7 +148,7 @@ def render(cats):
         for j, ln in enumerate(lines):
             w = "700" if j == len(lines) - 1 else "500"
             labels.append(f'<text x="{x1:.1f}" y="{y0 + j * 11:.1f}" text-anchor="middle" '
-                          f'dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="{w}">{ln}</text>')
+                          f'dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="{w}">{esc(ln)}</text>')
         ang += span
     nodes.append(f'<circle cx="{cx}" cy="{cy}" r="44" fill="{HUB}"/>')
     labels.append(f'<text x="{cx}" y="{cy - 6}" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">IE</text>')
@@ -170,6 +203,7 @@ def module_summary(path, limit=220):
     try:
         lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
     except OSError:
+        print(f"warning: module file not found: {path}", file=sys.stderr)
         return "", "", 0
     items, grab, kind = [], False, "objectives"
     for line in lines:
@@ -194,7 +228,8 @@ def module_summary(path, limit=220):
                 break
     def clean(s):
         s = LINK_RE.sub(r"\1", s)
-        s = re.sub(r"(\*\*|\*|_|`)([^*_`]+)\1", r"\2", s)
+        s = re.sub(r"(\*\*|\*|`)([^*`]+)\1", r"\2", s)
+        s = re.sub(r"(?<!\w)_([^_]+)_(?!\w)", r"\1", s)
         return re.sub(r"[.;:]\s*$", "", s.strip())
     cleaned = [clean(i) for i in items if i]
     out = "; ".join(cleaned)
@@ -213,7 +248,7 @@ def course_info(readme_path):
     for line in lines[1:]:
         s = line.strip()
         if s and not s.startswith(("#", "|", "**", "-", "!", "`")):
-            desc = re.sub(r"(\*\*|\*|_)([^*_]+)\1", r"\2", LINK_RE.sub(r"\1", s))
+            desc = re.sub(r"(?<!\w)_([^_]+)_(?!\w)", r"\1", re.sub(r"(\*\*|\*)([^*]+)\1", r"\2", LINK_RE.sub(r"\1", s)))
             break
     modules = []
     time_idx = topics_idx = None
@@ -248,7 +283,7 @@ def course_info(readme_path):
         modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics, "tkind": tkind, "tcount": tcount})
     prereq, related = [], []
     for line in lines:
-        is_prereq_line = "prerequisite" in line.lower()
+        is_prereq_line = bool(re.match(r"^\s*[-*]?\s*\**prerequisites?\b", line, re.I))
         # On a prerequisites line, links after "Helpful" are recommendations, not requirements.
         hard, soft = (re.split(r"helpful|helps?\b", line, maxsplit=1, flags=re.I) + [""])[:2] if is_prereq_line else ("", line)
         if is_prereq_line and re.match(r"^\s*\**prerequisites?:?\**\s*none\b", line, re.I):
@@ -257,7 +292,12 @@ def course_info(readme_path):
             for _label, href in LINK_RE.findall(part):
                 if not href.startswith("../") or not href.endswith("/README.md"):
                     continue
-                target = rel((ROOT / base / href).resolve().relative_to(ROOT))
+                try:
+                    target = rel((ROOT / base / href).resolve().relative_to(ROOT))
+                except ValueError:
+                    continue   # the link leaves the repository
+                if target == rel(Path(readme_path)):
+                    continue
                 if target not in prereq and target not in related:
                     bucket.append(target)
     return desc, modules, prereq, related
@@ -294,6 +334,7 @@ def build_model(cats):
         span = 2 * math.pi * len(c["items"]) / total_items
         nodes.append({"id": cid, "type": "category", "label": c["name"], "a": round(ang + span / 2, 4),
                       "description": category_description(slug), "tag": c.get("tag", ""),
+                      "icon": icon(CATEGORY_ICONS.get(slug, "list"), 18),
                       "path": f"courses/{slug}/README.md"})
         links.append({"source": "hub", "target": cid, "type": "tree"})
         table = category_table(slug)
@@ -304,6 +345,8 @@ def build_model(cats):
                 nodes.append({"id": nid, "type": "topic", "label": title, "parent": cid, "a": a, "covered_path": path})
             elif ok and path:
                 nid = "course:" + Path(path).parent.name
+                if not (ROOT / path).exists():
+                    sys.exit(f"ROADMAP.md links to a missing course README: {path}")
                 topic, length, status = table.get(path, ("", "", ""))
                 # Status cell: "draft" (AI-written, unreviewed) or "verified (Reviewer, YYYY-MM-DD)" per REVIEW.md
                 verified = status.lower().startswith("verified")
@@ -344,6 +387,10 @@ def build_model(cats):
     for n in nodes:
         if n.get("covered_path"):
             n["covered"] = by_path.get(n.pop("covered_path"))
+    ids = [n["id"] for n in nodes]
+    dupes = sorted({i for i in ids if ids.count(i) > 1})
+    if dupes:
+        sys.exit(f"duplicate node ids (same course folder name or topic title in two places?): {dupes}")
     total = sum(len(c["items"]) for c in cats)
     built = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and not f)
     covered = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and f)
@@ -351,22 +398,39 @@ def build_model(cats):
     return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "verified": verified, "nodes": nodes, "links": links}
 
 
+def write(path, text):
+    """Write with LF line endings so the output is identical on Windows and Linux."""
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(text)
+
+
+def fill(template_path, **slots):
+    tpl = template_path.read_text(encoding="utf-8")
+    for key, value in slots.items():
+        marker = f"__{key}__"
+        n = tpl.count(marker)
+        assert n >= 1 and (key != "DATA" or n == 1), f"{template_path.name}: {marker} found {n} times"
+        tpl = tpl.replace(marker, value)
+    return tpl
+
+
 def write_html(cats):
     model = build_model(cats)
-    data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/")
-    HTML_OUT.write_text(TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", data), encoding="utf-8")
-    READER_OUT.write_text(READER_TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", data), encoding="utf-8")
-    shell = LEGAL_TEMPLATE.read_text(encoding="utf-8")
+    data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
+    write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))
+    write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=data)))
     for key, title in LEGAL_PAGES.items():
         body = (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
-        (PUBLIC / f"{key}.html").write_text(shell.replace("__TITLE__", title).replace("__KEY__", key).replace("__BODY__", body), encoding="utf-8")
+        for k, v in {"COURSES": model["built"], "VERIFIED": model["verified"], "COVERED": model["built"] + model["covered"], "TOTAL": model["total"]}.items():
+            body = body.replace(f"__{k}__", str(v))
+        write(PUBLIC / f"{key}.html", inject_icons(fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body)))
     return model
 
 
 if __name__ == "__main__":
     PUBLIC.mkdir(exist_ok=True)
     cats = parse(SRC.read_text(encoding="utf-8"))
-    OUT.write_text(render(cats), encoding="utf-8")
+    write(OUT, render(cats))
     print(f"wrote {OUT.relative_to(ROOT)}: {sum(len(c['items']) for c in cats)} courses in {len(cats)} categories")
     model = write_html(cats)
     print(f"wrote {READER_OUT.relative_to(ROOT)}")

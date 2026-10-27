@@ -62,11 +62,32 @@
 ### Outcome (filled in after completion)
 - Delivered as described in one PR. Course placement script now writes `draft` for new rows.
 
+## [2026-10-27] — Plan: Site review and fixes (code, accessibility, layout)
 ## [2026-10-27] — Plan: Course review board
 
 ### Status: COMPLETE
 
 ### What is being built or changed
+- Three independent reviews of the site build (generator, catalog page, reader page) plus a design pass at phone and laptop widths; every confirmed finding fixed in one branch.
+
+### Files to be created or modified
+- `tools/roadmap_template.html` — reset clears module progress; safe hash decoding; D3-missing guard; drawer hidden from the tab order when closed, focus moved in and restored; focus and collapsed categories survive re-renders; open drawer re-renders on ticks; cards are articles with a fixed header row (status tag left, tick right) and Enter/Space handling; tick `aria-pressed`; learning path grouped by category inside each level; mind map keyboard access, selection cleared on close, modules kept visible when a course is selected, colours follow the theme, search applied on first open; tabs with `aria-controls`, panels, arrow keys; shareable hash kept in sync; compact status pill under 1400px; phone layout; light palette darkened to pass AA; D3 with SRI.
+- `tools/reader_template.html` — unknown slug handled; anchors kept on cross-course and GitHub links; GitHub-style heading ids with de-duplication; renderer and fetch errors separated; Mermaid with error handling and in-place theme re-render; print hides chrome and wraps code; shortcuts ignore repeats, modifiers and editable targets; un-marking a module un-marks the course; `aria-pressed`, `aria-current`, `role=status`, skip link; tables wrapped instead of `display:block`; query strings stripped from links; raw download for binaries; marked and Mermaid with SRI.
+- `tools/roadmap_graph.py` — stray `##` sections no longer attach to a category; titles keep em dashes; folded items use the last link; SVG labels escaped; prerequisite lines matched only when they start with "Prerequisites"; links leaving the repo skipped; self-links dropped; missing course README or duplicate ids abort the run; LF output on Windows; template placeholders verified; `<!--` escaped in the JSON.
+- `tools/legal_template.html`, `tools/legal/*.html` — nav semantics for the in-page contents; palette tokens.
+
+### Implementation steps
+1. Reviews (three agents) and screenshots at 360/1024/1280 in both themes.
+2. Patch all three templates and the generator from the verified findings.
+3. Regenerate; syntax-check the embedded scripts with node; re-screenshot every view, including phone width through a 360px iframe; recompute contrast ratios.
+
+### Assumptions & decisions
+- Node ids keep their current scheme (URLs stay stable); duplicates are now an error instead of a silent collision.
+- The warm-terminal identity stays; only token values changed to meet contrast.
+- Locked cards stay de-emphasised at 70% opacity rather than 55%.
+
+### Outcome (filled in after completion)
+- Delivered as one PR. Typography readability research runs separately and lands as its own PR.
 - A multi-agent review board that runs REVIEW.md against one course: four specialist reviewers in parallel (originality, accuracy, trademarks and licences, structure and plain language), a chair that consolidates PASS / FAIL / QUESTION verdicts into `reviews/<slug>.md`, and a question round where the human reviewer answers doubts. Sign-off is a separate, human-gated step that flips the status cells and opens a `review:` PR.
 
 ### Files to be created or modified
