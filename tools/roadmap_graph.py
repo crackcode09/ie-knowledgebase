@@ -240,7 +240,7 @@ def course_info(readme_path):
                 topics = last
         mpath = rel(base / m.group(2))
         if topics:
-            tkind, tcount = "topics", len([x for x in re.split(r"[;,]", topics) if x.strip()])
+            tkind, tcount = "topics", len([x for x in re.split(r"[;,·|]", topics) if x.strip()])
         else:
             topics, tkind, tcount = module_summary(mpath)
         modules.append({"title": m.group(1), "path": mpath, "note": note, "topics": topics, "tkind": tkind, "tcount": tcount})
