@@ -111,6 +111,7 @@
 
 ## [2026-10-27] — Plan: Sources tables and the Sources page
 ## [2026-10-27] — Plan: Quality Engineering Essentials, fixes from board run 1
+## [2026-10-27] — Plan: Role profiles data and the /map-course command
 
 ### Status: COMPLETE
 
@@ -151,3 +152,23 @@
 
 ### Outcome (filled in after completion)
 - Delivered as one PR; board re-run pending.
+- Versioned O*NET occupation profiles vendored under `roles/onet/` (eight codes around industrial engineering), built from the official 31.0 CSV files by `tools/onet_refresh.py` with the release version, download date and CC BY 4.0 attribution stamped on each file.
+- A `/map-course <slug>` command (chair skill plus a read-only `map-relevance` agent) that maps a course onto the profiles its README declares: covered and touched elements with quoted evidence, high-importance elements not reached, content the standard does not name (dated), run twice with the differences reported. Output to `roles/mappings/<slug>.md`, every row proposed until a person confirms it. Advisory only: not a review-board gate and nothing reaches the site.
+- Courses declare roles with a `**Roles:**` line in the README; Quality Engineering Essentials is the first.
+
+### Files to be created or modified
+- `tools/onet_refresh.py`, `roles/onet/codes.txt`, `roles/onet/<code>.md|.json`, `roles/README.md`, `roles/mappings/_template.md`
+- `.claude/agents/map-relevance.md`, `.claude/skills/map-course/SKILL.md`
+- `courses/.../quality-engineering-essentials/README.md` (Roles line), `NOTICE.md` (O*NET attribution)
+
+### Implementation steps
+1. Download the 31.0 CSV files, extract the listed codes, write the profiles.
+2. Write the agent and the chair skill with the double-run stability check.
+3. First map on Quality Engineering Essentials.
+
+### Assumptions & decisions
+- Decided after a three-pass red team: separate command rather than a fifth board member, so verification keeps moving; evidence-quoted, human-confirmed rows; "not in the standard" is dated information, never a defect; data from the official bulk files, never scraped.
+- O*NET 31.0 at the time of writing; refresh quarterly and review the diff.
+
+### Outcome (filled in after completion)
+- Delivered. First map run on Quality Engineering Essentials (two runs, consolidated, 17 differing rows, 10 questions) at `roles/mappings/quality-engineering-essentials.md`, state proposed.

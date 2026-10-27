@@ -1,0 +1,10 @@
+# O*NET-SOC codes vendored under roles/onet/. One per line; text after # is a comment.
+# Refresh all with: python tools/onet_refresh.py
+17-2112.00   # Industrial Engineers (sample titles include Quality Engineer, Process Engineer, Plant Engineer)
+17-2112.01   # Human Factors Engineers and Ergonomists
+17-2112.02   # Validation Engineers
+17-2112.03   # Manufacturing Engineers
+15-2031.00   # Operations Research Analysts
+13-1081.00   # Logisticians
+13-1111.00   # Management Analysts
+11-3051.00   # Industrial Production Managers
