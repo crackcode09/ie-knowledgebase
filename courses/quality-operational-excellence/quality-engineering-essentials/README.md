@@ -10,7 +10,8 @@ A free, open course in the quality engineer's core toolkit, organized along the 
 - corrective actions and control
 
 **Length:** about 39 hours of self-study, in a foundations module, six sessions and a capstone. About half of that time is hands-on practice.  
-**Prerequisites:** none.
+**Prerequisites:** none.  
+**Roles:** 17-2112.00 (quality engineer), 17-2112.03
 
 ## What you will be able to do
 

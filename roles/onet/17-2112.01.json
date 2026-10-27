@@ -1,0 +1,1516 @@
+{
+ "code": "17-2112.01",
+ "title": "Human Factors Engineers and Ergonomists",
+ "description": "Design objects, facilities, and environments to optimize human well-being and overall system performance, applying theory, principles, and data regarding the relationship between humans and respective technology. Investigate and analyze characteristics of human behavior and performance as it relates to the use of technology.",
+ "onet_version": "31.0",
+ "downloaded": "2026-10-27",
+ "attribution": "This file includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.",
+ "tasks": [
+  {
+   "id": "16393",
+   "task": "Collect data through direct observation of work activities or witnessing the conduct of tests.",
+   "type": "Core",
+   "importance": 4.7
+  },
+  {
+   "id": "16378",
+   "task": "Conduct interviews or surveys of users or customers to collect information on topics, such as requirements, needs, fatigue, ergonomics, or interfaces.",
+   "type": "Core",
+   "importance": 4.55
+  },
+  {
+   "id": "16396",
+   "task": "Advocate for end users in collaboration with other professionals, including engineers, designers, managers, or customers.",
+   "type": "Core",
+   "importance": 4.5
+  },
+  {
+   "id": "16387",
+   "task": "Inspect work sites to identify physical hazards.",
+   "type": "Core",
+   "importance": 4.47
+  },
+  {
+   "id": "16381",
+   "task": "Prepare reports or presentations summarizing results or conclusions of human factors engineering or ergonomics activities, such as testing, investigation, or validation.",
+   "type": "Core",
+   "importance": 4.4
+  },
+  {
+   "id": "16379",
+   "task": "Recommend workplace changes to improve health and safety, using knowledge of potentially harmful factors, such as heavy loads or repetitive motions.",
+   "type": "Core",
+   "importance": 4.37
+  },
+  {
+   "id": "16383",
+   "task": "Perform functional, task, or anthropometric analysis, using tools, such as checklists, surveys, videotaping, or force measurement.",
+   "type": "Core",
+   "importance": 4.35
+  },
+  {
+   "id": "16380",
+   "task": "Provide technical support to clients through activities, such as rearranging workplace fixtures to reduce physical hazards or discomfort or modifying task sequences to reduce cycle time.",
+   "type": "Core",
+   "importance": 4.32
+  },
+  {
+   "id": "16392",
+   "task": "Assess the user-interface or usability characteristics of products.",
+   "type": "Core",
+   "importance": 4.26
+  },
+  {
+   "id": "16386",
+   "task": "Establish system operating or training requirements to ensure optimized human-machine interfaces.",
+   "type": "Core",
+   "importance": 4.2
+  },
+  {
+   "id": "16385",
+   "task": "Integrate human factors requirements into operational hardware.",
+   "type": "Core",
+   "importance": 4.18
+  },
+  {
+   "id": "16374",
+   "task": "Review health, safety, accident, or worker compensation records to evaluate safety program effectiveness or to identify jobs with high incidence of injury.",
+   "type": "Core",
+   "importance": 4.17
+  },
+  {
+   "id": "16397",
+   "task": "Design or evaluate human work systems, using human factors engineering and ergonomic principles to optimize usability, cost, quality, safety, or performance.",
+   "type": "Core",
+   "importance": 4.16
+  },
+  {
+   "id": "16372",
+   "task": "Write, review, or comment on documents, such as proposals, test plans, or procedures.",
+   "type": "Core",
+   "importance": 4.15
+  },
+  {
+   "id": "16373",
+   "task": "Train users in task techniques or ergonomic principles.",
+   "type": "Core",
+   "importance": 4.0
+  },
+  {
+   "id": "16391",
+   "task": "Conduct research to evaluate potential solutions related to changes in equipment design, procedures, manpower, personnel, or training.",
+   "type": "Core",
+   "importance": 3.95
+  },
+  {
+   "id": "16375",
+   "task": "Provide human factors technical expertise on topics, such as advanced user-interface technology development or the role of human users in automated or autonomous sub-systems in advanced vehicle systems.",
+   "type": "Core",
+   "importance": 3.88
+  },
+  {
+   "id": "16388",
+   "task": "Develop or implement human performance research, investigation, or analysis protocols.",
+   "type": "Core",
+   "importance": 3.84
+  },
+  {
+   "id": "16389",
+   "task": "Develop or implement research methodologies or statistical analysis plans to test and evaluate developmental prototypes used in new products or processes, such as cockpit designs, user workstations, or computerized human models.",
+   "type": "Core",
+   "importance": 3.8
+  },
+  {
+   "id": "16377",
+   "task": "Estimate time or resource requirements for ergonomic or human factors research or development projects.",
+   "type": "Core",
+   "importance": 3.6
+  },
+  {
+   "id": "16390",
+   "task": "Design cognitive aids, such as procedural storyboards or decision support systems.",
+   "type": "Core",
+   "importance": 3.55
+  },
+  {
+   "id": "16395",
+   "task": "Analyze complex systems to determine potential for further development, production, interoperability, compatibility, or usefulness in a particular area, such as aviation.",
+   "type": "Core",
+   "importance": 3.53
+  },
+  {
+   "id": "16376",
+   "task": "Investigate theoretical or conceptual issues, such as the human design considerations of lunar landers or habitats.",
+   "type": "Core",
+   "importance": 3.44
+  },
+  {
+   "id": "16384",
+   "task": "Operate testing equipment, such as heat stress meters, octave band analyzers, motion analysis equipment, inclinometers, light meters, thermoanemometers, sling psychrometers, or colorimetric detection tubes.",
+   "type": "Core",
+   "importance": 3.4
+  },
+  {
+   "id": "16382",
+   "task": "Perform statistical analyses, such as social network pattern analysis, network modeling, discrete event simulation, agent-based modeling, statistical natural language processing, computational sociology, mathematical optimization, or systems dynamics.",
+   "type": "Core",
+   "importance": 3.4
+  },
+  {
+   "id": "16394",
+   "task": "Apply modeling or quantitative analysis to forecast events, such as human decisions or behaviors, the structure or processes of organizations, or the attitudes or actions of human groups.",
+   "type": "Core",
+   "importance": 3.2
+  }
+ ],
+ "knowledge": [
+  {
+   "id": "2.C.4.e",
+   "name": "Psychology",
+   "importance": 4.16,
+   "level": 4.74
+  },
+  {
+   "id": "2.C.7.a",
+   "name": "English Language",
+   "importance": 4.0,
+   "level": 4.32
+  },
+  {
+   "id": "2.C.3.c",
+   "name": "Design",
+   "importance": 3.85,
+   "level": 4.8
+  },
+  {
+   "id": "2.C.3.b",
+   "name": "Engineering and Technology",
+   "importance": 3.8,
+   "level": 4.85
+  },
+  {
+   "id": "2.C.6",
+   "name": "Education and Training",
+   "importance": 3.65,
+   "level": 5.6
+  },
+  {
+   "id": "2.C.4.a",
+   "name": "Mathematics",
+   "importance": 3.55,
+   "level": 4.35
+  },
+  {
+   "id": "2.C.1.e",
+   "name": "Customer and Personal Service",
+   "importance": 3.45,
+   "level": 4.0
+  },
+  {
+   "id": "2.C.4.f",
+   "name": "Sociology and Anthropology",
+   "importance": 3.05,
+   "level": 3.95
+  },
+  {
+   "id": "2.C.1.a",
+   "name": "Administration and Management",
+   "importance": 3.0,
+   "level": 4.0
+  },
+  {
+   "id": "2.C.2.a",
+   "name": "Production and Processing",
+   "importance": 3.0,
+   "level": 4.15
+  },
+  {
+   "id": "2.C.3.a",
+   "name": "Computers and Electronics",
+   "importance": 3.0,
+   "level": 4.0
+  },
+  {
+   "id": "2.C.4.b",
+   "name": "Physics",
+   "importance": 2.8,
+   "level": 3.35
+  },
+  {
+   "id": "2.C.8.a",
+   "name": "Public Safety and Security",
+   "importance": 2.68,
+   "level": 3.15
+  },
+  {
+   "id": "2.C.3.e",
+   "name": "Mechanical",
+   "importance": 2.65,
+   "level": 3.1
+  },
+  {
+   "id": "2.C.4.d",
+   "name": "Biology",
+   "importance": 2.65,
+   "level": 3.15
+  },
+  {
+   "id": "2.C.9.b",
+   "name": "Communications and Media",
+   "importance": 2.65,
+   "level": 2.85
+  },
+  {
+   "id": "2.C.1.d",
+   "name": "Sales and Marketing",
+   "importance": 2.5,
+   "level": 3.3
+  },
+  {
+   "id": "2.C.1.f",
+   "name": "Personnel and Human Resources",
+   "importance": 2.5,
+   "level": 3.4
+  },
+  {
+   "id": "2.C.5.a",
+   "name": "Medicine and Dentistry",
+   "importance": 2.45,
+   "level": 2.5
+  },
+  {
+   "id": "2.C.1.b",
+   "name": "Administrative",
+   "importance": 2.3,
+   "level": 3.05
+  },
+  {
+   "id": "2.C.8.b",
+   "name": "Law and Government",
+   "importance": 2.3,
+   "level": 2.8
+  },
+  {
+   "id": "2.C.10",
+   "name": "Transportation",
+   "importance": 2.25,
+   "level": 2.55
+  },
+  {
+   "id": "2.C.1.c",
+   "name": "Economics and Accounting",
+   "importance": 2.2,
+   "level": 2.2
+  },
+  {
+   "id": "2.C.5.b",
+   "name": "Therapy and Counseling",
+   "importance": 2.1,
+   "level": 2.2
+  },
+  {
+   "id": "2.C.9.a",
+   "name": "Telecommunications",
+   "importance": 2.1,
+   "level": 1.5
+  },
+  {
+   "id": "2.C.4.c",
+   "name": "Chemistry",
+   "importance": 2.05,
+   "level": 2.3
+  },
+  {
+   "id": "2.C.3.d",
+   "name": "Building and Construction",
+   "importance": 1.75,
+   "level": 1.75
+  },
+  {
+   "id": "2.C.7.b",
+   "name": "Foreign Language",
+   "importance": 1.7,
+   "level": 1.4
+  },
+  {
+   "id": "2.C.4.g",
+   "name": "Geography",
+   "importance": 1.6,
+   "level": 1.4
+  },
+  {
+   "id": "2.C.7.e",
+   "name": "Philosophy and Theology",
+   "importance": 1.6,
+   "level": 1.15
+  },
+  {
+   "id": "2.C.7.d",
+   "name": "History and Archeology",
+   "importance": 1.55,
+   "level": 1.0
+  },
+  {
+   "id": "2.C.2.b",
+   "name": "Food Production",
+   "importance": 1.37,
+   "level": 0.68
+  },
+  {
+   "id": "2.C.7.c",
+   "name": "Fine Arts",
+   "importance": 1.3,
+   "level": 0.65
+  }
+ ],
+ "skills_essential": [
+  {
+   "id": "2.A.1.a",
+   "name": "Reading Comprehension",
+   "importance": 4.0,
+   "level": 4.75
+  },
+  {
+   "id": "2.A.1.b",
+   "name": "Active Listening",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "2.A.1.c",
+   "name": "Writing",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "2.A.1.d",
+   "name": "Speaking",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "2.A.2.a",
+   "name": "Critical Thinking",
+   "importance": 4.0,
+   "level": 4.38
+  },
+  {
+   "id": "2.A.2.b",
+   "name": "Active Learning",
+   "importance": 3.75,
+   "level": 4.25
+  },
+  {
+   "id": "2.A.1.e",
+   "name": "Mathematics",
+   "importance": 3.5,
+   "level": 4.0
+  },
+  {
+   "id": "2.A.2.d",
+   "name": "Monitoring",
+   "importance": 3.5,
+   "level": 4.0
+  },
+  {
+   "id": "2.A.1.f",
+   "name": "Science",
+   "importance": 3.25,
+   "level": 3.38
+  },
+  {
+   "id": "2.A.2.c",
+   "name": "Learning Strategies",
+   "importance": 3.25,
+   "level": 3.25
+  }
+ ],
+ "skills_transferable": [
+  {
+   "id": "2.B.2.i",
+   "name": "Complex Problem Solving",
+   "importance": 4.0,
+   "level": 4.0
+  },
+  {
+   "id": "2.B.4.e",
+   "name": "Judgment and Decision Making",
+   "importance": 3.62,
+   "level": 4.38
+  },
+  {
+   "id": "2.B.4.h",
+   "name": "Systems Evaluation",
+   "importance": 3.62,
+   "level": 4.0
+  },
+  {
+   "id": "2.B.1.a",
+   "name": "Social Perceptiveness",
+   "importance": 3.38,
+   "level": 3.5
+  },
+  {
+   "id": "2.B.3.a",
+   "name": "Operations Analysis",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "2.B.4.g",
+   "name": "Systems Analysis",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "2.B.1.e",
+   "name": "Instructing",
+   "importance": 3.12,
+   "level": 3.75
+  },
+  {
+   "id": "2.B.3.b",
+   "name": "Technology Design",
+   "importance": 3.12,
+   "level": 3.88
+  },
+  {
+   "id": "2.B.5.a",
+   "name": "Time Management",
+   "importance": 3.12,
+   "level": 3.12
+  },
+  {
+   "id": "2.B.1.b",
+   "name": "Coordination",
+   "importance": 3.0,
+   "level": 3.12
+  },
+  {
+   "id": "2.B.1.f",
+   "name": "Service Orientation",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.1.c",
+   "name": "Persuasion",
+   "importance": 2.88,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.1.d",
+   "name": "Negotiation",
+   "importance": 2.88,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.5.d",
+   "name": "Management of Personnel Resources",
+   "importance": 2.88,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.3.m",
+   "name": "Quality Control Analysis",
+   "importance": 2.62,
+   "level": 3.0
+  },
+  {
+   "id": "2.B.3.e",
+   "name": "Programming",
+   "importance": 2.25,
+   "level": 2.38
+  },
+  {
+   "id": "2.B.3.g",
+   "name": "Operations Monitoring",
+   "importance": 2.25,
+   "level": 2.12
+  },
+  {
+   "id": "2.B.3.k",
+   "name": "Troubleshooting",
+   "importance": 2.0,
+   "level": 2.0
+  },
+  {
+   "id": "2.B.5.b",
+   "name": "Management of Financial Resources",
+   "importance": 2.0,
+   "level": 1.75
+  },
+  {
+   "id": "2.B.5.c",
+   "name": "Management of Material Resources",
+   "importance": 1.88,
+   "level": 1.75
+  },
+  {
+   "id": "2.B.3.c",
+   "name": "Equipment Selection",
+   "importance": 1.75,
+   "level": 1.38
+  },
+  {
+   "id": "2.B.3.h",
+   "name": "Operation and Control",
+   "importance": 1.62,
+   "level": 0.75
+  },
+  {
+   "id": "2.B.3.d",
+   "name": "Installation",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "2.B.3.j",
+   "name": "Equipment Maintenance",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "2.B.3.l",
+   "name": "Repairing",
+   "importance": 1.0,
+   "level": 0.0
+  }
+ ],
+ "abilities": [
+  {
+   "id": "1.A.1.a.1",
+   "name": "Oral Comprehension",
+   "importance": 4.0,
+   "level": 4.88
+  },
+  {
+   "id": "1.A.1.a.2",
+   "name": "Written Comprehension",
+   "importance": 4.0,
+   "level": 4.88
+  },
+  {
+   "id": "1.A.1.a.3",
+   "name": "Oral Expression",
+   "importance": 4.0,
+   "level": 5.0
+  },
+  {
+   "id": "1.A.1.a.4",
+   "name": "Written Expression",
+   "importance": 4.0,
+   "level": 4.62
+  },
+  {
+   "id": "1.A.1.b.4",
+   "name": "Deductive Reasoning",
+   "importance": 4.0,
+   "level": 4.75
+  },
+  {
+   "id": "1.A.1.b.5",
+   "name": "Inductive Reasoning",
+   "importance": 4.0,
+   "level": 4.5
+  },
+  {
+   "id": "1.A.1.b.1",
+   "name": "Fluency of Ideas",
+   "importance": 3.88,
+   "level": 4.25
+  },
+  {
+   "id": "1.A.1.b.3",
+   "name": "Problem Sensitivity",
+   "importance": 3.88,
+   "level": 4.12
+  },
+  {
+   "id": "1.A.1.b.6",
+   "name": "Information Ordering",
+   "importance": 3.88,
+   "level": 4.25
+  },
+  {
+   "id": "1.A.1.b.7",
+   "name": "Category Flexibility",
+   "importance": 3.75,
+   "level": 4.0
+  },
+  {
+   "id": "1.A.1.b.2",
+   "name": "Originality",
+   "importance": 3.62,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.4.b.5",
+   "name": "Speech Clarity",
+   "importance": 3.62,
+   "level": 3.62
+  },
+  {
+   "id": "1.A.1.c.1",
+   "name": "Mathematical Reasoning",
+   "importance": 3.5,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.4.a.1",
+   "name": "Near Vision",
+   "importance": 3.5,
+   "level": 3.75
+  },
+  {
+   "id": "1.A.4.b.4",
+   "name": "Speech Recognition",
+   "importance": 3.38,
+   "level": 3.62
+  },
+  {
+   "id": "1.A.1.c.2",
+   "name": "Number Facility",
+   "importance": 3.25,
+   "level": 3.75
+  },
+  {
+   "id": "1.A.1.f.2",
+   "name": "Visualization",
+   "importance": 3.25,
+   "level": 3.88
+  },
+  {
+   "id": "1.A.4.a.2",
+   "name": "Far Vision",
+   "importance": 3.12,
+   "level": 3.12
+  },
+  {
+   "id": "1.A.1.e.1",
+   "name": "Speed of Closure",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.e.2",
+   "name": "Flexibility of Closure",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.e.3",
+   "name": "Perceptual Speed",
+   "importance": 3.0,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.g.1",
+   "name": "Selective Attention",
+   "importance": 2.88,
+   "level": 2.88
+  },
+  {
+   "id": "1.A.1.d.1",
+   "name": "Memorization",
+   "importance": 2.75,
+   "level": 3.0
+  },
+  {
+   "id": "1.A.1.g.2",
+   "name": "Time Sharing",
+   "importance": 2.25,
+   "level": 2.12
+  },
+  {
+   "id": "1.A.4.a.3",
+   "name": "Visual Color Discrimination",
+   "importance": 2.25,
+   "level": 2.25
+  },
+  {
+   "id": "1.A.4.b.2",
+   "name": "Auditory Attention",
+   "importance": 2.12,
+   "level": 1.75
+  },
+  {
+   "id": "1.A.4.a.6",
+   "name": "Depth Perception",
+   "importance": 1.88,
+   "level": 1.62
+  },
+  {
+   "id": "1.A.1.f.1",
+   "name": "Spatial Orientation",
+   "importance": 1.75,
+   "level": 0.88
+  },
+  {
+   "id": "1.A.3.a.4",
+   "name": "Trunk Strength",
+   "importance": 1.75,
+   "level": 1.25
+  },
+  {
+   "id": "1.A.4.b.1",
+   "name": "Hearing Sensitivity",
+   "importance": 1.75,
+   "level": 1.12
+  },
+  {
+   "id": "1.A.2.c.2",
+   "name": "Wrist-Finger Speed",
+   "importance": 1.62,
+   "level": 0.62
+  },
+  {
+   "id": "1.A.2.a.1",
+   "name": "Arm-Hand Steadiness",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.a.1",
+   "name": "Static Strength",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.a.2",
+   "name": "Explosive Strength",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.a.3",
+   "name": "Dynamic Strength",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.b.1",
+   "name": "Stamina",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.3.c.1",
+   "name": "Extent Flexibility",
+   "importance": 1.38,
+   "level": 0.38
+  },
+  {
+   "id": "1.A.2.a.3",
+   "name": "Finger Dexterity",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.2.b.2",
+   "name": "Multilimb Coordination",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.3.c.3",
+   "name": "Gross Body Coordination",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.3.c.4",
+   "name": "Gross Body Equilibrium",
+   "importance": 1.25,
+   "level": 0.25
+  },
+  {
+   "id": "1.A.3.c.2",
+   "name": "Dynamic Flexibility",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.4.a.4",
+   "name": "Night Vision",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.4.a.5",
+   "name": "Peripheral Vision",
+   "importance": 1.12,
+   "level": 0.12
+  },
+  {
+   "id": "1.A.2.a.2",
+   "name": "Manual Dexterity",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.2.b.1",
+   "name": "Control Precision",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.2.b.3",
+   "name": "Response Orientation",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.2.b.4",
+   "name": "Rate Control",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.2.c.1",
+   "name": "Reaction Time",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.2.c.3",
+   "name": "Speed of Limb Movement",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.4.a.7",
+   "name": "Glare Sensitivity",
+   "importance": 1.0,
+   "level": 0.0
+  },
+  {
+   "id": "1.A.4.b.3",
+   "name": "Sound Localization",
+   "importance": 1.0,
+   "level": 0.0
+  }
+ ],
+ "work_activities": [
+  {
+   "id": "4.A.1.a.1",
+   "name": "Getting Information",
+   "importance": 4.55,
+   "level": 5.4
+  },
+  {
+   "id": "4.A.2.b.1",
+   "name": "Making Decisions and Solving Problems",
+   "importance": 4.47,
+   "level": 5.45
+  },
+  {
+   "id": "4.A.1.b.1",
+   "name": "Identifying Objects, Actions, and Events",
+   "importance": 4.45,
+   "level": 4.75
+  },
+  {
+   "id": "4.A.4.a.2",
+   "name": "Communicating with Supervisors, Peers, or Subordinates",
+   "importance": 4.4,
+   "level": 5.25
+  },
+  {
+   "id": "4.A.2.a.4",
+   "name": "Analyzing Data or Information",
+   "importance": 4.21,
+   "level": 4.95
+  },
+  {
+   "id": "4.A.3.b.1",
+   "name": "Working with Computers",
+   "importance": 4.21,
+   "level": 3.85
+  },
+  {
+   "id": "4.A.2.b.3",
+   "name": "Updating and Using Relevant Knowledge",
+   "importance": 4.1,
+   "level": 5.15
+  },
+  {
+   "id": "4.A.2.a.2",
+   "name": "Processing Information",
+   "importance": 4.05,
+   "level": 5.3
+  },
+  {
+   "id": "4.A.4.a.4",
+   "name": "Establishing and Maintaining Interpersonal Relationships",
+   "importance": 3.95,
+   "level": 5.1
+  },
+  {
+   "id": "4.A.4.b.3",
+   "name": "Training and Teaching Others",
+   "importance": 3.95,
+   "level": 5.0
+  },
+  {
+   "id": "4.A.4.b.6",
+   "name": "Providing Consultation and Advice to Others",
+   "importance": 3.95,
+   "level": 5.35
+  },
+  {
+   "id": "4.A.2.b.4",
+   "name": "Developing Objectives and Strategies",
+   "importance": 3.9,
+   "level": 4.65
+  },
+  {
+   "id": "4.A.4.a.1",
+   "name": "Interpreting the Meaning of Information for Others",
+   "importance": 3.89,
+   "level": 4.53
+  },
+  {
+   "id": "4.A.2.a.3",
+   "name": "Evaluating Information to Determine Compliance with Standards",
+   "importance": 3.85,
+   "level": 4.55
+  },
+  {
+   "id": "4.A.2.b.2",
+   "name": "Thinking Creatively",
+   "importance": 3.85,
+   "level": 5.11
+  },
+  {
+   "id": "4.A.3.b.6",
+   "name": "Documenting/Recording Information",
+   "importance": 3.79,
+   "level": 4.35
+  },
+  {
+   "id": "4.A.1.a.2",
+   "name": "Monitoring Processes, Materials, or Surroundings",
+   "importance": 3.7,
+   "level": 4.4
+  },
+  {
+   "id": "4.A.2.b.6",
+   "name": "Organizing, Planning, and Prioritizing Work",
+   "importance": 3.7,
+   "level": 4.9
+  },
+  {
+   "id": "4.A.1.b.3",
+   "name": "Estimating the Quantifiable Characteristics of Products, Events, or Information",
+   "importance": 3.65,
+   "level": 4.25
+  },
+  {
+   "id": "4.A.2.a.1",
+   "name": "Judging the Qualities of Objects, Services, or People",
+   "importance": 3.55,
+   "level": 4.3
+  },
+  {
+   "id": "4.A.4.b.2",
+   "name": "Developing and Building Teams",
+   "importance": 3.53,
+   "level": 3.85
+  },
+  {
+   "id": "4.A.1.b.2",
+   "name": "Inspecting Equipment, Structures, or Materials",
+   "importance": 3.4,
+   "level": 3.9
+  },
+  {
+   "id": "4.A.4.a.3",
+   "name": "Communicating with People Outside the Organization",
+   "importance": 3.26,
+   "level": 4.45
+  },
+  {
+   "id": "4.A.4.b.1",
+   "name": "Coordinating the Work and Activities of Others",
+   "importance": 3.2,
+   "level": 4.0
+  },
+  {
+   "id": "4.A.4.b.5",
+   "name": "Coaching and Developing Others",
+   "importance": 3.2,
+   "level": 4.35
+  },
+  {
+   "id": "4.A.4.c.1",
+   "name": "Performing Administrative Activities",
+   "importance": 3.15,
+   "level": 3.4
+  },
+  {
+   "id": "4.A.4.b.4",
+   "name": "Guiding, Directing, and Motivating Subordinates",
+   "importance": 3.1,
+   "level": 3.95
+  },
+  {
+   "id": "4.A.4.a.6",
+   "name": "Selling or Influencing Others",
+   "importance": 3.05,
+   "level": 3.7
+  },
+  {
+   "id": "4.A.4.a.7",
+   "name": "Resolving Conflicts and Negotiating with Others",
+   "importance": 3.05,
+   "level": 4.3
+  },
+  {
+   "id": "4.A.2.b.5",
+   "name": "Scheduling Work and Activities",
+   "importance": 3.0,
+   "level": 3.9
+  },
+  {
+   "id": "4.A.4.c.3",
+   "name": "Monitoring and Controlling Resources",
+   "importance": 2.84,
+   "level": 3.65
+  },
+  {
+   "id": "4.A.3.a.1",
+   "name": "Performing General Physical Activities",
+   "importance": 2.7,
+   "level": 3.0
+  },
+  {
+   "id": "4.A.3.b.2",
+   "name": "Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",
+   "importance": 2.45,
+   "level": 3.55
+  },
+  {
+   "id": "4.A.4.a.5",
+   "name": "Assisting and Caring for Others",
+   "importance": 2.35,
+   "level": 2.7
+  },
+  {
+   "id": "4.A.3.a.2",
+   "name": "Handling and Moving Objects",
+   "importance": 2.3,
+   "level": 3.6
+  },
+  {
+   "id": "4.A.3.a.3",
+   "name": "Controlling Machines and Processes",
+   "importance": 2.3,
+   "level": 2.65
+  },
+  {
+   "id": "4.A.3.a.4",
+   "name": "Operating Vehicles, Mechanized Devices, or Equipment",
+   "importance": 2.11,
+   "level": 2.1
+  },
+  {
+   "id": "4.A.4.a.8",
+   "name": "Performing for or Working Directly with the Public",
+   "importance": 2.05,
+   "level": 1.8
+  },
+  {
+   "id": "4.A.4.c.2",
+   "name": "Staffing Organizational Units",
+   "importance": 2.0,
+   "level": 2.3
+  },
+  {
+   "id": "4.A.3.b.5",
+   "name": "Repairing and Maintaining Electronic Equipment",
+   "importance": 1.65,
+   "level": 1.2
+  },
+  {
+   "id": "4.A.3.b.4",
+   "name": "Repairing and Maintaining Mechanical Equipment",
+   "importance": 1.55,
+   "level": 1.45
+  }
+ ],
+ "technology": [
+  {
+   "example": "Adobe Acrobat",
+   "category": "Document management software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Adobe Creative Cloud software",
+   "category": "Graphics or photo imaging software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Adobe Dreamweaver",
+   "category": "Web page creation and editing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Adobe Illustrator",
+   "category": "Graphics or photo imaging software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Adobe InDesign",
+   "category": "Desktop publishing software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Adobe Photoshop",
+   "category": "Graphics or photo imaging software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "AEMC DataView",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "AJAX",
+   "category": "Web platform development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Altia Design",
+   "category": "Graphical user interface development software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Apple Safari",
+   "category": "Internet browser software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Atlassian JIRA",
+   "category": "Content workflow software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Autodesk AutoCAD",
+   "category": "Computer aided design CAD software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Bit Debris Solutions Usability Activity Log",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "C++",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Cascading style sheets CSS",
+   "category": "Web platform development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Dartfish ProSuite",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dassault Systemes CATIA",
+   "category": "Computer aided design CAD software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dassault Systemes SolidWorks",
+   "category": "Computer aided design CAD software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Data Translation quickDAQ",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Debugging software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Dynamic hypertext markup language DHTML",
+   "category": "Web platform development software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Extensible markup language XML",
+   "category": "Enterprise application integration software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Graphical user interface GUI design software",
+   "category": "Graphical user interface development software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Hypertext markup language HTML",
+   "category": "Web platform development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "IBM SPSS Statistics",
+   "category": "Analytical or scientific software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "JavaScript",
+   "category": "Web platform development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "JavaScript Object Notation JSON",
+   "category": "Web platform development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "jQuery",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Linux",
+   "category": "Operating system software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Mangold INTERACT",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Mangold LogSquare",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Mangold Soundalyzer",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "MathWorks Simulink",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Excel",
+   "category": "Spreadsheet software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft Internet Explorer",
+   "category": "Internet browser software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Office software",
+   "category": "Office suite software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft Outlook",
+   "category": "Electronic mail software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft PowerPoint",
+   "category": "Presentation software",
+   "hot": true,
+   "in_demand": true
+  },
+  {
+   "example": "Microsoft Visio",
+   "category": "Process mapping and design software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Visual Basic",
+   "category": "Development environment software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Microsoft Word",
+   "category": "Word processing software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Mozilla Firefox",
+   "category": "Internet browser software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "National Instruments LabVIEW",
+   "category": "Development environment software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Noldus Information Technology FaceReader",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Noldus Information Technology The Observer XT",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Noldus Information Technology uLog Pro",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Oracle Java",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Ovo Studios Ovo Logger",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Python",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "R",
+   "category": "Object or component oriented development software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Regression testing software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "SAS",
+   "category": "Analytical or scientific software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Seeing Machines faceLAB",
+   "category": "Graphical user interface development software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Simulation software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Statistical software",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "TechSmith Camtasia",
+   "category": "Video creation and editing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "TechSmith Morae",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "The MathWorks MATLAB",
+   "category": "Analytical or scientific software",
+   "hot": true,
+   "in_demand": false
+  },
+  {
+   "example": "Thought Technology BioGraph Infiniti",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Triangle Research Collaborative Observational Coding System OCS Tools",
+   "category": "Analytical or scientific software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "Usability testing software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  },
+  {
+   "example": "User interface design software",
+   "category": "Program testing software",
+   "hot": false,
+   "in_demand": false
+  }
+ ]
+}
