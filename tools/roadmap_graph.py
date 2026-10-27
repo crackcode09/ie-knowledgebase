@@ -252,17 +252,21 @@ def course_info(readme_path):
             break
     modules = []
     time_idx = topics_idx = None
-    for line in lines:
+    for k, line in enumerate(lines):
         if not line.startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if time_idx is None and topics_idx is None and not any("](" in c for c in cells):
-            # header row of the syllabus table: learn which column holds time and which holds topics
+        is_header = k + 1 < len(lines) and re.match(r"^\|\s*:?-{3,}", lines[k + 1]) is not None
+        if is_header and any("](modules/" in c for c in lines[k + 2:k + 4]):
+            # header row of the syllabus table (the one whose rows link to modules/): learn which column holds time and which holds topics
+            time_idx = topics_idx = None
             for i, c in enumerate(cells):
-                if re.search(r"time|duration|length", c, re.I):
+                if re.search(r"time|duration|length|hours", c, re.I):
                     time_idx = i
-                elif re.search(r"body of knowledge|topics?|covers?|contents?", c, re.I):
+                elif re.search(r"body of knowledge|topics?|covers?|contents?|outline", c, re.I):
                     topics_idx = i
+            continue
+        if is_header or re.match(r"^\|\s*:?-{3,}", line):
             continue
         m = re.search(r"\[((?:[^\[\]]|\[[^\[\]]*\])+)\]\((modules/[^)\s]+)\)", line)
         if not m:

@@ -1,0 +1,6 @@
+item,value,meaning
+tool_edge_cost_usd,24.0,price of one cutting-tool edge
+parts_per_edge_before,2400.0,tool-change interval before the pilot
+parts_per_edge_after,1600.0,tool-change interval during the pilot
+conversion_cost_excl_tooling_usd,0.38,"machining cost per insert excluding tooling: labour, machine time, coolant"
+scrap_cost_per_oversize_part_usd,0.55,material plus conversion lost when an oversize insert is scrapped

@@ -1,5 +1,12 @@
 # Module 07 — Capstone and Skill Check
 
+**Time:** 5 h
+
+## Objectives
+
+- Assemble a complete DMAIC storyboard with every conclusion tied to data from a trusted measurement system.
+- Check your command of the course's calculations without the tools.
+
 ## Part A — Your quality project (or the Bayline case end-to-end)
 
 Produce a short project storyboard (one page per DMAIC phase):
