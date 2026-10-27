@@ -110,6 +110,7 @@
 - Delivered as one PR. First run pending the owner's choice of course.
 
 ## [2026-10-27] — Plan: Sources tables and the Sources page
+## [2026-10-27] — Plan: Quality Engineering Essentials, fixes from board run 1
 
 ### Status: COMPLETE
 
@@ -133,3 +134,20 @@
 
 ### Outcome (filled in after completion)
 - Delivered as one PR; QEE shows 14 entries, 0 verified, pending its review.
+- Every blocking finding and every chair recommendation from `reviews/quality-engineering-essentials.md` applied to the course: originality statement and fictional-data line in the README; corrected borderline count; ISO 9001:2026 wording and a descriptive map of the standards a quality engineer meets; AIAG baseline beside the course's stricter kappa bar; Wheeler's position on transforms and Action Priority beside RPN; real exercises for modules 01 to 06 with answers in solutions; per-session times; fixed and standardised cross-course links; formula sheet with every symbol defined; worked examples rewritten as dataset, steps, command, result, meaning, with before, what changed, after for the pilot; tooling cost computed from a new data file instead of an unsupported figure; KS values labelled as rough guides; shift-C coolant wording; Kotter cited for the change model.
+
+### Files to be created or modified
+- `courses/quality-operational-excellence/quality-engineering-essentials/` README, modules 00 to 07, `reference/formulas.md`, `solutions/README.md`, `tools/qekit.py`, `data/tooling_cost.csv`
+- `tools/roadmap_graph.py` — syllabus header detection requires a separator row and a module link (reviewer finding 12b surfaced by the new datasets table)
+
+### Implementation steps
+1. Rewrite modules 02 to 06 and the formula sheet; patch 00, 01, 03, 07; extend the script and regenerate data.
+2. Rerun `qekit.py all` and `make_figures.py`, check every number in the text against the output, check links and the site parser.
+3. Open the fix PR; re-run the review board on the merged result.
+
+### Assumptions & decisions
+- Chair recommendations for questions 7 to 16 applied as answered, pending the owner's confirmation after the re-run.
+- Figure PNGs left as committed (regeneration is byte-different but visually identical).
+
+### Outcome (filled in after completion)
+- Delivered as one PR; board re-run pending.

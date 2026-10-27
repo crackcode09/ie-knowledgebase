@@ -1,5 +1,7 @@
 # Module 01 — Introduction to Quality Engineering
 
+**Time:** 3 h
+
 ## Objectives
 
 - Explain the quality engineer's role and the idea that inputs determine outputs, Y = f(X).
@@ -61,11 +63,21 @@ After 693 steps, fewer than half of the units are defect-free. Complex products 
 | Timeline | D 2 wks, M 4 wks, A 4 wks, I 4 wks, C 2 wks |
 | Metrics | Primary: % defective. Secondary (don't make worse): cycle time, tool cost |
 
-A template is in `templates/project-charter.md`.
+A template is in `templates/project-charter.md`. The numbers in the charter come from `data/production_sample.csv`, the 480-insert sample that Modules 02 to 05 analyse: 40 defective of 480 is the 8.3 %, and the Pareto in Module 02 gives the defect mix.
 
 ## Learning and problem solving with AI tools
 
 AI assistants can help draft charters, suggest fishbone categories, explain statistical output or write code (the course's Python tools are an example). Use them as a **colleague to check**, not an authority: verify calculations, never paste confidential data into tools your company hasn't approved, and keep the team's process knowledge at the center.
+
+## Exercise 1.1
+
+Using `data/production_sample.csv` (one row per insert, with machine, shift, OD and the defect call):
+
+1. Write the problem statement for machine M2 alone: count its defective inserts, its oversize inserts, and compare with M1.
+2. The charter lists two secondary metrics that must not get worse. Where in the course are they checked?
+3. Bayline's insert goes through 12 process steps. If each were 99.5 % right, what share of inserts would pass every step?
+
+Answers in `solutions/README.md`.
 
 ## Check yourself
 

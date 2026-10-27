@@ -15,6 +15,10 @@ Improvements are welcome: corrections, clearer explanations, new exercises, real
 
 Courses live under `courses/<category>/<course>/`. The categories mirror the IISE course catalog (Lean & Six Sigma, Quality & Operational Excellence, Work Design & Work Measurement, …), plus categories added for subjects the catalog does not cover (Operations Research & Decision Analysis); each category folder has a README listing its courses. A new course goes in the category that fits and gets a row in both that README and the root README.
 
+## Site templates
+
+One width per column: inside the reader document, the catalog page and the legal pages, prose, tables, code and figures share the same right edge. Set the width once on the column (`.doc`, `.page`, `main`) and never on the text inside it; `python tools/roadmap_graph.py` refuses to build if a rule narrows content inside a column.
+
 ## Workflow
 
 Fork → branch → pull request. Run any checks the course ships (e.g. `python tools/check_constants.py` in Charting Process Behavior) before submitting changes to its tools.

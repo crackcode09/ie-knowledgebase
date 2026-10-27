@@ -252,17 +252,21 @@ def course_info(readme_path):
             break
     modules = []
     time_idx = topics_idx = None
-    for line in lines:
+    for k, line in enumerate(lines):
         if not line.startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if time_idx is None and topics_idx is None and not any("](" in c for c in cells):
-            # header row of the syllabus table: learn which column holds time and which holds topics
+        is_header = k + 1 < len(lines) and re.match(r"^\|\s*:?-{3,}", lines[k + 1]) is not None
+        if is_header and any("](modules/" in c for c in lines[k + 2:k + 4]):
+            # header row of the syllabus table (the one whose rows link to modules/): learn which column holds time and which holds topics
+            time_idx = topics_idx = None
             for i, c in enumerate(cells):
-                if re.search(r"time|duration|length", c, re.I):
+                if re.search(r"time|duration|length|hours", c, re.I):
                     time_idx = i
-                elif re.search(r"body of knowledge|topics?|covers?|contents?", c, re.I):
+                elif re.search(r"body of knowledge|topics?|covers?|contents?|outline", c, re.I):
                     topics_idx = i
+            continue
+        if is_header or re.match(r"^\|\s*:?-{3,}", line):
             continue
         m = re.search(r"\[((?:[^\[\]]|\[[^\[\]]*\])+)\]\((modules/[^)\s]+)\)", line)
         if not m:
@@ -441,6 +445,20 @@ def fill(template_path, **slots):
     return tpl
 
 
+def lint_templates():
+    """Checkpoint: content inside a page column keeps one width. No rule may narrow the text
+    (max-width on a descendant of .doc, .page or main) while tables and figures keep the column,
+    because that produces two right edges. Fails the build so it cannot regress unnoticed."""
+    checks = [(READER_TEMPLATE, r"\.doc\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
+              (TEMPLATE, r"\.page\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
+              (LEGAL_TEMPLATE, r"main\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)")]
+    for path, pattern in checks:
+        css = path.read_text(encoding="utf-8")
+        hit = re.search(pattern, css)
+        if hit:
+            sys.exit(f"{path.name}: a rule narrows content inside the column: {hit.group(0)[:80]!r}. Keep one width per column (set it on .doc / .page / main only).")
+
+
 def sources_page(model):
     """Body of public/sources.html: what the site rests on, then every course's sources table."""
     def h(s):
@@ -475,6 +493,7 @@ def sources_page(model):
 
 
 def write_html(cats):
+    lint_templates()
     model = build_model(cats)
     data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
     write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))

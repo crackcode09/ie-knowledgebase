@@ -8,7 +8,7 @@ a DMAIC project from charter to control plan.
     python tools/qekit.py all            # every worked example
     python tools/qekit.py <name>         # yield, describe, pareto, distribution, cleanse, grr, attribute,
                                          # sample_size, baseline, spc, capability, stratify, regression,
-                                         # fmea, reliability, pilot
+                                         # fmea, reliability, pilot, staged
 
 Requires numpy, scipy, pandas, statsmodels. License: MIT
 """
@@ -105,6 +105,14 @@ def make_data(seed=1924):
     pd.DataFrame(dict(day=range(1, 21), stage=["before"] * 10 + ["after"] * 10,
                       inspected=[240] * 10 + [180] * 10, oversize=np.concatenate([before, after]))).to_csv(
         os.path.join(D, "pilot_daily.csv"), index=False)
+    # 7. Cost inputs for the pilot's side-effect check (module 06). Illustrative values, in US dollars.
+    pd.DataFrame([
+        ("tool_edge_cost_usd", 24.0, "price of one cutting-tool edge"),
+        ("parts_per_edge_before", 2400, "tool-change interval before the pilot"),
+        ("parts_per_edge_after", 1600, "tool-change interval during the pilot"),
+        ("conversion_cost_excl_tooling_usd", 0.38, "machining cost per insert excluding tooling: labour, machine time, coolant"),
+        ("scrap_cost_per_oversize_part_usd", 0.55, "material plus conversion lost when an oversize insert is scrapped"),
+    ], columns=["item", "value", "meaning"]).to_csv(os.path.join(D, "tooling_cost.csv"), index=False)
     return "data written"
 
 
@@ -143,11 +151,11 @@ def ex_distribution():
         params = dist.fit(q, **kw)
         ll = np.sum(dist.logpdf(q, *params))
         k = len(params) - (1 if "floc" in kw else 0)
-        fits[name] = dict(AIC=round(2 * k - 2 * ll, 1), KS_p=round(stats.kstest(q, dist.cdf, args=params).pvalue, 3))
+        fits[name] = dict(AIC=round(2 * k - 2 * ll, 1), KS_p_rough=round(stats.kstest(q, dist.cdf, args=params).pvalue, 3))
     best = min(fits, key=lambda k: fits[k]["AIC"])
     lnq = np.log(q)
     return {"n": len(q), "mean / median (h)": (round(q.mean(), 1), round(np.median(q), 1)), "skewness": round(float(stats.skew(q)), 2),
-            "fits (lower AIC = better)": fits, "best by AIC": best,
+            "fits (lower AIC = better; KS p is a rough guide only, the parameters were fitted to the same data)": fits, "best by AIC": best,
             "Shapiro p: raw / log": (float(f"{stats.shapiro(q).pvalue:.2g}"), round(stats.shapiro(lnq).pvalue, 3)),
             "95th percentile: normal assumption vs lognormal fit (h)": (round(q.mean() + 1.645 * q.std(ddof=1), 1),
                                                                          round(float(np.exp(lnq.mean() + 1.645 * lnq.std(ddof=1))), 1)),
@@ -338,9 +346,21 @@ def ex_pilot():
     n = [d.loc["before", "inspected"], d.loc["after", "inspected"]]
     z, p = proportions_ztest(x, n)
     lo, hi = confint_proportions_2indep(x[0], n[0], x[1], n[1])
+    c = load("tooling_cost.csv").set_index("item").value
+    tool_before = c.tool_edge_cost_usd / c.parts_per_edge_before
+    tool_after = c.tool_edge_cost_usd / c.parts_per_edge_after
+    cost_before = c.conversion_cost_excl_tooling_usd + tool_before
+    cost_after = c.conversion_cost_excl_tooling_usd + tool_after
+    scrap_saved = (x[0] / n[0] - x[1] / n[1]) * c.scrap_cost_per_oversize_part_usd
     return {"before / after % defective": (round(100 * x[0] / n[0], 2), round(100 * x[1] / n[1], 2)),
             "two-proportion z, p": (round(z, 2), float(f"{p:.2g}")),
-            "95% CI for reduction (percentage points)": (round(100 * lo, 2), round(100 * hi, 2))}
+            "95% CI for reduction (percentage points)": (round(100 * lo, 2), round(100 * hi, 2)),
+            "tooling cost per part before / after (USD)": (round(tool_before, 4), round(tool_after, 4)),
+            "tooling cost per part change %": round(100 * (tool_after / tool_before - 1), 1),
+            "cost per part before / after (USD)": (round(cost_before, 4), round(cost_after, 4)),
+            "cost per part change %": round(100 * (cost_after / cost_before - 1), 2),
+            "scrap avoided per part made (USD)": round(scrap_saved, 4),
+            "net saving per part made (USD)": round(scrap_saved - (tool_after - tool_before), 4)}
 
 
 def ex_staged():
