@@ -59,6 +59,31 @@
   code { font-family: var(--mono); font-size: .9em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
   .box { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); padding: var(--s3) var(--s4); margin: var(--s4) 0; font-size: 14.5px; color: var(--muted); }
   .box b { color: var(--text); }
+  .small { font-size: 13px; color: var(--muted); }
+  footer .bi { vertical-align: -.15em; }
+  .rm-progress { margin: var(--s5) 0 var(--s6); }
+  .rm-bar { height: 6px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .rm-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); }
+  .rm-legend { display: flex; flex-wrap: wrap; gap: 6px var(--s5); margin-top: var(--s3); font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .rm-legend b { color: var(--text); font-weight: 500; }
+  .tl { list-style: none; padding: 0; margin: 0 0 var(--s6); position: relative; }
+  .tl::before { content: ""; position: absolute; left: 13px; top: 18px; bottom: 18px; border-left: 2px solid var(--line); }
+  .tl li { position: relative; margin: 0 0 var(--s3); }
+  .tl-head { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 14px 12px 0; background: none; border: 0; color: var(--text); cursor: pointer; border-radius: 8px; }
+  .tl-head:hover .tl-title { color: var(--accent); }
+  .tl-dot { flex: none; width: 14px; height: 14px; margin-left: 7px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--bg); position: relative; z-index: 1; }
+  .tl-n { font-family: var(--mono); font-size: 12px; color: var(--muted); width: 1.2em; }
+  .tl-title { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+  .tl-status { font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted); margin-left: auto; white-space: nowrap; }
+  .tl .chev { color: var(--muted); flex: none; transition: transform .15s; }
+  .tl-head[aria-expanded="true"] .chev { transform: rotate(90deg); }
+  .tl-body { padding: 0 0 var(--s4) 48px; color: var(--muted); font-size: 15px; }
+  .tl-body p { margin-bottom: var(--s3); } .tl-body ul { margin: 0; }
+  .tl li.done .tl-dot { background: var(--green); border-color: var(--green); } .tl li.done .tl-status { color: var(--green); border-color: var(--green); }
+  .tl li.active .tl-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); } .tl li.active .tl-status { color: var(--accent); border-color: var(--accent); }
+  .tl li.next .tl-dot { border-color: var(--accent); }
+  .tag.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
+  @media (max-width: 640px) { .tl-title { font-size: 16px; } .tl-status { font-size: 10.5px; } .tl-body { padding-left: 28px; } }
   .tag.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
   table { border-collapse: collapse; width: 100%; margin-bottom: var(--s4); font-size: 14.5px; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -95,7 +120,7 @@
 <main>
 __BODY__
 </main>
-<footer>IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">roadmap</a> · <a href="index.html">catalog</a></footer>
+<footer>IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="index.html">catalog</a></footer>
 <script>
   (function () {
     const root = document.documentElement;

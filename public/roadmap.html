@@ -59,6 +59,31 @@
   code { font-family: var(--mono); font-size: .9em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
   .box { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); padding: var(--s3) var(--s4); margin: var(--s4) 0; font-size: 14.5px; color: var(--muted); }
   .box b { color: var(--text); }
+  .small { font-size: 13px; color: var(--muted); }
+  footer .bi { vertical-align: -.15em; }
+  .rm-progress { margin: var(--s5) 0 var(--s6); }
+  .rm-bar { height: 6px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .rm-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); }
+  .rm-legend { display: flex; flex-wrap: wrap; gap: 6px var(--s5); margin-top: var(--s3); font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .rm-legend b { color: var(--text); font-weight: 500; }
+  .tl { list-style: none; padding: 0; margin: 0 0 var(--s6); position: relative; }
+  .tl::before { content: ""; position: absolute; left: 13px; top: 18px; bottom: 18px; border-left: 2px solid var(--line); }
+  .tl li { position: relative; margin: 0 0 var(--s3); }
+  .tl-head { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 14px 12px 0; background: none; border: 0; color: var(--text); cursor: pointer; border-radius: 8px; }
+  .tl-head:hover .tl-title { color: var(--accent); }
+  .tl-dot { flex: none; width: 14px; height: 14px; margin-left: 7px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--bg); position: relative; z-index: 1; }
+  .tl-n { font-family: var(--mono); font-size: 12px; color: var(--muted); width: 1.2em; }
+  .tl-title { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+  .tl-status { font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted); margin-left: auto; white-space: nowrap; }
+  .tl .chev { color: var(--muted); flex: none; transition: transform .15s; }
+  .tl-head[aria-expanded="true"] .chev { transform: rotate(90deg); }
+  .tl-body { padding: 0 0 var(--s4) 48px; color: var(--muted); font-size: 15px; }
+  .tl-body p { margin-bottom: var(--s3); } .tl-body ul { margin: 0; }
+  .tl li.done .tl-dot { background: var(--green); border-color: var(--green); } .tl li.done .tl-status { color: var(--green); border-color: var(--green); }
+  .tl li.active .tl-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); } .tl li.active .tl-status { color: var(--accent); border-color: var(--accent); }
+  .tl li.next .tl-dot { border-color: var(--accent); }
+  .tag.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
+  @media (max-width: 640px) { .tl-title { font-size: 16px; } .tl-status { font-size: 10.5px; } .tl-body { padding-left: 28px; } }
   .tag.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
   table { border-collapse: collapse; width: 100%; margin-bottom: var(--s4); font-size: 14.5px; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -94,37 +119,60 @@
 </div>
 <main>
 <div class="eyebrow">cat roadmap.html</div>
-<h1>Where this is going</h1>
-<div class="meta">Site roadmap · updated 2026-10-27 · the course coverage checklist is a separate thing, see <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/ROADMAP.md" rel="noopener">ROADMAP.md</a></div>
+<h1>Site roadmap</h1>
+<div class="meta">Where this build is going · updated 2026-10-27 · different from the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/ROADMAP.md" rel="noopener">course roadmap</a>, which lists which IISE topics have a course yet</div>
 
 <div class="box"><b>The end goal.</b> You name a position close to industrial engineering that you want to work in, say <em>continuous improvement engineer</em>. The site tells you what to train, how to train it here, and where to focus, grounded in the official description of that role and in what employers currently ask for, including the expectation that engineers in these roles use AI in their work.</div>
 
-<h2 id="now">What exists today</h2>
-<ul>
-  <li><strong>Courses.</strong> Original, free courses grouped the way the IISE catalog groups the discipline. The catalog shows what is built and what is still planned in each category.</li>
-  <li><strong>Learning path.</strong> Courses arranged by prerequisite, with your progress kept in your own browser.</li>
-  <li><strong>Mind map and reader.</strong> The whole map on one screen, and every lesson readable on the site.</li>
-  <li><strong>Trust.</strong> Every course carries a <span class="tag draft">draft</span> or verified status. A review board checks originality, accuracy, trademarks and structure, and a named person signs off before a course is called verified.</li>
-</ul>
+<div class="rm-progress" aria-label="Overall progress">
+  <div class="rm-bar"><i style="width:30%"></i></div>
+  <div class="rm-legend"><span><b>32</b> courses built</span><span><b>0</b> verified</span><span><b>33</b> of 102 catalog topics covered</span><span><b>1</b> of 5 stages done</span></div>
+</div>
 
-<h2 id="stages">Stages</h2>
-<table>
-  <tr><th>Stage</th><th>What it adds</th><th>Status</th></tr>
-  <tr><td>1 · Catalog</td><td>Courses, coverage roadmap, catalog, learning path, mind map, reader</td><td>done</td></tr>
-  <tr><td>2 · Trust</td><td>Review board, verified status on every page, privacy and terms, originality notice</td><td>in progress: board built, verification under way</td></tr>
-  <tr><td>3 · Role profiles</td><td>One profile per target position: the official standard's tasks, knowledge and skills, plus what the market asks for now, each mapped to the courses that teach it</td><td>next</td></tr>
-  <tr><td>4 · Advisor</td><td>Pick a role, say what you already know, get a training plan, the focus points, and the gaps the catalog cannot yet cover</td><td>after 3</td></tr>
-  <tr><td>5 · Keeping it current</td><td>The market signal refreshed on a schedule, so each role profile shows what changed</td><td>after 4</td></tr>
-</table>
+<ol class="tl" id="tl">
+  <li class="done" id="s1">
+    <button type="button" class="tl-head" aria-expanded="false" aria-controls="s1b"><span class="tl-dot"></span><span class="tl-n">1</span><span class="tl-title">Catalog</span><span class="tl-status">done</span><span class="chev"><svg class="bi" width="14" height="14" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></span></button>
+    <div class="tl-body" id="s1b" hidden>
+      <p>Original courses grouped the way the IISE catalog groups the discipline, a coverage checklist, and a site with a catalog, a prerequisite-ordered learning path, a mind map and an on-site reader with progress kept in your browser.</p>
+      <ul><li>32 courses, 33 of 102 catalog topics covered</li><li>Catalog, learning path, mind map, reader, local progress</li></ul>
+    </div>
+  </li>
+  <li class="active" id="s2">
+    <button type="button" class="tl-head" aria-expanded="true" aria-controls="s2b"><span class="tl-dot"></span><span class="tl-n">2</span><span class="tl-title">Trust</span><span class="tl-status">in progress</span><span class="chev"><svg class="bi" width="14" height="14" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></span></button>
+    <div class="tl-body" id="s2b">
+      <p>Every course was written with AI assistance, so every course carries a <span class="tag draft">draft</span> status until a named person has verified it. A review board checks originality, accuracy, trademarks and structure and lists its doubts for the reviewer; the person signs off.</p>
+      <ul><li>Review board built; 0 of 32 courses verified so far</li><li>Privacy policy, terms of use and the originality notice published</li></ul>
+    </div>
+  </li>
+  <li class="next" id="s3">
+    <button type="button" class="tl-head" aria-expanded="false" aria-controls="s3b"><span class="tl-dot"></span><span class="tl-n">3</span><span class="tl-title">Role profiles</span><span class="tl-status">next</span><span class="chev"><svg class="bi" width="14" height="14" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></span></button>
+    <div class="tl-body" id="s3b" hidden>
+      <p>One profile per target position. The official standard's tasks, knowledge, skills and technology, ranked by importance, plus what the market asks for now, each mapped to the courses and modules here that teach it. The gaps, the important elements with no module yet, feed the course roadmap.</p>
+      <ul><li>Evidence in hand: the O*NET profile and the BLS outlook for Industrial Engineers (see below)</li><li>Still to choose: a postings-based market signal for current tooling asks, including AI</li></ul>
+    </div>
+  </li>
+  <li class="later" id="s4">
+    <button type="button" class="tl-head" aria-expanded="false" aria-controls="s4b"><span class="tl-dot"></span><span class="tl-n">4</span><span class="tl-title">Advisor</span><span class="tl-status">after 3</span><span class="chev"><svg class="bi" width="14" height="14" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></span></button>
+    <div class="tl-body" id="s4b" hidden>
+      <p>Pick a role, say what you already know, and get a training plan through the courses here, the focus points that matter for the role today, and an honest list of what the catalog cannot cover yet. Every focus point cites the source it comes from.</p>
+    </div>
+  </li>
+  <li class="later" id="s5">
+    <button type="button" class="tl-head" aria-expanded="false" aria-controls="s5b"><span class="tl-dot"></span><span class="tl-n">5</span><span class="tl-title">Keeping it current</span><span class="tl-status">after 4</span><span class="chev"><svg class="bi" width="14" height="14" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></span></button>
+    <div class="tl-body" id="s5b" hidden>
+      <p>The standards update quarterly and the market moves faster. The sources are refreshed on a schedule and each role profile shows what changed since the last refresh, so the advice ages well.</p>
+    </div>
+  </li>
+</ol>
 
 <h2 id="evidence">What the advice will be based on</h2>
-<p>Three sources, so the advice is evidence rather than opinion:</p>
-<ol>
-  <li><strong>The official standard for the position.</strong> The U.S. Department of Labor's O*NET occupational profiles, starting with <a href="https://www.onetonline.org/link/summary/17-2112.00" rel="noopener">Industrial Engineers, 17-2112.00</a>: rated tasks, knowledge, skills, abilities, work activities and technology, with "in demand" flags, education levels and wage and growth figures. Reused under CC BY 4.0 with attribution; O*NET is a trademark of USDOL/ETA and this site is not affiliated with or endorsed by it.</li>
-  <li><strong>The outlook for the position.</strong> The BLS Occupational Outlook Handbook, starting with <a href="https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm" rel="noopener">Industrial Engineers</a>: pay, entry education and licences, the largest employers, the ten-year growth projection and what drives demand. U.S. government work, cited as the source.</li>
-  <li><strong>The market signal.</strong> What employers currently ask for in postings for the role, including AI and data tooling, which neither source above carries yet. Source still to be chosen.</li>
-</ol>
-<p>The IISE catalog gives the map of the discipline. The courses here are the training. The two sources turn that into advice for a named role, and every focus point will cite the source it comes from.</p>
+<table>
+  <tr><th>Source</th><th>What it gives</th><th>Status</th></tr>
+  <tr><td><a href="https://www.onetonline.org/link/summary/17-2112.00" rel="noopener">O*NET, Industrial Engineers 17-2112.00</a></td><td>Rated tasks, knowledge, skills, abilities, work activities and technology, with "in demand" flags; education; wages and growth. U.S. Department of Labor, CC BY 4.0.</td><td>received</td></tr>
+  <tr><td><a href="https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm" rel="noopener">BLS Occupational Outlook Handbook, Industrial Engineers</a></td><td>Pay, entry education and licences, largest employers, ten-year outlook and what drives demand. U.S. government work.</td><td>received</td></tr>
+  <tr><td>Market signal from job postings</td><td>What employers list for the role right now, including AI and data tooling.</td><td>to be chosen</td></tr>
+</table>
+<p class="small">O*NET is a trademark of the U.S. Department of Labor, Employment and Training Administration. This site is not affiliated with or endorsed by USDOL/ETA, BLS or IISE.</p>
 
 <h2 id="principles">What will not change</h2>
 <ul>
@@ -135,8 +183,20 @@
 
 <div class="box">Have a role in mind, or a source we should use? Open an issue at <a href="https://github.com/crackcode09/ie-knowledgebase/issues" rel="noopener">github.com/crackcode09/ie-knowledgebase/issues</a>.</div>
 
+<script>
+  (function () {
+    document.querySelectorAll('.tl-head').forEach(btn => btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+    }));
+    const h = location.hash.slice(1), el = h && document.getElementById(h);
+    if (el && el.querySelector('.tl-head')) { const b = el.querySelector('.tl-head'); b.setAttribute('aria-expanded', 'true'); document.getElementById(b.getAttribute('aria-controls')).hidden = false; }
+  })();
+</script>
+
 </main>
-<footer>IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">roadmap</a> · <a href="index.html">catalog</a></footer>
+<footer>IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener"><svg class="bi" width="13" height="13" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg> GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="index.html">catalog</a></footer>
 <script>
   (function () {
     const root = document.documentElement;

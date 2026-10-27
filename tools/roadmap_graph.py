@@ -421,6 +421,8 @@ def write_html(cats):
     write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=data)))
     for key, title in LEGAL_PAGES.items():
         body = (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
+        for k, v in {"COURSES": model["built"], "VERIFIED": model["verified"], "COVERED": model["built"] + model["covered"], "TOTAL": model["total"]}.items():
+            body = body.replace(f"__{k}__", str(v))
         write(PUBLIC / f"{key}.html", inject_icons(fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body)))
     return model
 
