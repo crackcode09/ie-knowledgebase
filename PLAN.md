@@ -109,11 +109,49 @@
 ### Outcome (filled in after completion)
 - Delivered as one PR. First run pending the owner's choice of course.
 
+## [2026-10-27] — Plan: Sources tables and the Sources page
+## [2026-10-27] — Plan: Quality Engineering Essentials, fixes from board run 1
 ## [2026-10-27] — Plan: Role profiles data and the /map-course command
 
 ### Status: COMPLETE
 
 ### What is being built or changed
+- One source of truth per course, `reference/sources.md` (columns ID, Source, Used for, Cited in, Verified), cited from modules by ID; a reviewer flips Verified. The generator reads every table into the model, shows a verified count in the course drawer, and builds `public/sources.html`: a site-level section (IISE catalog as a map only, O*NET, BLS, Bootstrap Icons, CDN libraries, fonts) followed by every course's table. Footer link on every page.
+
+### Files to be created or modified
+- `tools/roadmap_graph.py` — `course_sources`, `SITE_SOURCES`, `sources_page`, course node `sources`
+- `tools/roadmap_template.html`, `tools/reader_template.html`, `tools/legal_template.html` — drawer count, footer links, table code style
+- `courses/quality-operational-excellence/quality-engineering-essentials/reference/sources.md` — first converted course (replaces further-reading.md)
+- `CONTRIBUTING.md`, `REVIEW.md`, `.claude/agents/review-accuracy.md` — citation rule, checklist items for the table and for symbol definitions
+
+### Implementation steps
+1. Define the table format and convert Quality Engineering Essentials.
+2. Parse tables in the generator; render the global page through the legal shell; add the drawer count and footer links.
+3. Extend REVIEW.md and the accuracy reviewer so every run checks the table and symbol definitions.
+
+### Assumptions & decisions
+- Courses without a table keep their further-reading list; the Sources page says so. Conversion of the other 31 happens as each goes through the board.
+- Verified stays `no` until a human reviewer checks an entry; the board reports what it could confirm but does not flip it.
+
+### Outcome (filled in after completion)
+- Delivered as one PR; QEE shows 14 entries, 0 verified, pending its review.
+- Every blocking finding and every chair recommendation from `reviews/quality-engineering-essentials.md` applied to the course: originality statement and fictional-data line in the README; corrected borderline count; ISO 9001:2026 wording and a descriptive map of the standards a quality engineer meets; AIAG baseline beside the course's stricter kappa bar; Wheeler's position on transforms and Action Priority beside RPN; real exercises for modules 01 to 06 with answers in solutions; per-session times; fixed and standardised cross-course links; formula sheet with every symbol defined; worked examples rewritten as dataset, steps, command, result, meaning, with before, what changed, after for the pilot; tooling cost computed from a new data file instead of an unsupported figure; KS values labelled as rough guides; shift-C coolant wording; Kotter cited for the change model.
+
+### Files to be created or modified
+- `courses/quality-operational-excellence/quality-engineering-essentials/` README, modules 00 to 07, `reference/formulas.md`, `solutions/README.md`, `tools/qekit.py`, `data/tooling_cost.csv`
+- `tools/roadmap_graph.py` — syllabus header detection requires a separator row and a module link (reviewer finding 12b surfaced by the new datasets table)
+
+### Implementation steps
+1. Rewrite modules 02 to 06 and the formula sheet; patch 00, 01, 03, 07; extend the script and regenerate data.
+2. Rerun `qekit.py all` and `make_figures.py`, check every number in the text against the output, check links and the site parser.
+3. Open the fix PR; re-run the review board on the merged result.
+
+### Assumptions & decisions
+- Chair recommendations for questions 7 to 16 applied as answered, pending the owner's confirmation after the re-run.
+- Figure PNGs left as committed (regeneration is byte-different but visually identical).
+
+### Outcome (filled in after completion)
+- Delivered as one PR; board re-run pending.
 - Versioned O*NET occupation profiles vendored under `roles/onet/` (eight codes around industrial engineering), built from the official 31.0 CSV files by `tools/onet_refresh.py` with the release version, download date and CC BY 4.0 attribution stamped on each file.
 - A `/map-course <slug>` command (chair skill plus a read-only `map-relevance` agent) that maps a course onto the profiles its README declares: covered and touched elements with quoted evidence, high-importance elements not reached, content the standard does not name (dated), run twice with the differences reported. Output to `roles/mappings/<slug>.md`, every row proposed until a person confirms it. Advisory only: not a review-board gate and nothing reaches the site.
 - Courses declare roles with a `**Roles:**` line in the README; Quality Engineering Essentials is the first.

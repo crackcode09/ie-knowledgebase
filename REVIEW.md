@@ -14,7 +14,8 @@ Review one course per pull request. Do not verify a course you wrote.
 
 ## 2. Accuracy
 
-- [ ] Definitions and formulas match a primary source (textbook, standard or peer-reviewed paper) named in `reference/further-reading.md`. Check every formula in `reference/formulas.md` or the equivalent.
+- [ ] Definitions and formulas match a primary source (textbook, standard or peer-reviewed paper) listed in `reference/sources.md`. Check every formula in `reference/formulas.md` or the equivalent, and that every symbol is defined where it is used and means the same thing throughout the course.
+- [ ] `reference/sources.md` exists, every entry has an edition or standard number, every ID cited in a module exists in the table, and each entry you have checked has Verified set to `yes`.
 - [ ] Every number in the lessons and in `solutions/README.md` can be reproduced by running the course's own scripts (`tools/make_data.py`, `tools/make_figures.py`, the analysis script). Run them.
 - [ ] Standards, regulations and historical claims are current and correctly cited (edition, year, clause). Anything uncertain is marked as such in the text or removed.
 - [ ] Exercises have answers, and the answers are right.
@@ -30,6 +31,7 @@ Review one course per pull request. Do not verify a course you wrote.
 ## 4. Structure and plain language
 
 - [ ] Each module has objectives, concept, worked example, exercise and a check-yourself section.
+- [ ] Every worked example names its dataset (file, what the rows and columns are), lists the steps and the command that runs them, gives the result, and says what it means. Where a change is claimed it shows the situation before, what changed, and the situation after, each tied to the dataset that measured it.
 - [ ] The README syllabus table lists every module with its time and topics, and every link resolves.
 - [ ] Written for a reader without a statistics background; the math is in tables, the prose explains it.
 

@@ -91,9 +91,8 @@
   nav.toc a.mdone .n { color: var(--green); }
   nav.toc a .t { font-family: var(--mono); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--muted); margin-left: auto; white-space: nowrap; }
 
-  .doc { min-width: 0; font-size: 17px; }
-  /* Prose keeps a readable measure (about 68 characters); code, tables and figures may use the full column. */
-  .doc p, .doc li, .doc blockquote, .doc h1, .doc h2, .doc h3, .doc h4, .doc h5, .doc h6 { max-width: 68ch; }
+  /* One width for everything in the document: prose, tables, code and figures share the same edge. About 78 characters per line. */
+  .doc { min-width: 0; font-size: 17px; max-width: 78ch; }
   .dochead { display: flex; flex-direction: column; gap: 10px; padding-bottom: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--line); }
   .dochead-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; }
   .dochead-row .docmeta { flex: 1 1 auto; }
@@ -125,6 +124,10 @@
   .doc td { font-variant-numeric: tabular-nums; }
   .doc tbody tr:hover { background: var(--surface); }
   .doc img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; display: block; margin: 0 0 var(--s4); }
+  .doc figure { margin: var(--s4) 0 var(--s5); text-align: center; }
+  .doc figure img { display: inline-block; margin: 0; }
+  .doc figcaption { margin-top: var(--s2); font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-align: center; }
+  .doc figcaption b { color: var(--text); font-weight: 500; }
   .doc details { border: 1px solid var(--line); border-radius: 8px; padding: var(--s2) var(--s4); margin: 0 0 var(--s4); background: var(--surface); }
   .doc details summary { cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--accent); }
   .doc details[open] summary { margin-bottom: var(--s2); }
@@ -164,7 +167,7 @@
     .progress, .topbar, nav.toc, .pager, .status, footer, .cursor, .hero .lede, .dochead-actions, .dochead .eyebrow, .skip { display: none !important; }
     .doc pre { white-space: pre-wrap; overflow: visible; } .doc .tablewrap { overflow: visible; }
     .wrap { grid-template-columns: 1fr; padding: 0; } .hero { padding: 0 0 12px; } .hero h1 { font-size: 26px; }
-    .doc h2 { break-after: avoid; } .doc pre, .doc img { break-inside: avoid; } .doc tr { break-inside: avoid; }
+    .doc h2 { break-after: avoid; } .doc pre, .doc img, .doc figure { break-inside: avoid; } .doc tr { break-inside: avoid; }
     .doc details { border: 0; padding: 0; } .doc details summary { display: none; } .doc details > * { display: block; }
     a { color: #000; text-decoration: none; } .doc a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: #444; }
   }
@@ -206,7 +209,7 @@
     <div class="pager" id="pager"></div>
   </main>
 </div>
-<footer>IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="index.html">catalog</a><span class="keys"> · keys: <kbd>←</kbd> <kbd>→</kbd> modules · <kbd>d</kbd> done · <kbd>r</kbd> raw</span></footer>
+<footer>IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="sources.html">sources</a> · <a href="index.html">catalog</a><span class="keys"> · keys: <kbd>←</kbd> <kbd>→</kbd> modules · <kbd>d</kbd> done · <kbd>r</kbd> raw</span></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" integrity="sha512-xeUh+KxNyTufZOje++oQHstlMQ8/rpyzPuM+gjMFYK3z5ILJGE7l2NvYL+XfliKURMpBIKKp1XoPN/qswlSMFA==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -377,6 +380,15 @@
     const firstH1 = el.querySelector('h1'); if (firstH1 && firstH1 === el.firstElementChild) firstH1.remove();  // the document header already shows the title
     headingIds(el);
     el.querySelectorAll('table').forEach(tb => { const w = document.createElement('div'); w.className = 'tablewrap'; tb.replaceWith(w); w.appendChild(tb); });
+    // A paragraph holding only an image becomes a numbered figure; the alt text is the caption.
+    let figN = 0;
+    el.querySelectorAll('p > img:only-child').forEach(img => {
+      const p = img.parentElement; if (p.textContent.trim()) return;
+      figN += 1; const fig = document.createElement('figure'); const cap = document.createElement('figcaption');
+      const alt = img.getAttribute('alt') || '';
+      cap.innerHTML = `<b>Figure ${figN}.</b> ${esc(alt)}`; img.id = img.id || `figure-${figN}`;
+      p.replaceWith(fig); fig.appendChild(img); fig.appendChild(cap);
+    });
     rewriteLinks(el);
     const mer = [...el.querySelectorAll('pre > code.language-mermaid')];
     if (mer.length) {

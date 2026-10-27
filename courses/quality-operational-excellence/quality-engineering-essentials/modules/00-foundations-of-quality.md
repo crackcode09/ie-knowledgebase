@@ -7,7 +7,7 @@
 - Trace how quality practice developed, from inspection to statistical control to management systems, and name the people and ideas behind each step.
 - Distinguish quality control, quality assurance and quality improvement, and say which tools in this course belong to each.
 - Describe the main obstacles to continuous improvement and how a quality engineer works around them.
-- Explain what ISO 9001 requires in outline, what certification does and does not prove, and where DMAIC projects fit inside it.
+- Name the standards a quality engineer meets and what each is for; explain what ISO 9001 requires in outline, what certification does and does not prove, and where DMAIC projects fit inside it.
 - State what a process map gives an improvement team before any data is collected.
 
 ## What "quality" means
@@ -34,7 +34,7 @@ Quality practice changed each time somebody found a cheaper way to be right than
 | 1950s–1960s | Japan rebuilt its industry around statistical methods and management responsibility for quality. | Deming's 1950 lectures; Juran's 1954 visits; the Deming Prize (1951); Ishikawa's cause-and-effect diagram and quality circles; Feigenbaum's *Total Quality Control* |
 | 1970s–1980s | Western firms, losing share to Japanese competitors, adopted company-wide approaches. | Crosby's *Quality Is Free* (1979); Taguchi's loss function; total quality management; Toyota Production System studied abroad |
 | 1986–1990s | Defect rates were restated in parts per million, and improvement became a managed project portfolio. | Six Sigma at Motorola (1986), scaled at GE (1995); ISO 9000 series first published (1987); Malcolm Baldrige Award (1987); *The Machine That Changed the World* names "Lean" (1990) |
-| 2000s– | Lean and Six Sigma merged into one toolkit; management systems adopted a process approach and risk-based thinking. | Lean Six Sigma; ISO 9001:2000 and ISO 9001:2015; sector standards such as IATF 16949 and AS9100 |
+| 2000s– | Lean and Six Sigma merged into one toolkit; management systems adopted a process approach and risk-based thinking. | Lean Six Sigma; ISO 9001:2000, ISO 9001:2015 and ISO 9001:2026; sector standards such as IATF 16949 and AS9100 |
 
 Three ideas survive every fashion change, and this course is built on them:
 
@@ -79,9 +79,30 @@ Before a single measurement is taken, a process map produces four things an impr
 
 This course uses maps as a starting point; the [Process Mapping](../../../lean-six-sigma/process-mapping/README.md) course covers SIPOC, flow charts, swim lanes, value-added flow charts and value stream maps in depth.
 
+## The standards a quality engineer meets
+
+College courses rarely say which standards a working quality engineer will actually be asked about. This map names them, with one line each on what the standard is for and when it applies. It is descriptive only; the standards themselves are copyrighted documents bought from ISO or the national body, and this course reproduces none of their text.
+
+| Standard | What it is for | When you meet it |
+|---|---|---|
+| ISO 9000 | The vocabulary and principles behind the 9000 family: what "quality", "nonconformity", "corrective action" and the rest mean (iso-9000-2015) | Whenever a definition is disputed in an audit or a contract |
+| ISO 9001 | The requirements for a quality management system; the one an organization is certified to (iso-9001-2015 and the 2026 edition) | Any certified plant, every supplier questionnaire |
+| ISO 19011 | How to audit management systems: auditor competence, planning, evidence, reporting | Internal audits and supplier audits |
+| ISO/IEC 17025 | Competence of testing and calibration laboratories | When your calibration certificates must be traceable, and when a lab's results are challenged |
+| ISO 10012 | Measurement management systems: managing measuring equipment and processes | The calibration programme behind Module 03 |
+| IATF 16949 | ISO 9001 plus the automotive industry's additional requirements; brings in the AIAG core tools (APQP, PPAP, FMEA, MSA, SPC) | Automotive supply chains |
+| AS9100 | ISO 9001 plus aerospace requirements (configuration, counterfeit parts, product safety) | Aerospace and defence supply chains |
+| ISO 13485 | Quality management for medical devices, tied to regulatory approval | Medical device makers and their suppliers |
+| ISO 2859 and ISO 3951 | Acceptance sampling by attributes and by variables; the ANSI/ASQ Z1.4 and Z1.9 equivalents | Incoming and outgoing inspection sampling plans |
+| ISO 7870 series | Control charts: general guidance and the standard chart types | When a customer asks whether your SPC follows a standard |
+| ISO 22514 series | Process capability and performance indices (Cp, Cpk, Pp, Ppk) and how to compute them | Capability reports to customers |
+| ISO 31000 | Risk management principles and guidelines | Risk-based thinking in ISO 9001, enterprise risk registers |
+
+For the sampling, control-chart and capability standards the course teaches the methods from textbooks (montgomery-8e); the standards formalise the same methods and are what a customer may cite.
+
 ## ISO 9001 in outline
 
-ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. The current edition is ISO 9001:2015. It does not specify product quality; it specifies how the organization manages quality.
+ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. ISO 9001:2015 (with Amendment 1 of 2024) is the edition most organizations hold certificates to; ISO 9001:2026 was published on 16 September 2026 with a three-year transition, so certificates move to the new edition through 2029. The outline below follows the 2015 structure, which the 2026 edition keeps; check clause numbers against the edition your auditor uses. It does not specify product quality; it specifies how the organization manages quality.
 
 **Seven quality management principles** sit under the standard: customer focus, leadership, engagement of people, process approach, improvement, evidence-based decision making, and relationship management. Every clause can be traced back to one of them.
 
@@ -103,7 +124,7 @@ ISO 9001 is the international standard for a quality management system (QMS): th
 
 **Certification.** An accredited certification body audits the organization against the standard and issues a certificate, typically on a three-year cycle with surveillance audits between. Certification shows that a conforming system exists and is followed. It does not show that any particular shipment is good, and a certified supplier can still ship defects, as Bayline did. Customers in regulated or high-consequence sectors add their own requirements on top: IATF 16949 (automotive), AS9100 (aerospace), ISO 13485 (medical devices).
 
-**Where this course fits.** A DMAIC project is how clause 10 gets done. The customer returns at Bayline are nonconformities under clause 10.2; the root cause analysis in Module 05 and the corrective actions in Module 06 are the evidence an auditor would ask for; the control plan is documented information under clause 7.5; gauge R&R and calibration (Module 03) satisfy clause 7.1.5 on monitoring and measuring resources.
+**Where this course fits.** A DMAIC project is how clause 10 gets done. The customer returns at Bayline are nonconformities under clause 10.2 (2015 numbering); the root cause analysis in Module 05 and the corrective actions in Module 06 are the evidence an auditor would ask for; the control plan is documented information under clause 7.5; gauge R&R and calibration (Module 03) satisfy clause 7.1.5 on monitoring and measuring resources.
 
 ## Exercise 0.1
 
