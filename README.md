@@ -1,6 +1,6 @@
 # IE Knowledgebase
 
-Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, under `courses/<category>/<course>/`.
+Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
 
 ## Courses
 
@@ -82,6 +82,12 @@ _No courses yet._
 | [Predetermined Time Standards (MODAPTS Topics)](courses/work-design-work-measurement/predetermined-time-standards/README.md) | Follows the MODAPTS practitioner outline item by item: PMTS basics, acronym, code symbol, history, modular concept, movement classes and rules, get vs put, conscious control, GET/PUT elements, auxiliary activities, practice analyses with an original teaching code card (not the official card), method and ergonomic improvement | ~3 days | v1.0 |
 | [Facilities and Workplace Design](courses/work-design-work-measurement/facilities-and-workplace-design/README.md) | Facilities strategy and levels of design; layout planning and project plan; P-Q, inventory, usage, flow and processes; planning units, affinities, space constraints, configuration diagrams; material flow and layout exchange; cellular and workstation layouts; process charting, time estimates, cell capacity, people and machines; ergonomics, motion economy; infrastructure, scheduling, containers, balancing, supervision, rewards; cell configurations and layout procedures | ~2 days | v1.0 |
 | [Detailed Motion Time Analysis (MTM-1 Topics)](courses/work-design-work-measurement/detailed-motion-time-analysis/README.md) | Methods analysis and two-handed charts; reach, move, turn, apply pressure, grasp, position, release, disengage, eye and body motions; simultaneous motions; writing analyses; SIMO-based improvement; developing standards; 11 labs. Original teaching data card (not MTM data) | ~10 days with labs | v1.0 |
+### [Operations Research & Decision Analysis](courses/operations-research-decision-analysis/README.md)
+
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Engineering Decision Making & Risk Management](courses/operations-research-decision-analysis/engineering-decision-making/README.md) | Decision contexts, objectives, measurement scales; AHP, MAUT, swing weighting; group decisions (Borda, Kemeny-Young, majority judgement); aleatory vs epistemic uncertainty, eliciting probabilities; stochastic dominance, decision trees, risk aversion, expected utility; zero-sum and mixed-motive games; incremental and contingency processes, search, secretary problem; EVPI, EVII; risk treatment, potential problem analysis, warnings, ROC curves, risk communication; learning from failures, sensitivity analysis | ~3 days | v1.0 |
+
 ### [Microlearning Refreshers](courses/microlearning-refreshers/README.md)
 
 _No courses yet._

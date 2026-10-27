@@ -1,8 +1,8 @@
 # Course Roadmap
 
-Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview); every course built here is original content, not IISE material.
+Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview), plus categories we add for subjects the catalog does not cover (marked "beyond the IISE catalog"); every course built here is original content, not IISE material.
 
-**Progress: 28 of 101 topics covered.**
+**Progress: 29 of 102 topics covered.**
 
 - [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
@@ -143,6 +143,12 @@ Folder: [`courses/work-design-work-measurement/`](courses/work-design-work-measu
 - [x] [Staffing Models & Human Capital Management](courses/work-design-work-measurement/staffing-models/README.md)
 - [x] [Standard Data Systems](courses/work-design-work-measurement/standard-data-systems/README.md)
 - [x] [Work Measurement](courses/work-design-work-measurement/work-measurement/README.md)
+
+## Operations Research & Decision Analysis (1/1)
+
+Folder: [`courses/operations-research-decision-analysis/`](courses/operations-research-decision-analysis/README.md) — beyond the IISE catalog
+
+- [x] [Engineering Decision Making & Risk Management](courses/operations-research-decision-analysis/engineering-decision-making/README.md)
 
 ## Microlearning Refreshers (0/13)
 

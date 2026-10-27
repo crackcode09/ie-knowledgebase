@@ -1,0 +1,5 @@
+alt,unit_cost,accuracy_um,mtbf_h,ttm_months,name
+A,410,50,18000,6,Belt drive
+B,520,10,22000,8,Ball screw
+C,880,2,30000,14,Linear motor
+D,450,30,15000,7,Rack and pinion
