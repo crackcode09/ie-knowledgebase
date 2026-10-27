@@ -1,6 +1,6 @@
 # IE Knowledgebase
 
-Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, under `courses/<category>/<course>/`.
+Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
 
 ## Courses
 
@@ -21,6 +21,9 @@ Suggested order: Measurement & Basic Statistics, Process Mapping and Voice of th
 | [Introduction to Engineering Analytics](courses/analytics-data-science-ai/engineering-analytics/README.md) | Analytics types and process; visualization and dashboards; data models, star schema, SQL; k-means segmentation, ABC classification, logistic and tree classifiers, accuracy measures; regression case study; PCA; forecasting; Big Data technology and enterprise data models; linear-programming optimization; strategy | ~2 days | v1.0 |
 | [Advanced Engineering Analytics](courses/analytics-data-science-ai/advanced-engineering-analytics/README.md) | Business impact of data science; managing and merging multi-source data (Excel + exports); data preparation; descriptive statistics; ANOVA; regression; nonparametric tests and bootstrap; DOE; improving prediction accuracy (CV, features, leakage); dashboards | ~2 days | v1.0 |
 
+| [Analytics-Based Enterprise Performance Management](courses/analytics-data-science-ai/analytics-based-epm/README.md) | EPM and ERM; BI vs BA, forecasting vs predictive analytics; ABC/M and chargebacks; strategy maps, balanced scorecards, KPIs vs PIs; customer profitability, cost-to-serve, CLV; unit costing, cost of quality, value-stream costing; driver-based budgets, rolling forecasts, risk-adjusted Monte Carlo, outsourcing; intangible-asset ROI; adoption barriers | 1 day (+ exercises) | v1.0 |
+| [Efficient AI](courses/analytics-data-science-ai/efficient-ai/README.md) | AI foundations (ML, GenAI, rules); problem-first thinking; cross-functional use cases; AI with Lean Six Sigma (PICK chart, DMAIC pilots); risks, limitations, misconceptions (GenAI pilot evaluation); data readiness audit; from ideas to a phased roadmap with business case | ~4 h | v1.0 |
+| [Human-Centered AI](courses/analytics-data-science-ai/human-centered-ai/README.md) | Human-centered design foundations; qualitative insight gathering (simulated interviews); from insights to themes; opportunity framing (How might we); bridge to design sprints and rapid prototyping (assumption maps, Wizard of Oz) | ~2 h | v1.0 |
 | [Data Analytics for Business Results](courses/analytics-data-science-ai/data-analytics-for-business-results/README.md) | Analytics types, lifecycle, MAD dashboards, 12 data-quality dimensions, EDA, Apriori, A/B tests, regression, ML (churn, RFM), storytelling, decision models, biases | 8 h (4 × 2 h) | v1.0 |
 ### [Ergonomics & Safety](courses/ergonomics-safety/README.md)
 
@@ -83,6 +86,12 @@ _No courses yet._
 | [Predetermined Time Standards (MODAPTS Topics)](courses/work-design-work-measurement/predetermined-time-standards/README.md) | Follows the MODAPTS practitioner outline item by item: PMTS basics, acronym, code symbol, history, modular concept, movement classes and rules, get vs put, conscious control, GET/PUT elements, auxiliary activities, practice analyses with an original teaching code card (not the official card), method and ergonomic improvement | ~3 days | v1.0 |
 | [Facilities and Workplace Design](courses/work-design-work-measurement/facilities-and-workplace-design/README.md) | Facilities strategy and levels of design; layout planning and project plan; P-Q, inventory, usage, flow and processes; planning units, affinities, space constraints, configuration diagrams; material flow and layout exchange; cellular and workstation layouts; process charting, time estimates, cell capacity, people and machines; ergonomics, motion economy; infrastructure, scheduling, containers, balancing, supervision, rewards; cell configurations and layout procedures | ~2 days | v1.0 |
 | [Detailed Motion Time Analysis (MTM-1 Topics)](courses/work-design-work-measurement/detailed-motion-time-analysis/README.md) | Methods analysis and two-handed charts; reach, move, turn, apply pressure, grasp, position, release, disengage, eye and body motions; simultaneous motions; writing analyses; SIMO-based improvement; developing standards; 11 labs. Original teaching data card (not MTM data) | ~10 days with labs | v1.0 |
+### [Operations Research & Decision Analysis](courses/operations-research-decision-analysis/README.md)
+
+| Course | Topic | Length | Status |
+|---|---|---|---|
+| [Engineering Decision Making & Risk Management](courses/operations-research-decision-analysis/engineering-decision-making/README.md) | Decision contexts, objectives, measurement scales; AHP, MAUT, swing weighting; group decisions (Borda, Kemeny-Young, majority judgement); aleatory vs epistemic uncertainty, eliciting probabilities; stochastic dominance, decision trees, risk aversion, expected utility; zero-sum and mixed-motive games; incremental and contingency processes, search, secretary problem; EVPI, EVII; risk treatment, potential problem analysis, warnings, ROC curves, risk communication; learning from failures, sensitivity analysis | ~3 days | v1.0 |
+
 ### [Microlearning Refreshers](courses/microlearning-refreshers/README.md)
 
 _No courses yet._

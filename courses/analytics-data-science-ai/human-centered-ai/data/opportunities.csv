@@ -1,0 +1,7 @@
+id,statement,theme,desirability,feasibility,viability,ai_fit
+O1,"How might we help technicians get the right information for this job, at the machine, in seconds?",T1,5,3,4,4
+O2,How might we capture and share experts' know-how so that anyone on shift can handle unfamiliar jobs?,T2,5,3,4,3
+O3,How might we stop people re-keying the same data between systems?,T3,4,4,4,2
+O4,How might we show the reasons behind system numbers so people can trust and act on them?,T4,4,3,3,4
+O5,How might we protect planned work from daily firefighting?,T5,4,2,3,2
+O6,"How might we design tools that work with gloves, noise and seconds to spare?",T6,3,3,3,2
