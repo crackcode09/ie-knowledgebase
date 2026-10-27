@@ -2,7 +2,7 @@
 
 Every symbol is defined where it is used, and a symbol means the same thing throughout the course. Sources are cited by the IDs in `sources.md`.
 
-## Yield and defect metrics (montgomery-8e)
+## Yield and defect metrics (george-2005 for rolled throughput yield, DPU and DPMO; montgomery-8e for the sigma-level convention)
 
 | Formula | Symbols |
 |---|---|

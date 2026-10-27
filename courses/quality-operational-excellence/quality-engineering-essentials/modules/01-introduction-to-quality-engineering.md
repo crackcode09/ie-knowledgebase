@@ -25,7 +25,7 @@ Lean focuses on flow and waste; Six Sigma on variation and defects. They reinfor
 
 ## The 99.9 % problem
 
-If every step in a process is 99.9 % right, the chance a unit passes **all** steps (rolled throughput yield) is 0.999ⁿ:
+If every step in a process is 99.9 % right, the chance a unit passes **all** steps (rolled throughput yield, the product of the step yields; george-2005) is 0.999ⁿ:
 
 | Steps | Overall yield |
 |---|---|

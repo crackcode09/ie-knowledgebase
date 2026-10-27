@@ -5,7 +5,7 @@
 | Course | `courses/quality-operational-excellence/quality-engineering-essentials/` (8 modules, including the folded-in `00-foundations-of-quality.md` that covers the catalog's separate "Quality 101" topic) |
 | Board run | 2, plus a targeted run-3 re-check of the run-2 findings (accuracy section) |
 | Date | 2026-10-27 |
-| State | open questions (no FAIL remains; questions 17 to 26 answered on 2026-10-27 and applied in PR #37, except 22, held for the reviewer's book check, and the 7.1.5 / 7.5 / 10.2 confirmation under 17) |
+| State | open questions (no FAIL remains; questions 17 to 26 answered on 2026-10-27 and applied in PR #37, except the 7.1.5 / 7.5 / 10.2 confirmation under 17) |
 | Verified by | |
 
 ## Verdict summary
@@ -59,7 +59,7 @@ Run 1's sixteen questions and their answers are kept below under "Run 1 record".
 21. **"Many customers now require the AP method"** (module 05) is plausible but unsourced. *Resolved by:* citing the AIAG-VDA handbook's adoption statement or softening to "some automotive customers".
     - **Answer:** (Nidhin, 2026-10-27) Where a standard or customer policy exists it overrides anything the course assumes. Chair's research: the AIAG-VDA handbook (2019) replaced RPN with AP; Ford's PPAP requirement has accepted the handbook format since 2024 (IATF Global Oversight notice, 17 October 2024); no OEM document reached says AP is mandatory across the board. Applied: module 05 now says AP is the required method where a customer applies the handbook, cites the Ford notice (iatf-ford-ppap-2024) as evidence of adoption, and says the customer's requirement overrides the course.
 22. **Rolled throughput yield and the 1.5σ shift cited to montgomery-8e.** The reviewer could not confirm the book presents RTY. *Resolved by:* a reviewer with the book, or citing george-2005 for RTY.
-    - **Answer:** (Nidhin, 2026-10-27) Held: the reviewer will check the book and report where rolled throughput yield is presented. No change yet.
+    - **Answer:** (Nidhin, 2026-10-27) Reviewer supplied the standard definition (RTY = product of the first-pass yields of the sequential steps; step yield = 1 − DPU or e^−DPU), which matches module 01 and the formula sheet. Applied: rolled throughput yield, DPU and DPMO are now cited to george-2005 (The Lean Six Sigma Pocket Toolbook) in module 01 and the formula sheet; montgomery-8e keeps the sigma-level convention and the 1.5σ shift. Whether Montgomery also presents RTY no longer matters for the citation.
 23. **Module 04 long sentences** (the Wheeler paragraph, the constants sentence, the staged-chart proof sentence) and **abbreviations** (UCL, LCL, p̄, σ_within, np, c, u, X̄–S used in the chart table without a gloss). *Resolved by:* a yes to splitting and glossing, or a ruling that the chart table is a pointer to the SQC course.
     - **Answer:** (Nidhin, 2026-10-27) Agreed. Applied: the Wheeler paragraph, the constants sentence, the staged-chart proof sentence, the run-rules sentence and the raw-scale meaning sentence are split; a "Reading the table" line under the chart table glosses X̄, R, S, p, np, c, u, UCL, LCL and p̄; σ_within is defined where Cp is introduced.
 24. **Module 02:** skewness, Kolmogorov–Smirnov and Akaike are glossed functionally, not defined; two sentences near 40 words. *Resolved by:* accept or split.

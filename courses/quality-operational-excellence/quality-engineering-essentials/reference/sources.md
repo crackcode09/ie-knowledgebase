@@ -21,7 +21,7 @@ What this course rests on. Modules cite an entry by its ID, for example (montgom
 | kotter-1996 | Kotter, J. P. *Leading Change*. Harvard Business School Press, 1996. | Change leadership | 06 | no |
 | cohen-1960 | Cohen, J. "A coefficient of agreement for nominal scales." *Educational and Psychological Measurement* 20(1), 1960, 37 to 46. | The kappa statistic itself | formulas | no |
 | landis-koch-1977 | Landis, J. R., and Koch, G. G. "The measurement of observer agreement for categorical data." *Biometrics* 33(1), 1977, 159 to 174. | Kappa interpretation bands; the bands used in module 03 are stricter than this paper's and are the course's own bar | 03, formulas | no |
-| george-2005 | George, M. L., Rowlands, D., Price, M., and Maxey, J. *The Lean Six Sigma Pocket Toolbook*. McGraw-Hill, 2005. | DMAIC tool summaries | background only (not cited by ID) | no |
+| george-2005 | George, M. L., Rowlands, D., Price, M., and Maxey, J. *The Lean Six Sigma Pocket Toolbook*. McGraw-Hill, 2005. | Rolled throughput yield, DPU and DPMO definitions; DMAIC tool summaries | 01, formulas | no |
 | nist-handbook | NIST/SEMATECH *e-Handbook of Statistical Methods*, <https://www.itl.nist.gov/div898/handbook/>. | Distribution fitting, capability and control chart cross-checks | background only (not cited by ID) | no |
 
 ## Claims that rest on general practice rather than a listed source
