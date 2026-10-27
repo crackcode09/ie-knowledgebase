@@ -1,0 +1,49 @@
+note_id,person,role,type,note
+N01,P1,CNC operator (2nd shift),pain,Walks to the office PC to look up the latest work instruction revision several times a shift
+N02,P1,CNC operator (2nd shift),workaround,Keeps a personal notebook of offsets and tricks for difficult part numbers
+N03,P1,CNC operator (2nd shift),constraint,Wears gloves and cannot use a touchscreen without taking them off
+N04,P1,CNC operator (2nd shift),need,Wants to know quickly whether a drawing note applies to this revision
+N05,P1,CNC operator (2nd shift),pain,"When the setup expert is off shift, waits or guesses on unfamiliar jobs"
+N06,P1,CNC operator (2nd shift),constraint,Machine area is loud; voice input would be hard to hear
+N07,P2,Maintenance technician,pain,Searches three places for the last repair history of a machine
+N08,P2,Maintenance technician,goal,Wants to fix a breakdown right the first time instead of trial and error
+N09,P2,Maintenance technician,workaround,Texts photos of faults to a retired colleague who knows the old machines
+N10,P2,Maintenance technician,pain,Planned maintenance is skipped whenever there is a breakdown elsewhere
+N11,P2,Maintenance technician,need,"Needs the fault code, the manual page and past fixes together in one place"
+N12,P2,Maintenance technician,constraint,Hands are often oily; phone stays in the pocket during repairs
+N13,P3,Production planner,pain,Copies orders from the ERP into a spreadsheet every morning to build the schedule
+N14,P3,Production planner,pain,Does not trust the system lead times so adds own buffer to every order
+N15,P3,Production planner,goal,Wants to see the impact of a rush order on other customers before saying yes
+N16,P3,Production planner,workaround,Calls the floor to check machine status because the system is not up to date
+N17,P3,Production planner,pain,Half the day goes to expediting instead of planning ahead
+N18,P3,Production planner,need,Needs to know why a forecast changed before acting on it
+N19,P4,Customer service agent,pain,Toggles between four screens to answer one order status question
+N20,P4,Customer service agent,need,Wants a quick answer on technical questions without waiting for engineering
+N21,P4,Customer service agent,pain,Spends a long time finding the right spec sheet for a customer question
+N22,P4,Customer service agent,goal,Wants to give customers a delivery date she can stand behind
+N23,P4,Customer service agent,workaround,Keeps a shared document of answers to common technical questions
+N24,P4,Customer service agent,constraint,Must answer phone calls within a few minutes; no time for long searches
+N25,P5,Accounts payable clerk,pain,Re-keys invoice lines from PDF into the ERP by hand
+N26,P5,Accounts payable clerk,pain,Reconciles price differences between PO and invoice line by line
+N27,P5,Accounts payable clerk,need,Wants exceptions flagged with the reason so she can act quickly
+N28,P5,Accounts payable clerk,goal,Wants to stop month-end overtime
+N29,P5,Accounts payable clerk,workaround,Keeps a personal list of suppliers whose invoices always have unit-of-measure problems
+N30,P5,Accounts payable clerk,pain,Would not approve a payment suggested by a system without seeing why it matched
+N31,P6,Quality engineer,pain,Writing an 8D report means hunting through emails for the complaint history
+N32,P6,Quality engineer,need,Wants to see all similar past complaints and their root causes in one view
+N33,P6,Quality engineer,pain,Investigations are interrupted by daily containment firefights
+N34,P6,Quality engineer,goal,Wants to spot recurring problems before the customer does
+N35,P6,Quality engineer,workaround,Exports data from three systems and joins them in a spreadsheet
+N36,P6,Quality engineer,pain,Does not trust a defect rate unless she can see the raw inspection records
+N37,P7,Shift supervisor,pain,Spends the first hour of the shift chasing what happened on the previous shift
+N38,P7,Shift supervisor,need,Wants handover notes that are complete and quick to read
+N39,P7,Shift supervisor,pain,Only two people can set up the new machine; absences stop production
+N40,P7,Shift supervisor,goal,Wants the team to solve problems without escalating everything
+N41,P7,Shift supervisor,workaround,Uses a whiteboard because the system board is never current
+N42,P7,Shift supervisor,constraint,No time during the shift for training on new software
+N43,P8,Warehouse picker,pain,Walks back to the desk when a pick location is wrong in the system
+N44,P8,Warehouse picker,constraint,Scanner gun is the only device carried; screen is small
+N45,P8,Warehouse picker,workaround,Remembers where fast movers really are instead of trusting the system
+N46,P8,Warehouse picker,pain,Rush orders interrupt planned picking waves
+N47,P8,Warehouse picker,need,Wants to know about a shortage before walking to the location
+N48,P8,Warehouse picker,goal,Wants fewer wasted trips across the warehouse

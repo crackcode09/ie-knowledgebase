@@ -1,0 +1,8 @@
+id,assumption,importance,evidence
+A1,Technicians will use a question-answering tool at the machine during a job,5,1
+A2,"Answers can be drawn from current, approved work instructions and repair records",5,2
+A3,A small rugged tablet at each cell can be used with gloves,4,2
+A4,Experts will review and correct the tool's answers in the first months,4,1
+A5,Faster information access reduces setup and repair time,5,4
+A6,IT can connect the document system and the maintenance system,3,4
+A7,Supervisors will allow time for a 20-minute introduction,2,4
