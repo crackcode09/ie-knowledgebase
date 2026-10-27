@@ -63,7 +63,7 @@ Negative component estimates are set to zero.
 | R (subgroup ranges) | UCL = D₄ · R̄, LCL = D₃ · R̄ | D₃ = 0 and D₄ = 2.114 for n = 5 |
 | p (fraction defective) | p̄ ± 3 · √[p̄ (1 − p̄) / n] | p̄ = overall fraction defective; n = subgroup size; a negative LCL is set to 0 |
 
-A₂, D₃, D₄ and d₂ are tabulated constants that depend only on the subgroup size n; the course gives the n = 5 and n = 2 values it uses.
+A₂, D₃, D₄ and d₂ are tabulated constants that depend only on the subgroup size n; the course gives the n = 5 values it uses (A₂ = 0.577, D₃ = 0, D₄ = 2.114, d₂ = 2.326) and d₂ = 1.128 for n = 2.
 
 ## Capability (montgomery-8e)
 

@@ -7,7 +7,7 @@
 - Trace how quality practice developed, from inspection to statistical control to management systems, and name the people and ideas behind each step.
 - Distinguish quality control, quality assurance and quality improvement, and say which tools in this course belong to each.
 - Describe the main obstacles to continuous improvement and how a quality engineer works around them.
-- Name the standards a quality engineer meets and what each is for; explain what ISO 9001 requires in outline, what certification does and does not prove, and where DMAIC projects fit inside it.
+- Name the standards a quality engineer meets and what each is for; explain what ISO 9001 requires in outline, what certification does and does not prove, and where improvement projects (DMAIC, the define, measure, analyze, improve, control sequence of Module 01) fit inside it.
 - State what a process map gives an improvement team before any data is collected.
 
 ## What "quality" means
@@ -39,7 +39,7 @@ Quality practice changed each time somebody found a cheaper way to be right than
 Three ideas survive every fashion change, and this course is built on them:
 
 1. **Variation is the enemy, and it has causes you can find.** Shewhart's distinction between common and special causes is still the basis of every control chart (Module 04).
-2. **Prevention beats detection.** Inspection finds defects after the cost has been incurred. Controlling inputs (Y = f(X), Module 01) stops them.
+2. **Prevention beats detection.** Inspection finds defects after the cost has been incurred. Controlling inputs stops them (Module 01 writes this as Y = f(X): the output depends on the inputs).
 3. **Quality is management's job, measured in data.** Deming argued that most problems belong to the system, which only management can change, and that decisions should rest on evidence rather than opinion. Those two claims became the "leadership" and "evidence-based decision making" principles in ISO 9001.
 
 ## Quality control, quality assurance, quality improvement
@@ -73,7 +73,7 @@ The tools in this course are not difficult. What makes improvement fail is usual
 Before a single measurement is taken, a process map produces four things an improvement team cannot get any other way:
 
 1. **One shared picture.** Operators, engineers and managers usually hold different mental models of the same process. Drawing it exposes the differences.
-2. **Boundaries.** Where the project starts and stops, and which inputs come from outside it (the SIPOC view).
+2. **Boundaries.** Where the project starts and stops, and which inputs come from outside it (the SIPOC view: suppliers, inputs, process, outputs, customers, Module 01).
 3. **Handoffs and non-value-added steps.** Waiting, rework loops, inspection and transport appear as boxes that add no value, and they are where most of the lead time hides.
 4. **A frame for measurement.** Every box is a place to put a metric; the map tells you where the data in Modules 02–04 should be collected.
 
@@ -90,19 +90,28 @@ College courses rarely say which standards a working quality engineer will actua
 | ISO 19011 | How to audit management systems: auditor competence, planning, evidence, reporting | Internal audits and supplier audits |
 | ISO/IEC 17025 | Competence of testing and calibration laboratories | When your calibration certificates must be traceable, and when a lab's results are challenged |
 | ISO 10012 | Measurement management systems: managing measuring equipment and processes | The calibration programme behind Module 03 |
-| IATF 16949 | ISO 9001 plus the automotive industry's additional requirements; brings in the AIAG core tools (APQP, PPAP, FMEA, MSA, SPC) | Automotive supply chains |
+| IATF 16949 | ISO 9001 plus the automotive industry's additional requirements; brings in the Automotive Industry Action Group (AIAG) core tools: advanced product quality planning (APQP), production part approval (PPAP), FMEA (Module 05), measurement system analysis (MSA, Module 03) and statistical process control (SPC, Module 04) | Automotive supply chains |
 | AS9100 | ISO 9001 plus aerospace requirements (configuration, counterfeit parts, product safety) | Aerospace and defence supply chains |
 | ISO 13485 | Quality management for medical devices, tied to regulatory approval | Medical device makers and their suppliers |
 | ISO 2859 and ISO 3951 | Acceptance sampling by attributes and by variables; the ANSI/ASQ Z1.4 and Z1.9 equivalents | Incoming and outgoing inspection sampling plans |
 | ISO 7870 series | Control charts: general guidance and the standard chart types | When a customer asks whether your SPC follows a standard |
-| ISO 22514 series | Process capability and performance indices (Cp, Cpk, Pp, Ppk) and how to compute them | Capability reports to customers |
+| ISO 22514 series | Process capability and performance indices (Cp, Cpk, Pp, Ppk, Module 04) and how to compute them | Capability reports to customers |
 | ISO 31000 | Risk management principles and guidelines | Risk-based thinking in ISO 9001, enterprise risk registers |
 
 For the sampling, control-chart and capability standards the course teaches the methods from textbooks (montgomery-8e); the standards formalise the same methods and are what a customer may cite.
 
 ## ISO 9001 in outline
 
-ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. ISO 9001:2015 (with Amendment 1 of 2024) is the edition most organizations hold certificates to; ISO 9001:2026 was published on 16 September 2026 with a three-year transition, so certificates move to the new edition through 2029. The outline below follows the 2015 structure, which the 2026 edition largely keeps: clauses 4 to 10 and their main sub-clauses carry over. The changes reported by certification bodies and the accreditation transition notice are a split of risk and opportunity planning into 6.1.1 to 6.1.3, a consolidated continual-improvement clause 10.1, stronger change management in 6.3, and a quality-culture requirement added under 5.1, 7.1.4 and 7.3 (dnv-iso9001-2026, global-aci-2026). Check clause numbers against the edition your auditor uses; 2015 certificates stop being valid after 30 September 2029. It does not specify product quality; it specifies how the organization manages quality.
+ISO 9001 is the international standard for a quality management system (QMS): the set of processes an organization uses to meet customer and regulatory requirements and to improve. ISO 9001:2015 (with Amendment 1 of 2024) is the edition most organizations hold certificates to; ISO 9001:2026 was published on 16 September 2026 with a three-year transition, so certificates move to the new edition through 2029. ISO 9001 does not specify product quality; it specifies how the organization manages quality.
+
+The outline below follows the 2015 structure, which the 2026 edition largely keeps: clauses 4 to 10 and their main sub-clauses carry over. Certification bodies and the accreditation transition notice report these changes (dnv-iso9001-2026, global-aci-2026):
+
+- clause 6.1, planning for risks and opportunities (what could go wrong, and what could be gained), is split into 6.1.1 to 6.1.3;
+- clauses 10.1 and 10.3 on continual improvement are merged into a new 10.1;
+- clause 6.3 on managing changes to the system is strengthened;
+- a requirement to promote a quality culture and ethical behaviour is added under 5.1, 7.1.4 and 7.3.
+
+Check clause numbers against the edition your auditor uses. ISO 9001:2015 certificates stop being valid after 30 September 2029.
 
 **Seven quality management principles** sit under the standard: customer focus, leadership, engagement of people, process approach, improvement, evidence-based decision making, and relationship management. Every clause can be traced back to one of them.
 
@@ -124,29 +133,38 @@ ISO 9001 is the international standard for a quality management system (QMS): th
 
 **Certification.** An accredited certification body audits the organization against the standard and issues a certificate, typically on a three-year cycle with surveillance audits between. Certification shows that a conforming system exists and is followed. It does not show that any particular shipment is good, and a certified supplier can still ship defects, as Bayline did. Customers in regulated or high-consequence sectors add their own requirements on top: IATF 16949 (automotive), AS9100 (aerospace), ISO 13485 (medical devices).
 
-**Where this course fits.** A DMAIC project is how clause 10 gets done. The customer returns at Bayline are nonconformities under clause 10.2 (2015 numbering); the root cause analysis in Module 05 and the corrective actions in Module 06 are the evidence an auditor would ask for; the control plan is documented information under clause 7.5; gauge R&R and calibration (Module 03) satisfy clause 7.1.5 on monitoring and measuring resources.
+**Where this course fits.** A DMAIC project is how clause 10 gets done. Clause numbers below are the 2015 numbering.
+
+| What Bayline does in this course | Where ISO 9001 asks for it |
+|---|---|
+| Treats the customer returns as nonconformities and acts on them | 10.2, nonconformity and corrective action |
+| Finds the root cause (Module 05) and fixes it (Module 06) | 10.2, the evidence an auditor asks for |
+| Keeps a control plan (Module 06) | 7.5, documented information |
+| Runs gauge R&R and calibrates the micrometer (Module 03) | 7.1.5, monitoring and measuring resources |
 
 ## Worked example: sorting Bayline's quality activities
 
 A concept module still needs one example tied to data, so the test above is applied to three things Bayline already does.
 
-**Data:** `data/production_sample.csv`, 480 inserts from 20 production days, one row per insert with the machine, the shift and the inspector's defect call (blank when the insert passed); and the calibration record for the micrometer that measured them (Module 03).
+**Data:** three files. `data/production_sample.csv`: 480 inserts from 20 production days, one row per insert with the machine, the shift and the inspector's defect call (blank when the insert passed). `data/gauge_rr.csv`: the gauge R&R study of the micrometer that measured them (Module 03). `data/pilot_results.csv`: inserts inspected and found oversize on M2 before and after the corrective action (Module 06).
 
 **Steps:**
 
 1. Count the defect calls: how many inserts the final inspection rejected, and of what kind. Command: `python tools/qekit.py pareto`.
-2. For each of three activities (the final inspection, the micrometer calibration record, the DMAIC project in Modules 01 to 06), ask what its output is: a decision about units, confidence held by someone else, or a process that performs better.
-3. Place each in the table.
+2. Read the gauge study's result: what share of the tolerance the gauge uses up. Command: `python tools/qekit.py grr`.
+3. Read the pilot's before and after oversize rates. Command: `python tools/qekit.py pilot`.
+4. For each activity, ask what its output is. Is it a decision about units, confidence held by someone else, or a process that performs better?
+5. Place each in the table.
 
 **Result:**
 
 | Activity | Output | Class |
 |---|---|---|
 | Final inspection of the 480 inserts | 40 rejected (20 oversize OD, 11 thread damage, 7 burr, 2 knurl incomplete); 440 passed | Control |
-| Micrometer calibration record | Evidence, for the customer and the auditor, that the 480 readings can be trusted | Assurance |
-| DMAIC project on oversize OD | M2's oversize rate moved from 7.92 % to 0.33 % (Module 06) | Improvement |
+| Gauge R&R study of the micrometer | Evidence, for the customer and the auditor, that the gauge uses 23.7 % of the tolerance, so the 480 readings can be trusted for this decision | Assurance |
+| DMAIC project on oversize OD | M2's oversize rate moved from 7.92 % (190 of 2,400) to 0.33 % (6 of 1,800) | Improvement |
 
-**What it means:** inspection found the 40 defectives but did not make the next 480 inserts any better; the calibration record proves the readings but changes nothing on the lathe; only the project changed what the process can do. Bayline had plenty of the first two and none of the third until the customer returns forced it, which is the usual pattern.
+**What it means:** inspection found the 40 defectives but did not make the next 480 inserts any better. The gauge study proves the readings but changes nothing on the lathe. Only the project changed what the process can do. Bayline had plenty of the first two and none of the third until the customer returns forced it, which is the usual pattern.
 
 ## Exercise 0.1
 
@@ -155,7 +173,7 @@ List five activities your own organization does in the name of quality (for exam
 ## Check yourself
 
 1. A supplier is ISO 9001 certified. A customer receives a shipment with 4 % defective parts. Is this a contradiction?
-2. Which of the three terms, QC, QA or QI, describes each of the following: an out-of-control signal on an X̄ chart; an internal audit of calibration records; a project that reduced thread damage from 3 % to 0.4 %?
+2. Which of the three terms, QC, QA or QI, describes each of the following: an out-of-control signal on an X̄ (x-bar) control chart; an internal audit of calibration records; a project that reduced thread damage from 3 % to 0.4 %?
 3. Shewhart's chart distinguishes two kinds of variation. Name them and say which one a DMAIC project usually targets.
 4. Name two obstacles to improvement that a process map helps with, and one it does not.
 5. Which ISO 9001 clause would an auditor cite when asking for evidence that a gauge R&R study was done?
