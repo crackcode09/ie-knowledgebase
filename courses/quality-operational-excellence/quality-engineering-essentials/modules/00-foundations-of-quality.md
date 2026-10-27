@@ -86,7 +86,7 @@ College courses rarely say which standards a working quality engineer will actua
 | Standard | What it is for | When you meet it |
 |---|---|---|
 | ISO 9000 | The vocabulary and principles behind the 9000 family: what "quality", "nonconformity", "corrective action" and the rest mean (iso-9000-2015) | Whenever a definition is disputed in an audit or a contract |
-| ISO 9001 | The requirements for a quality management system; the one an organization is certified to (iso-9001-2015 and the 2026 edition) | Any certified plant, every supplier questionnaire |
+| ISO 9001 | The requirements for a quality management system; the one an organization is certified to (iso-9001-2015, iso-9001-2026) | Any certified plant, every supplier questionnaire |
 | ISO 19011 | How to audit management systems: auditor competence, planning, evidence, reporting | Internal audits and supplier audits |
 | ISO/IEC 17025 | Competence of testing and calibration laboratories | When your calibration certificates must be traceable, and when a lab's results are challenged |
 | ISO 10012 | Measurement management systems: managing measuring equipment and processes | The calibration programme behind Module 03 |
