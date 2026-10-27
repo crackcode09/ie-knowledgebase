@@ -33,6 +33,10 @@ Review one course per pull request. Do not verify a course you wrote.
 - [ ] The README syllabus table lists every module with its time and topics, and every link resolves.
 - [ ] Written for a reader without a statistics background; the math is in tables, the prose explains it.
 
+## Running the review board
+
+The checklist above can be run by the course review board in Claude Code: `/review-course <slug>` launches four reviewers in parallel (originality, accuracy, trademarks and licences, structure and plain language), consolidates their PASS / FAIL / QUESTION verdicts into `reviews/<slug>.md`, and lists every doubt as a numbered question for you to answer. A FAIL in sections 1 or 3 blocks verification outright. The board never flips the status itself: once every question is answered and no FAIL remains, `/review-course <slug> --sign-off` records your name, updates the status cells and opens the `review:` pull request. See [reviews/README.md](reviews/README.md).
+
 ## 5. Sign-off
 
 Add to the course README, under the title block:

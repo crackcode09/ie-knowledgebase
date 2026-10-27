@@ -63,6 +63,7 @@
 - Delivered as described in one PR. Course placement script now writes `draft` for new rows.
 
 ## [2026-10-27] — Plan: Site review and fixes (code, accessibility, layout)
+## [2026-10-27] — Plan: Course review board
 
 ### Status: COMPLETE
 
@@ -87,3 +88,23 @@
 
 ### Outcome (filled in after completion)
 - Delivered as one PR. Typography readability research runs separately and lands as its own PR.
+- A multi-agent review board that runs REVIEW.md against one course: four specialist reviewers in parallel (originality, accuracy, trademarks and licences, structure and plain language), a chair that consolidates PASS / FAIL / QUESTION verdicts into `reviews/<slug>.md`, and a question round where the human reviewer answers doubts. Sign-off is a separate, human-gated step that flips the status cells and opens a `review:` PR.
+
+### Files to be created or modified
+- `.claude/agents/review-originality.md`, `review-accuracy.md`, `review-trademarks.md`, `review-structure.md` — reviewer definitions (read-only, evidence-based output format)
+- `.claude/skills/review-course/SKILL.md` — the chair: locate, brief, run in parallel, consolidate, ask, sign off
+- `reviews/README.md`, `reviews/_template.md` — report conventions and layout
+- `REVIEW.md`, `README.md` — pointers to the board
+
+### Implementation steps
+1. Write reviewer agents with narrow checklists mapped to REVIEW.md sections, each returning the same table shape.
+2. Write the chair skill with explicit preconditions for sign-off.
+3. First run on one course the owner knows well, to judge the report format before running across all courses.
+
+### Assumptions & decisions
+- Reviewers never edit the repo; the chair edits only the report until sign-off.
+- A FAIL in originality or trademarks blocks outright, mirroring REVIEW.md section 5.
+- Based on the Karpathy guideline ideas (state assumptions, surface doubts, verifiable criteria), not on a specific framework.
+
+### Outcome (filled in after completion)
+- Delivered as one PR. First run pending the owner's choice of course.
