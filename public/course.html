@@ -134,6 +134,9 @@
   .doc td { font-variant-numeric: tabular-nums; }
   .doc tbody tr:hover { background: var(--surface); }
   .doc img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; display: block; margin: 0 0 var(--s4); }
+  .doc .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3) var(--s4); margin: 0 0 var(--s5); padding: var(--s3) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 15px; }
+  .doc .facts small { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  @media (max-width: 700px) { .doc .facts { grid-template-columns: 1fr; } }
   .doc figure { margin: var(--s4) 0 var(--s5); text-align: center; }
   .doc figure img { display: inline-block; margin: 0; }
   .doc figcaption { margin-top: var(--s2); font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-align: center; }
@@ -394,6 +397,16 @@
     const firstH1 = el.querySelector('h1'); if (firstH1 && firstH1 === el.firstElementChild) firstH1.remove();  // the document header already shows the title
     headingIds(el);
     el.querySelectorAll('table').forEach(tb => { const w = document.createElement('div'); w.className = 'tablewrap'; tb.replaceWith(w); w.appendChild(tb); });
+    // A paragraph made only of "**Label:** value" lines (Length, Prerequisites, Roles) becomes a facts row.
+    el.querySelectorAll('p').forEach(par => {
+      const kids = [...par.childNodes]; if (!kids.length || par.querySelector('img')) return;
+      const lines = []; let cur = null;
+      for (const k of kids) { if (k.nodeName === 'BR') { cur = null; continue; } if (!cur) { cur = []; lines.push(cur); } cur.push(k); }
+      if (lines.length < 2 || !lines.every(l => l[0].nodeName === 'STRONG' && /:\s*$/.test(l[0].textContent))) return;
+      const row = document.createElement('div'); row.className = 'facts';
+      for (const l of lines) { const cell = document.createElement('div'); const lab = document.createElement('small'); lab.textContent = l[0].textContent.replace(/:\s*$/, ''); cell.appendChild(lab); l.slice(1).forEach(n => cell.appendChild(n)); cell.normalize(); if (cell.lastChild && cell.lastChild.nodeType === 3) cell.lastChild.textContent = cell.lastChild.textContent.replace(/^\s+/, ''); row.appendChild(cell); }
+      par.replaceWith(row);
+    });
     // A paragraph holding only an image becomes a numbered figure; the alt text is the caption.
     let figN = 0;
     el.querySelectorAll('p > img:only-child').forEach(img => {
