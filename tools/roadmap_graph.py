@@ -21,6 +21,33 @@ READER_OUT = PUBLIC / "course.html"
 READER_TEMPLATE = ROOT / "tools" / "reader_template.html"
 LEGAL_TEMPLATE = ROOT / "tools" / "legal_template.html"
 LEGAL_PAGES = {"privacy": "Privacy Policy", "terms": "Terms of Use"}   # tools/legal/<key>.html -> public/<key>.html
+ICON_DIR = ROOT / "tools" / "icons"   # Bootstrap Icons (MIT), vendored; see tools/icons/LICENSE
+CATEGORY_ICONS = {
+    "analytics-data-science-ai": "graph-up-arrow",
+    "ergonomics-safety": "shield-check",
+    "healthcare-process-improvement": "heart-pulse",
+    "leadership-project-management": "people",
+    "lean-six-sigma": "arrow-repeat",
+    "logistics-supply-chain": "truck",
+    "quality-operational-excellence": "patch-check",
+    "technical-skills": "wrench-adjustable",
+    "work-design-work-measurement": "stopwatch",
+    "operations-research-decision-analysis": "diagram-3",
+    "microlearning-refreshers": "lightning-charge",
+}
+
+
+def icon(name, size=16):
+    """Inline SVG for a vendored Bootstrap icon, sized in CSS pixels and coloured by currentColor."""
+    svg = (ICON_DIR / f"{name}.svg").read_text(encoding="utf-8")
+    svg = re.sub(r'\s(width|height|class)="[^"]*"', "", svg, count=3)
+    svg = svg.replace("<svg ", f'<svg class="bi" width="{size}" height="{size}" aria-hidden="true" focusable="false" ', 1)
+    return re.sub(r"\s*\n\s*", "", svg)
+
+
+def inject_icons(html):
+    """Replace __ICON:name__ and __ICON:name:size__ placeholders in a template."""
+    return re.sub(r"__ICON:([a-z0-9-]+)(?::(\d+))?__", lambda m: icon(m.group(1), int(m.group(2) or 16)), html)
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
 DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
@@ -307,6 +334,7 @@ def build_model(cats):
         span = 2 * math.pi * len(c["items"]) / total_items
         nodes.append({"id": cid, "type": "category", "label": c["name"], "a": round(ang + span / 2, 4),
                       "description": category_description(slug), "tag": c.get("tag", ""),
+                      "icon": icon(CATEGORY_ICONS.get(slug, "list"), 18),
                       "path": f"courses/{slug}/README.md"})
         links.append({"source": "hub", "target": cid, "type": "tree"})
         table = category_table(slug)
@@ -389,11 +417,11 @@ def fill(template_path, **slots):
 def write_html(cats):
     model = build_model(cats)
     data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
-    write(HTML_OUT, fill(TEMPLATE, DATA=data))
-    write(READER_OUT, fill(READER_TEMPLATE, DATA=data))
+    write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))
+    write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=data)))
     for key, title in LEGAL_PAGES.items():
         body = (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
-        write(PUBLIC / f"{key}.html", fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body))
+        write(PUBLIC / f"{key}.html", inject_icons(fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body)))
     return model
 
 

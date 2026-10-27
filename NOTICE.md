@@ -29,6 +29,8 @@ IISE, Institute of Industrial and Systems Engineers, MODAPTS, MTM, MTM-1, Six Si
 
 ## Licences
 
+The site's interface icons are from [Bootstrap Icons](https://github.com/twbs/icons) (MIT, The Bootstrap Authors), vendored under `tools/icons/` with its licence and inlined into the pages by the generator.
+
 Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Code: [MIT](https://opensource.org/licenses/MIT). See [LICENSE](LICENSE). Attribution line: `From the IE Knowledgebase (github.com/crackcode09/ie-knowledgebase), CC BY 4.0.`
 
 ## Reporting a problem

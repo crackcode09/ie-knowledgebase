@@ -124,7 +124,8 @@
   .cat > summary { list-style: none; cursor: pointer; padding: var(--s3) var(--s4); display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; }
   .cat > summary::-webkit-details-marker { display: none; }
   .cat > summary h2 { font-family: var(--display); font-size: 17px; margin: 0; display: flex; align-items: center; gap: 8px; letter-spacing: -.01em; }
-  .cat > summary h2::before { content: "#"; color: var(--accent); font-family: var(--mono); font-weight: 400; }
+  .cat > summary h2 .bi, aside h2 .bi, .outline .ol-cat > summary .bi { color: var(--accent); flex: none; }
+  .bi { vertical-align: -.15em; }
   .cat > summary .desc { grid-column: 1; color: var(--muted); font-size: 13.5px; }
   .cat > summary h2 .tag { font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
   .bar { grid-column: 2; grid-row: 1 / span 2; min-width: 160px; white-space: nowrap; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--muted); }
@@ -194,8 +195,8 @@
   .outline details details { border: 0; border-top: 1px solid var(--line); border-radius: 0; margin: 0; background: var(--surface-2); }
   .outline summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px var(--s3); min-height: 44px; }
   .outline summary::-webkit-details-marker { display: none; }
-  .outline summary::after { content: "▸"; margin-left: auto; color: var(--muted); font-family: var(--mono); transition: transform .15s; }
-  .outline details[open] > summary::after { transform: rotate(90deg); }
+  .outline summary .chev { margin-left: auto; color: var(--muted); flex: none; transition: transform .15s; }
+  .outline details[open] > summary .chev { transform: rotate(90deg); }
   .outline .ol-cat > summary { font-family: var(--display); font-weight: 700; font-size: 15px; }
   .outline .ol-cat > summary .n { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); }
   .outline .ol-course > summary { font-weight: 600; font-size: 14px; }
@@ -285,13 +286,13 @@
     <button type="button" class="btn" role="tab" id="tab-graph" data-tab="graph" aria-selected="false" aria-controls="view-graph" tabindex="-1">Mind map</button>
   </div>
   <span class="spacer"></span>
-  <button type="button" class="btn icon" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <button type="button" class="btn icon" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search">__ICON:search:15__</button>
   <label class="search" for="search">
-    <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    __ICON:search:15__
     <input type="search" id="search" placeholder="Search courses, modules" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
     <kbd aria-hidden="true">/</kbd>
   </label>
-  <button type="button" class="btn icon" id="theme" aria-label="Toggle light or dark theme" title="Theme"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg></button>
+  <button type="button" class="btn icon" id="theme" aria-label="Toggle light or dark theme" title="Theme">__ICON:circle-half:15__</button>
 </header>
 <main>
   <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
@@ -336,7 +337,7 @@
     <div class="outline" id="outline" aria-label="Course map as a list"></div>
     <div class="pfoot outline-foot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </section>
-  <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">×</button><div id="panel-body"></div></aside>
+  <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
@@ -421,7 +422,7 @@
       if (q && !csv.length && !tsv.length) return '';
       const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length, cov = ts.filter(t => t.covered).length;
       return `<details class="cat" data-cat="${esc(cat.id)}" ${(q || (cs.length && !closedCats.has(cat.id))) ? 'open' : ''}>
-        <summary><h2>${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
+        <summary><h2>${cat.icon}${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
           <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
         ${tsv.length ? `<div class="planned"><span class="label">${tsv.every(t => t.covered) ? 'Folded in:' : 'Planned:'}</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
@@ -478,15 +479,15 @@
     const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
     if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
       return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
-    h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">GitHub</a>`;
+    h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
     body.innerHTML = h;
   }
   function openCategory(cat) {
     const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
-    body.innerHTML = `<h2>${esc(cat.label)}</h2><div class="meta">${cs.length} of ${cs.length + ts.length} courses built</div><p>${esc(cat.description)}</p>` +
+    body.innerHTML = `<h2>${cat.icon} ${esc(cat.label)}</h2><div class="meta">${cs.length} of ${cs.length + ts.length} courses built</div><p>${esc(cat.description)}</p>` +
       (cs.length ? `<h3>Built</h3><ul>${cs.map(li).join('')}</ul>` : '') +
       (ts.length ? `<h3>Planned</h3><ul>${ts.map(t => `<li style="color:var(--muted)">${esc(t.label)}</li>`).join('')}</ul>` : '') +
-      `<a class="btn-primary" href="${gh(cat.path)}" target="_blank" rel="noopener">Open category on GitHub</a>`;
+      `<a class="btn-primary" href="${gh(cat.path)}" target="_blank" rel="noopener">__ICON:github:13__ Open category on GitHub</a>`;
   }
   function openTopic(t) {
     if (t.covered) { const c = byId.get(t.covered); body.innerHTML = `<h2>${esc(t.label)}</h2><div class="meta"><span class="pill done">covered</span> · ${esc(byId.get(t.parent).label)}</div><p>Not a separate course. This topic is covered inside <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>.</p><a class="btn-primary" href="${reader(c)}">Read ${esc(c.label)}</a>`; return; }
@@ -494,7 +495,7 @@
   }
   function openModule(m) {
     const c = byId.get(m.parent);
-    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">GitHub</a>`;
+    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
   }
   let opener = null;
   const renderPanel = d => ({ course: openCourse, category: openCategory, topic: openTopic, module: openModule })[d.type](d);
@@ -584,9 +585,9 @@
       const vis = cs.filter(c => hit(c.label + ' ' + (c.search || '') + ' ' + modulesOf(c.id).map(m => m.label).join(' ')));
       const tvis = ts.filter(x => hit(x.label));
       if (q && !vis.length && !tvis.length) return '';
-      return `<details class="ol-cat" data-id="${esc(cat.id)}" ${isOpen(cat.id) ? 'open' : ''}><summary><i class="dot" style="background:var(--cat)"></i>${esc(cat.label)}<span class="n">${cs.length} built · ${ts.length} planned</span></summary>` +
+      return `<details class="ol-cat" data-id="${esc(cat.id)}" ${isOpen(cat.id) ? 'open' : ''}><summary>${cat.icon}${esc(cat.label)}<span class="n">${cs.length} built · ${ts.length} planned</span><span class="chev">__ICON:chevron-right:14__</span></summary>` +
         vis.map(c => { const mods = modulesOf(c.id), pre = prereqsOf(c.id), d = isDone(c.id);
-          return `<details class="ol-course" data-id="${esc(c.id)}" ${isOpen(c.id) ? 'open' : ''}><summary><i class="dot" style="background:var(--built)"></i>${d ? '✓ ' : ''}${esc(c.label)} ${c.verified ? '<span class="tag verified">verified</span>' : '<span class="tag draft">draft</span>'}</summary>
+          return `<details class="ol-course" data-id="${esc(c.id)}" ${isOpen(c.id) ? 'open' : ''}><summary><i class="dot" style="background:var(--built)"></i>${d ? '✓ ' : ''}${esc(c.label)} ${c.verified ? '<span class="tag verified">verified</span>' : '<span class="tag draft">draft</span>'}<span class="chev">__ICON:chevron-right:14__</span></summary>
             <div class="ol-body"><div class="req">${pre.length ? 'requires <b>' + pre.map(p => esc(p.label)).join('</b>, <b>') + '</b>' : 'no prerequisites'}${c.length ? ' · ' + esc(c.length) : ''}</div>
             ${mods.length ? `<ol>${mods.map(m => `<li class="${doneMods.has(m.path) ? 'mdone' : ''}"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a>${m.note ? ` <span class="n">· ${esc(m.note)}</span>` : ''}</li>`).join('')}</ol>` : ''}
             <div class="acts"><a class="btn-primary" href="${reader(c)}">Read course</a><button type="button" class="btn-secondary" data-open="${esc(c.id)}">Details</button></div></div></details>`; }).join('') +
