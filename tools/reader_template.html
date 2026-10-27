@@ -124,6 +124,10 @@
   .doc td { font-variant-numeric: tabular-nums; }
   .doc tbody tr:hover { background: var(--surface); }
   .doc img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #fff; display: block; margin: 0 0 var(--s4); }
+  .doc figure { margin: var(--s4) 0 var(--s5); text-align: center; }
+  .doc figure img { display: inline-block; margin: 0; }
+  .doc figcaption { margin-top: var(--s2); font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-align: center; }
+  .doc figcaption b { color: var(--text); font-weight: 500; }
   .doc details { border: 1px solid var(--line); border-radius: 8px; padding: var(--s2) var(--s4); margin: 0 0 var(--s4); background: var(--surface); }
   .doc details summary { cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--accent); }
   .doc details[open] summary { margin-bottom: var(--s2); }
@@ -163,7 +167,7 @@
     .progress, .topbar, nav.toc, .pager, .status, footer, .cursor, .hero .lede, .dochead-actions, .dochead .eyebrow, .skip { display: none !important; }
     .doc pre { white-space: pre-wrap; overflow: visible; } .doc .tablewrap { overflow: visible; }
     .wrap { grid-template-columns: 1fr; padding: 0; } .hero { padding: 0 0 12px; } .hero h1 { font-size: 26px; }
-    .doc h2 { break-after: avoid; } .doc pre, .doc img { break-inside: avoid; } .doc tr { break-inside: avoid; }
+    .doc h2 { break-after: avoid; } .doc pre, .doc img, .doc figure { break-inside: avoid; } .doc tr { break-inside: avoid; }
     .doc details { border: 0; padding: 0; } .doc details summary { display: none; } .doc details > * { display: block; }
     a { color: #000; text-decoration: none; } .doc a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: #444; }
   }
@@ -376,6 +380,15 @@
     const firstH1 = el.querySelector('h1'); if (firstH1 && firstH1 === el.firstElementChild) firstH1.remove();  // the document header already shows the title
     headingIds(el);
     el.querySelectorAll('table').forEach(tb => { const w = document.createElement('div'); w.className = 'tablewrap'; tb.replaceWith(w); w.appendChild(tb); });
+    // A paragraph holding only an image becomes a numbered figure; the alt text is the caption.
+    let figN = 0;
+    el.querySelectorAll('p > img:only-child').forEach(img => {
+      const p = img.parentElement; if (p.textContent.trim()) return;
+      figN += 1; const fig = document.createElement('figure'); const cap = document.createElement('figcaption');
+      const alt = img.getAttribute('alt') || '';
+      cap.innerHTML = `<b>Figure ${figN}.</b> ${esc(alt)}`; img.id = img.id || `figure-${figN}`;
+      p.replaceWith(fig); fig.appendChild(img); fig.appendChild(cap);
+    });
     rewriteLinks(el);
     const mer = [...el.querySelectorAll('pre > code.language-mermaid')];
     if (mer.length) {

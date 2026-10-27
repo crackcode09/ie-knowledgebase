@@ -43,7 +43,7 @@ A **population** is everything you care about (every insert Bayline will make th
 
 40 defective inserts out of 480 = **8.33 %**.
 
-![Pareto](../figures/02_defect_pareto.png)
+![Pareto chart of the 40 defective inserts in the 480-insert sample: bars give the count by defect type, the line the cumulative percentage; oversize OD and thread damage make up 77.5 % of defectives.](../figures/02_defect_pareto.png)
 
 **What it means:** two defect types account for over three quarters of the problem. Oversize OD is the first target, and thread damage is the second; the rest can wait. This is the Pareto principle in use: fix the vital few before the trivial many.
 
@@ -55,7 +55,7 @@ A **population** is everything you care about (every insert Bayline will make th
 
 **Result:**
 
-![Histogram](../figures/02_od_histogram.png)
+![Histogram of OD for all 480 inserts, stacked by machine, with the 6.325 and 6.375 mm specification limits marked: the distribution sits above the 6.350 target and its upper tail crosses the USL, mostly with M2's parts.](../figures/02_od_histogram.png)
 
 | Statistic | OD, all 480 inserts | Meaning |
 |---|---|---|
@@ -93,7 +93,7 @@ Command: `python tools/qekit.py distribution`.
 | Gamma | 893.1 | 0.684 |
 | Weibull | 905.9 | 0.387 |
 
-![Distribution fit](../figures/02_distribution_fit.png)
+![Histogram of the 120 quote turnaround times with the fitted normal and lognormal curves: the normal curve misses the long right tail that the lognormal follows.](../figures/02_distribution_fit.png)
 
 | 95th percentile of turnaround | Hours |
 |---|---|

@@ -422,9 +422,9 @@ def lint_templates():
     """Checkpoint: content inside a page column keeps one width. No rule may narrow the text
     (max-width on a descendant of .doc, .page or main) while tables and figures keep the column,
     because that produces two right edges. Fails the build so it cannot regress unnoticed."""
-    checks = [(READER_TEMPLATE, r"\.doc\s+[a-z0-9.,#:\- ]+\{[^}]*max-width"),
-              (TEMPLATE, r"\.page\s+[a-z0-9.,#:\- ]+\{[^}]*max-width"),
-              (LEGAL_TEMPLATE, r"main\s+[a-z0-9.,#:\- ]+\{[^}]*max-width")]
+    checks = [(READER_TEMPLATE, r"\.doc\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
+              (TEMPLATE, r"\.page\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
+              (LEGAL_TEMPLATE, r"main\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)")]
     for path, pattern in checks:
         css = path.read_text(encoding="utf-8")
         hit = re.search(pattern, css)

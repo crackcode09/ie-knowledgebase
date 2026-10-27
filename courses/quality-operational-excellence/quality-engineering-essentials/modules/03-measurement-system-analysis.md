@@ -58,7 +58,7 @@ Command: `python tools/qekit.py grr`.
 - Operator means: Ana 6.35046, **Ben 6.35260**, Cai 6.34988 mm
 - The operator-by-part interaction was significant (p = 0.003), so it stays in the model.
 
-![Gauge R&R](../figures/03_gauge_rr.png)
+![Gauge R&R study: each operator's readings of the 10 parts across the three trials, with the operator-by-part means; Ben's line sits about 0.002 mm above Ana's and Cai's on every part.](../figures/03_gauge_rr.png)
 
 **The industry baseline** (aiag-msa-4, the automotive MSA reference manual that most customers cite): gauge R&R under 10 % of tolerance is acceptable; 10 to 30 % may be acceptable depending on the application, the cost of the gauge and the cost of a wrong decision; over 30 % is unacceptable; ndc should be 5 or more. Always check your customer's own requirements, which can be tighter.
 

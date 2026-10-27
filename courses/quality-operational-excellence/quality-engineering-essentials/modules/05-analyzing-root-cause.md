@@ -74,7 +74,7 @@ Is/is-not thinking helps: oversize **is** on M2 (19 of 20) and worst on shift B;
 
 **Result, graphs:**
 
-![Box and scatter](../figures/05_box_scatter.png)
+![Left, box plots of OD by machine and shift, with the specification limits: M2 sits higher on every shift. Right, OD against tool age for both machines: OD climbs as the tool wears.](../figures/05_box_scatter.png)
 
 M2 runs higher on every shift; OD rises with tool age on both machines.
 

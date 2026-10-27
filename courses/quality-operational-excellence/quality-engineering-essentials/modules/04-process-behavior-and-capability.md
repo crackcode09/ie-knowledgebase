@@ -49,7 +49,7 @@ A chart signals a special cause when a point falls outside a limit, when 8 point
 
 Back-transformed, the log-scale limits are **3.2 to 102.9 hours**.
 
-![Transformation](../figures/04_individuals_transform.png)
+![Individuals charts of quote turnaround: on the raw scale (top) two slow quotes cross the upper limit and the lower limit is below zero; on the log scale (bottom) all 120 points sit inside the limits.](../figures/04_individuals_transform.png)
 
 **What it means:** on the raw scale the chart flags two slow quotes that are the normal long tail of a skewed process, false alarms, and it shows a lower limit below zero, which a time cannot reach. On the log scale the process is stable.
 
@@ -74,7 +74,7 @@ When a process is deliberately changed, compute **separate limits for each stage
 | Before (n = 240/day) | 7.92 % | 13.15 % | 2.69 % | 0 |
 | After (n = 180/day) | 0.33 % | 1.62 % | 0 | 0 |
 
-![Staged p chart](../figures/04_staged_p_chart.png)
+![Staged p chart of daily percent oversize on M2 over 20 days, with separate limits for the 10 days before and the 10 days after the corrective action: both stages are stable, at 7.92 % and 0.33 %.](../figures/04_staged_p_chart.png)
 
 **What it means:** each stage is stable at its own level, and the levels differ by a factor of 24. The chart is the picture of the change holding. The **proof** that the change is real is the two-proportion test in Module 06 (z = 11.5, p < 0.001), not the chart, for a reason worth knowing: in the after stage the expected number of oversize inserts per day is about 0.6, and with counts that small the p-chart's limits, which assume a normal approximation, are not reliable. With rare events use the test for the comparison and the chart for monitoring, or use exact limits.
 
