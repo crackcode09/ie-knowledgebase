@@ -31,6 +31,7 @@ Review one course per pull request. Do not verify a course you wrote.
 ## 4. Structure and plain language
 
 - [ ] Each module has objectives, concept, worked example, exercise and a check-yourself section.
+- [ ] Every worked example names its dataset (file, what the rows and columns are), lists the steps and the command that runs them, gives the result, and says what it means. Where a change is claimed it shows the situation before, what changed, and the situation after, each tied to the dataset that measured it.
 - [ ] The README syllabus table lists every module with its time and topics, and every link resolves.
 - [ ] Written for a reader without a statistics background; the math is in tables, the prose explains it.
 
