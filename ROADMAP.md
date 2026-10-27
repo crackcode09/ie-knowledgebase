@@ -2,8 +2,9 @@
 
 Coverage checklist for the IE Knowledgebase. The categories and course topics follow the public IISE course catalog (2026 overview), plus categories we add for subjects the catalog does not cover (marked "beyond the IISE catalog"); every course built here is original content, not IISE material.
 
-**Progress: 31 of 102 topics covered.**
-**Progress: 31 of 102 topics covered.**
+**Progress: 32 of 102 topics covered.**
+**Progress: 32 of 102 topics covered.**
+**Progress: 32 of 102 topics covered.**
 
 - [x] = course exists in this repo (linked); "folded into" marks a topic covered inside another course rather than built on its own
 - [ ] = not started
@@ -12,7 +13,7 @@ Coverage checklist for the IE Knowledgebase. The categories and course topics fo
 
 ![Roadmap graph](public/roadmap.svg)
 
-## Analytics, Data Science & AI (4/9)
+## Analytics, Data Science & AI (5/9)
 
 Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai/README.md)
 
@@ -23,7 +24,7 @@ Folder: [`courses/analytics-data-science-ai/`](courses/analytics-data-science-ai
 - [x] [Efficient AI](courses/analytics-data-science-ai/efficient-ai/README.md)
 - [x] [Introduction to Engineering Analytics](courses/analytics-data-science-ai/engineering-analytics/README.md)
 - [x] [Advanced Engineering Analytics](courses/analytics-data-science-ai/advanced-engineering-analytics/README.md)
-- [ ] Human-Centered AI
+- [x] [Human-Centered AI](courses/analytics-data-science-ai/human-centered-ai/README.md)
 - [ ] Operational Analytics
 
 ## Ergonomics & Safety (0/5)
