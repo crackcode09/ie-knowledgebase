@@ -6,9 +6,10 @@ Improvements are welcome: corrections, clearer explanations, new exercises, real
 
 1. **Every number must be reproducible.** If you change a dataset or worked example, rerun that course's `tools/make_data.py`, `tools/make_figures.py` and its analysis script (`tools/spc.py`, `tools/htest.py`, …), and update the module text and `solutions/README.md` to match.
 2. **Cite primary sources** for any non-obvious claim (see `reference/further-reading.md`). Where authorities disagree (e.g., transforming data before charting), present both positions.
-3. **Original content only.** Don't paste text, figures or exercises from copyrighted courses or books.
+3. **Original content only.** Don't paste text, figures or exercises from copyrighted courses or books. In particular, nothing from IISE course material: we use only the public catalog's course titles and topic lists as a map of what to cover (see [NOTICE.md](NOTICE.md)). No official MODAPTS or MTM data cards, no standards text; use a simplified teaching version and say so.
 4. **Plain language.** Write for someone on the shop floor with no statistics background; put the math in tables.
 5. **Each module keeps the same structure:** objectives → concept → worked example → exercise → check yourself.
+6. **Every course starts as `draft`.** The status cell in the catalog tables stays `draft` until a reviewer who did not write the course completes [REVIEW.md](REVIEW.md) and changes it to `verified (Name, YYYY-MM-DD)` in a `review:` pull request. Nothing is distributed as final before that.
 
 ## Layout
 

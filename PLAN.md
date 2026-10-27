@@ -32,3 +32,32 @@
 - PR #6 `feat/reader-polish`: module-level progress on cards and in the drawer, `/` focuses search, arrow keys / `d` / `r` in the reader, print stylesheet.
 - Deviation: print output was generated but not visually verified (no PDF renderer on this machine).
 
+
+## [2026-10-27] — Plan: Legal pages and content verification gate
+
+### Status: COMPLETE
+
+### What is being built or changed
+- Privacy Policy and Terms of Use pages on the site, generated from `tools/legal/*.html` through `tools/legal_template.html`, with footer links on every page.
+- An originality and affiliation notice (site and `NOTICE.md`): not affiliated with IISE; only public course titles and topic outlines used as a coverage map; all content original and AI-assisted; trademarks descriptive only; takedown path.
+- A verification gate: every course has a status cell (`draft` or `verified (Name, YYYY-MM-DD)`) read by the generator; draft courses show a badge on the catalog card, a pill in the drawer and a banner in the reader; the hero shows "n of N courses verified" and a preview-release notice. `REVIEW.md` is the checklist a reviewer signs.
+
+### Files to be created or modified
+- `tools/legal_template.html`, `tools/legal/privacy.html`, `tools/legal/terms.html` — page shell and bodies
+- `tools/roadmap_graph.py` — status column, verified count, legal page rendering
+- `tools/roadmap_template.html`, `tools/reader_template.html` — badges, banners, footer links
+- `README.md`, `courses/*/README.md` — status cells `v1.0` → `draft`; README legal section
+- `NOTICE.md`, `REVIEW.md`, `CONTRIBUTING.md` — notice, checklist, contributor rules
+
+### Implementation steps
+1. Generator reads the status cell and emits `verified`/`review` per course and a `verified` total.
+2. Templates show the status; legal shell and bodies written; generator renders them into `public/`.
+3. All status cells set to `draft`; docs updated; site regenerated and checked in headless Chrome.
+
+### Assumptions & decisions
+- Operator named as "IE Knowledgebase contributors" with GitHub issues as the contact channel; no governing-law clause.
+- All 28 courses start as `draft`; none has been through the checklist yet.
+- Plain-language wording with an explicit "not legal advice" line.
+
+### Outcome (filled in after completion)
+- Delivered as described in one PR. Course placement script now writes `draft` for new rows.
