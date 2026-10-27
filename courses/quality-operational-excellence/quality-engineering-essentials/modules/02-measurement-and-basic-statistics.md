@@ -28,7 +28,14 @@ A **population** is everything you care about (every insert Bayline will make th
 
 ## Worked example 1: what goes wrong most often
 
-**Data:** `data/production_sample.csv`, one row per insert: part number, day, machine, shift, tool age in parts since the last tool change, coolant temperature in °C, OD in mm, and the defect call from final inspection (blank when the insert passed). 480 rows: 20 days, 2 machines, 3 shifts, 4 inserts per machine-shift.
+**Data:** `data/production_sample.csv`, 480 rows (20 days, 2 machines, 3 shifts, 4 inserts per machine-shift), one row per insert with these columns:
+
+- part number and day;
+- machine and shift;
+- tool age, in parts since the last tool change;
+- coolant temperature in °C;
+- OD in mm;
+- the defect call from final inspection (blank when the insert passed).
 
 **Steps:** count the defect calls, sort them from most to least frequent, and add a cumulative percentage. Command: `python tools/qekit.py pareto`.
 

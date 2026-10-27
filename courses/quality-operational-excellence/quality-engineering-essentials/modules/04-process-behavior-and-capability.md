@@ -32,7 +32,7 @@ A chart signals a special cause when a point falls outside a limit. It also sign
 | Defectives (pass/fail) | any size n | **p** (np if n is constant) | the fraction (or number) of defective units |
 | Defects (counts per unit) | equal area or opportunity | c; unequal: **u** | the count (or rate) of defects |
 
-Reading the table: X̄ (x-bar) is the subgroup mean, R the subgroup range and S the subgroup standard deviation; p is the fraction defective and np the number defective; c is the count of defects and u the defects per unit. Every chart has a center line and an upper and lower control limit (UCL, LCL), three standard errors either side of the center; p̄ (p-bar) is the average fraction defective that sets the p chart's center.
+Reading the table: X̄ (x-bar) is the subgroup mean, R the subgroup range and S the subgroup standard deviation; p is the fraction defective and np the number defective; c is the count of defects and u the defects per unit. Every chart has a center line and an upper and lower control limit (UCL, LCL), at center ± 3σ as above. p̄ (p-bar) is the average fraction defective that sets the p chart's center.
 
 **Rational subgrouping:** a subgroup should contain only common-cause variation (for example 5 consecutive inserts from one machine), so that differences **between** subgroups reveal special causes. Don't mix M1 and M2 in one subgroup.
 
@@ -59,7 +59,7 @@ Back-transformed, the log-scale limits are **3.2 to 102.9 hours**.
 
 ## X̄–R on OD
 
-For OD, Bayline charts 5 consecutive inserts per hour **per machine**. The limits use tabulated constants that depend only on the subgroup size. For n = 5, A₂ = 0.577 sets the width of the X̄ limits around the grand mean. D₃ = 0 and D₄ = 2.114 set the limits of the range chart. Formulas and symbols are in `reference/formulas.md`; the Statistical Quality Control course builds the charts in depth. Because OD grows with tool wear and resets at each tool change (Module 05), expect a saw-tooth pattern: a slow climb, then a drop. That pattern is a special cause with a known reason, and the fix is in Module 06, not in the chart.
+For OD, Bayline charts 5 consecutive inserts per hour **per machine**. The limits use tabulated constants that depend only on the subgroup size. The constants are multipliers of the average range R̄ (R-bar). For n = 5, A₂ = 0.577 sets the width of the X̄ limits around the grand mean. D₃ = 0 and D₄ = 2.114 set the limits of the range chart. Formulas and symbols are in `reference/formulas.md`; the Statistical Quality Control course builds the charts in depth. Because OD grows with tool wear and resets at each tool change (Module 05), expect a saw-tooth pattern: a slow climb, then a drop. That pattern is a special cause with a known reason, and the fix is in Module 06, not in the chart.
 
 ## Worked example 2: stage variables, before and after a change
 
@@ -84,7 +84,7 @@ When a process is deliberately changed, compute **separate limits for each stage
 
 A process is **capable** when its natural spread fits inside the specification with room to spare, and it is **centered** when its mean sits near the target. Capability indices put numbers on both. They compare the voice of the process (what it produces) with the voice of the customer (the specification limits).
 
-- **Cp** = (USL − LSL) / 6σ_within, where σ_within is the standard deviation estimated from within the subgroups (from R̄/d₂): how many times the process spread fits in the tolerance. It ignores where the process is centered, so it is *potential* capability.
+- **Cp** = (USL − LSL) / 6σ_within, where σ_within is the standard deviation estimated from within the subgroups (R̄ divided by the constant d₂, 2.326 for n = 5): how many times the process spread fits in the tolerance. It ignores where the process is centered, so it is *potential* capability.
 - **Cpk** = distance from the mean to the nearest limit / 3σ_within: the same idea, penalized for running off-center. It is *actual* capability.
 - **Pp and Ppk** use the overall standard deviation of all the data instead of the short-term σ, so they describe performance over the whole period, drift included.
 

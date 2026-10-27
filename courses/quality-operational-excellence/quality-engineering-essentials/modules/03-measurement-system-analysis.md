@@ -60,7 +60,7 @@ Command: `python tools/qekit.py grr`.
 
 ![Gauge R&R study: each operator's readings of the 10 parts across the three trials, with the operator-by-part means; Ben's line sits about 0.002 mm above Ana's and Cai's on every part.](../figures/03_gauge_rr.png)
 
-**The industry baseline** (aiag-msa-4, the automotive MSA reference manual that most customers cite): gauge R&R under 10 % of tolerance is acceptable; 10 to 30 % may be acceptable depending on the application, the cost of the gauge and the cost of a wrong decision; over 30 % is unacceptable; ndc should be 5 or more. Always check your customer's own requirements, which can be tighter.
+**The industry baseline** (aiag-msa-4, the automotive MSA reference manual that most customers cite): gauge R&R under 10 % of tolerance is acceptable. 10 to 30 % may be acceptable, depending on the application, the cost of the gauge and the cost of a wrong decision. Over 30 % is unacceptable. The number of distinct categories (ndc) should be 5 or more. Always check your customer's own requirements, which can be tighter.
 
 **What it means:** the gauge is marginal. It is usable for SPC (ndc 8, well above 5) but it consumes almost a quarter of the tolerance, so a part measured at 6.370 could really be anywhere from about 6.364 to 6.376. **Reproducibility dominates**, and the operator-by-part plot shows Ben reads about 0.002 mm high on every part. The likely cause is measuring force or micrometer technique rather than the instrument. Actions: a standard measuring method, a short retraining, then repeat the study (Module 06 puts the repeat into the control plan).
 
@@ -110,7 +110,7 @@ Attribute data need far larger samples, another reason to measure OD.
 
 ## Worked example 3: baseline performance
 
-**Data:** `data/production_sample.csv`, the same 480 inserts as Module 02, measured with the production micrometer before the measurement-system fixes above. Ben's bias of about +0.002 mm is small against the 0.050 mm tolerance and would, if anything, make the sample read slightly high, so it does not change the conclusions below; the gauge study is repeated after the method change (Module 06 control plan) and the baseline is re-stated then.
+**Data:** `data/production_sample.csv`, the same 480 inserts as Module 02, measured with the production micrometer before the measurement-system fixes above. Ben's bias of about +0.002 mm is small against the 0.050 mm tolerance. If anything it makes the sample read slightly high, so it does not change the conclusions below. The gauge study is repeated after the method change (Module 06 control plan) and the baseline is re-stated then.
 
 **Steps:** count defective units; compute defects per unit (DPU), defects per million opportunities (DPMO) with five opportunities per insert (OD, thread, burr, knurl, length), first-pass yield, the conventional sigma level, and the overall capability index Ppk for OD. Command: `python tools/qekit.py baseline`.
 

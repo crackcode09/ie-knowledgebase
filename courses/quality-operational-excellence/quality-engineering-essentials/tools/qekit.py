@@ -139,8 +139,11 @@ def ex_pareto():
     p = load("production_sample.csv")
     c = p[p.defect.notna() & (p.defect != "")].defect.value_counts()
     tab = pd.DataFrame(dict(count=c, pct=(100 * c / c.sum()).round(1), cum_pct=(100 * c.cumsum() / c.sum()).round(1)))
+    bad = p.defect.notna() & (p.defect != "")
+    by_m = p.assign(bad=bad).groupby("machine").bad.agg(["sum", "size"])
     return {"parts / defective": (len(p), int(c.sum())), "% defective": round(100 * c.sum() / len(p), 2),
-            "pareto": tab.reset_index().rename(columns={"index": "defect"}).to_dict("records")}
+            "pareto": tab.reset_index().rename(columns={"index": "defect"}).to_dict("records"),
+            "defective by machine": {m: f"{int(r['sum'])} of {int(r['size'])} ({100 * r['sum'] / r['size']:.1f} %)" for m, r in by_m.iterrows()}}
 
 
 def ex_distribution():

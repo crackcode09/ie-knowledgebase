@@ -17,12 +17,12 @@ List candidate actions for each verified root cause and score them on impact, co
 |---|---|---|---|---|---|
 | M2 offset ≈ +0.008 mm | Re-zero M2 offset; add first-piece check after any offset change | high | low | low | ✓ |
 | Tool wear without compensation | Tool-change interval 1,600 parts + automatic wear-offset increment every 400 parts | high | low | medium | ✓ |
-| Coolant temperature rises on shift C | Repair or upgrade the chiller with a temperature alarm; check the chiller in PM | medium | medium | medium | ✓ |
+| Coolant temperature rises on shift C | Repair or upgrade the chiller with a temperature alarm; check the chiller during preventive maintenance (PM) | medium | medium | medium | ✓ |
 | Operator measurement difference | Standard micrometer method, retrain, repeat the gauge study | medium | low | low | ✓ |
 | Visual thread inspection unreliable | Go/no-go thread gauge on 1 in 25 | high (detection) | low | low | ✓ |
 | — | Buy a new lathe | high | very high | high | ✗ (not needed: spread is fine, Module 04) |
 
-Why 1,600 parts: in the production sample 12 of M2's 19 oversize inserts came from tools older than 1,600 parts, and the regression gives 0.0145 mm of growth over a 2,400-part life; changing at 1,600 with an offset step every 400 keeps the growth between steps to about 0.0025 mm (0.0145 mm × 400 / 2,400).
+Why 1,600 parts: in the production sample 12 of M2's 19 oversize inserts came from tools older than 1,600 parts. The regression gives 0.0145 mm of growth over a 2,400-part life, so an offset step every 400 parts keeps the growth between steps to about 0.0024 mm (0.0145 mm × 400 / 2,400), and changing at 1,600 removes the worn end of the life.
 
 ## Error-proofing
 
@@ -41,7 +41,7 @@ Test the change on a limited scale, one machine for a few weeks, to confirm it w
 
 **The situation before.** Module 04 found M2 running 0.017 mm above target with a Ppk of 0.47 and 8 % of its inserts expected out of specification; Module 05 traced that to the offset, uncompensated tool wear and coolant temperature. The before figures below are the two weeks of normal M2 production immediately before the change, counted at final inspection.
 
-**What changed.** On M2 only: the offset was re-zeroed with a first-piece check, the tool-change interval was set to 1,600 parts with an automatic wear-offset increment every 400 parts, and the chiller was serviced and fitted with a temperature alarm. Nothing else changed; M1 ran as before.
+**What changed.** On M2 only, three things. The offset was re-zeroed with a first-piece check. The tool-change interval was set to 1,600 parts, with an automatic wear-offset increment every 400 parts. The chiller was serviced and fitted with a temperature alarm. Nothing else changed; M1 ran as before.
 
 **Data:** `data/pilot_results.csv`, two rows: phase (before, after), inserts inspected, inserts oversize. And `data/pilot_daily.csv`, the same inspection broken down by day, used for the staged chart in Module 04. `data/tooling_cost.csv` holds the cost inputs for the side-effect check: the price of a tool edge, the tool-change intervals before and after, the conversion cost per insert excluding tooling, and the cost of scrapping an oversize insert.
 
