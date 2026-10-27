@@ -98,7 +98,7 @@ _No courses yet._
 
 ## Status, review and legal
 
-Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://nidhy.dev/ie-knowledgebase/privacy.html) and [Terms of Use](https://nidhy.dev/ie-knowledgebase/terms.html) (sources in `tools/legal/`).
+Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The review board (`/review-course <slug>` in Claude Code) does the checking and writes its report to [reviews/](reviews/README.md); a person answers its questions and signs off. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://nidhy.dev/ie-knowledgebase/privacy.html) and [Terms of Use](https://nidhy.dev/ie-knowledgebase/terms.html) (sources in `tools/legal/`).
 
 ## License
 
