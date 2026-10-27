@@ -6,7 +6,7 @@ Free, open courses on industrial engineering, quality and continuous improvement
 
 New to industrial engineering? Start with [Introduction to Industrial Engineering](courses/technical-skills/introduction-to-industrial-engineering/README.md), the broad entry point, then pick a category.
 
-See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still open in each category.
+See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still open in each category, and [VISION.md](VISION.md) for where the site is going: a role advisor that turns a target position into a training plan grounded in the official standard for the role and in what the market asks for.
 
 [![Roadmap graph](public/roadmap.svg)](public/roadmap.svg)
 

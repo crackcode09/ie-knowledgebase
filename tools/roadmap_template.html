@@ -10,8 +10,8 @@
 <style>
   /* ── Warm-terminal design system (ported from my-claude.md) ───────── */
   :root {
-    --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f;
-    --text: #ede6da; --muted: #9c937f; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
+    --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f; --line-strong: #534c3f;
+    --text: #ede6da; --muted: #a79e89; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
     --green: #9cba7f; --green-soft: rgba(156,186,127,.16); --code-bg: #181612;
     --ink: var(--text); --panel: var(--surface); --card: var(--surface); --bg-rgb: 31,29,24;
     --cat: var(--accent); --built: var(--green); --todo: #5c5546; --module: #8a8170;
@@ -24,18 +24,18 @@
     --ease-out: cubic-bezier(.16,1,.3,1);
   }
   :root[data-theme="light"] {
-    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb;
-    --text: #2a2721; --muted: #7a7262; --accent: #c4623c; --accent-soft: rgba(196,98,60,.12);
-    --green: #5f8a3d; --green-soft: rgba(95,138,61,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
-    --todo: #cfc6b3; --module: #9a917f; --related: #cfc6b3;
+    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
+    --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
+    --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
+    --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
     --shadow-1: 0 1px 2px rgba(60,40,20,.08); --shadow-2: 0 6px 24px rgba(60,40,20,.12);
   }
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb;
-      --text: #2a2721; --muted: #7a7262; --accent: #c4623c; --accent-soft: rgba(196,98,60,.12);
-      --green: #5f8a3d; --green-soft: rgba(95,138,61,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
-      --todo: #cfc6b3; --module: #9a917f; --related: #cfc6b3;
+      --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
+      --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
+      --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
+      --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
       --shadow-1: 0 1px 2px rgba(60,40,20,.08); --shadow-2: 0 6px 24px rgba(60,40,20,.12);
     }
   }
@@ -62,13 +62,19 @@
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text);
     background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer;
     transition: border-color .15s, background .15s, transform .08s var(--ease-out); }
-  .btn:hover { border-color: var(--accent); } .btn:active { transform: scale(.96); }
-  .btn.active, .btn[aria-selected="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .btn:active { transform: scale(.96); }
+  /* Controls: one height, a visible edge, a filled state for the active one */
+  .btn, .graph-tools .mini, .btn-secondary, .search { border-color: var(--line-strong); box-shadow: var(--shadow-1); }
+  .btn { min-height: 34px; line-height: 1; font-weight: 500; }
+  .btn:hover, .graph-tools .mini:hover, .btn-secondary:hover { border-color: var(--accent); background: var(--surface-2); }
+  .btn.active, .btn[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); box-shadow: none; }
+  .btn.icon { min-width: 34px; justify-content: center; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .btn svg { width: 14px; height: 14px; flex: none; }
   .toggle { display: flex; } .toggle .btn { border-radius: 0; }
   .toggle .btn:first-child { border-radius: 6px 0 0 6px; } .toggle .btn:last-child { border-radius: 0 6px 6px 0; }
   .toggle .btn + .btn { border-left: none; }
-  .search { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px 0 10px; min-width: 320px;
+  .search { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px 0 10px; min-width: 260px;
     background: var(--surface); border: 1px solid var(--line); border-radius: 8px; color: var(--muted); box-shadow: var(--shadow-1);
     transition: border-color .15s, box-shadow .15s; cursor: text; }
   .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); color: var(--accent); }
@@ -77,16 +83,21 @@
   .search input::placeholder { color: var(--muted); }
   .search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; cursor: pointer; opacity: .6;
     background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center / contain no-repeat; }
-  .search kbd { font-family: var(--mono); font-size: 11px; line-height: 1; padding: 3px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: var(--surface-2); }
+  .search kbd { font-family: var(--mono); font-size: 12px; line-height: 1; padding: 3px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: var(--surface-2); }
   .search:focus-within kbd { display: none; }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface);
     border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
-  .status b { color: var(--green); font-weight: 500; }
+  .btn.icon { padding: 6px 9px; }
+  .chip button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; } .chip button:hover { text-decoration: underline; }
+  .chip[hidden] { display: none; }
+  .pfoot { margin: var(--s8) 0 0; padding: var(--s4) 0; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 2; }
+  .pfoot a { color: var(--muted); } .pfoot a:hover { color: var(--accent); } .pfoot .bi { vertical-align: -.15em; }
+  #search-toggle { display: none; }
 
   main { flex: 1; position: relative; min-height: 0; overflow: hidden; }
   .view { position: absolute; inset: 0; overflow: auto; display: none; }
   .view.active { display: block; }
-  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) 100px; }
+  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); }
 
   /* hero */
   .hero { padding: var(--s7) 0 var(--s6); }
@@ -99,6 +110,11 @@
   .hero .byline { margin-top: var(--s5); color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
   .chip { font-family: var(--mono); font-size: 12.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; color: var(--text); box-shadow: var(--shadow-1); }
   .chip a { color: inherit; } .chip a:hover { color: var(--accent); text-decoration: none; }
+  .hero .stat { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .hero .stat + .stat::before { content: "·"; margin-right: var(--s3); color: var(--line-strong); }
+  .hero .stat.link { color: var(--accent); } .hero .stat.link:hover { text-decoration: underline; }
+  .hero .stat button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
+  .hero .stat[hidden] { display: none; }
   .hero .lede { margin: var(--s5) 0 0; color: var(--muted); font-size: 16px; }
   .intro { color: var(--muted); margin: 0 0 var(--s4); }
   .start { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: var(--s3) var(--s4); margin-bottom: var(--s5); }
@@ -113,47 +129,60 @@
   .cat > summary { list-style: none; cursor: pointer; padding: var(--s3) var(--s4); display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; }
   .cat > summary::-webkit-details-marker { display: none; }
   .cat > summary h2 { font-family: var(--display); font-size: 17px; margin: 0; display: flex; align-items: center; gap: 8px; letter-spacing: -.01em; }
-  .cat > summary h2::before { content: "#"; color: var(--accent); font-family: var(--mono); font-weight: 400; }
-  .cat > summary .desc { grid-column: 1; color: var(--muted); font-size: 13px; }
-  .cat > summary h2 .tag { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
+  .cat > summary h2 .bi, aside h2 .bi { color: var(--accent); flex: none; }
+  .bi { vertical-align: -.15em; }
+  .cat > summary .desc { grid-column: 1; color: var(--muted); font-size: 13.5px; }
+  .cat > summary h2 .tag { font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
   .bar { grid-column: 2; grid-row: 1 / span 2; min-width: 160px; white-space: nowrap; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .bar i { display: block; height: 4px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
   .bar i b { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); }
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s3); padding: 0 var(--s4) var(--s4); }
   .card { border: 1px solid var(--line); border-radius: 8px; padding: var(--s3) var(--s4); background: var(--surface-2); cursor: pointer; display: flex; flex-direction: column; gap: 5px; position: relative;
     transition: border-color .15s, transform .12s var(--ease-out); }
-  .card:hover, .card:focus { border-color: var(--accent); outline: none; transform: translateY(-1px); }
-  .card h3 { margin: 0; font-family: var(--display); font-size: 15px; padding-right: 26px; letter-spacing: -.01em; }
-  .card .meta { color: var(--muted); font-family: var(--mono); font-size: 11.5px; }
+  .card:hover, .card:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .card .card-top { display: flex; align-items: center; gap: 8px; min-height: 20px; margin-bottom: 2px; }
+  .card .card-top .cat-tag { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .card h3 { margin: 0; font-family: var(--display); font-size: 15px; letter-spacing: -.01em; line-height: 1.3; }
+  .card .meta { color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
   .card .meta b { color: var(--accent); font-weight: 500; }
-  .tag.draft, .pill.draft { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .02em; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
-  .tag.verified, .pill.verified { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
-  .card h3 .tag { vertical-align: middle; margin-left: 6px; }
+  .tag.draft, .pill.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
+  .tag.verified, .pill.verified { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
   .notice { margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13.5px; color: var(--muted); }
   .notice b { color: var(--text); font-weight: 600; }
-  footer a { color: inherit; } footer a:hover { color: var(--accent); }
-  .card .topic { font-size: 12.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card .topic { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
-  .card.locked { opacity: .55; }
+  .card.locked { opacity: .7; }
   .card .mprog { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 4px; }
   .card .mprog i { display: block; height: 100%; background: var(--green); }
-  .card .tick { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
+  .card .tick { margin-left: auto; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
   .card.done .tick { background: var(--green); border-color: var(--green); }
   .planned { padding: 0 var(--s4) var(--s4); display: flex; flex-wrap: wrap; gap: 6px; }
-  .planned span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px dashed var(--todo); border-radius: 12px; padding: 2px 9px; }
+  .planned-wrap { margin: 0 var(--s4) var(--s4); }
+  .planned-wrap > summary { list-style: none; cursor: pointer; font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 6px 0; display: inline-flex; align-items: center; gap: 6px; }
+  .planned-wrap > summary::-webkit-details-marker { display: none; }
+  .planned-wrap > summary::before { content: "+"; color: var(--accent); width: 1em; }
+  .planned-wrap[open] > summary::before { content: "−"; }
+  .planned-wrap > summary:hover { color: var(--text); }
+  .planned-wrap .planned { padding: 4px 0 0; }
+  .planned span { font-family: var(--mono); font-size: 12.5px; color: var(--muted); border: 1px dashed var(--todo); border-radius: 12px; padding: 2px 9px; }
   .planned .label { border: 0; padding-left: 0; }
   .planned .covered { border-style: solid; border-color: var(--green); color: var(--text); } .planned .covered a { color: var(--accent); }
 
   /* path */
   .path-wrap { position: relative; }
-  .path-wrap svg { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: visible; }
+  .path-wrap svg { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: visible; z-index: 0; }
   .level { display: flex; align-items: flex-start; gap: var(--s4); margin: 0 0 44px; position: relative; }
-  .level .lvl { flex: 0 0 110px; color: var(--muted); font-family: var(--mono); font-size: 11.5px; padding-top: 10px; }
+  .level .lvl { flex: 0 0 110px; color: var(--muted); font-family: var(--mono); font-size: 12.5px; padding-top: 10px; }
   .level .lvl b { display: block; color: var(--accent); font-family: var(--display); font-size: 14px; margin-bottom: 2px; }
-  .level .row { display: flex; flex-wrap: wrap; gap: var(--s3); flex: 1; }
-  .level .card { width: 230px; }
-  .card .cat-tag { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .level .groups { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--s4); }
+  .grp-h { display: flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .grp-h a, .grp-h span { position: relative; z-index: 1; background: var(--bg); padding-right: 2px; }
+  .grp-h a { color: var(--muted); } .grp-h a:hover { color: var(--accent); text-decoration: none; }
+  .grp-h span { color: var(--accent); } .grp-h::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+  .level .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--s3); min-width: 0; }
+  .card .cat-tag { font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .legend { display: flex; gap: var(--s4); flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0 0 var(--s5); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .sw { width: 14px; height: 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface-2); display: inline-block; }
@@ -172,36 +201,70 @@
   .graph-tools .mini:hover { border-color: var(--accent); }
   .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 
+  @media (max-width: 700px) { #tab-graph { display: none; } }
+
   /* drawer */
   aside { position: absolute; top: 0; right: 0; height: 100%; width: min(420px, 100%); background: var(--surface); border-left: 1px solid var(--line);
-    overflow: auto; padding: var(--s5) var(--s5) var(--s7); transform: translateX(100%); transition: transform .2s var(--ease-out); z-index: 5; box-shadow: var(--shadow-2); }
-  aside.open { transform: none; }
+    overflow: auto; padding: var(--s5) var(--s5) var(--s7); transform: translateX(100%); visibility: hidden; transition: transform .2s var(--ease-out), visibility 0s .2s; z-index: 5; box-shadow: var(--shadow-2); }
+  aside.open { transform: none; visibility: visible; transition: transform .2s var(--ease-out); }
   aside h2 { font-family: var(--display); font-size: 20px; margin: 0 36px 6px 0; letter-spacing: -.01em; }
   aside .meta { color: var(--muted); font-family: var(--mono); font-size: 12px; margin-bottom: var(--s3); }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
-  aside h3 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: var(--s5) 0 var(--s2); }
-  .syl { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+  aside h3 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: var(--s5) 0 var(--s2); }
+  .syl { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
   .syl .row { display: flex; gap: 12px; padding: 10px 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; transition: border-color .15s; }
   .syl .row:hover { border-color: var(--accent); }
   .syl .row.done { background: var(--done-bg); border-color: var(--green); }
   .syl .n { color: var(--muted); font-family: var(--mono); font-size: 12px; width: 1.4em; flex: none; padding-top: 2px; } .syl .row.done .n { color: var(--green); }
   .syl .body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
   .syl .body a { font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); letter-spacing: -.01em; } .syl .body a:hover { color: var(--accent); text-decoration: none; }
-  .syl .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); margin: 0; }
-  .syl .topics { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .syl .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0; }
+  .syl .topics { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
   aside ul { padding-left: 18px; margin: 4px 0; } aside li::marker { color: var(--accent); }
   .btn-primary { display: inline-block; margin-top: var(--s4); padding: 7px 12px; border-radius: 6px; background: var(--accent); color: var(--bg) !important; font-family: var(--mono); font-size: 12.5px; font-weight: 500; border: 0; cursor: pointer; }
   .btn-primary:hover { text-decoration: none; filter: brightness(1.08); }
   .btn-secondary { display: inline-block; margin: var(--s4) 0 0 6px; padding: 7px 12px; border-radius: 6px; background: var(--surface-2); color: var(--text); font-family: var(--mono); font-size: 12.5px; border: 1px solid var(--line); cursor: pointer; }
   .btn-secondary:hover { border-color: var(--accent); }
-  .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-family: var(--mono); font-size: 11px; font-weight: 500; }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; }
   .pill.built, .pill.todo { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
   .pill.next { background: var(--accent); color: var(--bg); } .pill.done { background: var(--green); color: var(--bg); }
-  footer { border-top: 1px solid var(--line); padding: var(--s3) var(--s5); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
-  @media (max-width: 640px) { .level { flex-wrap: wrap; } .level .lvl { flex-basis: 100%; padding-top: 0; } .level .card { width: 100%; } .hero { padding-top: var(--s6); } }
+  @media (pointer: coarse) {
+    .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
+    .card .tick { width: 28px; height: 28px; font-size: 14px; }
+    aside .close { padding: 6px 12px; top: 8px; right: 8px; }
+    .syl .body a { padding: 4px 0; display: inline-block; }
+  }
+  @media (max-width: 700px) {
+    header.topbar { padding: 8px var(--s3); gap: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); }
+    .path { flex: 1; }
+    #search-toggle { display: inline-flex; }
+    .search { display: none; order: 9; flex: 1 1 100%; min-width: 0; }
+    header.topbar.search-open .search { display: inline-flex; }
+    header.topbar .toggle[role=tablist] { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; padding: 6px var(--s3) calc(6px + env(safe-area-inset-bottom)); gap: 0;
+      background: rgba(var(--bg-rgb), .96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+    header.topbar .toggle[role=tablist] .btn { flex: 1; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; border-left: 1px solid var(--line-strong); }
+    header.topbar .toggle[role=tablist] .btn + .btn { margin-left: 6px; }
+    .view { bottom: 56px; }
+  }
+  @media (max-width: 640px) {
+    .more, .legend .more { display: none; }
+    .intro { font-size: 14px; margin-bottom: var(--s3); }
+    .legend { gap: var(--s3); font-size: 11.5px; margin-bottom: var(--s5); }
+    .level { flex-wrap: wrap; margin-bottom: var(--s6); }
+    .level .lvl { flex-basis: 100%; display: flex; align-items: baseline; gap: 8px; padding: 0 0 6px; margin-bottom: var(--s3); border-bottom: 2px solid var(--accent); }
+    .level .lvl b { font-size: 16px; margin: 0; }
+    .hero { padding-top: var(--s6); }
+    header.topbar { gap: var(--s2); } .path { min-width: 0; }
+    .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
+    .byline .chip { white-space: normal; overflow-wrap: anywhere; }
+    .cat > summary { grid-template-columns: 1fr; }
+    .bar { grid-column: 1; grid-row: auto; min-width: 0; white-space: normal; text-align: left; }
+    .cards { grid-template-columns: 1fr; }
+    aside { width: 100%; padding-left: var(--s4); padding-right: var(--s4); }
+  }
 </style>
 </head>
 <body>
@@ -209,50 +272,52 @@
 <header class="topbar">
   <span class="path"><span class="dot">~</span>/<a href="index.html" id="homeLink">ie-knowledgebase</a>/<b id="pathName">catalog</b></span>
   <div class="toggle" role="tablist" aria-label="View">
-    <button type="button" class="btn" role="tab" data-tab="catalog" aria-selected="true">Catalog</button>
-    <button type="button" class="btn" role="tab" data-tab="path" aria-selected="false">Learning path</button>
-    <button type="button" class="btn" role="tab" data-tab="graph" aria-selected="false">Mind map</button>
+    <button type="button" class="btn" role="tab" id="tab-catalog" data-tab="catalog" aria-selected="true" aria-controls="view-catalog">Catalog</button>
+    <button type="button" class="btn" role="tab" id="tab-path" data-tab="path" aria-selected="false" aria-controls="view-path" tabindex="-1">Learning path</button>
+    <button type="button" class="btn" role="tab" id="tab-graph" data-tab="graph" aria-selected="false" aria-controls="view-graph" tabindex="-1">Mind map</button>
   </div>
   <span class="spacer"></span>
+  <button type="button" class="btn icon" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search">__ICON:search:15__</button>
   <label class="search" for="search">
-    <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    __ICON:search:15__
     <input type="search" id="search" placeholder="Search courses, modules" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
     <kbd aria-hidden="true">/</kbd>
   </label>
-  <span class="status"><span id="count"></span><span id="mine"></span></span>
-  <button type="button" class="btn" id="theme" aria-label="Toggle light or dark theme">theme</button>
-  <button type="button" class="btn" id="reset" title="Clear your local progress">reset</button>
+  <button type="button" class="btn icon" id="theme" aria-label="Toggle light or dark theme" title="Theme">__ICON:circle-half:15__</button>
 </header>
 <main>
-  <section class="view active" id="view-catalog"><div class="page">
+  <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
     <div class="hero">
       <div class="eyebrow">ls courses/</div>
       <h1>IE <span class="md">Knowledgebase</span><span class="cursor" aria-hidden="true"></span></h1>
       <div class="byline">
-        <span class="chip">Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">github.com/crackcode09/ie-knowledgebase</a></span>
-        <span class="chip">content CC BY 4.0 · code MIT</span>
-        <span class="chip" id="verifiedChip"></span>
+        <span class="stat" id="countChip"></span>
+        <span class="stat" id="verifiedChip"></span>
+        <span class="stat" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
+        <a class="stat link" href="roadmap.html">site roadmap →</a>
       </div>
       <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
       <div class="notice"><b>Preview release.</b> Every course here was written with AI assistance and is marked <span class="tag draft">draft</span> until a reviewer has checked it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only the public IISE course titles and topic outlines were used as a map of what to cover; no IISE material appears here. See the <a href="terms.html#originality">originality notice</a>.</div>
     </div>
     <div class="start" id="start"></div>
     <div id="catalog"></div>
+    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a></div>
   </div></section>
-  <section class="view" id="view-path"><div class="page">
-    <p class="intro">Courses arranged by prerequisite level. Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</p>
+  <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
+    <p class="intro">Courses arranged by prerequisite level.<span class="more"> Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</span></p>
     <div class="legend">
       <span><i class="sw" style="background:var(--done-bg)"></i>done</span>
       <span><i class="sw" style="border-color:var(--next);box-shadow:inset 3px 0 0 var(--next)"></i>up next</span>
-      <span><i class="sw" style="opacity:.6"></i>locked (prerequisites not done)</span>
+      <span><i class="sw" style="opacity:.6"></i>locked<span class="more"> (prerequisites not done)</span></span>
       <span><i style="width:18px;border-top:2px dashed var(--prereq);display:inline-block"></i>prerequisite</span>
     </div>
     <div class="path-wrap" id="path"></div>
+    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a></div>
   </div></section>
-  <section class="view" id="view-graph">
-    <svg id="graph" role="img" aria-label="Course graph"></svg>
+  <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
+    <svg id="graph" aria-label="Course mind map"></svg>
     <div class="graph-tools">
-      <button id="expand-all" class="mini">Expand all</button><button id="collapse-all" class="mini">Collapse</button>
+      <button type="button" id="expand-all" class="mini">Expand all</button><button type="button" id="collapse-all" class="mini">Collapse</button>
       <label><input type="checkbox" id="prereqs" checked> Prerequisite arrows</label>
       <span><i class="dot" style="background:var(--cat)"></i>category</span>
       <span><i class="dot" style="background:var(--built)"></i>built course</span>
@@ -260,10 +325,9 @@
       <span><i class="dot" style="background:var(--module);width:7px;height:7px"></i>module</span>
     </div>
   </section>
-  <aside id="panel"><button class="close" id="close" aria-label="Close">×</button><div id="panel-body"></div></aside>
+  <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
-<footer>generated from <code>ROADMAP.md</code> and the course READMEs by <code>tools/roadmap_graph.py</code> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a></footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 (function () {
@@ -298,7 +362,7 @@
   const isNext = id => done.size > 0 && unlocked(id);
   const hours = c => { const m = /([\d.]+)\s*(h|day|×)/.exec(c.length || ''); if (!m) return 99; const n = +m[1]; return m[2] === 'day' ? n * 8 : m[2] === '×' ? n * 2 : n; };
   function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); }
-  document.getElementById('reset').addEventListener('click', () => { if (done.size && confirm('Clear your local progress?')) { done.clear(); saveDone(); refresh(); } });
+  document.getElementById('reset').addEventListener('click', () => { if ((done.size || doneMods.size) && confirm('Clear your local progress?')) { done.clear(); doneMods.clear(); saveDone(); try { localStorage.removeItem('iekb-mods'); } catch (e) {} refresh(); } });
 
   // ---- prerequisite levels for the path view
   const level = new Map();
@@ -315,14 +379,15 @@
   const stateClass = c => isDone(c.id) ? 'done' : isNext(c.id) ? 'next' : unlocked(c.id) ? '' : 'locked';
   function card(c, withCat) {
     const n = modulesOf(c.id).length;
-    return `<div class="card ${stateClass(c)}" data-id="${c.id}" tabindex="0" role="button">
-      <button class="tick" data-tick="${c.id}" title="Mark as done" aria-label="Mark ${esc(c.label)} as done">${isDone(c.id) ? '✓' : ''}</button>
-      <h3>${esc(c.label)}${c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>'}</h3>
-      ${withCat ? `<div class="cat-tag">${esc(byId.get(c.parent).label)}</div>` : ''}
+    const d = isDone(c.id), cat = byId.get(c.parent);
+    return `<article class="card ${stateClass(c)}" data-id="${esc(c.id)}" tabindex="0" aria-label="${esc(c.label)}: open details">
+      <div class="card-top">${c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>'}${withCat && cat ? `<span class="cat-tag">${esc(cat.label)}</span>` : ''}
+        <button type="button" class="tick" data-tick="${esc(c.id)}" aria-pressed="${d}" title="${d ? 'Mark as not done' : 'Mark as done'}" aria-label="${esc(c.label)}: ${d ? 'done, mark as not done' : 'mark as done'}">${d ? '✓' : ''}</button></div>
+      <h3>${esc(c.label)}</h3>
       <div class="meta">${esc(c.length || '')}${n ? ` · ${n} modules` : ''}${isNext(c.id) ? ' · <b style="color:var(--next)">up next</b>' : ''}</div>
       <div class="topic">${esc(c.search || c.description)}</div>
       ${n && modsDone(c) && !isDone(c.id) ? `<div class="mprog" title="${modsDone(c)} of ${n} modules done"><i style="width:${100 * modsDone(c) / n}%"></i></div>` : ''}
-    </div>`;
+    </article>`;
   }
 
   function renderStart() {
@@ -334,19 +399,22 @@
       (next.length > 6 ? ` · and ${next.length - 6} more` : '');
   }
 
+  const closedCats = new Set();
   function renderCatalog() {
     const q = query.toLowerCase();
+    document.querySelectorAll('#catalog details[data-cat]').forEach(d => { if (d.open) closedCats.delete(d.dataset.cat); else closedCats.add(d.dataset.cat); });
     const match = d => !q || (d.label + ' ' + (d.search || '') + ' ' + (d.description || '') + ' ' + modulesOf(d.id).map(m => m.label).join(' ')).toLowerCase().includes(q);
     document.getElementById('catalog').innerHTML = cats.map(cat => {
       const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
       const csv = cs.filter(match), tsv = ts.filter(t => !q || t.label.toLowerCase().includes(q));
       if (q && !csv.length && !tsv.length) return '';
       const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length, cov = ts.filter(t => t.covered).length;
-      return `<details class="cat" ${(!q && !cs.length) ? '' : 'open'}>
-        <summary><h2>${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
+      return `<details class="cat" data-cat="${esc(cat.id)}" ${(q || (cs.length && !closedCats.has(cat.id))) ? 'open' : ''}>
+        <summary><h2>${cat.icon}${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
           <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
-        ${tsv.length ? `<div class="planned"><span class="label">${tsv.every(t => t.covered) ? 'Folded in:' : 'Planned:'}</span>${tsv.map(t => t.covered ? `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${t.covered}">${esc(byId.get(t.covered).label)}</a></span>` : `<span>${esc(t.label)}</span>`).join('')}</div>` : ''}
+        ${tsv.some(t => t.covered) ? `<div class="planned"><span class="label">Folded in:</span>${tsv.filter(t => t.covered).map(t => `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${esc(t.covered)}">${esc(byId.get(t.covered).label)}</a></span>`).join('')}</div>` : ''}
+        ${tsv.some(t => !t.covered) ? `<details class="planned-wrap" ${q ? 'open' : ''}><summary>${tsv.filter(t => !t.covered).length} planned ${tsv.filter(t => !t.covered).length === 1 ? 'topic' : 'topics'} not built yet</summary><div class="planned">${tsv.filter(t => !t.covered).map(t => `<span>${esc(t.label)}</span>`).join('')}</div></details>` : ''}
       </details>`;
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
@@ -357,8 +425,12 @@
     const names = ['Foundations', 'Core', 'Advanced', 'Specialist'];
     let h = '<svg id="path-svg"></svg>';
     for (let L = 0; L <= maxL; L++) {
-      const row = courses.filter(c => lvl(c) === L).sort((a, b) => a.parent.localeCompare(b.parent) || a.label.localeCompare(b.label));
-      h += `<div class="level"><div class="lvl"><b>${names[L] || 'Level ' + L}</b>${L === 0 ? 'no prerequisites' : 'builds on the level above'}</div><div class="row">${row.map(c => card(c, true)).join('')}</div></div>`;
+      // Within a level, courses are grouped under their category so the card itself stays clean.
+      const row = courses.filter(c => lvl(c) === L);
+      const groups = cats.map(cat => [cat, row.filter(c => c.parent === cat.id).sort((a, b) => a.label.localeCompare(b.label))]).filter(([, cs]) => cs.length);
+      h += `<div class="level"><div class="lvl"><b>${names[L] || 'Level ' + L}</b>${L === 0 ? 'no prerequisites' : 'builds on the level above'}</div><div class="groups">` +
+        groups.map(([cat, cs]) => `<div class="grp"><div class="grp-h"><a href="#${esc(cat.id)}" data-open="${esc(cat.id)}">${esc(cat.label)}</a><span>${cs.length}</span></div><div class="row">${cs.map(c => card(c, false)).join('')}</div></div>`).join('') +
+        `</div></div>`;
     }
     el.innerHTML = h;
     requestAnimationFrame(drawPathEdges);
@@ -366,6 +438,7 @@
   function drawPathEdges() {
     const el = document.getElementById('path'), svg = document.getElementById('path-svg');
     if (!svg || !el.offsetParent) return;
+    svg.style.height = '0px';   // the layer is inside the measured box, so reset it or it can only ever grow
     const base = el.getBoundingClientRect();
     const pos = id => { const n = el.querySelector(`.card[data-id="${id}"]`); if (!n) return null; const r = n.getBoundingClientRect(); return { x: r.left - base.left + r.width / 2, top: r.top - base.top, bottom: r.bottom - base.top }; };
     const stroke = getComputedStyle(document.documentElement).getPropertyValue('--prereq').trim();
@@ -395,15 +468,15 @@
     const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
     if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
       return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
-    h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">GitHub</a>`;
+    h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
     body.innerHTML = h;
   }
   function openCategory(cat) {
     const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
-    body.innerHTML = `<h2>${esc(cat.label)}</h2><div class="meta">${cs.length} of ${cs.length + ts.length} courses built</div><p>${esc(cat.description)}</p>` +
+    body.innerHTML = `<h2>${cat.icon} ${esc(cat.label)}</h2><div class="meta">${cs.length} of ${cs.length + ts.length} courses built</div><p>${esc(cat.description)}</p>` +
       (cs.length ? `<h3>Built</h3><ul>${cs.map(li).join('')}</ul>` : '') +
       (ts.length ? `<h3>Planned</h3><ul>${ts.map(t => `<li style="color:var(--muted)">${esc(t.label)}</li>`).join('')}</ul>` : '') +
-      `<a class="btn-primary" href="${gh(cat.path)}" target="_blank" rel="noopener">Open category on GitHub</a>`;
+      `<a class="btn-primary" href="${gh(cat.path)}" target="_blank" rel="noopener">__ICON:github:13__ Open category on GitHub</a>`;
   }
   function openTopic(t) {
     if (t.covered) { const c = byId.get(t.covered); body.innerHTML = `<h2>${esc(t.label)}</h2><div class="meta"><span class="pill done">covered</span> · ${esc(byId.get(t.parent).label)}</div><p>Not a separate course. This topic is covered inside <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>.</p><a class="btn-primary" href="${reader(c)}">Read ${esc(c.label)}</a>`; return; }
@@ -411,60 +484,87 @@
   }
   function openModule(m) {
     const c = byId.get(m.parent);
-    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">GitHub</a>`;
+    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
   }
+  let opener = null;
+  const renderPanel = d => ({ course: openCourse, category: openCategory, topic: openTopic, module: openModule })[d.type](d);
   function open(d) {
+    const wasOpen = panel.classList.contains('open');
     selected = d;
-    if (!d || d.type === 'hub') { panel.classList.remove('open'); if (graphReady) graphHighlight(null); return; }
-    ({ course: openCourse, category: openCategory, topic: openTopic, module: openModule })[d.type](d);
-    panel.classList.add('open');
+    if (!d || d.type === 'hub') {
+      panel.classList.remove('open'); if (graphReady) graphHighlight(null);
+      if (wasOpen) { if (opener && document.contains(opener)) opener.focus(); opener = null; setHash(''); }
+      return;
+    }
+    if (!wasOpen) opener = document.activeElement;
+    renderPanel(d);
+    panel.classList.add('open'); panel.scrollTop = 0;
+    if (!wasOpen || !panel.contains(document.activeElement)) document.getElementById('close').focus();
     if (graphReady) graphHighlight(d);
+    setHash(d.id);
   }
+  // keep the URL shareable: #course:slug while the drawer is open, #tab=path for a view, nothing for the plain catalog
+  function setHash(h) { const want = h ? '#' + h : (tab !== 'catalog' ? '#tab=' + tab : ''); if (location.hash !== want) history.replaceState(null, '', location.pathname + location.search + want); }
   document.getElementById('close').addEventListener('click', () => open(null));
 
   // ---- clicks: ticks, drawer links, cards
   document.body.addEventListener('click', e => {
     const tick = e.target.closest('[data-tick]');
-    if (tick) { e.stopPropagation(); toggleDone(tick.dataset.tick); if (selected && selected.id === tick.dataset.tick) openCourse(selected); return; }
+    if (tick) { e.stopPropagation(); toggleDone(tick.dataset.tick); return; }
     const a = e.target.closest('[data-open]');
-    if (a) { e.preventDefault(); open(byId.get(a.dataset.open)); return; }
+    if (a) { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); open(byId.get(a.dataset.open)); return; }
     const c = e.target.closest('.card[data-id]');
     if (c) open(byId.get(c.dataset.id));
   });
   document.body.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && e.target.classList && e.target.classList.contains('card')) open(byId.get(e.target.dataset.id));
-    if (e.key === 'Escape') open(null);
-    if (e.key === '/' && !/INPUT|TEXTAREA/.test(e.target.tagName)) { e.preventDefault(); document.getElementById('search').focus(); }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) { e.preventDefault(); open(byId.get(e.target.dataset.id)); return; }
+    if (e.key === 'Escape') { if (e.target.id === 'search') { e.target.blur(); return; } open(null); return; }
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,select,[contenteditable]')) { e.preventDefault(); openSearch(true); }
   });
 
   // ---- tabs and search
   let tab = 'catalog', query = '';
   function showTab(t) {
     if (!document.getElementById('view-' + t)) t = 'catalog';
+    if (t === 'graph' && narrow()) t = 'path';   // the map needs width; on a phone the learning path carries the structure
     tab = t;
     document.getElementById('pathName').textContent = { catalog: 'catalog', path: 'learning-path', graph: 'mind-map' }[t];
     updateProgress();
-    document.querySelectorAll('[role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t));
+    document.querySelectorAll('[role=tab]').forEach(b => { const on = b.dataset.tab === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+    setHash(selected && panel.classList.contains('open') ? selected.id : '');
     document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + t));
     if (t === 'path') requestAnimationFrame(drawPathEdges);
     if (t === 'graph') { if (!graphReady) initGraph(); else graphResize(); }
   }
   document.querySelectorAll('[role=tab]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
+  document.querySelector('[role=tablist]').addEventListener('keydown', e => {
+    const tabs = [...document.querySelectorAll('[role=tab]')], i = tabs.indexOf(document.activeElement); if (i < 0) return;
+    const j = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+    if (j < 0) return; e.preventDefault(); tabs[j].focus(); showTab(tabs[j].dataset.tab);
+  });
   document.getElementById('search').addEventListener('input', e => { query = e.target.value.trim(); renderCatalog(); if (graphReady) graphSearch(query); });
-  window.addEventListener('resize', () => { drawPathEdges(); if (graphReady) graphResize(); });
+  window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
 
   function refresh() {
-    document.getElementById('count').innerHTML = `<b>${DATA.built}</b> built${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics`;
-    document.getElementById('verifiedChip').textContent = `${DATA.verified} of ${DATA.built} courses verified`;
-    document.getElementById('mine').innerHTML = done.size ? ` · you: <b>${done.size}</b> done` : '';
+    document.getElementById('countChip').textContent = `${DATA.built} courses · ${DATA.covered + DATA.built} of ${DATA.total} catalog topics`;
+    document.getElementById('verifiedChip').textContent = `${DATA.verified} verified`;
+    document.getElementById('mine').textContent = `you: ${done.size} done`;
+    document.getElementById('mineChip').hidden = !(done.size || doneMods.size);
+    // re-rendering replaces the DOM, so remember what had focus and put it back
+    const ae = document.activeElement;
+    const key = ae && ae.dataset ? (ae.dataset.tick ? ['data-tick', ae.dataset.tick] : ae.dataset.id ? ['data-id', ae.dataset.id] : null) : null;
     renderStart(); renderCatalog(); renderPath();
+    if (selected && panel.classList.contains('open')) renderPanel(selected);
+    if (key) { const el = document.querySelector(`.view.active [${key[0]}="${CSS.escape(key[1])}"]`) || panel.querySelector(`[${key[0]}="${CSS.escape(key[1])}"]`); if (el) el.focus(); }
     if (graphReady) graphRestyle();
   }
+
+  const narrow = () => matchMedia('(max-width: 700px)').matches;
 
   // ---- mind map (D3 tree, built on first open)
   let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {};
   function initGraph() {
-    graphReady = true;
+    if (!window.d3) { document.getElementById('view-graph').insertAdjacentHTML('afterbegin', '<p class="intro" style="padding:var(--s7) var(--s5)">The mind map needs the D3 library from cdnjs, which could not be loaded. The catalog and learning path still work.</p>'); return; }
     const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
     const svg = d3.select('#graph'), g = svg.append('g');
     const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g');
@@ -527,9 +627,13 @@
       const node = nodeLayer.selectAll('g.node:not(.hub)').data(ns, n => n.data.id);
       node.exit().transition().duration(dur).attr('opacity', 0).remove();
       const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => `translate(${n.parent && n.parent.depth > 0 ? n.parent.px : 0},${n.parent && n.parent.depth > 0 ? n.parent.py : 0})`)
-        .on('click', (e, n) => { e.stopPropagation(); onClick(n); });
+        .attr('tabindex', 0).attr('role', 'button')
+        .on('click', (e, n) => { e.stopPropagation(); onClick(n); })
+        .on('keydown', (e, n) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onClick(n); } });
       enter.append('circle'); enter.append('text').attr('dy', '0.35em'); enter.append('title').text(n => n.data.label);
       const all = enter.merge(node);
+      all.attr('aria-label', n => n.data.label);
+      svg.select('#arrow path').attr('fill', css('--prereq'));
       all.transition().duration(dur).attr('opacity', 1).attr('transform', n => `translate(${n.px},${n.py})`);
       all.select('circle').attr('r', r).attr('fill', fill).attr('stroke', strokeOf).attr('stroke-width', 1.5);
       all.select('text').text(n => glyph(n) + n.data.label + (type(n) === 'topic' && n.data.data.covered ? ' · folded in' : '') + ((n._children && !n.children) ? (isCat(n) ? '' : ' ▸') : ''))
@@ -546,8 +650,8 @@
       const pp = prereqLayer.selectAll('path').data(pls, l => l.id);
       pp.exit().remove();
       const parc = l => { const ax = l.a.px - l.a.dir * (r(l.a) + 2), bx = l.b.px - l.b.dir * (r(l.b) + 2); const bulge = l.a.dir === l.b.dir ? -l.a.dir * 90 : 0; return `M${ax},${l.a.py} C${ax + bulge},${l.a.py} ${bx + bulge},${l.b.py} ${bx},${l.b.py}`; };
-      pp.enter().append('path').attr('fill', 'none').attr('stroke', css('--prereq')).attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4').attr('marker-end', 'url(#arrow)').merge(pp)
-        .transition().duration(dur).attr('d', parc);
+      pp.enter().append('path').attr('fill', 'none').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4').attr('marker-end', 'url(#arrow)').merge(pp)
+        .attr('stroke', css('--prereq')).transition().duration(dur).attr('d', parc);
       applyDim();
       lastNodes = ns;
     }
@@ -571,19 +675,23 @@
       if (!lastNodes.length) return;
       const xs = lastNodes.map(n => n.px), ys = lastNodes.map(n => n.py);
       const x0 = Math.min(...xs) - 280, x1 = Math.max(...xs) + 280, y0 = Math.min(...ys) - 40, y1 = Math.max(...ys) + 60;
-      const s = Math.min(width / (x1 - x0), height / (y1 - y0), 1.4);
-      const tf = d3.zoomIdentity.translate(width / 2 - s * (x0 + x1) / 2, height / 2 - s * (y0 + y1) / 2).scale(s);
+      let s = Math.min(width / (x1 - x0), height / (y1 - y0), 1.4);
+      let tf;
+      if (width < 700 && s < 0.7) { s = 0.8; tf = d3.zoomIdentity.translate(width / 2, height / 2).scale(s); }   // narrow screen: readable and pannable, hub in view
+      else tf = d3.zoomIdentity.translate(width / 2 - s * (x0 + x1) / 2, height / 2 - s * (y0 + y1) / 2).scale(s);
       (animate ? svg.transition().duration(400) : svg).call(zoom.transform, tf);
     }
     const zoom = d3.zoom().scaleExtent([0.25, 3]).on('zoom', e => g.attr('transform', e.transform));
     svg.call(zoom).on('dblclick.zoom', null).on('click', () => { selectedId = null; keep = null; open(null); render(); });
 
     graphHighlight = d => {
-      if (!d) { keep = null; selectedId = null; applyDim(); return; }
+      if (!d) { keep = null; selectedId = null; applyDim(); nodeLayer.selectAll('g.node:not(.hub)').classed('sel', false); return; }
       selectedId = d.id;
       const s = new Set([d.id]);
       links.forEach(l => { if (l.source.id === d.id) s.add(l.target.id); if (l.target.id === d.id) s.add(l.source.id); });
       if (d.parent) s.add(d.parent);
+      if (d.type === 'course') modulesOf(d.id).forEach(m => s.add(m.id));   // an expanded course keeps its own modules readable
+      if (d.type === 'topic') s.add('group:' + d.parent);
       keep = s; render();
     };
     graphSearch = q => {
@@ -598,15 +706,22 @@
     document.getElementById('collapse-all').addEventListener('click', e => { e.stopPropagation(); setAll(false); render(); setTimeout(() => fit(true), 360); });
     document.getElementById('prereqs').addEventListener('change', e => { showPrereqs = e.target.checked; render(false); });
     render(false); fit();
+    graphReady = true;
+    if (query) graphSearch(query);
   }
 
   // ---- theme toggle, reading progress
   const root = document.documentElement;
   try { const saved = localStorage.getItem('iekb-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  const searchToggle = document.getElementById('search-toggle'), topbar = document.querySelector('header.topbar');
+  function openSearch(on) { topbar.classList.toggle('search-open', on); searchToggle.setAttribute('aria-expanded', String(on)); if (on) document.getElementById('search').focus(); }
+  searchToggle.addEventListener('click', () => openSearch(!topbar.classList.contains('search-open')));
+  document.getElementById('search').addEventListener('blur', () => { if (!document.getElementById('search').value) openSearch(false); });
   document.getElementById('theme').addEventListener('click', () => {
-    const dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    const dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && !matchMedia('(prefers-color-scheme: light)').matches);
     const next = dark ? 'light' : 'dark'; root.setAttribute('data-theme', next);
     try { localStorage.setItem('iekb-theme', next); } catch (e) {}
+    drawPathEdges();
     if (graphReady) graphRestyle();
   });
   function updateProgress() {
@@ -617,12 +732,12 @@
   document.querySelectorAll('.view').forEach(v => v.addEventListener('scroll', updateProgress, { passive: true }));
 
   // ---- boot
+  const dec = s => { try { return decodeURIComponent(s); } catch (e) { return s; } };
+  const applyHash = () => { const h = dec(location.hash.slice(1)); if (h.startsWith('tab=')) { showTab(h.slice(4)); open(null); } else if (byId.has(h)) { if (tab === 'graph') showTab('catalog'); open(byId.get(h)); } else if (!h) open(null); };
   refresh();
-  const hash = decodeURIComponent(location.hash.slice(1));
-  if (hash.startsWith('tab=')) showTab(hash.slice(4));
-  else if (byId.has(hash)) open(byId.get(hash));
-  window.addEventListener('pageshow', () => { try { done = new Set(JSON.parse(localStorage.getItem('iekb-done') || '[]')); doneMods = new Set(JSON.parse(localStorage.getItem('iekb-mods') || '[]')); } catch (e) {} refresh(); });
-  window.addEventListener('hashchange', () => { const h = decodeURIComponent(location.hash.slice(1)); if (h.startsWith('tab=')) { showTab(h.slice(4)); open(null); } else if (byId.has(h)) { showTab('catalog'); open(byId.get(h)); } });
+  applyHash();
+  window.addEventListener('pageshow', e => { if (!e.persisted) return; try { done = new Set(JSON.parse(localStorage.getItem('iekb-done') || '[]')); doneMods = new Set(JSON.parse(localStorage.getItem('iekb-mods') || '[]')); } catch (e2) {} refresh(); });
+  window.addEventListener('hashchange', applyHash);
   document.getElementById('homeLink').addEventListener('click', e => { e.preventDefault(); showTab('catalog'); open(null); history.replaceState(null, '', location.pathname); document.querySelector('.view.active').scrollTo(0, 0); });
 })();
 </script>
