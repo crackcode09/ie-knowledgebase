@@ -10,7 +10,7 @@
 <style>
   /* ── Warm-terminal design system (ported from my-claude.md) ───────── */
   :root {
-    --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f;
+    --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f; --line-strong: #534c3f;
     --text: #ede6da; --muted: #a79e89; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
     --green: #9cba7f; --green-soft: rgba(156,186,127,.16); --code-bg: #181612;
     --ink: var(--text); --panel: var(--surface); --card: var(--surface); --bg-rgb: 31,29,24;
@@ -24,7 +24,7 @@
     --ease-out: cubic-bezier(.16,1,.3,1);
   }
   :root[data-theme="light"] {
-    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb;
+    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
     --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
     --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
     --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
@@ -32,7 +32,7 @@
   }
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb;
+      --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
       --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
       --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
       --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
@@ -62,8 +62,14 @@
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text);
     background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer;
     transition: border-color .15s, background .15s, transform .08s var(--ease-out); }
-  .btn:hover { border-color: var(--accent); } .btn:active { transform: scale(.96); }
-  .btn.active, .btn[aria-selected="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .btn:active { transform: scale(.96); }
+  /* Controls: one height, a visible edge, a filled state for the active one */
+  .btn, .graph-tools .mini, .btn-secondary, .search { border-color: var(--line-strong); box-shadow: var(--shadow-1); }
+  .btn { min-height: 34px; line-height: 1; font-weight: 500; }
+  .btn:hover, .graph-tools .mini:hover, .btn-secondary:hover { border-color: var(--accent); background: var(--surface-2); }
+  .btn.active, .btn[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); box-shadow: none; }
+  .btn.icon { min-width: 34px; justify-content: center; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .btn svg { width: 14px; height: 14px; flex: none; }
   .toggle { display: flex; } .toggle .btn { border-radius: 0; }
   .toggle .btn:first-child { border-radius: 6px 0 0 6px; } .toggle .btn:last-child { border-radius: 0 6px 6px 0; }
@@ -81,13 +87,17 @@
   .search:focus-within kbd { display: none; }
   .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface);
     border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
-  .status b { color: var(--green); font-weight: 500; }
-  @media (max-width: 1400px) { .status .long { display: none; } }
+  .btn.icon { padding: 6px 9px; }
+  .chip button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; } .chip button:hover { text-decoration: underline; }
+  .chip[hidden] { display: none; }
+  .pfoot { margin: var(--s8) 0 0; padding: var(--s4) 0; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 2; }
+  .pfoot a { color: var(--muted); } .pfoot a:hover { color: var(--accent); }
+  #search-toggle { display: none; }
 
   main { flex: 1; position: relative; min-height: 0; overflow: hidden; }
   .view { position: absolute; inset: 0; overflow: auto; display: none; }
   .view.active { display: block; }
-  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) 100px; }
+  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); }
 
   /* hero */
   .hero { padding: var(--s7) 0 var(--s6); }
@@ -134,7 +144,6 @@
   .tag.verified, .pill.verified { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
   .notice { margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13.5px; color: var(--muted); }
   .notice b { color: var(--text); font-weight: 600; }
-  footer a { color: inherit; } footer a:hover { color: var(--accent); }
   .card .topic { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
@@ -228,7 +237,6 @@
   .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; }
   .pill.built, .pill.todo { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
   .pill.next { background: var(--accent); color: var(--bg); } .pill.done { background: var(--green); color: var(--bg); }
-  footer { border-top: 1px solid var(--line); padding: var(--s3) var(--s5); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
   @media (pointer: coarse) {
     .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
@@ -236,8 +244,27 @@
     aside .close { padding: 6px 12px; top: 8px; right: 8px; }
     .syl .body a { padding: 4px 0; display: inline-block; }
   }
+  @media (max-width: 700px) {
+    header.topbar { padding: 8px var(--s3); gap: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); }
+    .path { flex: 1; }
+    #search-toggle { display: inline-flex; }
+    .search { display: none; order: 9; flex: 1 1 100%; min-width: 0; }
+    header.topbar.search-open .search { display: inline-flex; }
+    header.topbar .toggle[role=tablist] { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; padding: 6px var(--s3) calc(6px + env(safe-area-inset-bottom)); gap: 0;
+      background: rgba(var(--bg-rgb), .96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+    header.topbar .toggle[role=tablist] .btn { flex: 1; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; border-left: 1px solid var(--line-strong); }
+    header.topbar .toggle[role=tablist] .btn + .btn { margin-left: 6px; }
+    .view { bottom: 56px; }
+    .outline-foot { margin: 0 var(--s4) var(--s5); }
+  }
   @media (max-width: 640px) {
-    .level { flex-wrap: wrap; } .level .lvl { flex-basis: 100%; padding-top: 0; } .hero { padding-top: var(--s6); }
+    .more, .legend .more { display: none; }
+    .intro { font-size: 14px; margin-bottom: var(--s3); }
+    .legend { gap: var(--s3); font-size: 11.5px; margin-bottom: var(--s5); }
+    .level { flex-wrap: wrap; margin-bottom: var(--s6); }
+    .level .lvl { flex-basis: 100%; display: flex; align-items: baseline; gap: 8px; padding: 0 0 6px; margin-bottom: var(--s3); border-bottom: 2px solid var(--accent); }
+    .level .lvl b { font-size: 16px; margin: 0; }
+    .hero { padding-top: var(--s6); }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
     .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
     .byline .chip { white-space: normal; overflow-wrap: anywhere; }
@@ -258,14 +285,13 @@
     <button type="button" class="btn" role="tab" id="tab-graph" data-tab="graph" aria-selected="false" aria-controls="view-graph" tabindex="-1">Mind map</button>
   </div>
   <span class="spacer"></span>
+  <button type="button" class="btn icon" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   <label class="search" for="search">
     <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input type="search" id="search" placeholder="Search courses, modules" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
     <kbd aria-hidden="true">/</kbd>
   </label>
-  <span class="status"><span id="count"></span><span id="mine"></span></span>
-  <button type="button" class="btn" id="theme" aria-label="Toggle light or dark theme">theme</button>
-  <button type="button" class="btn" id="reset" title="Clear your local progress">reset</button>
+  <button type="button" class="btn icon" id="theme" aria-label="Toggle light or dark theme" title="Theme"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg></button>
 </header>
 <main>
   <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
@@ -275,23 +301,27 @@
       <div class="byline">
         <span class="chip">Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">github.com/crackcode09/ie-knowledgebase</a></span>
         <span class="chip">content CC BY 4.0 · code MIT</span>
+        <span class="chip" id="countChip"></span>
         <span class="chip" id="verifiedChip"></span>
+        <span class="chip" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
       </div>
       <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
       <div class="notice"><b>Preview release.</b> Every course here was written with AI assistance and is marked <span class="tag draft">draft</span> until a reviewer has checked it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only the public IISE course titles and topic outlines were used as a map of what to cover; no IISE material appears here. See the <a href="terms.html#originality">originality notice</a>.</div>
     </div>
     <div class="start" id="start"></div>
     <div id="catalog"></div>
+    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </div></section>
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
-    <p class="intro">Courses arranged by prerequisite level. Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</p>
+    <p class="intro">Courses arranged by prerequisite level.<span class="more"> Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</span></p>
     <div class="legend">
       <span><i class="sw" style="background:var(--done-bg)"></i>done</span>
       <span><i class="sw" style="border-color:var(--next);box-shadow:inset 3px 0 0 var(--next)"></i>up next</span>
-      <span><i class="sw" style="opacity:.6"></i>locked (prerequisites not done)</span>
+      <span><i class="sw" style="opacity:.6"></i>locked<span class="more"> (prerequisites not done)</span></span>
       <span><i style="width:18px;border-top:2px dashed var(--prereq);display:inline-block"></i>prerequisite</span>
     </div>
     <div class="path-wrap" id="path"></div>
+    <div class="pfoot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </div></section>
   <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
     <svg id="graph" aria-label="Course mind map"></svg>
@@ -304,10 +334,10 @@
       <span><i class="dot" style="background:var(--module);width:7px;height:7px"></i>module</span>
     </div>
     <div class="outline" id="outline" aria-label="Course map as a list"></div>
+    <div class="pfoot outline-foot">IE Knowledgebase · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">GitHub</a></div>
   </section>
   <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">×</button><div id="panel-body"></div></aside>
 </main>
-<footer>generated from <code>ROADMAP.md</code> and the course READMEs by <code>tools/roadmap_graph.py</code> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -498,7 +528,7 @@
   document.body.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) { e.preventDefault(); open(byId.get(e.target.dataset.id)); return; }
     if (e.key === 'Escape') { if (e.target.id === 'search') { e.target.blur(); return; } open(null); return; }
-    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,select,[contenteditable]')) { e.preventDefault(); document.getElementById('search').focus(); }
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,select,[contenteditable]')) { e.preventDefault(); openSearch(true); }
   });
 
   // ---- tabs and search
@@ -524,9 +554,10 @@
   window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) renderOutline(); else if (!graphReady) initGraph(); else graphResize(); } });
 
   function refresh() {
-    document.getElementById('count').innerHTML = `<b>${DATA.built}</b> built<span class="long">${DATA.covered ? ` · <b>${DATA.covered}</b> folded in` : ''} · of ${DATA.total} topics</span>`;
+    document.getElementById('countChip').textContent = `${DATA.built} built${DATA.covered ? ` · ${DATA.covered} folded in` : ''} · of ${DATA.total} topics`;
     document.getElementById('verifiedChip').textContent = `${DATA.verified} of ${DATA.built} courses verified`;
-    document.getElementById('mine').innerHTML = done.size ? ` · you: <b>${done.size}</b> done` : '';
+    document.getElementById('mine').textContent = `you: ${done.size} done`;
+    document.getElementById('mineChip').hidden = !(done.size || doneMods.size);
     // re-rendering replaces the DOM, so remember what had focus and put it back
     const ae = document.activeElement;
     const key = ae && ae.dataset ? (ae.dataset.tick ? ['data-tick', ae.dataset.tick] : ae.dataset.id ? ['data-id', ae.dataset.id] : null) : null;
@@ -716,6 +747,10 @@
   // ---- theme toggle, reading progress
   const root = document.documentElement;
   try { const saved = localStorage.getItem('iekb-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  const searchToggle = document.getElementById('search-toggle'), topbar = document.querySelector('header.topbar');
+  function openSearch(on) { topbar.classList.toggle('search-open', on); searchToggle.setAttribute('aria-expanded', String(on)); if (on) document.getElementById('search').focus(); }
+  searchToggle.addEventListener('click', () => openSearch(!topbar.classList.contains('search-open')));
+  document.getElementById('search').addEventListener('blur', () => { if (!document.getElementById('search').value) openSearch(false); });
   document.getElementById('theme').addEventListener('click', () => {
     const dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && !matchMedia('(prefers-color-scheme: light)').matches);
     const next = dark ? 'light' : 'dark'; root.setAttribute('data-theme', next);
