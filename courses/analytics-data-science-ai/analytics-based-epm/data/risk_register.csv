@@ -1,0 +1,7 @@
+risk,description,probability,impact,category
+R1,Key component supplier failure,0.15,900000,Supply
+R2,Loss of top distributor,0.08,1400000,Customer
+R3,Copper and steel price spike,0.3,350000,Market
+R4,Field failure of new product (recall),0.05,1800000,Quality
+R5,ERP outage during peak,0.1,250000,IT
+R6,Loss of two senior engineers,0.2,300000,People
