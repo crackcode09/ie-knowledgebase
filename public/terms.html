@@ -10,7 +10,7 @@
 <style>
   :root {
     --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f;
-    --text: #ede6da; --muted: #9c937f; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
+    --text: #ede6da; --muted: #a79e89; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
     --green: #9cba7f; --green-soft: rgba(156,186,127,.16); --bg-rgb: 31,29,24;
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -19,13 +19,13 @@
     --shadow-1: 0 1px 2px rgba(0,0,0,.25);
   }
   :root[data-theme="light"] {
-    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --text: #2a2721; --muted: #7a7262;
-    --accent: #c4623c; --accent-soft: rgba(196,98,60,.12); --green: #5f8a3d; --green-soft: rgba(95,138,61,.14);
+    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --text: #2a2721; --muted: #655d4f;
+    --accent: #b0532f; --accent-soft: rgba(176,83,47,.12); --green: #4d7a2c; --green-soft: rgba(77,122,44,.14);
     --bg-rgb: 250,246,238; --shadow-1: 0 1px 2px rgba(60,40,20,.08);
   }
   @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
-    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --text: #2a2721; --muted: #7a7262;
-    --accent: #c4623c; --accent-soft: rgba(196,98,60,.12); --green: #5f8a3d; --green-soft: rgba(95,138,61,.14);
+    --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --text: #2a2721; --muted: #655d4f;
+    --accent: #b0532f; --accent-soft: rgba(176,83,47,.12); --green: #4d7a2c; --green-soft: rgba(77,122,44,.14);
     --bg-rgb: 250,246,238; --shadow-1: 0 1px 2px rgba(60,40,20,.08); } }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
@@ -56,8 +56,8 @@
   table { border-collapse: collapse; width: 100%; margin-bottom: var(--s4); font-size: 14.5px; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { font-family: var(--mono); font-weight: 500; font-size: 12.5px; color: var(--muted); }
-  .toc { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); display: flex; flex-wrap: wrap; gap: 6px 14px; }
-  .toc a { color: var(--muted); text-decoration: none; } .toc a:hover { color: var(--accent); }
+  nav.toc { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: var(--s5); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  nav.toc a { color: var(--muted); text-decoration: none; } .toc a:hover { color: var(--accent); }
   footer { border-top: 1px solid var(--line); padding: var(--s5); text-align: center; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
   footer a { color: inherit; } footer a:hover { color: var(--accent); }
   @media print { .topbar, footer { display: none; } body { background: #fff; color: #000; } main { padding: 0; } a { color: inherit; } }
@@ -81,7 +81,7 @@
 
 <div class="box"><b>In one paragraph.</b> These are free, open educational courses, written with AI assistance and released under open licences. They are not professional advice and come with no warranty. The site is not affiliated with IISE; it borrowed only the public list of course titles and topics as a map of what to cover, and every lesson here is original. Courses are marked <em>draft</em> until a reviewer has verified them.</div>
 
-<div class="toc"><a href="#use">Using the site</a><a href="#licence">Licences</a><a href="#originality">Originality and IISE</a><a href="#ai">AI-assisted content and verification</a><a href="#trademarks">Trademarks</a><a href="#disclaimer">No professional advice</a><a href="#warranty">No warranty, limitation of liability</a><a href="#links">External links</a><a href="#takedown">Reporting a problem</a><a href="#accessibility">Accessibility</a><a href="#changes">Changes</a></div>
+<nav class="toc" aria-label="On this page"><a href="#use">Using the site</a><a href="#licence">Licences</a><a href="#originality">Originality and IISE</a><a href="#ai">AI-assisted content and verification</a><a href="#trademarks">Trademarks</a><a href="#disclaimer">No professional advice</a><a href="#warranty">No warranty, limitation of liability</a><a href="#links">External links</a><a href="#takedown">Reporting a problem</a><a href="#accessibility">Accessibility</a><a href="#changes">Changes</a></nav>
 
 <h2 id="use">Using the site</h2>
 <p>You may read, download, print, share and adapt the courses for any purpose, including commercial training, as long as you follow the licences below. You may not present the site as endorsed by any organisation that has not endorsed it, and you may not remove attribution or the originality notice when redistributing it.</p>
