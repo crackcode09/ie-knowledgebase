@@ -14,7 +14,8 @@ Review one course per pull request. Do not verify a course you wrote.
 
 ## 2. Accuracy
 
-- [ ] Definitions and formulas match a primary source (textbook, standard or peer-reviewed paper) named in `reference/further-reading.md`. Check every formula in `reference/formulas.md` or the equivalent.
+- [ ] Definitions and formulas match a primary source (textbook, standard or peer-reviewed paper) listed in `reference/sources.md`. Check every formula in `reference/formulas.md` or the equivalent, and that every symbol is defined where it is used and means the same thing throughout the course.
+- [ ] `reference/sources.md` exists, every entry has an edition or standard number, every ID cited in a module exists in the table, and each entry you have checked has Verified set to `yes`.
 - [ ] Every number in the lessons and in `solutions/README.md` can be reproduced by running the course's own scripts (`tools/make_data.py`, `tools/make_figures.py`, the analysis script). Run them.
 - [ ] Standards, regulations and historical claims are current and correctly cited (edition, year, clause). Anything uncertain is marked as such in the text or removed.
 - [ ] Exercises have answers, and the answers are right.

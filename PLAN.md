@@ -108,3 +108,28 @@
 
 ### Outcome (filled in after completion)
 - Delivered as one PR. First run pending the owner's choice of course.
+
+## [2026-10-27] — Plan: Sources tables and the Sources page
+
+### Status: COMPLETE
+
+### What is being built or changed
+- One source of truth per course, `reference/sources.md` (columns ID, Source, Used for, Cited in, Verified), cited from modules by ID; a reviewer flips Verified. The generator reads every table into the model, shows a verified count in the course drawer, and builds `public/sources.html`: a site-level section (IISE catalog as a map only, O*NET, BLS, Bootstrap Icons, CDN libraries, fonts) followed by every course's table. Footer link on every page.
+
+### Files to be created or modified
+- `tools/roadmap_graph.py` — `course_sources`, `SITE_SOURCES`, `sources_page`, course node `sources`
+- `tools/roadmap_template.html`, `tools/reader_template.html`, `tools/legal_template.html` — drawer count, footer links, table code style
+- `courses/quality-operational-excellence/quality-engineering-essentials/reference/sources.md` — first converted course (replaces further-reading.md)
+- `CONTRIBUTING.md`, `REVIEW.md`, `.claude/agents/review-accuracy.md` — citation rule, checklist items for the table and for symbol definitions
+
+### Implementation steps
+1. Define the table format and convert Quality Engineering Essentials.
+2. Parse tables in the generator; render the global page through the legal shell; add the drawer count and footer links.
+3. Extend REVIEW.md and the accuracy reviewer so every run checks the table and symbol definitions.
+
+### Assumptions & decisions
+- Courses without a table keep their further-reading list; the Sources page says so. Conversion of the other 31 happens as each goes through the board.
+- Verified stays `no` until a human reviewer checks an entry; the board reports what it could confirm but does not flip it.
+
+### Outcome (filled in after completion)
+- Delivered as one PR; QEE shows 14 entries, 0 verified, pending its review.

@@ -301,7 +301,7 @@
     </div>
     <div class="start" id="start"></div>
     <div id="catalog"></div>
-    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a></div>
+    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="sources.html">sources</a></div>
   </div></section>
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
     <p class="intro">Courses arranged by prerequisite level.<span class="more"> Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</span></p>
@@ -312,7 +312,7 @@
       <span><i style="width:18px;border-top:2px dashed var(--prereq);display:inline-block"></i>prerequisite</span>
     </div>
     <div class="path-wrap" id="path"></div>
-    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a></div>
+    <div class="pfoot">IE Knowledgebase · by Nidhin · <a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a> · content CC BY 4.0 · code MIT · <a href="privacy.html">privacy</a> · <a href="terms.html">terms</a> · <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a> · <a href="roadmap.html">site roadmap</a> · <a href="sources.html">sources</a></div>
   </div></section>
   <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
     <svg id="graph" aria-label="Course mind map"></svg>
@@ -460,7 +460,7 @@
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
     const st = isDone(c.id) ? '<span class="pill done">done</span>' : isNext(c.id) ? '<span class="pill next">up next</span>' : unlocked(c.id) ? '<span class="pill built">available</span>' : '<span class="pill built">locked</span>';
     const vf = c.verified ? `<span class="pill verified" title="${esc(c.review)}">verified</span>` : '<span class="pill draft" title="Written with AI assistance, not yet reviewed">draft</span>';
-    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} ${vf} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}</div>`;
+    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} ${vf} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}${c.sources && c.sources.length ? ` · <a href="${reader(c, 'reference/sources.md')}">${c.sources.filter(s => s.verified).length}/${c.sources.length} sources verified</a>` : ''}</div>`;
     if (c.description) h += `<p>${esc(c.description)}</p>`;
     h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
