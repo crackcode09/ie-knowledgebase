@@ -111,7 +111,7 @@ python tools/qekit.py capability
 
 ## Exercise 4.1
 
-1. From the capability table, compute M1's Cpk by hand using the overall standard deviation (the formula is in `reference/formulas.md`) and confirm it matches. Then compute what M1's Cpk would be if its mean were moved to the 6.350 target with the same spread.
+1. From the capability table, compute M1's Ppk by hand using the overall standard deviation (the formula is in `reference/formulas.md`) and confirm it matches. Then compute what it would be if M1's mean were moved to the 6.350 target with the same spread; that is its Pp.
 2. In the after stage of the pilot, how many oversize inserts are expected per day at p̄ = 0.33 % and n = 180? Explain in one sentence why that makes the p-chart limits for that stage unreliable.
 3. Bayline will check thread fit with a go/no-go gauge on 1 insert in 25. Which chart should monitor the result, and what is plotted?
 

@@ -47,7 +47,7 @@ Negative component estimates are set to zero.
 | %Tolerance = 100 · 6 · σ_GRR / (USL − LSL) | USL, LSL = upper and lower specification limits; 6σ spans 99.73 % of a normal distribution |
 | Number of distinct categories: ndc = ⌊1.41 · σ_part / σ_GRR⌋ | ⌊ ⌋ = round down to an integer |
 
-## Attribute agreement (landis-koch-1977)
+## Attribute agreement (cohen-1960 for the formula; landis-koch-1977 and aiag-msa-4 for the interpretation bands)
 
 | Formula | Symbols |
 |---|---|
