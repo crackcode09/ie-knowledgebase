@@ -228,3 +228,33 @@
 
 ### Outcome (filled in after completion)
 - All four done. Both SRI hashes match the cdnjs API. Reader renders module 02 of Process Mapping with headings, `details`, tables and Mermaid blocks intact, and DOMPurify strips an `onerror` handler. Index loads anime.js and D3 with no console errors and no leftover icon placeholders. A label containing `__ICON:x-lg__` survives into the JSON unchanged; a `javascript:` track source stops the build with a message. Legal pages regenerate identically.
+
+## [2026-10-28] — Plan: Site favicon
+
+### Status: COMPLETE
+
+### What is being built or changed
+- A favicon for every page. The design is ">ie" in the site's terracotta: a pixel-grid version for browser tabs and a roomier version for the iPhone home-screen icon. It was chosen from several rounds of concepts that the owner kept locally.
+
+### Files to be created or modified
+- `public/favicon.svg` — the 16 px design, theme-aware: terracotta tile with dark ink in dark mode, darker tile with cream ink in light mode
+- `public/favicon-16.png`, `public/favicon-32.png` — the same design for browsers without SVG favicons (dark-mode colours, which read on light and dark tab bars)
+- `public/apple-touch-icon.png` — 180 px, the large design, opaque square (iOS rounds the corners)
+- `tools/roadmap_template.html`, `tools/reader_template.html`, `tools/legal_template.html` — four `<link>` tags after `<title>`
+- `index.html` — the same tags with a `public/` prefix, so the root redirect page has the icon too
+- `public/*.html` — regenerated
+
+### Implementation steps
+1. Render the PNGs from the SVG shapes with Pillow (16× supersampled, box-downscaled so the tile corners stay smooth).
+2. Copy the icons into `public/`, add the tags, regenerate.
+3. Check that every page's icon links resolve.
+
+### Assumptions & decisions
+- Tabs use the pixel-grid design at every size, so it stays crisp; only the home-screen icon uses the large design.
+- The design sources stay in the owner's local `design/favicon/` folder and are not committed.
+
+### Questions for user
+- None.
+
+### Outcome (filled in after completion)
+- Delivered as planned. All four icon links return 200 with the right type on the catalog, reader, privacy, terms, sources, site-roadmap and root redirect pages. Headless Chrome could not be used to render the PNGs (the page script never reported back), so Pillow drew them from the same shapes.
