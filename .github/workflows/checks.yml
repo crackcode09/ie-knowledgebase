@@ -31,9 +31,11 @@ jobs:
 
       - name: Fail if public/ or ROADMAP.md is out of date
         run: |
-          if ! git diff --quiet; then
+          # status, not diff: a regenerated page that was never committed is untracked and must fail too
+          changes=$(git status --porcelain --untracked-files=all -- public ROADMAP.md)
+          if [ -n "$changes" ]; then
             echo "::error::The generated site is out of date. Run 'python tools/roadmap_graph.py' and commit the result."
-            git status --short
+            echo "$changes"
             git diff --stat
             exit 1
           fi
