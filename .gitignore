@@ -4,3 +4,4 @@ __pycache__/
 
 # IISE catalog PDF kept locally for reference; copyrighted, never commit
 IISECourseOverview.pdf
+_site/

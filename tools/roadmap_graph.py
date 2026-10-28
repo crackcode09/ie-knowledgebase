@@ -1,6 +1,6 @@
 """Draw ROADMAP.md as a radial knowledge graph (roadmap.svg) and build the
 interactive site (public/index.html, public/course.html) from the roadmap and course READMEs.
-GitHub Pages publishes the repo root; the site lives in public/ and reads courses/ in place.
+The site lives in public/ and reads courses/ beside it; tools/build_site.py assembles both for hosting.
 
 Usage:  python tools/roadmap_graph.py
 Re-run after editing ROADMAP.md or adding a course. Standard library only.
@@ -50,8 +50,13 @@ def inject_icons(html):
     return re.sub(r"__ICON:([a-z0-9-]+)(?::(\d+))?__", lambda m: icon(m.group(1), int(m.group(2) or 16)), html)
 REPO_URL = "https://github.com/crackcode09/ie-knowledgebase"
 
-DONE, TODO, CAT, HUB, LINK, INK, MUTED = (
-    "#2E8B57", "#C9D2D8", "#0078E6", "#005BA6", "#D5DDE3", "#1F2A33", "#7A8A96")
+# The site's dark-theme tokens (--green, --todo, --accent, --line, --text, --muted, --bg), so the README
+# picture matches the site. Fonts fall back to system faces: GitHub shows the SVG as an image, which
+# cannot load web fonts.
+DONE, TODO, CAT, HUB, LINK, INK, MUTED, BG = (
+    "#9cba7f", "#5c5546", "#d97757", "#d97757", "#3e392f", "#ede6da", "#a79e89", "#1f1d18")
+SANS = "Inter, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+DISPLAY = "'Space Grotesk', Inter, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
 
 # Link text may hold one level of brackets, e.g. "[Cost Management [ABC/M]](...)".
 LINK_RE = re.compile(r"\[((?:[^\[\]]|\[[^\[\]]*\])+)\]\(([^)\s]+)\)")
@@ -101,9 +106,9 @@ def render(cats):
     done = sum(ok for c in cats for _, ok, _p, _f in c["items"])
     gap = 0.012  # radians of padding between category sectors
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" '
-             f'font-family="Roboto, Arial, sans-serif" font-size="11">',
-             f'<rect width="{size}" height="{size}" fill="#FFFFFF"/>',
-             f'<text x="{size - 30}" y="{size - 44}" text-anchor="end" font-size="22" font-weight="700" fill="{INK}">'
+             f'font-family="{SANS}" font-size="11">',
+             f'<rect width="{size}" height="{size}" fill="{BG}"/>',
+             f'<text x="{size - 30}" y="{size - 44}" text-anchor="end" font-family="{DISPLAY}" font-size="22" font-weight="700" fill="{INK}">'
              f'IE Knowledgebase roadmap</text>',
              f'<text x="{size - 30}" y="{size - 22}" text-anchor="end" font-size="13" fill="{MUTED}">'
              f'{done} of {total} courses built</text>']
@@ -121,7 +126,7 @@ def render(cats):
             x2, y2 = cx + r_leaf * math.cos(a), cy + r_leaf * math.sin(a)
             edges.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
                          f'stroke="{DONE if ok else LINK}" stroke-width="{1.6 if ok else 1}"/>')
-            fill = DONE if ok else "#FFFFFF"
+            fill = DONE if ok else BG
             nodes.append(f'<circle cx="{x2:.1f}" cy="{y2:.1f}" r="{6 if ok else 4.5}" fill="{fill}" '
                          f'stroke="{DONE if ok else TODO}" stroke-width="1.5"/>')
             deg = math.degrees(a)
@@ -148,15 +153,15 @@ def render(cats):
         for j, ln in enumerate(lines):
             w = "700" if j == len(lines) - 1 else "500"
             labels.append(f'<text x="{x1:.1f}" y="{y0 + j * 11:.1f}" text-anchor="middle" '
-                          f'dominant-baseline="middle" fill="#FFFFFF" font-size="9.5" font-weight="{w}">{esc(ln)}</text>')
+                          f'dominant-baseline="middle" fill="{BG}" font-size="9.5" font-weight="{w}">{esc(ln)}</text>')
         ang += span
     nodes.append(f'<circle cx="{cx}" cy="{cy}" r="44" fill="{HUB}"/>')
-    labels.append(f'<text x="{cx}" y="{cy - 6}" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">IE</text>')
-    labels.append(f'<text x="{cx}" y="{cy + 9}" text-anchor="middle" fill="#FFFFFF" font-size="10">Knowledgebase</text>')
+    labels.append(f'<text x="{cx}" y="{cy - 6}" text-anchor="middle" fill="{BG}" font-family="{DISPLAY}" font-size="12" font-weight="700">IE</text>')
+    labels.append(f'<text x="{cx}" y="{cy + 9}" text-anchor="middle" fill="{BG}" font-size="10">Knowledgebase</text>')
     legend_y = size - 28
     parts.append(f'<circle cx="30" cy="{legend_y}" r="6" fill="{DONE}"/>'
                  f'<text x="42" y="{legend_y + 4}" fill="{INK}">built</text>'
-                 f'<circle cx="100" cy="{legend_y}" r="4.5" fill="#FFFFFF" stroke="{TODO}" stroke-width="1.5"/>'
+                 f'<circle cx="100" cy="{legend_y}" r="4.5" fill="{BG}" stroke="{TODO}" stroke-width="1.5"/>'
                  f'<text x="112" y="{legend_y + 4}" fill="{INK}">not started</text>')
     return "\n".join(parts + edges + nodes + labels + ["</svg>"])
 
@@ -320,7 +325,7 @@ SITE_SOURCES = [
     ("O*NET OnLine, Industrial Engineers 17-2112.00 (U.S. Department of Labor, ETA; CC BY 4.0)", "The occupational standard for the role advisor: rated tasks, knowledge, skills and technology.", "https://www.onetonline.org/link/summary/17-2112.00"),
     ("BLS Occupational Outlook Handbook, Industrial Engineers (U.S. government work)", "Outlook, pay, entry education, employers and demand drivers for the role advisor.", "https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm"),
     ("Bootstrap Icons (MIT, The Bootstrap Authors)", "Interface and category icons, vendored under tools/icons/.", "https://github.com/twbs/icons"),
-    ("D3 7.9.0, marked 12.0.2, Mermaid 10.9.1 (cdnjs)", "Mind map layout, Markdown rendering and diagrams in the reader.", "https://cdnjs.com/"),
+    ("D3 7.9.0, marked 12.0.2, DOMPurify 3.1.6, Mermaid 10.9.1, anime.js 4.5.0 (cdnjs)", "Mind map layout, Markdown rendering and sanitising, diagrams in the reader, and motion.", "https://cdnjs.com/"),
     ("Google Fonts: Inter, Space Grotesk, JetBrains Mono", "Typefaces.", "https://fonts.google.com/"),
 ]
 
