@@ -110,6 +110,13 @@
   .hero .ask { display: flex; max-width: 600px; margin: var(--s5) auto 0; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow-2); overflow: hidden; }
   .hero .ask input { flex: 1; min-width: 0; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 14px; padding: 12px 16px; outline: none; }
   .hero .ask input::placeholder { color: var(--muted); }
+  .hero .ask input::-webkit-search-cancel-button { -webkit-appearance: none; }
+  .hero .ask .clear { border: 0; background: none; color: var(--muted); padding: 0 10px; cursor: pointer; display: grid; place-items: center; } .hero .ask .clear:hover { color: var(--accent); }
+  .hero .ask .clear[hidden] { display: none; }
+  .filterbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0 0 var(--s3); }
+  .filterbar b { color: var(--text); font-weight: 500; }
+  .filterbar button, .nomatch button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+  .nomatch { font-size: 15px; color: var(--muted); }
   .hero .ask:focus-within { border-color: var(--accent); }
   .hero .ask button { border: 0; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 0 18px; cursor: pointer; }
   .hero .pop { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: var(--s3); min-height: 28px; }
@@ -343,6 +350,7 @@
         <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them.</p>
         <form class="ask" id="ask" role="search">
           <input type="search" id="askInput" placeholder="What do you want to learn?" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
+          <button type="button" class="clear" id="askClear" aria-label="Clear search" hidden><svg class="bi" width="12" height="12" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg></button>
           <button type="submit">search</button>
         </form>
         <div class="pop" id="start"></div>
@@ -472,7 +480,9 @@
     const q = query.toLowerCase();
     document.querySelectorAll('#catalog details[data-cat]').forEach(d => { if (d.open) closedCats.delete(d.dataset.cat); else closedCats.add(d.dataset.cat); });
     const match = d => !q || (d.label + ' ' + (d.search || '') + ' ' + (d.description || '') + ' ' + modulesOf(d.id).map(m => m.label).join(' ')).toLowerCase().includes(q);
-    document.getElementById('catalog').innerHTML = cats.map(cat => {
+    const hits = q ? courses.filter(match).length : 0;
+    const bar = q ? `<div class="filterbar"><span>showing <b>${hits}</b> ${hits === 1 ? 'course' : 'courses'} matching <b>${esc(query)}</b></span><button type="button" data-clear>clear search</button></div>` : '';
+    document.getElementById('catalog').innerHTML = bar + (cats.map(cat => {
       const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
       const csv = cs.filter(match), tsv = ts.filter(t => !q || t.label.toLowerCase().includes(q));
       if (q && !csv.length && !tsv.length) return '';
@@ -484,7 +494,7 @@
         ${tsv.some(t => t.covered) ? `<div class="planned"><span class="label">Folded in:</span>${tsv.filter(t => t.covered).map(t => `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${esc(t.covered)}">${esc(byId.get(t.covered).label)}</a></span>`).join('')}</div>` : ''}
         ${tsv.some(t => !t.covered) ? `<details class="planned-wrap" ${q ? 'open' : ''}><summary>${tsv.filter(t => !t.covered).length} planned ${tsv.filter(t => !t.covered).length === 1 ? 'topic' : 'topics'} not built yet</summary><div class="planned">${tsv.filter(t => !t.covered).map(t => `<span>${esc(t.label)}</span>`).join('')}</div></details>` : ''}
       </details>`;
-    }).join('') || '<p class="intro">Nothing matches.</p>';
+    }).join('') || `<p class="nomatch">Nothing matches <b>${esc(query)}</b>. <button type="button" data-clear>Clear the search</button> to see every course.</p>`);
   }
 
   function renderPath() {
@@ -626,7 +636,9 @@
     if (j < 0) return; e.preventDefault(); tabs[j].focus(); showTab(tabs[j].dataset.tab);
   });
   const topSearch = document.getElementById('search'), askInput = document.getElementById('askInput');
-  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; renderCatalog(); if (graphReady) graphSearch(query); }
+  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; document.getElementById('askClear').hidden = !query; renderCatalog(); if (graphReady) graphSearch(query); }
+  document.getElementById('askClear').addEventListener('click', () => { setQuery(''); askInput.focus(); });
+  document.addEventListener('click', e => { if (e.target.closest('[data-clear]')) setQuery(''); });
   topSearch.addEventListener('input', e => setQuery(e.target.value));
   askInput.addEventListener('input', e => setQuery(e.target.value));
   document.getElementById('ask').addEventListener('submit', e => { e.preventDefault(); setQuery(askInput.value); document.querySelector('h2.sec.browse').scrollIntoView({ behavior: motion ? 'smooth' : 'instant', block: 'start' }); });
@@ -644,8 +656,8 @@
     // the title types itself, holds, deletes and types again
     const full = 'IE Knowledgebase', split = 3, tyA = document.getElementById('tyA'), tyB = document.getElementById('tyB'), ty = { n: full.length };
     const showTy = () => { const k = Math.round(ty.n); tyA.textContent = full.slice(0, Math.min(k, split)); tyB.textContent = full.slice(split, Math.max(k, split)); };
-    anime.createTimeline({ loop: true, loopDelay: 700, onUpdate: showTy })
-      .add(ty, { n: [0, full.length], duration: 1100, ease: 'linear', modifier: anime.utils.round(0) }, 400)
+    anime.createTimeline({ loop: true, loopDelay: 120, onUpdate: showTy })
+      .add(ty, { n: [0, full.length], duration: 1100, ease: 'linear', modifier: anime.utils.round(0) }, 200)
       .add(ty, { n: 0, duration: 550, ease: 'linear', modifier: anime.utils.round(0) }, '+=4200');
   } catch (e) {}
   window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
