@@ -1,6 +1,6 @@
 # Vision: from a course catalog to a role advisor
 
-Recorded 2026-10-27. The public version of this page is the site's [roadmap](https://nidhy.dev/ie-knowledgebase/roadmap.html).
+Recorded 2026-10-27. The public version of this page is the site's [roadmap](https://ieknowledgebase.nidhy.dev/roadmap.html).
 
 ## The end goal
 

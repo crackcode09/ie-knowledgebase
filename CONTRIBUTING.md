@@ -35,10 +35,12 @@ One width per column: inside the reader document, the catalog page and the legal
 
 Fork → branch → pull request into `dev`. Run any checks the course ships (e.g. `python tools/check_constants.py` in Charting Process Behavior) before submitting changes to its tools.
 
+The **Checks** workflow (`.github/workflows/checks.yml`) runs on every pull request: it rebuilds the site with `python tools/roadmap_graph.py` and fails if `public/` or `ROADMAP.md` would change (so commit the rebuild with your template or README edits), and it runs the course checks listed there.
+
 ### Branches
 
 ```text
-main   what is published at nidhy.dev/ie-knowledgebase (GitHub Pages builds from it)
+main   what is published at ieknowledgebase.nidhy.dev (Cloudflare Pages builds from it)
   └── dev   where every change lands first, by pull request
         └── <type>/<short-name>   one branch per change, from dev (feat/, fix/, docs/, style/, perf/, review/)
 ```
