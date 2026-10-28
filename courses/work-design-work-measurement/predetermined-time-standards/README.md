@@ -1,6 +1,6 @@
 # Predetermined Time Standards (MODAPTS Topics)
 
-A free, open course on body-motion predetermined time systems. It follows the topic outline of a MODAPTS practitioner course item by item. It explains what MODAPTS is and how it is organized, using cited public sources, and teaches the analysis method with an **original teaching code card**.
+Learn body-motion predetermined time systems. It follows the topic outline of a MODAPTS practitioner course item by item. It explains what MODAPTS is and how it is organized, using cited public sources, and teaches the analysis method with an **original teaching code card**.
 
 **Length:** about 3 days (21 short modules plus practice), or self-paced.  
 **Prerequisites:** none. [Work Measurement](../work-measurement/README.md) helps for allowances and standards.

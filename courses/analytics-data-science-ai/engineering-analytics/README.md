@@ -1,6 +1,6 @@
 # Introduction to Engineering Analytics
 
-A free, open course on turning data into decisions. It covers visualization, descriptive and predictive analytics, segmentation and classification, regression, forecasting, Big Data basics and optimization, with hands-on case studies.
+Learn to turn data into decisions. It covers visualization, descriptive and predictive analytics, segmentation and classification, regression, forecasting, Big Data basics and optimization, with hands-on case studies.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Audience:** engineers, managers and anyone who wants to understand how data and Big Data will affect their operations.  

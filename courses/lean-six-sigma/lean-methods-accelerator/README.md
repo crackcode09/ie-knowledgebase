@@ -1,6 +1,6 @@
 # Lean Methods Accelerator — An Open Course
 
-A free, open, **standalone** course covering the Lean enterprise toolkit end to end — from cost of poor quality and the Lean blueprint, through value stream mapping, takt, line balancing and benchmarking, to continuous flow and cells, quick changeover, theory of constraints, pull systems (kanban, CONWIP, heijunka), 5S, visual management, TPM and standard work. It can be taken on its own or alongside a Six Sigma curriculum. One running case throughout: a hydraulic-manifold plant that misses demand, with simulations of the bullwhip effect and WIP-capped pull. No prerequisites.
+Learn the Lean enterprise toolkit end to end, as a **standalone** course — from cost of poor quality and the Lean blueprint, through value stream mapping, takt, line balancing and benchmarking, to continuous flow and cells, quick changeover, theory of constraints, pull systems (kanban, CONWIP, heijunka), 5S, visual management, TPM and standard work. It can be taken on its own or alongside a Six Sigma curriculum. One running case throughout: a hydraulic-manifold plant that misses demand, with simulations of the bullwhip effect and WIP-capped pull. No prerequisites.
 
 Want more depth on a topic? See [Process Mapping](../process-mapping/README.md), [Kaizen Leader](../kaizen-leader/README.md), [Root Cause Analysis](../root-cause-analysis/README.md) and [Design for Six Sigma](../design-for-six-sigma/README.md) in this repository.
 

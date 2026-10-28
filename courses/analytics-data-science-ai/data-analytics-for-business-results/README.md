@@ -1,6 +1,6 @@
 # Data Analytics for Business Results
 
-A free, open course for experienced business professionals who want to use data and analytics to get measurable business results. It covers finding opportunities and use cases, working with business, IT and data teams, mapping processes to find where value is added, and making data-driven decisions by weighing trade-offs. The four modules follow the source course outline: each outline topic is a section heading, with the same wording and in the same order.
+Learn to use data and analytics to get measurable business results. It covers finding opportunities and use cases, working with business, IT and data teams, mapping processes to find where value is added, and making data-driven decisions by weighing trade-offs. The four modules follow the source course outline: each outline topic is a section heading, with the same wording and in the same order.
 
 **Length:** 8 hours, as four 2-hour sessions (one per module), plus an optional capstone project.  
 **Prerequisites:** comfortable with spreadsheets and basic business metrics. Python is optional: every result is printed in the lessons, and the scripts reproduce it.

@@ -1,6 +1,6 @@
 # Design for Six Sigma — An Open Course
 
-A free, open course on designing new products and processes so quality, capability and flow are built in from the start. It follows the **DCDOV** roadmap — Define, Concept, Design, Optimize, Verify — and runs a single worked case (a linear guide carriage and its production line) through every phase. Every calculation is reproduced by a small Python toolkit.
+Learn to design new products and processes so quality, capability and flow are built in from the start. It follows the **DCDOV** roadmap — Define, Concept, Design, Optimize, Verify — and runs a single worked case (a linear guide carriage and its production line) through every phase. Every calculation is reproduced by a small Python toolkit.
 
 **Prerequisites:** [Measurement & Basic Statistics](../measurement-and-basic-statistics/README.md). Helpful: [Voice of the Customer](../voice-of-the-customer/README.md) (deeper VOC for Modules 1–2), [Charting Process Behavior](../charting-process-behavior/README.md) and [Fundamentals of Hypothesis Testing](../fundamentals-of-hypothesis-testing/README.md).
 

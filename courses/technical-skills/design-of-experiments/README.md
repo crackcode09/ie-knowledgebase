@@ -1,6 +1,6 @@
 # Design of Experiments
 
-A free, open course on planning, running and analyzing designed experiments, so you can find the factor settings that improve quality and productivity at the lowest cost.
+Learn to plan, run and analyze designed experiments, so you can find the factor settings that improve quality and productivity at the lowest cost.
 
 **Length:** about 2 days (14 contact hours) of self-study or classroom time.  
 **Prerequisites:** basic statistics (means, standard deviation, hypothesis tests). See the [Applied Statistics](../applied-statistics/README.md) and [Fundamentals of Hypothesis Testing](../../lean-six-sigma/fundamentals-of-hypothesis-testing/README.md) courses in this repo.
