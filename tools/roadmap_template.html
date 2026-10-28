@@ -231,7 +231,9 @@
   aside .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
   aside .chip { font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; white-space: nowrap; line-height: 1.2; text-decoration: none; }
   aside .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); } aside .chip.accent { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
-  aside .chip.draft { border-style: dashed; background: none; } aside a.chip:hover { border-color: var(--accent); color: var(--accent); }
+  aside .chip.draft, .crow .chip.draft { border-style: dashed; background: none; } aside a.chip:hover { border-color: var(--accent); color: var(--accent); }
+  .crow .chip { font-family: var(--mono); color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; box-shadow: none; }
+  .crow .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); }
   aside p.promise { margin: var(--s3) 0 0; font-size: 14.5px; line-height: 1.55; }
   aside .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; margin: var(--s4) 0 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
   aside .facts small { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
@@ -246,11 +248,13 @@
   .mods .mod:hover { background: var(--surface-2); } .mods .mod:hover .t { color: var(--accent); }
   .mods .mod.cur { background: var(--accent-soft); } .mods .mod.cur .n, .mods .mod.cur .t { color: var(--accent); }
   .mods .mod.done .n { color: var(--green); }
-  .mods.catalog { padding: 2px var(--s3) var(--s3); gap: 0; }
-  .crow { cursor: pointer; padding: 8px 10px; align-items: center; }
+  .mods.catalog { padding: 0 var(--s3) var(--s3); gap: 0; }
+  .crow { cursor: pointer; padding: 9px 10px; align-items: flex-start; border-radius: 0; border-top: 1px solid var(--line); }
+  .crow:first-child { border-top: 0; }
+  .crow .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+  .crow .meta .chip { font-size: 10.5px; padding: 1px 7px; line-height: 1.4; }
   .crow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .crow .n { width: 24px; display: flex; align-items: center; }
-  .crow .t .tag { margin-left: 6px; vertical-align: 1px; }
+  .crow .n { width: 24px; display: flex; align-items: center; height: 20px; margin-top: 1px; }
   .crow .meta b { color: var(--next); font-weight: 500; }
   .crow.next { box-shadow: inset 3px 0 0 var(--accent); }
   .crow.locked { opacity: .7; }
@@ -436,10 +440,10 @@
   function row(c) {
     const n = modulesOf(c.id).length, d = isDone(c.id), md = modsDone(c);
     const meta = [c.length || '', n ? `${n} modules` : '', n && md && !d ? `${md} of ${n} done` : '', isNext(c.id) ? '<b>up next</b>' : ''].filter(Boolean).join(' · ');
-    const tag = c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>';
+    const tag = c.verified ? '<span class="chip green" title="Reviewed">verified</span>' : '<span class="chip draft" title="Written with AI assistance, not yet reviewed">draft</span>';
     return `<div class="mod crow ${stateClass(c)}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-label="${esc(c.label)}: open details">
       <span class="n"><button type="button" class="tick" data-tick="${esc(c.id)}" aria-pressed="${d}" title="${d ? 'Mark as not done' : 'Mark as done'}" aria-label="${esc(c.label)}: ${d ? 'done, mark as not done' : 'mark as done'}">${d ? '✓' : ''}</button></span>
-      <span class="body"><span class="t">${esc(c.label)} ${tag}</span><span class="meta">${meta}</span></span></div>`;
+      <span class="body"><span class="t">${esc(c.label)}</span><span class="meta">${meta}${tag}</span></span></div>`;
   }
   function card(c, withCat) {
     const n = modulesOf(c.id).length;
