@@ -100,25 +100,42 @@
   .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); }
 
   /* hero */
-  .hero { padding: var(--s7) 0 var(--s6); }
-  .hero .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--green); margin-bottom: var(--s4); }
-  .hero .eyebrow::before { content: "$ "; color: var(--muted); }
+  .hero { position: relative; padding: var(--s8) 0 var(--s6); text-align: center; }
+  .hero .bgmap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .16; pointer-events: none; }
+  .hero .hero-in { position: relative; }
+  .hero h1 .type { position: relative; display: inline-block; white-space: nowrap; }
+  .hero h1 .ghost { visibility: hidden; }   /* holds the full width while the live text types */
+  .hero h1 .live { position: absolute; left: 0; top: 0; }
+  .hero .eyebrow { font-family: var(--mono); font-size: 12.5px; color: var(--accent); letter-spacing: .04em; margin-bottom: var(--s4); }
+  .hero .ask { display: flex; max-width: 600px; margin: var(--s5) auto 0; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow-2); overflow: hidden; }
+  .hero .ask input { flex: 1; min-width: 0; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 14px; padding: 12px 16px; outline: none; }
+  .hero .ask input::placeholder { color: var(--muted); }
+  .hero .ask:focus-within { border-color: var(--accent); }
+  .hero .ask button { border: 0; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 0 18px; cursor: pointer; }
+  .hero .pop { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: var(--s3); min-height: 28px; }
+  .hero .pop b { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; align-self: center; margin-right: 4px; }
+  .hero .pop .chip { font-size: 11.5px; padding: 3px 10px; color: var(--muted); text-decoration: none; background: var(--surface-2); box-shadow: none; }
+  .hero .pop .chip:hover { color: var(--accent); border-color: var(--accent); }
+  .hero .stats { display: flex; justify-content: center; gap: var(--s6); flex-wrap: wrap; margin-top: var(--s6); }
+  .hero .stats .stat b { display: block; font-family: var(--display); font-size: 28px; line-height: 1; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+  .hero .stats .stat small { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .hero .fine { font-family: var(--mono); font-size: 11.5px; color: var(--muted); max-width: 72ch; margin: var(--s4) auto 0; line-height: 1.6; }
+  .hero .fine b { color: var(--text); font-weight: 500; }
+  h2.sec.browse { text-align: left; }
   .hero h1 { font-family: var(--display); font-size: clamp(36px, 6vw, 64px); font-weight: 700; letter-spacing: -.02em; line-height: 1.05; margin: 0; }
   .hero h1 .md { color: var(--accent); }
   .cursor { display: inline-block; width: .5em; height: .9em; background: var(--accent); margin-left: 6px; vertical-align: baseline; animation: blink 1.1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
-  .hero .byline { margin-top: var(--s5); color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+  .hero .byline { margin-top: var(--s4); color: var(--muted); font-size: 14px; display: flex; align-items: center; justify-content: center; gap: var(--s3); flex-wrap: wrap; }
   .chip { font-family: var(--mono); font-size: 12.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; color: var(--text); box-shadow: var(--shadow-1); }
   .chip a { color: inherit; } .chip a:hover { color: var(--accent); text-decoration: none; }
-  .hero .stat { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-  .hero .stat + .stat::before { content: "·"; margin-right: var(--s3); color: var(--line-strong); }
+  .hero .byline .stat { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .hero .byline .stat + .stat::before { content: "·"; margin-right: var(--s3); color: var(--line-strong); } .hero .byline .stat[hidden] + .stat::before { content: none; }
   .hero .stat.link { color: var(--accent); } .hero .stat.link:hover { text-decoration: underline; }
   .hero .stat button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
   .hero .stat[hidden] { display: none; }
-  .hero .lede { margin: var(--s5) 0 0; color: var(--muted); font-size: 16px; }
+  .hero .lede { margin: var(--s4) auto 0; color: var(--muted); font-size: 16px; max-width: 58ch; text-wrap: balance; }
   .intro { color: var(--muted); margin: 0 0 var(--s4); }
-  .start { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: var(--s3) var(--s4); margin-bottom: var(--s5); }
-  .start b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 
   /* section headings carry the markdown "#" like the playbook */
   h2.sec { font-family: var(--display); font-size: 22px; margin: var(--s6) 0 var(--s3); padding-top: var(--s5); border-top: 1px solid var(--line); }
@@ -148,8 +165,6 @@
   .card .meta b { color: var(--accent); font-weight: 500; }
   .tag.draft, .pill.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
   .tag.verified, .pill.verified { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
-  .notice { margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13.5px; color: var(--muted); }
-  .notice b { color: var(--text); font-weight: 600; }
   .card .topic { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
@@ -275,7 +290,7 @@
     .level { flex-wrap: wrap; margin-bottom: var(--s6); }
     .level .lvl { flex-basis: 100%; display: flex; align-items: baseline; gap: 8px; padding: 0 0 6px; margin-bottom: var(--s3); border-bottom: 2px solid var(--accent); }
     .level .lvl b { font-size: 16px; margin: 0; }
-    .hero { padding-top: var(--s6); }
+    .hero { padding-top: var(--s6); } .hero .stats { gap: var(--s5); } .hero .stats .stat b { font-size: 22px; }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
     .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
     .byline .chip { white-space: normal; overflow-wrap: anywhere; }
@@ -306,19 +321,35 @@
 </header>
 <main>
   <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
-    <div class="hero">
-      <div class="eyebrow">ls courses/</div>
-      <h1>IE <span class="md">Knowledgebase</span><span class="cursor" aria-hidden="true"></span></h1>
-      <div class="byline">
-        <span class="stat" id="countChip"></span>
-        <span class="stat" id="verifiedChip"></span>
-        <span class="stat" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
-        <a class="stat link" href="roadmap.html">site roadmap →</a>
+    <div class="hero" id="hero">
+      <svg class="bgmap" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="var(--accent)" stroke-width="1.2"><path d="M500 150 C380 150 380 60 260 60"/><path d="M500 150 C380 150 380 150 260 150"/><path d="M500 150 C380 150 380 240 260 240"/><path d="M500 150 C620 150 620 40 740 40"/><path d="M500 150 C620 150 620 120 740 120"/><path d="M500 150 C620 150 620 200 740 200"/><path d="M500 150 C620 150 620 270 740 270"/><path d="M260 60 C200 60 200 30 140 30"/><path d="M260 60 C200 60 200 90 140 90"/><path d="M260 150 C200 150 200 130 140 130"/><path d="M260 150 C200 150 200 175 140 175"/><path d="M260 240 C200 240 200 225 140 225"/><path d="M740 120 C800 120 800 100 860 100"/><path d="M740 120 C800 120 800 145 860 145"/><path d="M740 200 C800 200 800 185 860 185"/><path d="M740 200 C800 200 800 220 860 220"/></g>
+        <g fill="var(--accent)"><circle cx="500" cy="150" r="16"/><circle cx="260" cy="60" r="6"/><circle cx="260" cy="150" r="6"/><circle cx="260" cy="240" r="6"/><circle cx="740" cy="40" r="6"/><circle cx="740" cy="120" r="6"/><circle cx="740" cy="200" r="6"/><circle cx="740" cy="270" r="6"/></g>
+        <g fill="var(--green)"><circle cx="140" cy="30" r="4"/><circle cx="140" cy="90" r="4"/><circle cx="140" cy="130" r="4"/><circle cx="140" cy="175" r="4"/><circle cx="140" cy="225" r="4"/><circle cx="860" cy="100" r="4"/><circle cx="860" cy="145" r="4"/><circle cx="860" cy="185" r="4"/><circle cx="860" cy="220" r="4"/></g>
+      </svg>
+      <div class="hero-in">
+        <div class="eyebrow">free · open · original · reviewable</div>
+        <h1 aria-label="IE Knowledgebase"><span class="type" aria-hidden="true"><span class="ghost">IE <span class="md">Knowledgebase</span></span><span class="live"><span id="tyA">IE </span><span class="md" id="tyB">Knowledgebase</span><span class="cursor"></span></span></span></h1>
+        <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them.</p>
+        <form class="ask" id="ask" role="search">
+          <input type="search" id="askInput" placeholder="What do you want to learn?" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
+          <button type="submit">search</button>
+        </form>
+        <div class="pop" id="start"></div>
+        <div class="stats">
+          <div class="stat"><b class="num" id="statCourses"></b><small>courses</small></div>
+          <div class="stat"><b class="num" id="statModules"></b><small>modules</small></div>
+          <div class="stat"><b id="statTopics"></b><small>catalog topics</small></div>
+          <div class="stat"><b class="num" id="statVerified"></b><small>verified</small></div>
+        </div>
+        <div class="byline">
+          <span class="stat" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
+          <a class="stat link" href="roadmap.html">site roadmap →</a>
+        </div>
+        <p class="fine"><b>Preview release.</b> Every course is written with AI assistance and stays <span class="tag draft">draft</span> until a reviewer checks it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only public IISE course titles and topic outlines were used as a map; no IISE material appears here (<a href="terms.html#originality">originality notice</a>). Progress is saved in this browser only.</p>
       </div>
-      <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
-      <div class="notice"><b>Preview release.</b> Every course here was written with AI assistance and is marked <span class="tag draft">draft</span> until a reviewer has checked it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only the public IISE course titles and topic outlines were used as a map of what to cover; no IISE material appears here. See the <a href="terms.html#originality">originality notice</a>.</div>
     </div>
-    <div class="start" id="start"></div>
+    <h2 class="sec browse">browse by category</h2>
     <div id="catalog"></div>
     <footer class="pfoot"><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
   </div></section>
@@ -413,10 +444,9 @@
   function renderStart() {
     const next = courses.filter(c => unlocked(c.id)).sort((a, b) => lvl(a) - lvl(b) || hours(a) - hours(b));
     const el = document.getElementById('start');
-    if (!next.length) { el.innerHTML = '<b>All built courses done.</b> See the planned topics below for what is coming.'; return; }
-    el.innerHTML = `<b>${done.size ? 'Up next for you' : 'Where to start'}</b>` +
-      next.slice(0, 6).map(c => `<a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>`).join(' · ') +
-      (next.length > 6 ? ` · and ${next.length - 6} more` : '');
+    if (!next.length) { el.innerHTML = '<b>all built courses done</b>'; return; }
+    el.innerHTML = `<b>${done.size ? 'up next' : 'start here'}</b>` +
+      next.slice(0, 5).map(c => `<a class="chip" href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>`).join('');
   }
 
   const closedCats = new Set();
@@ -567,7 +597,7 @@
     setHash(selected && panel.classList.contains('open') ? selected.id : '');
     document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + t));
     if (t === 'path') requestAnimationFrame(drawPathEdges);
-    if (t === 'graph') { if (!graphReady) initGraph(); else graphResize(); }
+    if (t === 'graph') { const first = !graphReady; if (first) initGraph(); else graphResize(); if (motion && !first) anime.animate('#graph', { opacity: [0, 1], scale: [0.985, 1], duration: 360, ease: 'outCubic' }); }
   }
   document.querySelectorAll('[role=tab]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
   document.querySelector('[role=tablist]').addEventListener('keydown', e => {
@@ -575,12 +605,33 @@
     const j = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (j < 0) return; e.preventDefault(); tabs[j].focus(); showTab(tabs[j].dataset.tab);
   });
-  document.getElementById('search').addEventListener('input', e => { query = e.target.value.trim(); renderCatalog(); if (graphReady) graphSearch(query); });
+  const topSearch = document.getElementById('search'), askInput = document.getElementById('askInput');
+  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; renderCatalog(); if (graphReady) graphSearch(query); }
+  topSearch.addEventListener('input', e => setQuery(e.target.value));
+  askInput.addEventListener('input', e => setQuery(e.target.value));
+  document.getElementById('ask').addEventListener('submit', e => { e.preventDefault(); setQuery(askInput.value); document.querySelector('h2.sec.browse').scrollIntoView({ behavior: motion ? 'smooth' : 'instant', block: 'start' }); });
+  // the front door: fixed figures once, then the intro draws itself in
+  const modCount = nodes.filter(n => n.type === 'module').length;
+  document.getElementById('statCourses').textContent = DATA.built; document.getElementById('statCourses').dataset.n = DATA.built;
+  document.getElementById('statModules').textContent = modCount; document.getElementById('statModules').dataset.n = modCount;
+  document.getElementById('statTopics').textContent = `${DATA.covered + DATA.built} / ${DATA.total}`;
+  document.getElementById('statVerified').dataset.n = DATA.verified;
+  if (motion) try {   // decorative only: a library hiccup must never stop the page from booting
+    const paths = [...document.querySelectorAll('#hero .bgmap path')];
+    anime.animate(anime.svg.createDrawable(paths), { draw: ['0 0', '0 1'], duration: 900, delay: anime.stagger(30), ease: 'outQuad' });
+    anime.animate('#hero .hero-in > *', { opacity: [0, 1], y: [10, 0], duration: 460, delay: anime.stagger(55), ease: 'outCubic' });
+    document.querySelectorAll('#hero .num').forEach(countUp);
+    // the title types itself, holds, deletes and types again
+    const full = 'IE Knowledgebase', split = 3, tyA = document.getElementById('tyA'), tyB = document.getElementById('tyB'), ty = { n: full.length };
+    const showTy = () => { const k = Math.round(ty.n); tyA.textContent = full.slice(0, Math.min(k, split)); tyB.textContent = full.slice(split, Math.max(k, split)); };
+    anime.createTimeline({ loop: true, loopDelay: 700, onUpdate: showTy })
+      .add(ty, { n: [0, full.length], duration: 1100, ease: 'linear', modifier: anime.utils.round(0) }, 400)
+      .add(ty, { n: 0, duration: 550, ease: 'linear', modifier: anime.utils.round(0) }, '+=4200');
+  } catch (e) {}
   window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
 
   function refresh() {
-    document.getElementById('countChip').textContent = `${DATA.built} courses · ${DATA.covered + DATA.built} of ${DATA.total} catalog topics`;
-    document.getElementById('verifiedChip').textContent = `${DATA.verified} verified`;
+    document.getElementById('statVerified').textContent = DATA.verified;
     document.getElementById('mine').textContent = `you: ${done.size} done`;
     document.getElementById('mineChip').hidden = !(done.size || doneMods.size);
     // re-rendering replaces the DOM, so remember what had focus and put it back
@@ -760,6 +811,12 @@
     document.querySelectorAll('.graph-tools [data-depth]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); setDepth(+b.dataset.depth); render(); setTimeout(() => fit(true), 360); }));
     document.getElementById('prereqs').addEventListener('change', e => { showPrereqs = e.target.checked; render(false); });
     render(false); fit();
+    if (motion) try {   // first look: links draw outward from the hub, nodes follow by depth
+      const links = linkLayer.selectAll('path').nodes();
+      anime.animate(anime.svg.createDrawable(links), { draw: ['0 0', '0 1'], duration: 700, delay: anime.stagger(6), ease: 'outQuad',
+        onComplete: () => links.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });
+      anime.animate('#graph g.node', { opacity: [0, 1], duration: 420, delay: anime.stagger(5, { start: 120 }), ease: 'outCubic' });
+    } catch (e) {}
     graphReady = true;
     if (query) graphSearch(query);
   }
