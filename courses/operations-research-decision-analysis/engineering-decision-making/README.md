@@ -1,6 +1,6 @@
 # Engineering Decision Making & Risk Management
 
-A free, open course on making better engineering decisions under time, budget and uncertainty constraints. It covers framing, multicriteria and group decisions, uncertainty and risk attitude, game theory, decision processes and search, the value of information, risk management with warning systems, and learning from failures. It follows the topic outline of a three-day course: every outline item appears as a section heading, in the same order.
+Learn to make better engineering decisions under time, budget and uncertainty constraints. It covers framing, multicriteria and group decisions, uncertainty and risk attitude, game theory, decision processes and search, the value of information, risk management with warning systems, and learning from failures. It follows the topic outline of a three-day course: every outline item appears as a section heading, in the same order.
 
 **Length:** about 3 days (21 contact hours), or self-paced.  
 **Prerequisites:** comfort with logical reasoning, probability and basic optimization. No advanced mathematics.

@@ -1,6 +1,6 @@
 # Financial Management for Engineers
 
-A free, open course in the financial skills an engineer needs to run a profit center: reading financial statements, budgeting, building a dashboard and judging whether a capital investment pays.
+Learn the financial skills an engineer needs to run a profit center: reading financial statements, budgeting, building a dashboard and judging whether a capital investment pays.
 
 **Length:** about 2 days (14 contact hours) of self-study or classroom time.  
 **Prerequisites:** none beyond algebra and a spreadsheet. Python is optional.

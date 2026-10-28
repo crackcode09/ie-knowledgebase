@@ -1,6 +1,6 @@
 # Kaizen Leader — An Open Course
 
-A free, open course on planning, leading and sustaining kaizen events: focused 3–5-day improvement workshops where a cross-functional team analyzes a process, changes it and standardizes the result. The course follows the event itself — pre-work, Day 1 through Day 5, and 30/60/90-day follow-up — using one running case (an assembly and pack cell that misses demand), and includes a **one-day team-member track** for people who take part in events or run a short single-problem kaizen.
+Learn to plan, lead and sustain kaizen events: focused 3–5-day improvement workshops where a cross-functional team analyzes a process, changes it and standardizes the result. The course follows the event itself — pre-work, Day 1 through Day 5, and 30/60/90-day follow-up — using one running case (an assembly and pack cell that misses demand), and includes a **one-day team-member track** for people who take part in events or run a short single-problem kaizen.
 
 **Prerequisites:** none. Helpful: [Root Cause Analysis & Problem Solving](../root-cause-analysis/README.md) and [Charting Process Behavior](../charting-process-behavior/README.md).
 

@@ -1,6 +1,6 @@
 # Process Mapping — An Open Course
 
-A free, open course on drawing process pictures that a team can act on — SIPOC, flow charts, swim lanes, value-added flow charts, spaghetti diagrams and value stream maps — and on letting the voice of the customer define what the process must deliver: affinity diagrams, CTQ trees, and turning VOC into specifications. One running case throughout: a returns-and-repair (RMA) process that takes 11.6 days when customers want 6. No prerequisites.
+Learn to draw process pictures that a team can act on — SIPOC, flow charts, swim lanes, value-added flow charts, spaghetti diagrams and value stream maps — and to let the voice of the customer define what the process must deliver: affinity diagrams, CTQ trees, and turning VOC into specifications. One running case throughout: a returns-and-repair (RMA) process that takes 11.6 days when customers want 6. No prerequisites.
 
 ## What you will be able to do
 

@@ -1,6 +1,6 @@
 # Technical Communications
 
-A free, open course for engineers who need to explain projects built on quantitative analysis to managers and non-engineering colleagues, in manufacturing, service or government settings.
+Learn to explain projects built on quantitative analysis to managers and non-engineering colleagues, in manufacturing, service or government settings.
 
 **Length:** nine 2-hour sessions (18 contact hours), or self-paced.  
 **Prerequisites:** none. The data examples assume you have seen basic charts and averages.

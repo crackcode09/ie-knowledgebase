@@ -1,6 +1,6 @@
 # Reliability Engineering Excellence
 
-A free, open course on the reliability engineer's role. It covers keeping equipment doing its job, cutting the cost and risk of failure, and building a reliability program that the rest of the plant supports.
+Learn the reliability engineer's role. It covers keeping equipment doing its job, cutting the cost and risk of failure, and building a reliability program that the rest of the plant supports.
 
 **Length:** about 5 days (35 contact hours) of classroom time or self-study.  
 **Prerequisites:** basic statistics (mean, standard deviation, probability). See [Applied Statistics](../applied-statistics/README.md).

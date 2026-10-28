@@ -1,6 +1,6 @@
 # Applied Statistics — An Open Course
 
-A free, open, two-day course on summarizing data graphically and mathematically, using probability distributions to forecast process performance, estimating population characteristics from samples, analyzing data that don't follow a standard distribution, and building models that predict business results — plus how to design a data collection system that delivers useful insight. One running case throughout: a contract electronics (PCB) assembler, with six synthetic datasets. No prerequisites.
+Learn to summarize data graphically and mathematically, use probability distributions to forecast process performance, estimate population characteristics from samples, analyze data that don't follow a standard distribution, and build models that predict business results — plus how to design a data collection system that delivers useful insight. One running case throughout: a contract electronics (PCB) assembler, with six synthetic datasets. No prerequisites.
 
 ## What you will be able to do
 

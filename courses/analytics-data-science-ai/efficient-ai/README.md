@@ -1,6 +1,6 @@
 # Efficient AI
 
-A free, open, practical introduction to applying AI across operations, from back-office functions to frontline work, to drive measurable efficiency and better decisions. It starts with the problems organizations are trying to solve, not with tools or trends. It examines where AI is appropriate and where it isn't, and uses Lean and Six Sigma thinking to make sure AI work delivers real outcomes. It follows the key topics of a half-day livestream session: each topic is a module, with the same title, in the same order.
+Learn to apply AI across operations, from back-office functions to frontline work, to drive measurable efficiency and better decisions. It starts with the problems organizations are trying to solve, not with tools or trends. It examines where AI is appropriate and where it isn't, and uses Lean and Six Sigma thinking to make sure AI work delivers real outcomes. It follows the key topics of a half-day livestream session: each topic is a module, with the same title, in the same order.
 
 **Length:** about 4 hours as a live session (modules 01–07 plus the workshop), or self-paced with the exercises.  
 **Prerequisites:** none.

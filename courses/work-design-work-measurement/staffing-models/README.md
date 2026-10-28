@@ -1,6 +1,6 @@
 # Staffing Models & Human Capital Management
 
-A free, open course on building workload-based staffing models and using them in human capital planning: budgets, hiring, training and performance measurement for mission-critical occupations.
+Learn to build workload-based staffing models and use them in human capital planning: budgets, hiring, training and performance measurement for mission-critical occupations.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** none. Basic time study and statistics help (see [Work Measurement](../work-measurement/README.md)).  
