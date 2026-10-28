@@ -1,6 +1,6 @@
 # Introduction to Industrial Engineering — An Open Course
 
-A free, open course on the tools and techniques industrial engineers use to improve processes, facilities, methods and work environments — and on the responsibilities and practices of the industrial engineer. Applies to manufacturing, service and government. Designed as a 3-day course (≈21 hours) built around one running case: a kit-packing department where a new IE must answer *How many people do we need? Why are people waiting? Is the lift safe? Is the layout right? Are jobs paid fairly?* No prerequisites.
+Learn the tools and techniques industrial engineers use to improve processes, facilities, methods and work environments — and the responsibilities and practices of the industrial engineer. Applies to manufacturing, service and government. Designed as a 3-day course (≈21 hours) built around one running case: a kit-packing department where a new IE must answer *How many people do we need? Why are people waiting? Is the lift safe? Is the layout right? Are jobs paid fairly?* No prerequisites.
 
 ## What you will be able to do
 

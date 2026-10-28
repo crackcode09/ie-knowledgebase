@@ -1,6 +1,6 @@
 # Cost of Quality
 
-A free, open course on using cost of quality (CoQ) to choose and manage improvement projects, not just to account for quality costs.
+Learn to use cost of quality (CoQ) to choose and manage improvement projects, not just to account for quality costs.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** none. A spreadsheet program is needed for the tracker; Python is optional.

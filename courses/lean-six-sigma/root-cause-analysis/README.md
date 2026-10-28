@@ -1,6 +1,6 @@
 # Root Cause Analysis & Problem Solving — An Open Course
 
-A free, open course on finding and removing the real causes of problems — from a clear problem statement, through qualitative tools (process maps, fishbones, 5-Why, root cause trees) to statistical proof (stratification, correlation, multiple and logistic regression), and on to solutions that stick. One case runs through every module: leaking valve bodies from a three-machine cell. No prerequisites; *Measurement & Basic Statistics* helps.
+Learn to find and remove the real causes of problems — from a clear problem statement, through qualitative tools (process maps, fishbones, 5-Why, root cause trees) to statistical proof (stratification, correlation, multiple and logistic regression), and on to solutions that stick. One case runs through every module: leaking valve bodies from a three-machine cell. No prerequisites; *Measurement & Basic Statistics* helps.
 
 ## What you will be able to do
 

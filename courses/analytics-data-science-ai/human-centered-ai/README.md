@@ -1,6 +1,6 @@
 # Human-Centered AI
 
-A free, open introduction to a human-centered approach to AI: grounding AI initiatives in real user needs, real work and real constraints. Participants learn to frame AI opportunities through the eyes of the people who will use, trust or reject them, and practise qualitative insight gathering, theme synthesis and opportunity framing. Those framed opportunities then feed design sprints and rapid prototypes. It follows the key topics of a 2-hour livestream session: each topic is a module, with the same title and order.
+Learn to ground AI initiatives in real user needs, real work and real constraints. Participants learn to frame AI opportunities through the eyes of the people who will use, trust or reject them, and practise qualitative insight gathering, theme synthesis and opportunity framing. Those framed opportunities then feed design sprints and rapid prototypes. It follows the key topics of a 2-hour livestream session: each topic is a module, with the same title and order.
 
 **Length:** 2 hours as a live session (modules 01–05, with the workshop exercises compressed), or about half a day with the full workshop.  
 **Prerequisites:** none. Pairs well with [Efficient AI](../efficient-ai/README.md).

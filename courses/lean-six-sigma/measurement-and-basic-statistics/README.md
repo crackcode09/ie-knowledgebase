@@ -1,6 +1,6 @@
 # Measurement & Basic Statistics — An Open Course
 
-A free, open introduction to the measurement and statistics toolkit used in process improvement: how to get trustworthy data, summarize it honestly, and avoid the traps averages set. No prerequisites. Every calculation is shown by hand and reproduced with a small Python toolkit and spreadsheet formulas.
+Learn the measurement and statistics toolkit used in process improvement: how to get trustworthy data, summarize it honestly, and avoid the traps averages set. No prerequisites. Every calculation is shown by hand and reproduced with a small Python toolkit and spreadsheet formulas.
 
 ## What you will be able to do
 

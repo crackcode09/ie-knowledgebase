@@ -1,6 +1,6 @@
 # Process Modeling and Simulation — An Open Course
 
-A free, open course on building process models — discrete-event simulations — to design new processes, improve existing ones and teach Lean concepts. Static process maps assume average conditions; real processes face variation in demand, task times, parts and people. This course shows how to model that variation, explore many designs quickly ("build to think"), test them for resilience, write best-practice operating procedures, quantify risks for FMEAs and build a persuasive case for stakeholders. One running case: a same-day repair service center. All modeling uses a small open Python simulator written for the course; the methods carry over to any simulation tool. No prerequisites.
+Learn to build process models — discrete-event simulations — to design new processes, improve existing ones and teach Lean concepts. Static process maps assume average conditions; real processes face variation in demand, task times, parts and people. This course shows how to model that variation, explore many designs quickly ("build to think"), test them for resilience, write best-practice operating procedures, quantify risks for FMEAs and build a persuasive case for stakeholders. One running case: a same-day repair service center. All modeling uses a small open Python simulator written for the course; the methods carry over to any simulation tool. No prerequisites.
 
 ## What you will be able to do
 

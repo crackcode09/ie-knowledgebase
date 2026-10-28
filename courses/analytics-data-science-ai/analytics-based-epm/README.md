@@ -1,6 +1,6 @@
 # Analytics-Based Enterprise Performance Management
 
-A free, open course on combining performance-management methods (balanced scorecards, activity-based cost management, customer profitability, operational costing, driver-based budgets, rolling forecasts and risk) with analytics, especially predictive analytics. It follows the nine-module outline of a one-day workshop, in the same order and with the same module titles.
+Learn to combine performance-management methods (balanced scorecards, activity-based cost management, customer profitability, operational costing, driver-based budgets, rolling forecasts and risk) with analytics, especially predictive analytics. It follows the nine-module outline of a one-day workshop, in the same order and with the same module titles.
 
 **Length:** 1 day (7 h) as a workshop, or self-paced (about 2 days with the exercises).  
 **Prerequisites:** none. Basic accounting and statistics help.
