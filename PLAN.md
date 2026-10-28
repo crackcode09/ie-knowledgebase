@@ -199,3 +199,32 @@
 
 ### Outcome (filled in after completion)
 - All eight fixed. Verified in the browser: drawer focus and course-done rule (2, 7), search switches to the catalog (4), one D3 notice after repeated tab clicks and resizes (3), no error on an unknown course (6), reader course-done rule in all three cases (7), one Mermaid notice per diagram after four theme switches (9). Fix 8 checked in node against the template's own `resolve()`. Fix 1 (animation springs) could not be checked in the browser: the pane was hidden, so animation frames did not run.
+
+## [2026-10-28] — Plan: Site hardening, review findings 5, 10, 11 and 12
+
+### Status: COMPLETE
+
+### What is being built or changed
+- The four review findings left after the bug-fix PR: sanitise rendered Markdown, an integrity hash on anime.js, icon placeholders kept out of course data, and track source links limited to http(s).
+
+### Files to be created or modified
+- `tools/reader_template.html` — DOMPurify 3.1.6 from cdnjs with SRI; rendered HTML sanitised; raw view if either library fails to load
+- `tools/roadmap_template.html` — SRI and `crossorigin` on anime.js 4.5.0
+- `tools/roadmap_graph.py` — icons injected into templates (and hand-written legal bodies) before the data slot is filled; a non-http(s) `**Source:**` in `roles/tracks.md` stops the build
+- `public/index.html`, `public/course.html` — regenerated
+
+### Implementation steps
+1. Compute SRI hashes and check them against the cdnjs API.
+2. Patch the templates and the generator; regenerate.
+3. Test the generator edge cases and check both pages in the browser.
+
+### Assumptions & decisions
+- Stacked on `fix/site-review-bugs` (PR #61) because both change the same generated files.
+- A bad track source fails the build rather than being skipped silently, like the generator's other checks on `tracks.md`.
+- DOMPurify defaults kept: the course files use only `details`, `summary`, `code` and `br`, which it allows.
+
+### Questions for user
+- None.
+
+### Outcome (filled in after completion)
+- All four done. Both SRI hashes match the cdnjs API. Reader renders module 02 of Process Mapping with headings, `details`, tables and Mermaid blocks intact, and DOMPurify strips an `onerror` handler. Index loads anime.js and D3 with no console errors and no leftover icon placeholders. A label containing `__ICON:x-lg__` survives into the JSON unchanged; a `javascript:` track source stops the build with a message. Legal pages regenerate identically.

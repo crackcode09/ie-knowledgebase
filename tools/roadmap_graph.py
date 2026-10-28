@@ -442,6 +442,8 @@ def read_tracks(nodes):
         role = re.search(r"^\*\*Role:\*\*\s*(.+)$", body, re.M)
         outlook = re.search(r"^\*\*Outlook:\*\*\s*(.+)$", body, re.M)
         source = re.search(r"^\*\*Source:\*\*\s*<?([^\s>]+)>?\s*(?:\((.+)\))?\s*$", body, re.M)
+        if source and not re.match(r"https?://", source.group(1)):
+            sys.exit(f"roles/tracks.md: track '{name.strip()}' has a Source that is not an http(s) URL: {source.group(1)}")
         slugs = re.findall(r"^\d+\.\s+([a-z0-9-]+)\s*$", body, re.M)
         missing = [s for s in slugs if s not in by_slug]
         if missing:
@@ -462,7 +464,9 @@ def write(path, text):
 
 
 def fill(template_path, **slots):
-    tpl = template_path.read_text(encoding="utf-8")
+    # Icons go into the template before the slots: course data must never be scanned for __ICON__
+    # placeholders, or a label containing one would break the JSON it sits in.
+    tpl = inject_icons(template_path.read_text(encoding="utf-8"))
     for key, value in slots.items():
         marker = f"__{key}__"
         n = tpl.count(marker)
@@ -524,16 +528,17 @@ def write_html(cats):
     lint_templates()
     model = build_model(cats)
     enc = lambda m: json.dumps(m, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
-    write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=enc(model))))
+    write(HTML_OUT, fill(TEMPLATE, DATA=enc(model)))
     # The reader parses this on every page open, so it carries only what the reader reads: courses, modules and categories, no topics or links.
     keep = ("id", "type", "parent", "path", "label", "note", "tcount", "tkind", "extras", "length", "verified", "review")
     slim = {"repo": model["repo"], "nodes": [{k: n[k] for k in keep if k in n} for n in model["nodes"] if n["type"] in ("course", "module", "category")]}
-    write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=enc(slim))))
+    write(READER_OUT, fill(READER_TEMPLATE, DATA=enc(slim)))
     for key, title in LEGAL_PAGES.items():
-        body = sources_page(model) if key == "sources" else (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
+        # hand-written bodies may use icons; the sources page is built from course tables, so it is not scanned
+        body = sources_page(model) if key == "sources" else inject_icons((ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8"))
         for k, v in {"COURSES": model["built"], "VERIFIED": model["verified"], "COVERED": model["built"] + model["covered"], "TOTAL": model["total"]}.items():
             body = body.replace(f"__{k}__", str(v))
-        write(PUBLIC / f"{key}.html", inject_icons(fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body)))
+        write(PUBLIC / f"{key}.html", fill(LEGAL_TEMPLATE, TITLE=title, KEY=key, BODY=body))
     return model
 
 
