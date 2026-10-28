@@ -186,17 +186,30 @@
   .planned .covered { border-style: solid; border-color: var(--green); color: var(--text); } .planned .covered a { color: var(--accent); }
 
   /* path */
-  .path-wrap { position: relative; }
-  .path-wrap svg { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: visible; z-index: 0; }
-  .level { display: flex; align-items: flex-start; gap: var(--s4); margin: 0 0 44px; position: relative; }
-  .level .lvl { flex: 0 0 110px; color: var(--muted); font-family: var(--mono); font-size: 12.5px; padding-top: 10px; }
-  .level .lvl b { display: block; color: var(--accent); font-family: var(--display); font-size: 14px; margin-bottom: 2px; }
-  .level .groups { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--s4); }
-  .grp-h { display: flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .grp-h a, .grp-h span { position: relative; z-index: 1; background: var(--bg); padding-right: 2px; }
-  .grp-h a { color: var(--muted); } .grp-h a:hover { color: var(--accent); text-decoration: none; }
-  .grp-h span { color: var(--accent); } .grp-h::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
-  .level .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--s3); min-width: 0; }
+  .pmode { display: flex; gap: 6px; margin: 0 0 var(--s4); }
+  .pmode button { font-family: var(--mono); font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+  .pmode button:hover { border-color: var(--accent); } .pmode button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .ask { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .ask select { font-family: var(--mono); font-size: 13px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--text); max-width: 100%; }
+  .steps { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .step { display: grid; grid-template-columns: 32px 1fr auto; gap: 12px; align-items: baseline; padding: 10px 14px; border-top: 1px solid var(--line); }
+  .step:first-child { border-top: 0; }
+  .step .n { font-family: var(--mono); font-size: 12px; color: var(--muted); } .step.done .n { color: var(--green); }
+  .step .tt { font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); text-decoration: none; } .step .tt:hover { color: var(--accent); }
+  .step .why { font-size: 12.5px; color: var(--muted); margin: 0; }
+  .step .time { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .step.cur { background: var(--accent-soft); } .step.cur .tt { color: var(--accent); }
+  .step.done .tt { color: var(--muted); }
+  .total { display: flex; gap: var(--s6); margin-top: var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .total b { display: block; font-family: var(--display); font-size: 20px; color: var(--text); line-height: 1; margin-bottom: 2px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s3); }
+  .col { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+  .col h3 { font-family: var(--display); font-size: 14px; margin: 0; }
+  .col .m { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .col .c { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; padding: 6px 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); }
+  .col .c:hover { color: var(--accent); } .col .c small { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .col .c.done { color: var(--muted); text-decoration: line-through; }
+  .col .empty { font-size: 13px; color: var(--muted); padding: 6px 0; }
   .card .cat-tag { font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .legend { display: flex; gap: var(--s4); flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0 0 var(--s5); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -294,12 +307,8 @@
     .view { bottom: 56px; }
   }
   @media (max-width: 640px) {
-    .more, .legend .more { display: none; }
+    .more { display: none; }
     .intro { font-size: 14px; margin-bottom: var(--s3); }
-    .legend { gap: var(--s3); font-size: 11.5px; margin-bottom: var(--s5); }
-    .level { flex-wrap: wrap; margin-bottom: var(--s6); }
-    .level .lvl { flex-basis: 100%; display: flex; align-items: baseline; gap: 8px; padding: 0 0 6px; margin-bottom: var(--s3); border-bottom: 2px solid var(--accent); }
-    .level .lvl b { font-size: 16px; margin: 0; }
     .hero { padding-top: var(--s6); } .hero .stats { gap: var(--s5); } .hero .stats .stat b { font-size: 22px; }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
     .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
@@ -364,14 +373,16 @@
     <footer class="pfoot"><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener"><svg class="bi" width="13" height="13" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg> GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
   </div></section>
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
-    <p class="intro">Courses arranged by prerequisite level.<span class="more"> Dashed arrows show what a course requires. Courses whose prerequisites you have finished are marked <b>up next</b>.</span></p>
-    <div class="legend">
-      <span><i class="sw" style="background:var(--done-bg)"></i>done</span>
-      <span><i class="sw" style="border-color:var(--next);box-shadow:inset 3px 0 0 var(--next)"></i>up next</span>
-      <span><i class="sw" style="opacity:.6"></i>locked<span class="more"> (prerequisites not done)</span></span>
-      <span><i style="width:18px;border-top:2px dashed var(--prereq);display:inline-block"></i>prerequisite</span>
+    <div class="pmode" role="group" aria-label="Learning path mode"><button type="button" data-pmode="route" aria-pressed="true">plan a route</button><button type="button" data-pmode="time" aria-pressed="false">fit my time</button></div>
+    <div class="pane" id="pane-route">
+      <p class="intro">Pick where you want to get to. The route follows prerequisites from what you have already done.</p>
+      <div class="ask"><label for="dest">I want to reach</label><select id="dest" aria-label="Destination course"></select></div>
+      <div id="routeOut"></div>
     </div>
-    <div class="path-wrap" id="path"></div>
+    <div class="pane" id="pane-time" hidden>
+      <p class="intro">How much time do you have? Everything here is open to you now; done courses are struck out.</p>
+      <div id="budgetOut"></div>
+    </div>
     <footer class="pfoot"><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener"><svg class="bi" width="13" height="13" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg> GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
   </div></section>
   <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
@@ -487,38 +498,47 @@
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
 
-  function renderPath() {
-    const el = document.getElementById('path');
-    const maxL = Math.max(...courses.map(lvl));
-    const names = ['Foundations', 'Core', 'Advanced', 'Specialist'];
-    let h = '<svg id="path-svg"></svg>';
-    for (let L = 0; L <= maxL; L++) {
-      // Within a level, courses are grouped under their category so the card itself stays clean.
-      const row = courses.filter(c => lvl(c) === L);
-      const groups = cats.map(cat => [cat, row.filter(c => c.parent === cat.id).sort((a, b) => a.label.localeCompare(b.label))]).filter(([, cs]) => cs.length);
-      h += `<div class="level"><div class="lvl"><b>${names[L] || 'Level ' + L}</b>${L === 0 ? 'no prerequisites' : 'builds on the level above'}</div><div class="groups">` +
-        groups.map(([cat, cs]) => `<div class="grp"><div class="grp-h"><a href="#${esc(cat.id)}" data-open="${esc(cat.id)}">${esc(cat.label)}</a><span>${cs.length}</span></div><div class="row">${cs.map(c => card(c, false)).join('')}</div></div>`).join('') +
-        `</div></div>`;
+  // ---- learning path: plan a route (prerequisite chain to a destination) or fit my time (what fits the time you have)
+  const fmtH = h => h >= 99 ? 'time not set' : h < 8 ? `~${h % 1 ? h.toFixed(1) : h} h` : `~${Number.isInteger(h / 8) ? h / 8 : (h / 8).toFixed(1)} day${h / 8 > 1 ? 's' : ''}`;
+  const courseLink = c => `<a class="tt" href="#course:${slug(c.id)}" data-open="${esc(c.id)}">${esc(c.label)}</a>`;
+  let dest = null;
+  try { dest = localStorage.getItem('iekb-dest'); } catch (e) {}
+  function routeTo(target) {   // prerequisites first, destination last, each once
+    const out = [], seen = new Set();
+    const visit = (c, by) => { if (seen.has(c.id)) return; seen.add(c.id); prereqsOf(c.id).forEach(q => visit(q, c)); out.push({ c, by }); };
+    visit(target, null); return out;
+  }
+  function renderRoute() {
+    const sel = document.getElementById('dest');
+    if (!sel.options.length) {
+      sel.innerHTML = cats.map(cat => { const cs = courses.filter(c => c.parent === cat.id).sort((a, b) => a.label.localeCompare(b.label)); return cs.length ? `<optgroup label="${esc(cat.label)}">${cs.map(c => `<option value="${esc(c.id)}">${esc(c.label)}</option>`).join('')}</optgroup>` : ''; }).join('');
+      if (!dest || !byId.has(dest)) dest = (courses.find(c => prereqsOf(c.id).length) || courses[0]).id;
+      sel.value = dest;
     }
-    el.innerHTML = h;
-    requestAnimationFrame(drawPathEdges);
+    const target = byId.get(sel.value) || courses[0];
+    const route = routeTo(target), left = route.filter(s => !isDone(s.c.id));
+    let n = 0, hrs = 0, unset = 0;
+    const rows = route.map(s => { const d = isDone(s.c.id), h = hours(s.c); if (!d) { n++; if (h >= 99) unset++; else hrs += h; }
+      const why = d ? 'done' : s.by ? `required by ${esc(s.by.label)}` : (s.c.id === target.id ? (route.length > 1 ? 'your destination' : 'your destination · no prerequisites, start here') : '');
+      return `<div class="step ${d ? 'done' : ''} ${!d && n === 1 ? 'cur' : ''}"><span class="n">${d ? '✓' : n}</span><div>${courseLink(s.c)}<p class="why">${why}</p></div><span class="time">${fmtH(h)}</span></div>`; }).join('');
+    document.getElementById('routeOut').innerHTML = `<div class="steps">${rows}</div>` +
+      `<div class="total"><div><b>${left.length}</b>${left.length === 1 ? 'step' : 'steps'} left</div><div><b>${hrs ? fmtH(hrs).replace('~', '') : (unset ? '?' : '0')}</b>of study${unset ? ` · ${unset} not timed` : ''}</div><div><b>${route.length - left.length} of ${route.length}</b>done</div></div>`;
   }
-  function drawPathEdges() {
-    const el = document.getElementById('path'), svg = document.getElementById('path-svg');
-    if (!svg || !el.offsetParent) return;
-    svg.style.height = '0px';   // the layer is inside the measured box, so reset it or it can only ever grow
-    const base = el.getBoundingClientRect();
-    const pos = id => { const n = el.querySelector(`.card[data-id="${id}"]`); if (!n) return null; const r = n.getBoundingClientRect(); return { x: r.left - base.left + r.width / 2, top: r.top - base.top, bottom: r.bottom - base.top }; };
-    const stroke = getComputedStyle(document.documentElement).getPropertyValue('--prereq').trim();
-    let d = `<defs><marker id="parrow" viewBox="0 -4 8 8" refX="8" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,-4L8,0L0,4" fill="${stroke}"/></marker></defs>`;
-    links.filter(l => l.type === 'prereq').forEach(l => {
-      const a = pos(l.source.id), b = pos(l.target.id); if (!a || !b) return;
-      const my = (a.bottom + b.top) / 2;
-      d += `<path d="M${a.x},${a.bottom} C${a.x},${my} ${b.x},${my} ${b.x},${b.top - 2}" fill="none" stroke="${stroke}" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#parrow)" opacity="${isDone(l.source.id) ? 0.95 : 0.5}"/>`;
-    });
-    svg.innerHTML = d;
-    svg.style.height = el.scrollHeight + 'px';
+  function renderBudget() {
+    const open = courses.filter(c => unlocked(c.id) || isDone(c.id)).sort((a, b) => hours(a) - hours(b) || a.label.localeCompare(b.label));
+    const bands = [['An afternoon', 'up to 4 h', h => h <= 4], ['A day', '4 to 8 h', h => h > 4 && h <= 8], ['A few days', '1 to 3 days', h => h > 8 && h <= 24], ['A week', '3 to 5 days', h => h > 24 && h <= 40], ['Longer', 'more than a week', h => h > 40 && h < 99]];
+    const unset = open.filter(c => hours(c) >= 99);
+    const col = (title, m, cs) => `<div class="col"><h3>${title}</h3><div class="m">${m}${cs.length ? ` · ${cs.length}` : ''}</div>${cs.length ? cs.map(c => `<a class="c ${isDone(c.id) ? 'done' : ''}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><span>${esc(c.label)}</span><small>${fmtH(hours(c))}</small></a>`).join('') : '<div class="empty">nothing open yet at this size</div>'}</div>`;
+    document.getElementById('budgetOut').innerHTML = '<div class="cols">' + bands.map(([title, m, f]) => col(title, m, open.filter(c => f(hours(c))))).join('') + (unset.length ? col('Time not set', 'length still to be estimated', unset) : '') + '</div>';
   }
+  function renderPath() { renderRoute(); renderBudget(); }
+  document.getElementById('dest').addEventListener('change', e => { dest = e.target.value; try { localStorage.setItem('iekb-dest', dest); } catch (e2) {} renderRoute(); });
+  document.querySelectorAll('[data-pmode]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-pmode]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    document.getElementById('pane-route').hidden = b.dataset.pmode !== 'route'; document.getElementById('pane-time').hidden = b.dataset.pmode !== 'time';
+    try { localStorage.setItem('iekb-pmode', b.dataset.pmode); } catch (e) {}
+  }));
+  try { const m = localStorage.getItem('iekb-pmode'); if (m === 'time') document.querySelector('[data-pmode="time"]').click(); } catch (e) {}
 
   // ---- drawer
   const motion = typeof anime !== 'undefined' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -616,7 +636,6 @@
     document.querySelectorAll('[role=tab]').forEach(b => { const on = b.dataset.tab === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
     setHash(selected && panel.classList.contains('open') ? selected.id : '');
     document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + t));
-    if (t === 'path') requestAnimationFrame(drawPathEdges);
     if (t === 'graph') { const first = !graphReady; if (first) initGraph(); else graphResize(); if (motion && !first) anime.animate('#graph', { opacity: [0, 1], scale: [0.985, 1], duration: 360, ease: 'outCubic' }); }
   }
   document.querySelectorAll('[role=tab]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
@@ -648,7 +667,7 @@
       .add(ty, { n: [0, full.length], duration: 1100, ease: 'linear', modifier: anime.utils.round(0) }, 400)
       .add(ty, { n: 0, duration: 550, ease: 'linear', modifier: anime.utils.round(0) }, '+=4200');
   } catch (e) {}
-  window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
+  window.addEventListener('resize', () => { if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
 
   function refresh() {
     document.getElementById('statVerified').textContent = DATA.verified;
@@ -889,7 +908,6 @@
     const dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && !matchMedia('(prefers-color-scheme: light)').matches);
     const next = dark ? 'light' : 'dark'; root.setAttribute('data-theme', next);
     try { localStorage.setItem('iekb-theme', next); } catch (e) {}
-    drawPathEdges();
     if (graphReady) graphRestyle();
   });
   function updateProgress() {
