@@ -495,9 +495,12 @@ def sources_page(model):
 def write_html(cats):
     lint_templates()
     model = build_model(cats)
-    data = json.dumps(model, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
-    write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=data)))
-    write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=data)))
+    enc = lambda m: json.dumps(m, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
+    write(HTML_OUT, inject_icons(fill(TEMPLATE, DATA=enc(model))))
+    # The reader parses this on every page open, so it carries only what the reader reads: courses, modules and categories, no topics or links.
+    keep = ("id", "type", "parent", "path", "label", "note", "tcount", "tkind", "extras", "length", "verified", "review")
+    slim = {"repo": model["repo"], "nodes": [{k: n[k] for k in keep if k in n} for n in model["nodes"] if n["type"] in ("course", "module", "category")]}
+    write(READER_OUT, inject_icons(fill(READER_TEMPLATE, DATA=enc(slim))))
     for key, title in LEGAL_PAGES.items():
         body = sources_page(model) if key == "sources" else (ROOT / "tools" / "legal" / f"{key}.html").read_text(encoding="utf-8")
         for k, v in {"COURSES": model["built"], "VERIFIED": model["verified"], "COVERED": model["built"] + model["covered"], "TOTAL": model["total"]}.items():

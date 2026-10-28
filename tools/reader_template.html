@@ -92,7 +92,10 @@
   nav.toc a .t { font-family: var(--mono); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--muted); margin-left: auto; white-space: nowrap; }
 
   /* One width for everything in the document: prose, tables, code and figures share the same edge. About 78 characters per line. */
-  .doc { min-width: 0; font-size: 17px; max-width: 78ch; }
+  .doc { min-width: 0; font-size: 17px; max-width: 78ch; view-transition-name: doc; }
+  ::view-transition-old(doc) { animation: 120ms ease-out both vt-out; } ::view-transition-new(doc) { animation: 160ms ease-out both vt-in; }
+  @keyframes vt-out { to { opacity: 0; } } @keyframes vt-in { from { opacity: 0; transform: translateY(4px); } }
+  @media (prefers-reduced-motion: reduce) { ::view-transition-old(doc), ::view-transition-new(doc) { animation: none; } }
   .dochead { display: flex; flex-direction: column; gap: 10px; padding-bottom: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--line); }
   /* One row on every page: meta on the left, buttons pinned right. A long meta line wraps inside its own space instead of pushing the buttons down. */
   .dochead-row { display: flex; align-items: flex-start; gap: var(--s4); flex-wrap: nowrap; }
@@ -224,7 +227,7 @@
       </div>
     </div>
     <div class="notice" id="notice" hidden></div>
-    <div class="status" id="status" role="status" hidden>loading…</div>
+    <div class="status" id="status" role="status" hidden></div>
     <div class="rendered" id="rendered"></div>
     <div class="raw" id="rawView"><pre id="rawPre"></pre></div>
     <div class="pager" id="pager"></div>
@@ -269,23 +272,27 @@
   }
   const slug = course.id.slice(7), slugQ = encodeURIComponent(slug);
   const courseRoot = course.path.replace(/\/README\.md$/, '');
-  let file = resolve('', (params.get('f') || 'README.md').split('?')[0]);
-  if (!/\.md$/i.test(file) || file.includes('..') || !file) file = 'README.md';
+  const cleanFile = f => { f = resolve('', (f || 'README.md').split('?')[0]); return (!/\.md$/i.test(f) || f.includes('..') || !f) ? 'README.md' : f; };
+  let file = cleanFile(params.get('f'));
   const modules = nodes.filter(n => n.type === 'module' && n.parent === course.id).map(m => ({ ...m, rel: m.path.slice(courseRoot.length + 1) }));
   const extras = course.extras || [];
   const cat = byId.get(course.parent);
   const modKey = rel => `${courseRoot}/${rel}`;
-  const isReadme = file === 'README.md';
+  let isReadme = file === 'README.md';
 
   // ---- site status and back link
 
   // ---- hero and nav
   $('pathCourse').innerHTML = `<a href="index.html#course:${esc(slug)}">${esc(slug)}</a>`;
-  const curMod = modules.find(m => m.rel === file);
-  $('pathFile').textContent = curMod ? String(modules.indexOf(curMod)).padStart(2, '0') : file.split('/').pop(); $('eyebrowFile').textContent = file;
-  document.title = `${course.label} · IE Knowledgebase`;
-  $('btnGithub').href = `${REPO}/blob/main/${courseRoot}/${file}`;
   let docLines = 0;
+  function setFile(f) {
+    file = f; isReadme = file === 'README.md'; docLines = 0;
+    const curMod = modules.find(m => m.rel === file);
+    $('pathFile').textContent = curMod ? String(modules.indexOf(curMod)).padStart(2, '0') : file.split('/').pop(); $('eyebrowFile').textContent = file;
+    document.title = `${curMod ? curMod.label + ' · ' : ''}${course.label} · IE Knowledgebase`;
+    $('btnGithub').href = `${REPO}/blob/main/${courseRoot}/${file}`;
+  }
+  setFile(file);
   const kindWord = m => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
   function renderNotice() {
     const n = $('notice');
@@ -463,18 +470,66 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   document.addEventListener('keydown', e => {
     if (e.repeat || e.isComposing || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || e.target.closest('input,textarea,select,[contenteditable]')) return;
-    if (e.key === 'ArrowLeft') { const a = document.querySelector('.pager a.prev'); if (a) location.href = a.href; }
-    if (e.key === 'ArrowRight') { const a = document.querySelector('.pager a.next'); if (a) location.href = a.href; }
+    if (e.key === 'ArrowLeft') { const a = document.querySelector('.pager a.prev'); if (a) a.click(); }
+    if (e.key === 'ArrowRight') { const a = document.querySelector('.pager a.next'); if (a) a.click(); }
     if (e.key === 'd') { const b = $('markMod') || $('markCourse'); if (b) b.click(); }
     if (e.key === 'r') setMode(!document.body.classList.contains('raw-mode'));
   });
 
+  // ---- loading and in-course navigation (no reload between pages of one course)
+  const mdCache = new Map();
+  const getMd = f => { if (!mdCache.has(f)) mdCache.set(f, fetch(`../${courseRoot}/${f}`).then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))); return mdCache.get(f); };
+  function prefetchNeighbours() {
+    const i = modules.findIndex(m => m.rel === file);
+    const near = i >= 0 ? [modules[i - 1], modules[i + 1]] : (isReadme ? [modules[0]] : []);
+    near.filter(Boolean).forEach(m => getMd(m.rel).catch(() => mdCache.delete(m.rel)));
+  }
+  function show(md) {
+    $('status').hidden = true;
+    try { mount(md); } catch (err) { setMode(true); $('status').hidden = false; $('status').textContent = 'The page could not be rendered, so the raw text is shown.'; }
+    if (document.body.classList.contains('raw-mode') && typeof marked !== 'undefined') setMode(false);
+    prefetchNeighbours();
+  }
+  function failed() { $('status').hidden = false; $('status').innerHTML = `could not load <b>${esc(file)}</b>. <a href="${REPO}/blob/main/${esc(courseRoot)}/${esc(file)}">Read it on GitHub</a>.`; }
+  function loadCurrent() {
+    const slow = setTimeout(() => { $('status').hidden = false; $('status').textContent = 'loading…'; }, 400);
+    return getMd(file).then(md => { clearTimeout(slow); show(md); }, () => { clearTimeout(slow); mdCache.delete(file); failed(); });
+  }
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function swap(update) {
+    if (reduceMotion || !document.startViewTransition) return Promise.resolve(update());
+    return document.startViewTransition(update).finished.catch(() => {});
+  }
+  let navSeq = 0;
+  function go(f, hash, push) {
+    const seq = ++navSeq;
+    getMd(f).then(md => {
+      if (seq !== navSeq) return;
+      swap(() => {
+        setFile(f);
+        if (push) history.pushState({ f }, '', `course.html?c=${slugQ}${isReadme ? '' : '&f=' + encodeURIComponent(f)}${hash || ''}`);
+        renderHero(); renderToc(); renderPager();
+        $('rendered').innerHTML = ''; show(md);
+        if (!hash) window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    }, () => { location.href = `course.html?c=${slugQ}&f=${encodeURIComponent(f)}${hash || ''}`; });
+  }
+  // links into this course (contents panel, pager, cross-references in the text) navigate in place
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]'); if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || !u.pathname.endsWith('/course.html') || u.searchParams.get('c') !== slug) return;
+    const f = cleanFile(u.searchParams.get('f'));
+    e.preventDefault();
+    if (f === file) { if (u.hash) { const tg = document.getElementById(dec(u.hash.slice(1))); if (tg) { history.pushState({ f }, '', u.search + u.hash); tg.scrollIntoView(); } } else window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    go(f, u.hash, true);
+  });
+  window.addEventListener('popstate', () => { const f = cleanFile(new URLSearchParams(location.search).get('f')); if (f !== file) go(f, location.hash, false); });
+
   // ---- boot
   renderHero(); renderNotice(); renderToc(); renderPager();
-  fetch(`../${courseRoot}/${file}`, { cache: 'no-store' })
-    .then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))
-    .then(md => { try { mount(md); } catch (err) { setMode(true); $('status').hidden = false; $('status').textContent = 'The page could not be rendered, so the raw text is shown.'; } },
-          () => { $('status').hidden = false; $('status').innerHTML = `could not load <b>${esc(file)}</b>. <a href="${REPO}/blob/main/${esc(courseRoot)}/${esc(file)}">Read it on GitHub</a>.`; });
+  history.replaceState({ f: file }, '');
+  loadCurrent();
 })();
 </script>
 </body>
