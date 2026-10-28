@@ -33,4 +33,16 @@ One width per column: inside the reader document, the catalog page and the legal
 
 ## Workflow
 
-Fork → branch → pull request. Run any checks the course ships (e.g. `python tools/check_constants.py` in Charting Process Behavior) before submitting changes to its tools.
+Fork → branch → pull request into `dev`. Run any checks the course ships (e.g. `python tools/check_constants.py` in Charting Process Behavior) before submitting changes to its tools.
+
+### Branches
+
+```text
+main   what is published at nidhy.dev/ie-knowledgebase (GitHub Pages builds from it)
+  └── dev   where every change lands first, by pull request
+        └── <type>/<short-name>   one branch per change, from dev (feat/, fix/, docs/, style/, perf/, review/)
+```
+
+- Open every pull request against `dev`, one independent change per branch. Branches are deleted automatically when merged.
+- A release is a pull request from `dev` to `main`, merged with a merge commit so `dev` stays an ancestor of `main`.
+- `main` and `dev` are protected: no direct pushes, no force pushes, no deletion, and every change arrives by pull request. The rules apply to maintainers too.
