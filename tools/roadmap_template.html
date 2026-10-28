@@ -100,25 +100,42 @@
   .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); }
 
   /* hero */
-  .hero { padding: var(--s7) 0 var(--s6); }
-  .hero .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--green); margin-bottom: var(--s4); }
-  .hero .eyebrow::before { content: "$ "; color: var(--muted); }
+  .hero { position: relative; padding: var(--s8) 0 var(--s6); text-align: center; }
+  .hero .bgmap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .16; pointer-events: none; }
+  .hero .hero-in { position: relative; }
+  .hero h1 .type { position: relative; display: inline-block; white-space: nowrap; }
+  .hero h1 .ghost { visibility: hidden; }   /* holds the full width while the live text types */
+  .hero h1 .live { position: absolute; left: 0; top: 0; }
+  .hero .eyebrow { font-family: var(--mono); font-size: 12.5px; color: var(--accent); letter-spacing: .04em; margin-bottom: var(--s4); }
+  .hero .ask { display: flex; max-width: 600px; margin: var(--s5) auto 0; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow-2); overflow: hidden; }
+  .hero .ask input { flex: 1; min-width: 0; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: 14px; padding: 12px 16px; outline: none; }
+  .hero .ask input::placeholder { color: var(--muted); }
+  .hero .ask:focus-within { border-color: var(--accent); }
+  .hero .ask button { border: 0; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 0 18px; cursor: pointer; }
+  .hero .pop { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: var(--s3); min-height: 28px; }
+  .hero .pop b { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; align-self: center; margin-right: 4px; }
+  .hero .pop .chip { font-size: 11.5px; padding: 3px 10px; color: var(--muted); text-decoration: none; background: var(--surface-2); box-shadow: none; }
+  .hero .pop .chip:hover { color: var(--accent); border-color: var(--accent); }
+  .hero .stats { display: flex; justify-content: center; gap: var(--s6); flex-wrap: wrap; margin-top: var(--s6); }
+  .hero .stats .stat b { display: block; font-family: var(--display); font-size: 28px; line-height: 1; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+  .hero .stats .stat small { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .hero .fine { font-family: var(--mono); font-size: 11.5px; color: var(--muted); max-width: 72ch; margin: var(--s4) auto 0; line-height: 1.6; }
+  .hero .fine b { color: var(--text); font-weight: 500; }
+  h2.sec.browse { text-align: left; }
   .hero h1 { font-family: var(--display); font-size: clamp(36px, 6vw, 64px); font-weight: 700; letter-spacing: -.02em; line-height: 1.05; margin: 0; }
   .hero h1 .md { color: var(--accent); }
   .cursor { display: inline-block; width: .5em; height: .9em; background: var(--accent); margin-left: 6px; vertical-align: baseline; animation: blink 1.1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
-  .hero .byline { margin-top: var(--s5); color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+  .hero .byline { margin-top: var(--s4); color: var(--muted); font-size: 14px; display: flex; align-items: center; justify-content: center; gap: var(--s3); flex-wrap: wrap; }
   .chip { font-family: var(--mono); font-size: 12.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; color: var(--text); box-shadow: var(--shadow-1); }
   .chip a { color: inherit; } .chip a:hover { color: var(--accent); text-decoration: none; }
-  .hero .stat { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-  .hero .stat + .stat::before { content: "·"; margin-right: var(--s3); color: var(--line-strong); }
+  .hero .byline .stat { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .hero .byline .stat + .stat::before { content: "·"; margin-right: var(--s3); color: var(--line-strong); } .hero .byline .stat[hidden] + .stat::before { content: none; }
   .hero .stat.link { color: var(--accent); } .hero .stat.link:hover { text-decoration: underline; }
   .hero .stat button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
   .hero .stat[hidden] { display: none; }
-  .hero .lede { margin: var(--s5) 0 0; color: var(--muted); font-size: 16px; }
+  .hero .lede { margin: var(--s4) auto 0; color: var(--muted); font-size: 16px; max-width: 58ch; text-wrap: balance; }
   .intro { color: var(--muted); margin: 0 0 var(--s4); }
-  .start { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: var(--s3) var(--s4); margin-bottom: var(--s5); }
-  .start b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 
   /* section headings carry the markdown "#" like the playbook */
   h2.sec { font-family: var(--display); font-size: 22px; margin: var(--s6) 0 var(--s3); padding-top: var(--s5); border-top: 1px solid var(--line); }
@@ -148,8 +165,6 @@
   .card .meta b { color: var(--accent); font-weight: 500; }
   .tag.draft, .pill.draft { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--muted); border: 1px dashed var(--muted); border-radius: 4px; padding: 1px 6px; }
   .tag.verified, .pill.verified { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 1px 6px; }
-  .notice { margin-top: var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13.5px; color: var(--muted); }
-  .notice b { color: var(--text); font-weight: 600; }
   .card .topic { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .card.done { background: var(--done-bg); border-color: var(--green); }
   .card.next { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
@@ -275,7 +290,7 @@
     .level { flex-wrap: wrap; margin-bottom: var(--s6); }
     .level .lvl { flex-basis: 100%; display: flex; align-items: baseline; gap: 8px; padding: 0 0 6px; margin-bottom: var(--s3); border-bottom: 2px solid var(--accent); }
     .level .lvl b { font-size: 16px; margin: 0; }
-    .hero { padding-top: var(--s6); }
+    .hero { padding-top: var(--s6); } .hero .stats { gap: var(--s5); } .hero .stats .stat b { font-size: 22px; }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
     .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
     .byline .chip { white-space: normal; overflow-wrap: anywhere; }
@@ -306,19 +321,35 @@
 </header>
 <main>
   <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
-    <div class="hero">
-      <div class="eyebrow">ls courses/</div>
-      <h1>IE <span class="md">Knowledgebase</span><span class="cursor" aria-hidden="true"></span></h1>
-      <div class="byline">
-        <span class="stat" id="countChip"></span>
-        <span class="stat" id="verifiedChip"></span>
-        <span class="stat" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
-        <a class="stat link" href="roadmap.html">site roadmap →</a>
+    <div class="hero" id="hero">
+      <svg class="bgmap" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="var(--accent)" stroke-width="1.2"><path d="M500 150 C380 150 380 60 260 60"/><path d="M500 150 C380 150 380 150 260 150"/><path d="M500 150 C380 150 380 240 260 240"/><path d="M500 150 C620 150 620 40 740 40"/><path d="M500 150 C620 150 620 120 740 120"/><path d="M500 150 C620 150 620 200 740 200"/><path d="M500 150 C620 150 620 270 740 270"/><path d="M260 60 C200 60 200 30 140 30"/><path d="M260 60 C200 60 200 90 140 90"/><path d="M260 150 C200 150 200 130 140 130"/><path d="M260 150 C200 150 200 175 140 175"/><path d="M260 240 C200 240 200 225 140 225"/><path d="M740 120 C800 120 800 100 860 100"/><path d="M740 120 C800 120 800 145 860 145"/><path d="M740 200 C800 200 800 185 860 185"/><path d="M740 200 C800 200 800 220 860 220"/></g>
+        <g fill="var(--accent)"><circle cx="500" cy="150" r="16"/><circle cx="260" cy="60" r="6"/><circle cx="260" cy="150" r="6"/><circle cx="260" cy="240" r="6"/><circle cx="740" cy="40" r="6"/><circle cx="740" cy="120" r="6"/><circle cx="740" cy="200" r="6"/><circle cx="740" cy="270" r="6"/></g>
+        <g fill="var(--green)"><circle cx="140" cy="30" r="4"/><circle cx="140" cy="90" r="4"/><circle cx="140" cy="130" r="4"/><circle cx="140" cy="175" r="4"/><circle cx="140" cy="225" r="4"/><circle cx="860" cy="100" r="4"/><circle cx="860" cy="145" r="4"/><circle cx="860" cy="185" r="4"/><circle cx="860" cy="220" r="4"/></g>
+      </svg>
+      <div class="hero-in">
+        <div class="eyebrow">free · open · original · reviewable</div>
+        <h1 aria-label="IE Knowledgebase"><span class="type" aria-hidden="true"><span class="ghost">IE <span class="md">Knowledgebase</span></span><span class="live"><span id="tyA">IE </span><span class="md" id="tyB">Knowledgebase</span><span class="cursor"></span></span></span></h1>
+        <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them.</p>
+        <form class="ask" id="ask" role="search">
+          <input type="search" id="askInput" placeholder="What do you want to learn?" aria-label="Search courses and modules" autocomplete="off" spellcheck="false">
+          <button type="submit">search</button>
+        </form>
+        <div class="pop" id="start"></div>
+        <div class="stats">
+          <div class="stat"><b class="num" id="statCourses"></b><small>courses</small></div>
+          <div class="stat"><b class="num" id="statModules"></b><small>modules</small></div>
+          <div class="stat"><b id="statTopics"></b><small>catalog topics</small></div>
+          <div class="stat"><b class="num" id="statVerified"></b><small>verified</small></div>
+        </div>
+        <div class="byline">
+          <span class="stat" id="mineChip" hidden><span id="mine"></span> · <button type="button" id="reset" title="Clear your local progress">reset</button></span>
+          <a class="stat link" href="roadmap.html">site roadmap →</a>
+        </div>
+        <p class="fine"><b>Preview release.</b> Every course is written with AI assistance and stays <span class="tag draft">draft</span> until a reviewer checks it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only public IISE course titles and topic outlines were used as a map; no IISE material appears here (<a href="terms.html#originality">originality notice</a>). Progress is saved in this browser only.</p>
       </div>
-      <p class="lede">Free, open courses on industrial engineering, quality and continuous improvement, grouped the way the IISE catalog groups them. Tick a course when you finish it; progress is saved in this browser only.</p>
-      <div class="notice"><b>Preview release.</b> Every course here was written with AI assistance and is marked <span class="tag draft">draft</span> until a reviewer has checked it against the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/REVIEW.md" rel="noopener">review checklist</a>. Only the public IISE course titles and topic outlines were used as a map of what to cover; no IISE material appears here. See the <a href="terms.html#originality">originality notice</a>.</div>
     </div>
-    <div class="start" id="start"></div>
+    <h2 class="sec browse">browse by category</h2>
     <div id="catalog"></div>
     <footer class="pfoot"><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
   </div></section>
@@ -346,6 +377,7 @@
   </section>
   <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -380,7 +412,7 @@
   // 'up next' only lights up once the learner has marked something done; before that it would mark every foundation course.
   const isNext = id => done.size > 0 && unlocked(id);
   const hours = c => { const m = /([\d.]+)\s*(h|day|×)/.exec(c.length || ''); if (!m) return 99; const n = +m[1]; return m[2] === 'day' ? n * 8 : m[2] === '×' ? n * 2 : n; };
-  function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); }
+  function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); if (done.has(id) && graphReady) graphRipple(id); }
   document.getElementById('reset').addEventListener('click', () => { if ((done.size || doneMods.size) && confirm('Clear your local progress?')) { done.clear(); doneMods.clear(); saveDone(); try { localStorage.removeItem('iekb-mods'); } catch (e) {} refresh(); } });
 
   // ---- prerequisite levels for the path view
@@ -412,10 +444,9 @@
   function renderStart() {
     const next = courses.filter(c => unlocked(c.id)).sort((a, b) => lvl(a) - lvl(b) || hours(a) - hours(b));
     const el = document.getElementById('start');
-    if (!next.length) { el.innerHTML = '<b>All built courses done.</b> See the planned topics below for what is coming.'; return; }
-    el.innerHTML = `<b>${done.size ? 'Up next for you' : 'Where to start'}</b>` +
-      next.slice(0, 6).map(c => `<a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>`).join(' · ') +
-      (next.length > 6 ? ` · and ${next.length - 6} more` : '');
+    if (!next.length) { el.innerHTML = '<b>all built courses done</b>'; return; }
+    el.innerHTML = `<b>${done.size ? 'up next' : 'start here'}</b>` +
+      next.slice(0, 5).map(c => `<a class="chip" href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>`).join('');
   }
 
   const closedCats = new Set();
@@ -472,6 +503,9 @@
   }
 
   // ---- drawer
+  const motion = typeof anime !== 'undefined' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // count a number up to its value in place; the markup already holds the final value, so without motion nothing changes
+  function countUp(el) { if (!motion) return; const n = +el.dataset.n; if (!n) return; const o = { v: 0 }; anime.animate(o, { v: n, duration: 500, ease: 'outCubic', modifier: anime.utils.round(0), onUpdate: () => { el.textContent = o.v; } }); }
   const panel = document.getElementById('panel'), body = document.getElementById('panel-body');
   let selected = null;
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
@@ -484,13 +518,14 @@
     let h = `<div class="eyebrow">${esc(cat.label)}</div><h2>${esc(c.label)}</h2><div class="chips">${st}${vf}${mods.length ? `<span class="chip">${mods.length} modules</span>` : ''}${src}</div>`;
     if (c.description) h += `<p class="promise">${esc(c.description)}</p>`;
     const req = pre.length ? pre.map(n => `<a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}`).join(', ') : 'Nothing';
-    h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `${modsDone(c)} of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
+    h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `<span class="num" data-n="${modsDone(c)}">${modsDone(c)}</span> of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
     if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
       return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
     body.innerHTML = h;
+    body.querySelectorAll('.num').forEach(countUp);
   }
   function openCategory(cat) {
     const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
@@ -562,7 +597,7 @@
     setHash(selected && panel.classList.contains('open') ? selected.id : '');
     document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + t));
     if (t === 'path') requestAnimationFrame(drawPathEdges);
-    if (t === 'graph') { if (!graphReady) initGraph(); else graphResize(); }
+    if (t === 'graph') { const first = !graphReady; if (first) initGraph(); else graphResize(); if (motion && !first) anime.animate('#graph', { opacity: [0, 1], scale: [0.985, 1], duration: 360, ease: 'outCubic' }); }
   }
   document.querySelectorAll('[role=tab]').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
   document.querySelector('[role=tablist]').addEventListener('keydown', e => {
@@ -570,12 +605,33 @@
     const j = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i + tabs.length - 1) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
     if (j < 0) return; e.preventDefault(); tabs[j].focus(); showTab(tabs[j].dataset.tab);
   });
-  document.getElementById('search').addEventListener('input', e => { query = e.target.value.trim(); renderCatalog(); if (graphReady) graphSearch(query); });
+  const topSearch = document.getElementById('search'), askInput = document.getElementById('askInput');
+  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; renderCatalog(); if (graphReady) graphSearch(query); }
+  topSearch.addEventListener('input', e => setQuery(e.target.value));
+  askInput.addEventListener('input', e => setQuery(e.target.value));
+  document.getElementById('ask').addEventListener('submit', e => { e.preventDefault(); setQuery(askInput.value); document.querySelector('h2.sec.browse').scrollIntoView({ behavior: motion ? 'smooth' : 'instant', block: 'start' }); });
+  // the front door: fixed figures once, then the intro draws itself in
+  const modCount = nodes.filter(n => n.type === 'module').length;
+  document.getElementById('statCourses').textContent = DATA.built; document.getElementById('statCourses').dataset.n = DATA.built;
+  document.getElementById('statModules').textContent = modCount; document.getElementById('statModules').dataset.n = modCount;
+  document.getElementById('statTopics').textContent = `${DATA.covered + DATA.built} / ${DATA.total}`;
+  document.getElementById('statVerified').dataset.n = DATA.verified;
+  if (motion) try {   // decorative only: a library hiccup must never stop the page from booting
+    const paths = [...document.querySelectorAll('#hero .bgmap path')];
+    anime.animate(anime.svg.createDrawable(paths), { draw: ['0 0', '0 1'], duration: 900, delay: anime.stagger(30), ease: 'outQuad' });
+    anime.animate('#hero .hero-in > *', { opacity: [0, 1], y: [10, 0], duration: 460, delay: anime.stagger(55), ease: 'outCubic' });
+    document.querySelectorAll('#hero .num').forEach(countUp);
+    // the title types itself, holds, deletes and types again
+    const full = 'IE Knowledgebase', split = 3, tyA = document.getElementById('tyA'), tyB = document.getElementById('tyB'), ty = { n: full.length };
+    const showTy = () => { const k = Math.round(ty.n); tyA.textContent = full.slice(0, Math.min(k, split)); tyB.textContent = full.slice(split, Math.max(k, split)); };
+    anime.createTimeline({ loop: true, loopDelay: 700, onUpdate: showTy })
+      .add(ty, { n: [0, full.length], duration: 1100, ease: 'linear', modifier: anime.utils.round(0) }, 400)
+      .add(ty, { n: 0, duration: 550, ease: 'linear', modifier: anime.utils.round(0) }, '+=4200');
+  } catch (e) {}
   window.addEventListener('resize', () => { drawPathEdges(); if (tab === 'graph') { if (narrow()) showTab('path'); else if (!graphReady) initGraph(); else graphResize(); } });
 
   function refresh() {
-    document.getElementById('countChip').textContent = `${DATA.built} courses · ${DATA.covered + DATA.built} of ${DATA.total} catalog topics`;
-    document.getElementById('verifiedChip').textContent = `${DATA.verified} verified`;
+    document.getElementById('statVerified').textContent = DATA.verified;
     document.getElementById('mine').textContent = `you: ${done.size} done`;
     document.getElementById('mineChip').hidden = !(done.size || doneMods.size);
     // re-rendering replaces the DOM, so remember what had focus and put it back
@@ -590,12 +646,12 @@
   const narrow = () => matchMedia('(max-width: 700px)').matches;
 
   // ---- mind map (D3 tree, built on first open)
-  let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {};
+  let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {}, graphRipple = () => {};
   function initGraph() {
     if (!window.d3) { document.getElementById('view-graph').insertAdjacentHTML('afterbegin', '<p class="intro" style="padding:var(--s7) var(--s5)">The mind map needs the D3 library from cdnjs, which could not be loaded. The catalog and learning path still work.</p>'); return; }
     const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
     const svg = d3.select('#graph'), g = svg.append('g');
-    const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g');
+    const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g'), fxLayer = g.append('g').attr('pointer-events', 'none');
     svg.append('defs').append('marker').attr('id', 'arrow').attr('viewBox', '0 -4 8 8').attr('refX', 8).attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
       .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', css('--prereq'));
 
@@ -649,12 +705,22 @@
       const path = l => { const sx = l.s ? l.s.px : 0, sy = l.s ? l.s.py : 0; const mx = (sx + l.t.px) / 2; return `M${sx},${sy} C${mx},${sy} ${mx},${l.t.py} ${l.t.px},${l.t.py}`; };
       const link = linkLayer.selectAll('path').data(ls, l => l.id);
       link.exit().transition().duration(dur).attr('opacity', 0).remove();
-      link.enter().append('path').attr('class', 'link').attr('fill', 'none').attr('stroke', css('--line')).attr('stroke-width', l => isCat(l.t) ? 2 : 1.2).attr('opacity', 0)
-        .attr('d', path).merge(link).transition().duration(dur).attr('opacity', 1).attr('d', path).attr('stroke', css('--line'));
+      const fresh = link.enter().append('path').attr('class', 'link').attr('fill', 'none').attr('stroke', css('--line')).attr('stroke-width', l => isCat(l.t) ? 2 : 1.2).attr('opacity', 0).attr('d', path);
+      fresh.merge(link).transition().duration(dur).attr('opacity', 1).attr('d', path).attr('stroke', css('--line'));
+      if (motion && dur && !fresh.empty()) {
+        const els = fresh.nodes();
+        anime.animate(anime.svg.createDrawable(els), { draw: ['0 0', '0 1'], duration: dur + 60, ease: 'outQuad',
+          onComplete: () => els.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });   // a later layout change must not inherit a stale dash length
+      }
       // nodes
       const node = nodeLayer.selectAll('g.node:not(.hub)').data(ns, n => n.data.id);
-      node.exit().transition().duration(dur).attr('opacity', 0).remove();
-      const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => `translate(${n.parent && n.parent.depth > 0 ? n.parent.px : 0},${n.parent && n.parent.depth > 0 ? n.parent.py : 0})`)
+      const spring = motion && dur > 0;
+      const home = n => { const p = n.parent && n.parent.depth > 0 ? (byKey.get(n.parent.data.id) || n.parent) : null; return p ? { x: p.px, y: p.py } : { x: 0, y: 0 }; };
+      const exit = node.exit();
+      exit.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });
+      if (spring) exit.each(function (n) { const pos = { x: n.px, y: n.py }, h = home(n), el = this; anime.animate(pos, { x: h.x, y: h.y, duration: dur, ease: 'inCubic', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`) }); });
+      exit.transition().duration(dur).attr('opacity', 0).remove();
+      const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => { const h = home(n); return `translate(${h.x},${h.y})`; })
         .attr('tabindex', 0).attr('role', 'button')
         .on('click', (e, n) => { e.stopPropagation(); onClick(n); })
         .on('keydown', (e, n) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onClick(n); } });
@@ -662,7 +728,14 @@
       const all = enter.merge(node);
       all.attr('aria-label', n => n.data.label);
       svg.select('#arrow path').attr('fill', css('--prereq'));
-      all.transition().duration(dur).attr('opacity', 1).attr('transform', n => `translate(${n.px},${n.py})`);
+      node.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });   // a re-layout mid-spring hands the node back to d3
+      all.transition().duration(dur).attr('opacity', 1);
+      (spring ? node : all).transition().duration(dur).attr('transform', n => `translate(${n.px},${n.py})`);
+      if (spring) enter.each(function (n) {
+        const h = home(n), pos = { x: h.x, y: h.y }, el = this, label = this.querySelector('text');
+        n.__spring = anime.animate(pos, { x: n.px, y: n.py, duration: dur + 150, ease: 'outBack(1.5)', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`), onComplete: () => { n.__spring = null; } });
+        if (label) { label.style.opacity = 0; anime.animate(label, { opacity: [0, 1], duration: 260, delay: 180, ease: 'outCubic', onComplete: () => { label.style.opacity = ''; } }); }
+      });
       all.select('circle').attr('r', r).attr('fill', fill).attr('stroke', strokeOf).attr('stroke-width', 1.5);
       all.select('text').text(n => glyph(n) + n.data.label + (type(n) === 'topic' && n.data.data.covered ? ' · folded in' : '') + ((n._children && !n.children) ? (isCat(n) ? '' : ' ▸') : ''))
         .attr('x', n => n.dir * (r(n) + 6)).attr('text-anchor', n => n.dir > 0 ? 'start' : 'end')
@@ -680,8 +753,8 @@
       const parc = l => { const ax = l.a.px - l.a.dir * (r(l.a) + 2), bx = l.b.px - l.b.dir * (r(l.b) + 2); const bulge = l.a.dir === l.b.dir ? -l.a.dir * 90 : 0; return `M${ax},${l.a.py} C${ax + bulge},${l.a.py} ${bx + bulge},${l.b.py} ${bx},${l.b.py}`; };
       pp.enter().append('path').attr('fill', 'none').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4').attr('marker-end', 'url(#arrow)').merge(pp)
         .attr('stroke', css('--prereq')).transition().duration(dur).attr('d', parc);
-      applyDim();
       lastNodes = ns;
+      applyDim();
       paintDepth();
     }
     let lastNodes = [];
@@ -700,9 +773,26 @@
     }
     function toggle(d) { if (d.children) { d._children = d.children; d.children = null; } else if (d._children) { d.children = d._children; d._children = null; } }
     function setAll(expand) { const walk = d => { if (expand ? d._children : d.children) toggle(d); (d.children || d._children || []).forEach(walk); }; catNodes.forEach(walk); }
+    let liftFrom = null;   // the id the last lift started from, so a repeat click does not redraw
     function applyDim() {
-      nodeLayer.selectAll('g.node:not(.hub)').classed('dim', n => keep && !keep.has(n.data.id));
-      linkLayer.selectAll('path').classed('dim', l => keep && !keep.has(l.t.data.id));
+      const origin = motion && selectedId ? lastNodes.find(n => n.data.id === selectedId) : null;
+      const fade = (el, n, dim) => {   // class is the state; inline opacity only while the wave runs
+        const was = el.classList.contains('dim'); el.classList.toggle('dim', dim);
+        if (!origin || was === dim) return;
+        const delay = Math.hypot(n.px - origin.px, n.py - origin.py) / 2.5;
+        const to = dim ? (el.classList.contains('link') ? .08 : .15) : 1;
+        el.style.opacity = dim ? 1 : (el.classList.contains('link') ? .08 : .15);
+        anime.animate(el, { opacity: to, duration: 320, delay: dim ? delay : 0, ease: 'outCubic', onComplete: () => { el.style.opacity = ''; } });
+      };
+      nodeLayer.selectAll('g.node:not(.hub)').each(function (n) { fade(this, n, !!(keep && !keep.has(n.data.id))); });
+      linkLayer.selectAll('path').each(function (l) { fade(this, l.t, !!(keep && !keep.has(l.t.data.id))); });
+      if (origin && keep && liftFrom !== selectedId) {
+        liftFrom = selectedId;
+        const kept = linkLayer.selectAll('path').filter(l => keep.has(l.t.data.id) && l.t.data.id !== selectedId).nodes();
+        if (kept.length) anime.animate(anime.svg.createDrawable(kept), { draw: ['0 0', '0 1'], duration: 380, ease: 'outQuad',
+          onComplete: () => kept.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });
+      }
+      if (!keep) liftFrom = null;
     }
     function fit(animate = false) {
       const { width, height } = svg.node().getBoundingClientRect();
@@ -735,6 +825,14 @@
       catNodes.forEach(c => walk(c, [])); setAll(true); render();
     };
     graphResize = () => fit();
+    graphRipple = id => {
+      if (!motion) return;
+      const n = lastNodes.find(x => x.data.id === id); if (!n) return;
+      const ring = fxLayer.append('circle').attr('cx', n.px).attr('cy', n.py).attr('r', r(n)).attr('fill', 'none').attr('stroke', css('--green')).attr('stroke-width', 2.5).node();
+      anime.animate(ring, { r: [r(n), 34], opacity: [.9, 0], strokeWidth: [2.5, .5], duration: 650, ease: 'outCubic', onComplete: () => ring.remove() });
+      const dot = nodeLayer.selectAll('g.node:not(.hub)').filter(x => x.data.id === id).select('circle').node();
+      if (dot) anime.animate(dot, { r: [r(n), r(n) * 1.9, r(n)], duration: 420, ease: 'outCubic' });
+    };
     graphRestyle = () => render(false);
     // depth chips: 1 = categories only, 2 = categories and courses, 3 = everything. Lit chips are cumulative.
     const expandable = d => d.children || d._children;
@@ -750,6 +848,12 @@
     document.querySelectorAll('.graph-tools [data-depth]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); setDepth(+b.dataset.depth); render(); setTimeout(() => fit(true), 360); }));
     document.getElementById('prereqs').addEventListener('change', e => { showPrereqs = e.target.checked; render(false); });
     render(false); fit();
+    if (motion) try {   // first look: links draw outward from the hub, nodes follow by depth
+      const links = linkLayer.selectAll('path').nodes();
+      anime.animate(anime.svg.createDrawable(links), { draw: ['0 0', '0 1'], duration: 700, delay: anime.stagger(6), ease: 'outQuad',
+        onComplete: () => links.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });
+      anime.animate('#graph g.node', { opacity: [0, 1], duration: 420, delay: anime.stagger(5, { start: 120 }), ease: 'outCubic' });
+    } catch (e) {}
     graphReady = true;
     if (query) graphSearch(query);
   }
