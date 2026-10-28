@@ -209,6 +209,15 @@
   aside.open { transform: none; visibility: visible; transition: transform .2s var(--ease-out); }
   aside h2 { font-family: var(--display); font-size: 20px; margin: 0 36px 6px 0; letter-spacing: -.01em; }
   aside .meta { color: var(--muted); font-family: var(--mono); font-size: 12px; margin-bottom: var(--s3); }
+  aside .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 36px 6px 0; }
+  aside .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+  aside .chip { font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; white-space: nowrap; line-height: 1.2; text-decoration: none; }
+  aside .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); } aside .chip.accent { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  aside .chip.draft { border-style: dashed; background: none; } aside a.chip:hover { border-color: var(--accent); color: var(--accent); }
+  aside p.promise { margin: var(--s3) 0 0; font-size: 14.5px; line-height: 1.55; }
+  aside .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; margin: var(--s4) 0 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
+  aside .facts small { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  aside .facts div { min-width: 0; overflow-wrap: anywhere; }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
@@ -458,11 +467,13 @@
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
   function openCourse(c) {
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
-    const st = isDone(c.id) ? '<span class="pill done">done</span>' : isNext(c.id) ? '<span class="pill next">up next</span>' : unlocked(c.id) ? '<span class="pill built">available</span>' : '<span class="pill built">locked</span>';
-    const vf = c.verified ? `<span class="pill verified" title="${esc(c.review)}">verified</span>` : '<span class="pill draft" title="Written with AI assistance, not yet reviewed">draft</span>';
-    let h = `<h2>${esc(c.label)}</h2><div class="meta">${st} ${vf} · ${esc(cat.label)}${c.length ? ' · ' + esc(c.length) : ''}${mods.length ? ` · ${modsDone(c)}/${mods.length} modules done` : ''}${c.sources && c.sources.length ? ` · <a href="${reader(c, 'reference/sources.md')}">${c.sources.filter(s => s.verified).length}/${c.sources.length} sources verified</a>` : ''}</div>`;
-    if (c.description) h += `<p>${esc(c.description)}</p>`;
-    h += '<h3>Requires</h3>' + (pre.length ? `<ul>${pre.map(li).join('')}</ul>` : '<p class="meta">Nothing. You can start here.</p>');
+    const st = isDone(c.id) ? '<span class="chip green">done</span>' : isNext(c.id) ? '<span class="chip accent">up next</span>' : unlocked(c.id) ? '<span class="chip green">available</span>' : '<span class="chip">locked</span>';
+    const vf = c.verified ? `<span class="chip green" title="${esc(c.review)}">verified</span>` : '<span class="chip draft" title="Written with AI assistance, not yet reviewed">draft</span>';
+    const src = c.sources && c.sources.length ? `<a class="chip" href="${reader(c, 'reference/sources.md')}">${c.sources.filter(s => s.verified).length}/${c.sources.length} sources verified</a>` : '';
+    let h = `<div class="eyebrow">${esc(cat.label)}</div><h2>${esc(c.label)}</h2><div class="chips">${st}${vf}${mods.length ? `<span class="chip">${mods.length} modules</span>` : ''}${src}</div>`;
+    if (c.description) h += `<p class="promise">${esc(c.description)}</p>`;
+    const req = pre.length ? pre.map(n => `<a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}`).join(', ') : 'Nothing';
+    h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `${modsDone(c)} of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
     const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
