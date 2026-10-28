@@ -346,6 +346,7 @@
   </section>
   <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -472,6 +473,9 @@
   }
 
   // ---- drawer
+  const motion = typeof anime !== 'undefined' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // count a number up to its value in place; the markup already holds the final value, so without motion nothing changes
+  function countUp(el) { if (!motion) return; const n = +el.dataset.n; if (!n) return; const o = { v: 0 }; anime.animate(o, { v: n, duration: 500, ease: 'outCubic', modifier: anime.utils.round(0), onUpdate: () => { el.textContent = o.v; } }); }
   const panel = document.getElementById('panel'), body = document.getElementById('panel-body');
   let selected = null;
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
@@ -484,13 +488,14 @@
     let h = `<div class="eyebrow">${esc(cat.label)}</div><h2>${esc(c.label)}</h2><div class="chips">${st}${vf}${mods.length ? `<span class="chip">${mods.length} modules</span>` : ''}${src}</div>`;
     if (c.description) h += `<p class="promise">${esc(c.description)}</p>`;
     const req = pre.length ? pre.map(n => `<a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}`).join(', ') : 'Nothing';
-    h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `${modsDone(c)} of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
+    h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `<span class="num" data-n="${modsDone(c)}">${modsDone(c)}</span> of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
     if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
       return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
     body.innerHTML = h;
+    body.querySelectorAll('.num').forEach(countUp);
   }
   function openCategory(cat) {
     const cs = courses.filter(c => c.parent === cat.id), ts = topics.filter(t => t.parent === cat.id);
@@ -649,8 +654,13 @@
       const path = l => { const sx = l.s ? l.s.px : 0, sy = l.s ? l.s.py : 0; const mx = (sx + l.t.px) / 2; return `M${sx},${sy} C${mx},${sy} ${mx},${l.t.py} ${l.t.px},${l.t.py}`; };
       const link = linkLayer.selectAll('path').data(ls, l => l.id);
       link.exit().transition().duration(dur).attr('opacity', 0).remove();
-      link.enter().append('path').attr('class', 'link').attr('fill', 'none').attr('stroke', css('--line')).attr('stroke-width', l => isCat(l.t) ? 2 : 1.2).attr('opacity', 0)
-        .attr('d', path).merge(link).transition().duration(dur).attr('opacity', 1).attr('d', path).attr('stroke', css('--line'));
+      const fresh = link.enter().append('path').attr('class', 'link').attr('fill', 'none').attr('stroke', css('--line')).attr('stroke-width', l => isCat(l.t) ? 2 : 1.2).attr('opacity', 0).attr('d', path);
+      fresh.merge(link).transition().duration(dur).attr('opacity', 1).attr('d', path).attr('stroke', css('--line'));
+      if (motion && dur && !fresh.empty()) {
+        const els = fresh.nodes();
+        anime.animate(anime.svg.createDrawable(els), { draw: ['0 0', '0 1'], duration: dur + 60, ease: 'outQuad',
+          onComplete: () => els.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });   // a later layout change must not inherit a stale dash length
+      }
       // nodes
       const node = nodeLayer.selectAll('g.node:not(.hub)').data(ns, n => n.data.id);
       node.exit().transition().duration(dur).attr('opacity', 0).remove();
