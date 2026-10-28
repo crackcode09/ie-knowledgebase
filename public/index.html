@@ -199,6 +199,9 @@
   .graph-tools label, .graph-tools span { display: inline-flex; gap: 5px; align-items: center; }
   .graph-tools .mini { font-family: var(--mono); border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 5px; padding: 2px 8px; cursor: pointer; font-size: 12px; }
   .graph-tools .mini:hover { border-color: var(--accent); }
+  .graph-tools .depth { gap: 4px; } .graph-tools .depth > span { margin-right: 2px; }
+  .graph-tools .chip { border-radius: 999px; color: var(--muted); }
+  .graph-tools .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
   .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 
   @media (max-width: 700px) { #tab-graph { display: none; } }
@@ -333,7 +336,7 @@
   <section class="view" id="view-graph" role="tabpanel" aria-labelledby="tab-graph">
     <svg id="graph" aria-label="Course mind map"></svg>
     <div class="graph-tools">
-      <button type="button" id="expand-all" class="mini">Expand all</button><button type="button" id="collapse-all" class="mini">Collapse</button>
+      <span class="depth" role="group" aria-label="Map depth"><span>show</span><button type="button" class="mini chip" data-depth="1" aria-pressed="false">categories</button><button type="button" class="mini chip" data-depth="2" aria-pressed="false">courses</button><button type="button" class="mini chip" data-depth="3" aria-pressed="false">modules</button></span>
       <label><input type="checkbox" id="prereqs" checked> Prerequisite arrows</label>
       <span><i class="dot" style="background:var(--cat)"></i>category</span>
       <span><i class="dot" style="background:var(--built)"></i>built course</span>
@@ -679,6 +682,7 @@
         .attr('stroke', css('--prereq')).transition().duration(dur).attr('d', parc);
       applyDim();
       lastNodes = ns;
+      paintDepth();
     }
     let lastNodes = [];
     function onClick(n) {
@@ -732,8 +736,18 @@
     };
     graphResize = () => fit();
     graphRestyle = () => render(false);
-    document.getElementById('expand-all').addEventListener('click', e => { e.stopPropagation(); setAll(true); render(); setTimeout(() => fit(true), 360); });
-    document.getElementById('collapse-all').addEventListener('click', e => { e.stopPropagation(); setAll(false); render(); setTimeout(() => fit(true), 360); });
+    // depth chips: 1 = categories only, 2 = categories and courses, 3 = everything. Lit chips are cumulative.
+    const expandable = d => d.children || d._children;
+    const setOpen = (d, want) => { if (expandable(d) && !!d.children !== want) toggle(d); };
+    function setDepth(k) { catNodes.forEach(cat => { setOpen(cat, k >= 2); (cat.children || cat._children || []).forEach(c => setOpen(c, k >= 3)); }); }
+    function currentDepth() {
+      const openCats = catNodes.filter(c => c.children);
+      if (!openCats.length) return 1;
+      const second = openCats.flatMap(c => c.children).filter(expandable);
+      return second.length && second.every(c => c.children) ? 3 : 2;
+    }
+    function paintDepth() { const k = currentDepth(); document.querySelectorAll('.graph-tools [data-depth]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.depth <= k))); }
+    document.querySelectorAll('.graph-tools [data-depth]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); setDepth(+b.dataset.depth); render(); setTimeout(() => fit(true), 360); }));
     document.getElementById('prereqs').addEventListener('change', e => { showPrereqs = e.target.checked; render(false); });
     render(false); fit();
     graphReady = true;
