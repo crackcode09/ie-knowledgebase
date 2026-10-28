@@ -33,6 +33,8 @@ The role profiles under `roles/onet/` include information from the O*NET Databas
 
 The site's interface icons are from [Bootstrap Icons](https://github.com/twbs/icons) (MIT, The Bootstrap Authors), vendored under `tools/icons/` with its licence and inlined into the pages by the generator.
 
+The pages load [D3](https://d3js.org/) (ISC, Mike Bostock), [marked](https://marked.js.org/) (MIT, Christopher Jeffrey and contributors) and [Anime.js](https://animejs.com/) (MIT, Julian Garnier) from a CDN at pinned versions; none is vendored.
+
 Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Code: [MIT](https://opensource.org/licenses/MIT). See [LICENSE](LICENSE). Attribution line: `From the IE Knowledgebase (github.com/crackcode09/ie-knowledgebase), CC BY 4.0.`
 
 ## Reporting a problem
