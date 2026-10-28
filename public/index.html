@@ -231,9 +231,9 @@
   aside .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
   aside .chip { font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; white-space: nowrap; line-height: 1.2; text-decoration: none; }
   aside .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); } aside .chip.accent { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
-  aside .chip.draft, .crow .chip.draft { border-style: dashed; background: none; } aside a.chip:hover { border-color: var(--accent); color: var(--accent); }
-  .crow .chip { font-family: var(--mono); color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; box-shadow: none; }
-  .crow .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); }
+  aside .chip.draft, .mods .crow .chip.draft { border-style: dashed; background: none; } aside a.chip:hover { border-color: var(--accent); color: var(--accent); }
+  .mods .crow .chip { font-family: var(--mono); color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; box-shadow: none; }
+  .mods .crow .chip.green { color: var(--green); border-color: var(--green); background: var(--green-soft); }
   aside p.promise { margin: var(--s3) 0 0; font-size: 14.5px; line-height: 1.55; }
   aside .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; margin: var(--s4) 0 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
   aside .facts small { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
@@ -249,18 +249,19 @@
   .mods .mod.cur { background: var(--accent-soft); } .mods .mod.cur .n, .mods .mod.cur .t { color: var(--accent); }
   .mods .mod.done .n { color: var(--green); }
   .mods.catalog { padding: 0 var(--s3) var(--s3); gap: 0; }
-  .crow { cursor: pointer; padding: 9px 10px; align-items: flex-start; border-radius: 0; border-top: 1px solid var(--line); }
-  .crow:first-child { border-top: 0; }
-  .crow .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
-  .crow .meta .chip { font-size: 10.5px; padding: 1px 7px; line-height: 1.4; }
-  .crow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .crow .n { width: 24px; display: flex; align-items: center; height: 20px; margin-top: 1px; }
-  .crow .meta b { color: var(--next); font-weight: 500; }
-  .crow.next { box-shadow: inset 3px 0 0 var(--accent); }
-  .crow.locked { opacity: .7; }
-  .crow.done { background: var(--done-bg); } .crow.done .t { color: var(--muted); }
-  .crow .tick { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
-  .crow.done .tick { background: var(--green); border-color: var(--green); }
+  .mods .crow { cursor: pointer; padding: 9px 10px; align-items: flex-start; border-radius: 0; border-top: 1px solid var(--line); }
+  .mods .crow:first-child { border-top: 0; }
+  .mods .crow .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+  .mods .crow .meta .chip { font-size: 10.5px; padding: 1px 7px; line-height: 1.4; }
+  .mods .crow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .mods .crow .n { width: 24px; height: 20px; margin: 0; display: flex; align-items: center; justify-content: flex-start; }
+  .mods .crow .t { display: block; line-height: 20px; }
+  .mods .crow .meta b { color: var(--next); font-weight: 500; }
+  .mods .crow.next { box-shadow: inset 3px 0 0 var(--accent); }
+  .mods .crow.locked { opacity: .7; }
+  .mods .crow.done { background: var(--done-bg); } .crow.done .t { color: var(--muted); }
+  .mods .crow .tick { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
+  .mods .crow.done .tick { background: var(--green); border-color: var(--green); }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
@@ -276,7 +277,7 @@
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
   @media (pointer: coarse) {
     .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
-    .card .tick, .crow .tick { width: 28px; height: 28px; font-size: 14px; } .crow .n { width: 32px; }
+    .card .tick, .mods .crow .tick { width: 28px; height: 28px; font-size: 14px; } .mods .crow .n { width: 32px; }
     aside .close { padding: 6px 12px; top: 8px; right: 8px; }
     .mods .mod { min-height: 40px; }
   }
