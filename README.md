@@ -1,6 +1,10 @@
+<img src="public/apple-touch-icon.png" alt="IE Knowledgebase logo" width="80" align="right">
+
 # IE Knowledgebase
 
 Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
+
+**32 courses built**, covering 33 of the 102 catalog topics. All are `draft` until a reviewer verifies them (see [Status, review and legal](#status-review-and-legal)). Read them on the site: <https://nidhy.dev/ie-knowledgebase/>.
 
 ## Courses
 
@@ -10,9 +14,21 @@ See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still 
 
 [![Roadmap graph](public/roadmap.svg)](public/roadmap.svg)
 
-**Interactive site:** <https://nidhy.dev/ie-knowledgebase/> has a catalog by category, a learning path ordered by prerequisites with local progress tracking, a mind map, and an on-site reader for every course and module. It is generated into `public/` by `python tools/roadmap_graph.py`; GitHub Pages publishes the repo root, so the site reads the course files in place.
+**Interactive site:** <https://nidhy.dev/ie-knowledgebase/> has:
 
-Suggested order: Measurement & Basic Statistics, Process Mapping and Voice of the Customer, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader and Lean Methods Accelerator have no prerequisites and can be taken at any point.
+- **Catalog:** every course by category, with search.
+- **Learning path:**
+  - six role-based tracks (industrial, quality and manufacturing engineer, operations research analyst, management analyst, industrial production manager), each anchored to an O*NET occupation with its BLS outlook;
+  - a time-budget mode that fits courses to the hours you have.
+- **Mind map:** courses, modules and prerequisites.
+- **Reader:** an on-site reader for every course and module.
+- **Sources page:** what each course cites.
+
+Progress ticks are kept in your browser only; there are no accounts and no tracking. Light and dark themes follow your system setting.
+
+The site is generated into `public/` by `python tools/roadmap_graph.py` (standard library only). GitHub Pages publishes the repo root, so the site reads the course files in place, and the root `index.html` only redirects to `public/`. Never edit `public/` by hand; edit the templates in `tools/` and rebuild.
+
+Suggested order without a track: Measurement & Basic Statistics, Process Mapping and Voice of the Customer, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader and Lean Methods Accelerator have no prerequisites and can be taken at any point. The tracks themselves are defined in [roles/tracks.md](roles/tracks.md).
 
 ### [Analytics, Data Science & AI](courses/analytics-data-science-ai/README.md)
 
@@ -90,6 +106,16 @@ _No courses yet._
 
 _No courses yet._
 
+## Role profiles
+
+[roles/](roles/README.md) holds the evidence for the role advisor in [VISION.md](VISION.md):
+
+- **O*NET profiles:** occupation profiles for eight codes around industrial engineering, vendored from the official O*NET database files. Each has rated tasks, knowledge, skills and technology. `python tools/onet_refresh.py` rebuilds them.
+- **Course-to-role maps:** written by `/map-course <slug>` in Claude Code. They show which parts of a role each course teaches, with quoted evidence. Every row stays `proposed` until a person confirms it. Quality Engineering Essentials is the first course mapped.
+- **Learning-path tracks:** [roles/tracks.md](roles/tracks.md) defines the tracks the site's learning path shows.
+
+O*NET data is used under CC BY 4.0 (U.S. Department of Labor, ETA); the project is not affiliated with or endorsed by USDOL/ETA or BLS.
+
 ## Adding a course
 
 1. Pick the category folder under `courses/` that fits, and create `courses/<category>/<course-name>/` (lowercase, hyphenated).
@@ -98,7 +124,7 @@ _No courses yet._
 
 ## Status, review and legal
 
-Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The review board (`/review-course <slug>` in Claude Code) does the checking and writes its report to [reviews/](reviews/README.md); a person answers its questions and signs off. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://nidhy.dev/ie-knowledgebase/privacy.html) and [Terms of Use](https://nidhy.dev/ie-knowledgebase/terms.html) (sources in `tools/legal/`).
+Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The review board (`/review-course <slug>` in Claude Code) does the checking and writes its report to [reviews/](reviews/README.md); a person answers its questions and signs off. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://nidhy.dev/ie-knowledgebase/public/privacy.html), [Terms of Use](https://nidhy.dev/ie-knowledgebase/public/terms.html) and [Sources](https://nidhy.dev/ie-knowledgebase/public/sources.html) pages (sources in `tools/legal/`). Courses cite their references by ID from `reference/sources.md`; an entry reads verified only after a reviewer checks it.
 
 ## License
 
