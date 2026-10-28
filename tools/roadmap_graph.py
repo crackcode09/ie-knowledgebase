@@ -426,7 +426,33 @@ def build_model(cats):
     built = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and not f)
     covered = sum(1 for c in cats for _, ok, _p, f in c["items"] if ok and f)
     verified = sum(1 for n in nodes if n["type"] == "course" and n.get("verified"))
-    return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "verified": verified, "nodes": nodes, "links": links}
+    return {"repo": REPO_URL, "total": total, "built": built, "covered": covered, "verified": verified, "nodes": nodes, "links": links, "tracks": read_tracks(nodes)}
+
+
+def read_tracks(nodes):
+    """roles/tracks.md: '## name', a **Goal:** line, an optional **Role:** line, then a numbered list of course folder names."""
+    path = ROOT / "roles" / "tracks.md"
+    if not path.exists():
+        return []
+    by_slug = {n["id"].split(":", 1)[1]: n["id"] for n in nodes if n["type"] == "course"}
+    tracks = []
+    for block in re.split(r"^## ", path.read_text(encoding="utf-8"), flags=re.M)[1:]:
+        name, _, body = block.partition("\n")
+        goal = re.search(r"^\*\*Goal:\*\*\s*(.+)$", body, re.M)
+        role = re.search(r"^\*\*Role:\*\*\s*(.+)$", body, re.M)
+        outlook = re.search(r"^\*\*Outlook:\*\*\s*(.+)$", body, re.M)
+        source = re.search(r"^\*\*Source:\*\*\s*<?([^\s>]+)>?\s*(?:\((.+)\))?\s*$", body, re.M)
+        slugs = re.findall(r"^\d+\.\s+([a-z0-9-]+)\s*$", body, re.M)
+        missing = [s for s in slugs if s not in by_slug]
+        if missing:
+            sys.exit(f"roles/tracks.md: track '{name.strip()}' names courses that do not exist: {missing}")
+        if len(slugs) < 2:
+            sys.exit(f"roles/tracks.md: track '{name.strip()}' needs at least two courses")
+        tracks.append({"id": "track:" + slugify(name.strip()), "label": name.strip(), "goal": goal.group(1).strip() if goal else "",
+                       "role": "" if not role or role.group(1).strip().lower().startswith("none") else role.group(1).strip(),
+                       "outlook": outlook.group(1).strip() if outlook else "", "source": source.group(1) if source else "", "sourceLabel": (source.group(2) or "").strip() if source else "",
+                       "courses": [by_slug[s] for s in slugs]})
+    return tracks
 
 
 def write(path, text):

@@ -189,28 +189,26 @@
   .pmode { display: flex; gap: 6px; margin: 0 0 var(--s4); }
   .pmode button { font-family: var(--mono); font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
   .pmode button:hover { border-color: var(--accent); } .pmode button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-  .ask { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .pick { position: relative; flex: 1 1 300px; max-width: 480px; }
-  .pick input { width: 100%; box-sizing: border-box; font-family: var(--mono); font-size: 13px; padding: 9px 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--text); outline: none; }
-  .pick input:focus { border-color: var(--accent); }
-  .pick-list { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 6; max-height: 340px; overflow: auto; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: var(--shadow-2); padding: 6px 0; }
-  .pick-list .g { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 8px 14px 2px; }
-  .pick-list .o { display: flex; justify-content: space-between; gap: 10px; padding: 6px 14px; font-size: 13.5px; cursor: pointer; color: var(--text); }
-  .pick-list .o small { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
-  .pick-list .o:hover, .pick-list .o.act { background: var(--surface-2); color: var(--accent); }
-  .pick-list .o.cur { color: var(--green); }
-  .pick-list .none { padding: 8px 14px; font-size: 13px; color: var(--muted); }
-  .steps { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-  .step { display: grid; grid-template-columns: 32px 1fr auto; gap: 12px; align-items: baseline; padding: 10px 14px; border-top: 1px solid var(--line); }
-  .step:first-child { border-top: 0; }
-  .step .n { font-family: var(--mono); font-size: 12px; color: var(--muted); } .step.done .n { color: var(--green); }
-  .step .tt { font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); text-decoration: none; } .step .tt:hover { color: var(--accent); }
-  .step .why { font-size: 12.5px; color: var(--muted); margin: 0; }
-  .step .time { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
-  .step.cur { background: var(--accent-soft); } .step.cur .tt { color: var(--accent); }
-  .step.done .tt { color: var(--muted); }
-  .total { display: flex; gap: var(--s6); margin-top: var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
-  .total b { display: block; font-family: var(--display); font-size: 20px; color: var(--text); line-height: 1; margin-bottom: 2px; }
+  .nextcard { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin: 0 0 var(--s4); }
+  .nextcard .tt { font-family: var(--display); font-size: 16px; font-weight: 500; color: var(--text); text-decoration: none; display: block; margin-top: 6px; } .nextcard .tt:hover { color: var(--accent); }
+  .nextcard .m { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .nextcard .btn-primary { margin: 0; }
+  .rail { display: grid; grid-template-columns: 230px 1fr; gap: var(--s4); align-items: start; padding: var(--s4) 0; border-top: 1px solid var(--line); }
+  .rail:first-of-type { border-top: 0; }
+  .rail h3 { font-family: var(--display); font-size: 15px; margin: 0 0 2px; }
+  .rail .m { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  .rail .goal { font-size: 13px; color: var(--muted); margin: 6px 0 0; line-height: 1.45; }
+  .rail .outlook { margin-top: 4px; line-height: 1.5; } .rail .outlook a { color: var(--accent); text-decoration: none; } .rail .outlook a:hover { text-decoration: underline; }
+  .stations { position: relative; display: flex; overflow-x: auto; padding: 4px 0 6px; min-width: 0; }
+  .stations::before { content: ""; position: absolute; left: 10px; right: 10px; top: 13px; height: 3px; background: var(--line); border-radius: 2px; }
+  .stations .fill { position: absolute; left: 10px; top: 13px; height: 3px; background: var(--green); border-radius: 2px; }
+  .st { position: relative; flex: 0 0 160px; padding: 0 8px 0 0; text-decoration: none; color: var(--text); min-width: 0; }
+  .st i { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--line-strong); margin: 6px 0 8px 4px; box-sizing: border-box; }
+  .st.done i { background: var(--green); border-color: var(--green); } .st.next i { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .st b { display: block; font-family: var(--display); font-weight: 500; font-size: 12.5px; line-height: 1.25; } .st small { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
+  .st.next b { color: var(--accent); } .st.done b { color: var(--muted); } .st:hover b { color: var(--accent); }
+  .st.locked { opacity: .7; }
+  @media (max-width: 640px) { .rail { grid-template-columns: 1fr; } .nextcard { grid-template-columns: 1fr; } }
   .cols { display: flex; flex-direction: column; gap: var(--s3); }
   .col { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px 6px; min-width: 0; }
   .col .head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
@@ -385,12 +383,10 @@
     <footer class="pfoot"><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
   </div></section>
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
-    <div class="pmode" role="group" aria-label="Learning path mode"><button type="button" data-pmode="route" aria-pressed="true">plan a route</button><button type="button" data-pmode="time" aria-pressed="false">fit my time</button></div>
-    <div class="pane" id="pane-route">
-      <p class="intro">Pick where you want to get to. The route follows prerequisites from what you have already done.</p>
-      <div class="ask"><label for="dest">I want to reach</label>
-        <div class="pick" id="pick"><input type="text" id="dest" placeholder="type a course name…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="pickList" aria-autocomplete="list"><div class="pick-list" id="pickList" role="listbox" hidden></div></div></div>
-      <div id="routeOut"></div>
+    <div class="pmode" role="group" aria-label="Learning path mode"><button type="button" data-pmode="track" aria-pressed="true">follow a track</button><button type="button" data-pmode="time" aria-pressed="false">fit my time</button></div>
+    <div class="pane" id="pane-track">
+      <p class="intro">One rail per destination, courses in the order to take them. Your progress fills the rail; the next station is lit.</p>
+      <div id="trackOut"></div>
     </div>
     <div class="pane" id="pane-time" hidden>
       <p class="intro">How much time do you have? Everything here is open to you now; done courses are struck out.</p>
@@ -445,7 +441,7 @@
   const unlocked = id => !isDone(id) && prereqsOf(id).every(p => isDone(p.id));
   // 'up next' only lights up once the learner has marked something done; before that it would mark every foundation course.
   const isNext = id => done.size > 0 && unlocked(id);
-  const hours = c => { const m = /([\d.]+)\s*(h|day|×)/.exec(c.length || ''); if (!m) return 99; const n = +m[1]; return m[2] === 'day' ? n * 8 : m[2] === '×' ? n * 2 : n; };
+  const hours = c => { const m = /([\d.]+)\s*(h|day|×)/.exec(c.length || ''); if (!m) return Infinity; const n = +m[1]; return m[2] === 'day' ? n * 8 : m[2] === '×' ? n * 2 : n; };
   function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); if (done.has(id) && graphReady) graphRipple(id); }
   document.getElementById('reset').addEventListener('click', () => { if ((done.size || doneMods.size) && confirm('Clear your local progress?')) { done.clear(); doneMods.clear(); saveDone(); try { localStorage.removeItem('iekb-mods'); } catch (e) {} refresh(); } });
 
@@ -511,67 +507,43 @@
     }).join('') || '<p class="intro">Nothing matches.</p>';
   }
 
-  // ---- learning path: plan a route (prerequisite chain to a destination) or fit my time (what fits the time you have)
-  const fmtH = h => h >= 99 ? 'time not set' : h < 8 ? `~${h % 1 ? h.toFixed(1) : h} h` : `~${Number.isInteger(h / 8) ? h / 8 : (h / 8).toFixed(1)} day${h / 8 > 1 ? 's' : ''}`;
+  // ---- learning path: follow a track (curated rails from roles/tracks.md) or fit my time (what fits the time you have)
+  const fmtH = h => !isFinite(h) ? 'time not set' : h < 8 ? `~${h % 1 ? h.toFixed(1) : h} h` : `~${Number.isInteger(h / 8) ? h / 8 : (h / 8).toFixed(1)} day${h / 8 > 1 ? 's' : ''}`;
   const courseLink = c => `<a class="tt" href="#course:${slug(c.id)}" data-open="${esc(c.id)}">${esc(c.label)}</a>`;
-  let dest = null;
-  try { dest = localStorage.getItem('iekb-dest'); } catch (e) {}
-  function routeTo(target) {   // prerequisites first, destination last, each once
-    const out = [], seen = new Set();
-    const visit = (c, by) => { if (seen.has(c.id)) return; seen.add(c.id); prereqsOf(c.id).forEach(q => visit(q, c)); out.push({ c, by }); };
-    visit(target, null); return out;
-  }
-  const pickIn = document.getElementById('dest'), pickList = document.getElementById('pickList');
-  let pickAct = -1;
-  function pickOptions(q) {   // empty query: grouped by category; typed query: one list, best title match first
-    q = q.trim().toLowerCase();
-    if (!q) return cats.flatMap(cat => { const cs = courses.filter(c => c.parent === cat.id).sort((a, b) => a.label.localeCompare(b.label)); return cs.length ? [{ group: cat.label }, ...cs] : []; });
-    const rank = c => { const l = c.label.toLowerCase(); return l.startsWith(q) ? 0 : l.includes(q) ? 1 : (c.search || '').toLowerCase().includes(q) ? 2 : 9; };
-    return courses.map(c => [rank(c), c]).filter(([r]) => r < 9).sort((a, b) => a[0] - b[0] || a[1].label.localeCompare(b[1].label)).map(([, c]) => c);
-  }
-  function pickOpen(q) {
-    const opts = pickOptions(q), items = opts.filter(o => !o.group);
-    pickAct = items.length ? 0 : -1;
-    pickList.innerHTML = opts.length ? opts.map(o => o.group ? `<div class="g">${esc(o.group)}</div>` : `<div class="o ${o.id === dest ? 'cur' : ''}" role="option" data-pick="${esc(o.id)}"><span>${o.id === dest ? '✓ ' : ''}${esc(o.label)}${q.trim() ? ` <small>${esc(byId.get(o.parent).label)}</small>` : ''}</span><small>${fmtH(hours(o))}</small></div>`).join('') : '<div class="none">no course matches</div>';
-    pickList.hidden = false; pickIn.setAttribute('aria-expanded', 'true'); pickPaint();
-  }
-  function pickPaint() { pickList.querySelectorAll('.o').forEach((el, i) => { el.classList.toggle('act', i === pickAct); if (i === pickAct) el.scrollIntoView({ block: 'nearest' }); }); }
-  function pickClose() { pickList.hidden = true; pickIn.setAttribute('aria-expanded', 'false'); pickIn.value = byId.has(dest) ? byId.get(dest).label : ''; }
-  function pickChoose(id) { dest = id; try { localStorage.setItem('iekb-dest', dest); } catch (e) {} pickClose(); renderRoute(); }
-  pickIn.addEventListener('focus', () => { pickIn.select(); pickOpen(''); });
-  pickIn.addEventListener('input', () => pickOpen(pickIn.value));
-  pickIn.addEventListener('keydown', e => {
-    const items = pickList.querySelectorAll('.o');
-    if (e.key === 'ArrowDown') { e.preventDefault(); if (pickList.hidden) pickOpen(pickIn.value); else { pickAct = Math.min(items.length - 1, pickAct + 1); pickPaint(); } }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); pickAct = Math.max(0, pickAct - 1); pickPaint(); }
-    else if (e.key === 'Enter') { e.preventDefault(); const el = items[pickAct]; if (el) pickChoose(el.dataset.pick); }
-    else if (e.key === 'Escape') { pickClose(); pickIn.blur(); }
-  });
-  pickList.addEventListener('mousedown', e => { const o = e.target.closest('[data-pick]'); if (o) { e.preventDefault(); pickChoose(o.dataset.pick); } });
-  pickIn.addEventListener('blur', () => setTimeout(pickClose, 120));
-  function renderRoute() {
-    if (!dest || !byId.has(dest)) dest = (courses.find(c => prereqsOf(c.id).length) || courses[0]).id;
-    if (document.activeElement !== pickIn) pickIn.value = byId.get(dest).label;
-    const target = byId.get(dest);
-    const route = routeTo(target), left = route.filter(s => !isDone(s.c.id));
-    let n = 0, hrs = 0, unset = 0;
-    const rows = route.map(s => { const d = isDone(s.c.id), h = hours(s.c); if (!d) { n++; if (h >= 99) unset++; else hrs += h; }
-      const why = d ? 'done' : s.by ? `required by ${esc(s.by.label)}` : (s.c.id === target.id ? (route.length > 1 ? 'your destination' : 'your destination · no prerequisites, start here') : '');
-      return `<div class="step ${d ? 'done' : ''} ${!d && n === 1 ? 'cur' : ''}"><span class="n">${d ? '✓' : n}</span><div>${courseLink(s.c)}<p class="why">${why}</p></div><span class="time">${fmtH(h)}</span></div>`; }).join('');
-    document.getElementById('routeOut').innerHTML = `<div class="steps">${rows}</div>` +
-      `<div class="total"><div><b>${left.length}</b>${left.length === 1 ? 'step' : 'steps'} left</div><div><b>${hrs ? fmtH(hrs).replace('~', '') : (unset ? '?' : '0')}</b>of study${unset ? ` · ${unset} not timed` : ''}</div><div><b>${route.length - left.length} of ${route.length}</b>done</div></div>`;
+  function renderTracks() {
+    const tracks = (DATA.tracks || []).map(tr => ({ ...tr, cs: tr.courses.map(id => byId.get(id)).filter(Boolean) })).filter(tr => tr.cs.length);
+    const doneIn = tr => tr.cs.filter(c => isDone(c.id)).length;
+    const totalH = tr => tr.cs.reduce((s, c) => s + (isFinite(hours(c)) ? hours(c) : 0), 0);
+    // the next station: from the track you have started, else the first track
+    const live = tracks.find(tr => doneIn(tr) > 0 && doneIn(tr) < tr.cs.length) || tracks[0];
+    let h = '';
+    if (live) {
+      const nx = live.cs.find(c => !isDone(c.id));
+      h += nx ? `<div class="nextcard"><div><span class="chip accent">your next station</span><a class="tt" href="#course:${slug(nx.id)}" data-open="${esc(nx.id)}">${esc(nx.label)}</a><span class="m">${esc(live.label)} · station ${live.cs.indexOf(nx) + 1} of ${live.cs.length} · ${fmtH(hours(nx))}${unlocked(nx.id) || isDone(nx.id) ? '' : ' · prerequisites not done yet'}</span></div><a class="btn-primary" href="${reader(nx)}">Start →</a></div>`
+             : `<div class="nextcard"><div><span class="chip green">track complete</span><span class="tt">${esc(live.label)}</span><span class="m">every station done · pick another rail below</span></div></div>`;
+    }
+    h += tracks.map(tr => {
+      const d = doneIn(tr), n = tr.cs.length, nx = tr.cs.find(c => !isDone(c.id));
+      const st = tr.cs.map((c, i) => `<a class="st ${isDone(c.id) ? 'done' : ''} ${c === nx ? 'next' : ''} ${!isDone(c.id) && !unlocked(c.id) ? 'locked' : ''}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><i></i><b>${esc(c.label)}</b><small>${fmtH(hours(c))}${isDone(c.id) ? ' ✓' : c === nx ? ' · next' : ''}</small></a>`).join('');
+      const last = tr.cs.map((c, i) => isDone(c.id) ? i : -1).reduce((a, b) => Math.max(a, b), -1);   // the rail is filled up to the last done station
+      const fill = n > 1 && last >= 0 ? last / (n - 1) * 100 : 0;
+      const role = tr.role ? `<div class="m">O*NET ${esc(tr.role)}</div>` : '';
+      const outlook = tr.outlook ? `<div class="m outlook">${esc(tr.outlook)}${tr.source ? ` · <a href="${esc(tr.source)}" rel="noopener" title="${esc(tr.sourceLabel || 'source')}">BLS ↗</a>` : ''}</div>` : '';
+      return `<div class="rail"><div><h3>${esc(tr.label)}</h3><div class="m">${n} courses · ${fmtH(totalH(tr))}${d ? ` · ${d} done` : ''}</div>${role}${outlook}${tr.goal ? `<p class="goal">${esc(tr.goal)}</p>` : ''}</div><div class="stations"><span class="fill" style="width:${fill}%"></span>${st}</div></div>`;
+    }).join('');
+    document.getElementById('trackOut').innerHTML = h || '<p class="intro">No tracks yet. Add one to <code>roles/tracks.md</code>.</p>';
   }
   function renderBudget() {
     const open = courses.filter(c => unlocked(c.id) || isDone(c.id)).sort((a, b) => hours(a) - hours(b) || a.label.localeCompare(b.label));
-    const bands = [['An afternoon', 'up to 4 h', h => h <= 4], ['A day', '4 to 8 h', h => h > 4 && h <= 8], ['A few days', '1 to 3 days', h => h > 8 && h <= 24], ['A week', '3 to 5 days', h => h > 24 && h <= 40], ['Longer', 'more than a week', h => h > 40 && h < 99]];
-    const unset = open.filter(c => hours(c) >= 99);
+    const bands = [['An afternoon', 'up to 4 h', h => h <= 4], ['A day', '4 to 8 h', h => h > 4 && h <= 8], ['A few days', '1 to 3 days', h => h > 8 && h <= 24], ['A week', '3 to 5 days', h => h > 24 && h <= 40], ['Longer', 'more than a week', h => h > 40 && isFinite(h)]];
+    const unset = open.filter(c => !isFinite(hours(c)));
     const col = (title, m, cs) => `<div class="col"><div class="head"><h3>${title}</h3><span class="m">${m}${cs.length ? ` · ${cs.length} ${cs.length === 1 ? 'course' : 'courses'}` : ''}</span></div>${cs.length ? `<div class="list">${cs.map(c => `<a class="c ${isDone(c.id) ? 'done' : ''}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><span>${esc(c.label)}</span><small>${fmtH(hours(c))}</small></a>`).join('')}</div>` : '<div class="empty">nothing open yet at this size</div>'}</div>`;
     document.getElementById('budgetOut').innerHTML = '<div class="cols">' + bands.map(([title, m, f]) => col(title, m, open.filter(c => f(hours(c))))).join('') + (unset.length ? col('Time not set', 'length still to be estimated', unset) : '') + '</div>';
   }
-  function renderPath() { renderRoute(); renderBudget(); }
+  function renderPath() { renderTracks(); renderBudget(); }
   document.querySelectorAll('[data-pmode]').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('[data-pmode]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    document.getElementById('pane-route').hidden = b.dataset.pmode !== 'route'; document.getElementById('pane-time').hidden = b.dataset.pmode !== 'time';
+    document.getElementById('pane-track').hidden = b.dataset.pmode !== 'track'; document.getElementById('pane-time').hidden = b.dataset.pmode !== 'time';
     try { localStorage.setItem('iekb-pmode', b.dataset.pmode); } catch (e) {}
   }));
   try { const m = localStorage.getItem('iekb-pmode'); if (m === 'time') document.querySelector('[data-pmode="time"]').click(); } catch (e) {}
