@@ -369,9 +369,12 @@
     .cards { grid-template-columns: 1fr; }
     aside { width: 100%; padding-left: var(--s4); padding-right: var(--s4); }
   }
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 40; padding: 6px 10px; background: var(--accent); color: var(--bg); border-radius: 6px; font-family: var(--mono); font-size: 12.5px; } .skip:focus { left: 8px; }
+  @media print { .skip { display: none; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <header class="topbar">
   <span class="path"><span class="dot">~</span>/<a href="index.html" id="homeLink">ie-knowledgebase</a>/<b id="pathName">catalog</b></span>
@@ -389,7 +392,7 @@
   </label>
   <button type="button" class="btn icon" id="theme" aria-label="Toggle light or dark theme" title="Theme"><svg class="bi" width="15" height="15" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/></svg></button>
 </header>
-<main>
+<main id="main">
   <section class="view active" id="view-catalog" role="tabpanel" aria-labelledby="tab-catalog"><div class="page">
     <div class="hero" id="hero">
       <svg class="bgmap" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
