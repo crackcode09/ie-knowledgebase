@@ -172,3 +172,30 @@
 
 ### Outcome (filled in after completion)
 - Delivered. First map run on Quality Engineering Essentials (two runs, consolidated, 17 differing rows, 10 questions) at `roles/mappings/quality-engineering-essentials.md`, state proposed.
+
+## [2026-10-28] — Plan: Fix site review findings 1–4 and 6–9
+
+### Status: COMPLETE
+
+### What is being built or changed
+- Eight bugs from a code review of the two site templates: mind-map springs, drawer focus, repeated D3 notice, search on the Learning path tab, a reader error on an unknown course, course-done rules that disagreed between the two pages, in-course link resolution, and repeated Mermaid failure notices.
+
+### Files to be created or modified
+- `tools/roadmap_template.html` — fixes 1–4 and the catalog half of 7
+- `tools/reader_template.html` — fixes 6–9
+- `public/index.html`, `public/course.html` — regenerated
+
+### Implementation steps
+1. Patch both templates; regenerate with `python tools/roadmap_graph.py`.
+2. Syntax-check the embedded scripts with node.
+3. Exercise each fix in the browser pane at 1280 px.
+
+### Assumptions & decisions
+- One course-done rule on both pages: ticking the last module marks the course done; unticking a module from a full set un-marks it; a course marked done by hand otherwise stays done.
+- Findings 5 (sanitise reader HTML), 10 (SRI for anime.js), 11 (icon placeholders inside the data) and 12 (track source URL scheme) are left for a later change.
+
+### Questions for user
+- None.
+
+### Outcome (filled in after completion)
+- All eight fixed. Verified in the browser: drawer focus and course-done rule (2, 7), search switches to the catalog (4), one D3 notice after repeated tab clicks and resizes (3), no error on an unknown course (6), reader course-done rule in all three cases (7), one Mermaid notice per diagram after four theme switches (9). Fix 8 checked in node against the template's own `resolve()`. Fix 1 (animation springs) could not be checked in the browser: the pane was hidden, so animation frames did not run.
