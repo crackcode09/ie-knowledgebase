@@ -1,8 +1,8 @@
 <div class="eyebrow">cat privacy.html</div>
 <h1>Privacy Policy</h1>
-<div class="meta">Effective 2026-10-27 · applies to https://nidhy.dev/ie-knowledgebase/ and the pages under it</div>
+<div class="meta">Effective 2026-10-28 · applies to https://ieknowledgebase.nidhy.dev/ and the pages under it</div>
 
-<div class="box"><b>In one paragraph.</b> This is a static site. It has no accounts, no cookies, no analytics and no tracking. The only thing it stores is your own reading progress and theme choice, in your own browser, and that never leaves your device. The hosting and content-delivery services it is built on see your IP address the way any website does.</div>
+<div class="box"><b>In one paragraph.</b> This is a static site. It has no accounts, no cookies, no analytics and no tracking. The only things it stores are your own reading progress, learning-path choices and theme, in your own browser, and they never leave your device. The hosting and content-delivery services it is built on see your IP address the way any website does.</div>
 
 <nav class="toc" aria-label="On this page"><a href="#who">Who runs this site</a><a href="#collect">What we collect</a><a href="#storage">Browser storage</a><a href="#third">Third-party services</a><a href="#github">GitHub</a><a href="#children">Children</a><a href="#rights">Your rights</a><a href="#changes">Changes</a><a href="#contact">Contact</a></nav>
 
@@ -26,18 +26,20 @@
   <tr><td><code>iekb-done</code></td><td>Which courses you have ticked as done</td></tr>
   <tr><td><code>iekb-mods</code></td><td>Which modules you have ticked as done</td></tr>
   <tr><td><code>iekb-theme</code></td><td>Light or dark theme, if you changed it</td></tr>
+  <tr><td><code>iekb-track</code></td><td>Which learning track you picked on the learning path</td></tr>
+  <tr><td><code>iekb-pmode</code></td><td>Whether the learning path follows a track or fits your time</td></tr>
 </table>
-<p>This data stays on your device. It is never sent to us or to anyone else, and it is not shared between your devices. The <strong>reset</strong> button in the catalog header clears it, and so does clearing site data in your browser. The site works without it; if storage is blocked, progress is simply not remembered.</p>
+<p>This data stays on your device. It is never sent to us or to anyone else, and it is not shared between your devices. The <strong>reset</strong> button in the catalog header clears your course and module progress; clearing site data in your browser removes all of it. The site works without it; if storage is blocked, progress is simply not remembered.</p>
 
 <h2 id="third">Third-party services</h2>
 <p>Like almost every website, these pages are delivered by services that process your IP address and standard request details (browser type, page requested, time) in order to serve the files. We do not receive that information from them.</p>
 <table>
   <tr><th>Service</th><th>Used for</th><th>Their policy</th></tr>
-  <tr><td>GitHub Pages</td><td>Hosting the site and the course files</td><td><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub privacy statement</a></td></tr>
-  <tr><td>cdnjs (Cloudflare)</td><td>Loading the D3, marked and Mermaid libraries that draw the map and render the lessons</td><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare privacy policy</a></td></tr>
+  <tr><td>Cloudflare Pages</td><td>Hosting and delivering the site and the course files</td><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare privacy policy</a></td></tr>
+  <tr><td>cdnjs (Cloudflare)</td><td>Loading the D3, marked, DOMPurify, Mermaid and anime.js libraries that draw the map, render and clean the lessons, and animate the page</td><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare privacy policy</a></td></tr>
   <tr><td>Google Fonts</td><td>Loading the Inter, Space Grotesk and JetBrains Mono typefaces</td><td><a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts privacy FAQ</a></td></tr>
 </table>
-<p>GitHub Pages may record visitor IP addresses in its server logs for security purposes; those logs belong to GitHub and are not available to us.</p>
+<p>Cloudflare, which hosts and delivers the site, processes visitor IP addresses and may keep them in its logs for security and to keep the service running; those logs belong to Cloudflare and are not available to us. Cloudflare's dashboard shows the site's maintainer aggregate traffic totals (requests, data served, countries) that do not identify anyone. We do not turn on Cloudflare Web Analytics or any other analytics.</p>
 
 <h2 id="github">If you take part on GitHub</h2>
 <p>If you open an issue, start a discussion or submit a pull request, you do so on GitHub under your GitHub account and GitHub's own terms. Whatever you post there is public, as is the usual case for an open-source project. We do not collect it separately.</p>

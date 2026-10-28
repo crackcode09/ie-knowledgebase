@@ -1,6 +1,6 @@
 # Notice: originality, affiliation and trademarks
 
-Effective 2026-10-27. The site version of this notice is at <https://nidhy.dev/ie-knowledgebase/public/terms.html#originality>.
+Effective 2026-10-27. The site version of this notice is at <https://ieknowledgebase.nidhy.dev/terms.html#originality>.
 
 ## Not affiliated with IISE
 
@@ -43,4 +43,4 @@ Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Code: [MIT](
 
 If you believe anything here infringes a copyright or trademark or reproduces material it should not, open an issue at <https://github.com/crackcode09/ie-knowledgebase/issues> saying which file, what the problem is and, for a rights claim, what you own and how to reach you. We will acknowledge it, take the specific material down while we look into a plausible claim, and reply with what we did. GitHub's own [DMCA process](https://docs.github.com/en/site-policy/content-removal-policies/dmca-takedown-policy) is also available.
 
-The site's [Privacy Policy](https://nidhy.dev/ie-knowledgebase/public/privacy.html) and [Terms of Use](https://nidhy.dev/ie-knowledgebase/public/terms.html) are generated from `tools/legal/` by `tools/roadmap_graph.py`.
+The site's [Privacy Policy](https://ieknowledgebase.nidhy.dev/privacy.html) and [Terms of Use](https://ieknowledgebase.nidhy.dev/terms.html) are generated from `tools/legal/` by `tools/roadmap_graph.py`.
