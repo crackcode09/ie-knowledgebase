@@ -31,6 +31,8 @@ IISE, Institute of Industrial and Systems Engineers, MODAPTS, MTM, MTM-1, Six Si
 
 The role profiles under `roles/onet/` include information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence; the release version and download date are stamped in each file. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.
 
+The outlook lines in `roles/tracks.md` (median pay, projected growth, number of jobs) are from the U.S. Bureau of Labor Statistics Occupational Outlook Handbook, a U.S. government work in the public domain; each track links its Handbook entry and states the Handbook's year. BLS does not endorse this site.
+
 The site's interface icons are from [Bootstrap Icons](https://github.com/twbs/icons) (MIT, The Bootstrap Authors), vendored under `tools/icons/` with its licence and inlined into the pages by the generator.
 
 The pages load [D3](https://d3js.org/) (ISC, Mike Bostock), [marked](https://marked.js.org/) (MIT, Christopher Jeffrey and contributors) and [Anime.js](https://animejs.com/) (MIT, Julian Garnier) from a CDN at pinned versions; none is vendored.
