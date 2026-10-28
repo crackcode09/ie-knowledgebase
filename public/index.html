@@ -412,7 +412,7 @@
   // 'up next' only lights up once the learner has marked something done; before that it would mark every foundation course.
   const isNext = id => done.size > 0 && unlocked(id);
   const hours = c => { const m = /([\d.]+)\s*(h|day|×)/.exec(c.length || ''); if (!m) return 99; const n = +m[1]; return m[2] === 'day' ? n * 8 : m[2] === '×' ? n * 2 : n; };
-  function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); }
+  function toggleDone(id) { if (done.has(id)) done.delete(id); else done.add(id); saveDone(); refresh(); if (done.has(id) && graphReady) graphRipple(id); }
   document.getElementById('reset').addEventListener('click', () => { if ((done.size || doneMods.size) && confirm('Clear your local progress?')) { done.clear(); doneMods.clear(); saveDone(); try { localStorage.removeItem('iekb-mods'); } catch (e) {} refresh(); } });
 
   // ---- prerequisite levels for the path view
@@ -646,12 +646,12 @@
   const narrow = () => matchMedia('(max-width: 700px)').matches;
 
   // ---- mind map (D3 tree, built on first open)
-  let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {};
+  let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {}, graphRipple = () => {};
   function initGraph() {
     if (!window.d3) { document.getElementById('view-graph').insertAdjacentHTML('afterbegin', '<p class="intro" style="padding:var(--s7) var(--s5)">The mind map needs the D3 library from cdnjs, which could not be loaded. The catalog and learning path still work.</p>'); return; }
     const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
     const svg = d3.select('#graph'), g = svg.append('g');
-    const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g');
+    const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g'), fxLayer = g.append('g').attr('pointer-events', 'none');
     svg.append('defs').append('marker').attr('id', 'arrow').attr('viewBox', '0 -4 8 8').attr('refX', 8).attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
       .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', css('--prereq'));
 
@@ -714,8 +714,13 @@
       }
       // nodes
       const node = nodeLayer.selectAll('g.node:not(.hub)').data(ns, n => n.data.id);
-      node.exit().transition().duration(dur).attr('opacity', 0).remove();
-      const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => `translate(${n.parent && n.parent.depth > 0 ? n.parent.px : 0},${n.parent && n.parent.depth > 0 ? n.parent.py : 0})`)
+      const spring = motion && dur > 0;
+      const home = n => { const p = n.parent && n.parent.depth > 0 ? (byKey.get(n.parent.data.id) || n.parent) : null; return p ? { x: p.px, y: p.py } : { x: 0, y: 0 }; };
+      const exit = node.exit();
+      exit.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });
+      if (spring) exit.each(function (n) { const pos = { x: n.px, y: n.py }, h = home(n), el = this; anime.animate(pos, { x: h.x, y: h.y, duration: dur, ease: 'inCubic', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`) }); });
+      exit.transition().duration(dur).attr('opacity', 0).remove();
+      const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => { const h = home(n); return `translate(${h.x},${h.y})`; })
         .attr('tabindex', 0).attr('role', 'button')
         .on('click', (e, n) => { e.stopPropagation(); onClick(n); })
         .on('keydown', (e, n) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onClick(n); } });
@@ -723,7 +728,14 @@
       const all = enter.merge(node);
       all.attr('aria-label', n => n.data.label);
       svg.select('#arrow path').attr('fill', css('--prereq'));
-      all.transition().duration(dur).attr('opacity', 1).attr('transform', n => `translate(${n.px},${n.py})`);
+      node.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });   // a re-layout mid-spring hands the node back to d3
+      all.transition().duration(dur).attr('opacity', 1);
+      (spring ? node : all).transition().duration(dur).attr('transform', n => `translate(${n.px},${n.py})`);
+      if (spring) enter.each(function (n) {
+        const h = home(n), pos = { x: h.x, y: h.y }, el = this, label = this.querySelector('text');
+        n.__spring = anime.animate(pos, { x: n.px, y: n.py, duration: dur + 150, ease: 'outBack(1.5)', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`), onComplete: () => { n.__spring = null; } });
+        if (label) { label.style.opacity = 0; anime.animate(label, { opacity: [0, 1], duration: 260, delay: 180, ease: 'outCubic', onComplete: () => { label.style.opacity = ''; } }); }
+      });
       all.select('circle').attr('r', r).attr('fill', fill).attr('stroke', strokeOf).attr('stroke-width', 1.5);
       all.select('text').text(n => glyph(n) + n.data.label + (type(n) === 'topic' && n.data.data.covered ? ' · folded in' : '') + ((n._children && !n.children) ? (isCat(n) ? '' : ' ▸') : ''))
         .attr('x', n => n.dir * (r(n) + 6)).attr('text-anchor', n => n.dir > 0 ? 'start' : 'end')
@@ -741,8 +753,8 @@
       const parc = l => { const ax = l.a.px - l.a.dir * (r(l.a) + 2), bx = l.b.px - l.b.dir * (r(l.b) + 2); const bulge = l.a.dir === l.b.dir ? -l.a.dir * 90 : 0; return `M${ax},${l.a.py} C${ax + bulge},${l.a.py} ${bx + bulge},${l.b.py} ${bx},${l.b.py}`; };
       pp.enter().append('path').attr('fill', 'none').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4').attr('marker-end', 'url(#arrow)').merge(pp)
         .attr('stroke', css('--prereq')).transition().duration(dur).attr('d', parc);
-      applyDim();
       lastNodes = ns;
+      applyDim();
       paintDepth();
     }
     let lastNodes = [];
@@ -761,9 +773,26 @@
     }
     function toggle(d) { if (d.children) { d._children = d.children; d.children = null; } else if (d._children) { d.children = d._children; d._children = null; } }
     function setAll(expand) { const walk = d => { if (expand ? d._children : d.children) toggle(d); (d.children || d._children || []).forEach(walk); }; catNodes.forEach(walk); }
+    let liftFrom = null;   // the id the last lift started from, so a repeat click does not redraw
     function applyDim() {
-      nodeLayer.selectAll('g.node:not(.hub)').classed('dim', n => keep && !keep.has(n.data.id));
-      linkLayer.selectAll('path').classed('dim', l => keep && !keep.has(l.t.data.id));
+      const origin = motion && selectedId ? lastNodes.find(n => n.data.id === selectedId) : null;
+      const fade = (el, n, dim) => {   // class is the state; inline opacity only while the wave runs
+        const was = el.classList.contains('dim'); el.classList.toggle('dim', dim);
+        if (!origin || was === dim) return;
+        const delay = Math.hypot(n.px - origin.px, n.py - origin.py) / 2.5;
+        const to = dim ? (el.classList.contains('link') ? .08 : .15) : 1;
+        el.style.opacity = dim ? 1 : (el.classList.contains('link') ? .08 : .15);
+        anime.animate(el, { opacity: to, duration: 320, delay: dim ? delay : 0, ease: 'outCubic', onComplete: () => { el.style.opacity = ''; } });
+      };
+      nodeLayer.selectAll('g.node:not(.hub)').each(function (n) { fade(this, n, !!(keep && !keep.has(n.data.id))); });
+      linkLayer.selectAll('path').each(function (l) { fade(this, l.t, !!(keep && !keep.has(l.t.data.id))); });
+      if (origin && keep && liftFrom !== selectedId) {
+        liftFrom = selectedId;
+        const kept = linkLayer.selectAll('path').filter(l => keep.has(l.t.data.id) && l.t.data.id !== selectedId).nodes();
+        if (kept.length) anime.animate(anime.svg.createDrawable(kept), { draw: ['0 0', '0 1'], duration: 380, ease: 'outQuad',
+          onComplete: () => kept.forEach(el => { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); }) });
+      }
+      if (!keep) liftFrom = null;
     }
     function fit(animate = false) {
       const { width, height } = svg.node().getBoundingClientRect();
@@ -796,6 +825,14 @@
       catNodes.forEach(c => walk(c, [])); setAll(true); render();
     };
     graphResize = () => fit();
+    graphRipple = id => {
+      if (!motion) return;
+      const n = lastNodes.find(x => x.data.id === id); if (!n) return;
+      const ring = fxLayer.append('circle').attr('cx', n.px).attr('cy', n.py).attr('r', r(n)).attr('fill', 'none').attr('stroke', css('--green')).attr('stroke-width', 2.5).node();
+      anime.animate(ring, { r: [r(n), 34], opacity: [.9, 0], strokeWidth: [2.5, .5], duration: 650, ease: 'outCubic', onComplete: () => ring.remove() });
+      const dot = nodeLayer.selectAll('g.node:not(.hub)').filter(x => x.data.id === id).select('circle').node();
+      if (dot) anime.animate(dot, { r: [r(n), r(n) * 1.9, r(n)], duration: 420, ease: 'outCubic' });
+    };
     graphRestyle = () => render(false);
     // depth chips: 1 = categories only, 2 = categories and courses, 3 = everything. Lit chips are cumulative.
     const expandable = d => d.children || d._children;
