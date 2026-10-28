@@ -1,6 +1,6 @@
 """Draw ROADMAP.md as a radial knowledge graph (roadmap.svg) and build the
 interactive site (public/index.html, public/course.html) from the roadmap and course READMEs.
-GitHub Pages publishes the repo root; the site lives in public/ and reads courses/ in place.
+The site lives in public/ and reads courses/ beside it; tools/build_site.py assembles both for hosting.
 
 Usage:  python tools/roadmap_graph.py
 Re-run after editing ROADMAP.md or adding a course. Standard library only.

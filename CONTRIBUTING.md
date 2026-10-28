@@ -38,7 +38,7 @@ Fork → branch → pull request into `dev`. Run any checks the course ships (e.
 ### Branches
 
 ```text
-main   what is published at nidhy.dev/ie-knowledgebase (GitHub Pages builds from it)
+main   what is published at ieknowledgebase.nidhy.dev (Cloudflare Pages builds from it)
   └── dev   where every change lands first, by pull request
         └── <type>/<short-name>   one branch per change, from dev (feat/, fix/, docs/, style/, perf/, review/)
 ```
