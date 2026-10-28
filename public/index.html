@@ -246,6 +246,17 @@
   .mods .mod:hover { background: var(--surface-2); } .mods .mod:hover .t { color: var(--accent); }
   .mods .mod.cur { background: var(--accent-soft); } .mods .mod.cur .n, .mods .mod.cur .t { color: var(--accent); }
   .mods .mod.done .n { color: var(--green); }
+  .mods.catalog { padding: 2px var(--s3) var(--s3); gap: 0; }
+  .crow { cursor: pointer; padding: 8px 10px; align-items: center; }
+  .crow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .crow .n { width: 24px; display: flex; align-items: center; }
+  .crow .t .tag { margin-left: 6px; vertical-align: 1px; }
+  .crow .meta b { color: var(--next); font-weight: 500; }
+  .crow.next { box-shadow: inset 3px 0 0 var(--accent); }
+  .crow.locked { opacity: .7; }
+  .crow.done { background: var(--done-bg); } .crow.done .t { color: var(--muted); }
+  .crow .tick { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--todo); background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 12px; color: var(--bg); padding: 0; }
+  .crow.done .tick { background: var(--green); border-color: var(--green); }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
@@ -261,7 +272,7 @@
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
   @media (pointer: coarse) {
     .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
-    .card .tick { width: 28px; height: 28px; font-size: 14px; }
+    .card .tick, .crow .tick { width: 28px; height: 28px; font-size: 14px; } .crow .n { width: 32px; }
     aside .close { padding: 6px 12px; top: 8px; right: 8px; }
     .mods .mod { min-height: 40px; }
   }
@@ -422,6 +433,14 @@
 
   // ---- shared card
   const stateClass = c => isDone(c.id) ? 'done' : isNext(c.id) ? 'next' : unlocked(c.id) ? '' : 'locked';
+  function row(c) {
+    const n = modulesOf(c.id).length, d = isDone(c.id), md = modsDone(c);
+    const meta = [c.length || '', n ? `${n} modules` : '', n && md && !d ? `${md} of ${n} done` : '', isNext(c.id) ? '<b>up next</b>' : ''].filter(Boolean).join(' · ');
+    const tag = c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>';
+    return `<div class="mod crow ${stateClass(c)}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-label="${esc(c.label)}: open details">
+      <span class="n"><button type="button" class="tick" data-tick="${esc(c.id)}" aria-pressed="${d}" title="${d ? 'Mark as not done' : 'Mark as done'}" aria-label="${esc(c.label)}: ${d ? 'done, mark as not done' : 'mark as done'}">${d ? '✓' : ''}</button></span>
+      <span class="body"><span class="t">${esc(c.label)} ${tag}</span><span class="meta">${meta}</span></span></div>`;
+  }
   function card(c, withCat) {
     const n = modulesOf(c.id).length;
     const d = isDone(c.id), cat = byId.get(c.parent);
@@ -456,7 +475,7 @@
       return `<details class="cat" data-cat="${esc(cat.id)}" ${(q || (cs.length && !closedCats.has(cat.id))) ? 'open' : ''}>
         <summary><h2>${cat.icon}${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
           <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
-        ${csv.length ? `<div class="cards">${csv.map(c => card(c, false)).join('')}</div>` : ''}
+        ${csv.length ? `<div class="mods catalog">${csv.map(row).join('')}</div>` : ''}
         ${tsv.some(t => t.covered) ? `<div class="planned"><span class="label">Folded in:</span>${tsv.filter(t => t.covered).map(t => `<span class="covered">✓ ${esc(t.label)} · in <a href="#" data-open="${esc(t.covered)}">${esc(byId.get(t.covered).label)}</a></span>`).join('')}</div>` : ''}
         ${tsv.some(t => !t.covered) ? `<details class="planned-wrap" ${q ? 'open' : ''}><summary>${tsv.filter(t => !t.covered).length} planned ${tsv.filter(t => !t.covered).length === 1 ? 'topic' : 'topics'} not built yet</summary><div class="planned">${tsv.filter(t => !t.covered).map(t => `<span>${esc(t.label)}</span>`).join('')}</div></details>` : ''}
       </details>`;
@@ -572,11 +591,11 @@
     if (tm) { e.stopPropagation(); const k = tm.dataset.tickmod; if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); try { localStorage.setItem('iekb-mods', JSON.stringify([...doneMods])); } catch (e2) {} refresh(); return; }
     const a = e.target.closest('[data-open]');
     if (a) { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); open(byId.get(a.dataset.open)); return; }
-    const c = e.target.closest('.card[data-id]');
+    const c = e.target.closest('.card[data-id], .crow[data-id]');
     if (c) open(byId.get(c.dataset.id));
   });
   document.body.addEventListener('keydown', e => {
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) { e.preventDefault(); open(byId.get(e.target.dataset.id)); return; }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && (e.target.classList.contains('card') || e.target.classList.contains('crow'))) { e.preventDefault(); open(byId.get(e.target.dataset.id)); return; }
     if (e.key === 'Escape') { if (e.target.id === 'search') { e.target.blur(); return; } open(null); return; }
     if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,select,[contenteditable]')) { e.preventDefault(); openSearch(true); }
   });
