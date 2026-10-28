@@ -261,9 +261,7 @@
   }
   const slug = course.id.slice(7), slugQ = encodeURIComponent(slug);
   const courseRoot = course.path.replace(/\/README\.md$/, '');
-  // Course files sit beside the pages on ieknowledgebase.nidhy.dev (built by tools/build_site.py),
-  // and one level up on the old GitHub Pages layout (/public/); work on both during the move.
-  const fileBase = location.pathname.includes('/public/') ? '../' : '';
+  // Course files sit beside the pages: tools/build_site.py copies courses/ next to them in _site/.
   const cleanFile = f => { f = resolve('', (f || 'README.md').split('?')[0]); return (!/\.md$/i.test(f) || f.includes('..') || !f) ? 'README.md' : f; };
   let file = cleanFile(params.get('f'));
   const modules = nodes.filter(n => n.type === 'module' && n.parent === course.id).map(m => ({ ...m, rel: m.path.slice(courseRoot.length + 1) }));
@@ -350,7 +348,7 @@
     container.querySelectorAll('img[src]').forEach(img => {
       const src = img.getAttribute('src');
       if (/^(https?:|data:|\/\/)/.test(src)) return;
-      img.src = fileBase + courseRoot + '/' + resolve(file, src);
+      img.src = courseRoot + '/' + resolve(file, src);
     });
   }
 
@@ -476,7 +474,7 @@
 
   // ---- loading and in-course navigation (no reload between pages of one course)
   const mdCache = new Map();
-  const getMd = f => { if (!mdCache.has(f)) mdCache.set(f, fetch(`${fileBase}${courseRoot}/${f}`).then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))); return mdCache.get(f); };
+  const getMd = f => { if (!mdCache.has(f)) mdCache.set(f, fetch(`${courseRoot}/${f}`).then(r => r.ok ? r.text() : Promise.reject(new Error(r.status)))); return mdCache.get(f); };
   function prefetchNeighbours() {
     const i = modules.findIndex(m => m.rel === file);
     const near = i >= 0 ? [modules[i - 1], modules[i + 1]] : (isReadme ? [modules[0]] : []);
