@@ -107,10 +107,13 @@
     .topbar nav.toggle .btn + .btn { margin-left: 6px; }
     body { padding-bottom: 60px; }
   }
-  @media print { .topbar, footer { display: none; } body { background: #fff; color: #000; } main { padding: 0; } a { color: inherit; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 40; padding: 6px 10px; background: var(--accent); color: var(--bg); border-radius: 6px; font-family: var(--mono); font-size: 12.5px; } .skip:focus { left: 8px; }
+  @media print { .topbar, footer, .skip { display: none; } body { background: #fff; color: #000; } main { padding: 0; } a { color: inherit; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="topbar">
   <span class="path"><span class="dot">~</span>/<a href="index.html">ie-knowledgebase</a>/<b>__KEY__.html</b></span>
   <nav class="toggle" aria-label="Site views">
@@ -121,7 +124,7 @@
   <span class="spacer"></span>
   <button type="button" class="btn icon" id="btnTheme" aria-label="Toggle light or dark theme" title="Theme">__ICON:circle-half:15__</button>
 </div>
-<main>
+<main id="main">
 __BODY__
 </main>
 <footer><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>

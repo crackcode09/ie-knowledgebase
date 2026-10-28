@@ -107,10 +107,13 @@
     .topbar nav.toggle .btn + .btn { margin-left: 6px; }
     body { padding-bottom: 60px; }
   }
-  @media print { .topbar, footer { display: none; } body { background: #fff; color: #000; } main { padding: 0; } a { color: inherit; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 40; padding: 6px 10px; background: var(--accent); color: var(--bg); border-radius: 6px; font-family: var(--mono); font-size: 12.5px; } .skip:focus { left: 8px; }
+  @media print { .topbar, footer, .skip { display: none; } body { background: #fff; color: #000; } main { padding: 0; } a { color: inherit; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="topbar">
   <span class="path"><span class="dot">~</span>/<a href="index.html">ie-knowledgebase</a>/<b>roadmap.html</b></span>
   <nav class="toggle" aria-label="Site views">
@@ -121,7 +124,7 @@
   <span class="spacer"></span>
   <button type="button" class="btn icon" id="btnTheme" aria-label="Toggle light or dark theme" title="Theme"><svg class="bi" width="15" height="15" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/></svg></button>
 </div>
-<main>
+<main id="main">
 <div class="eyebrow">cat roadmap.html</div>
 <h1>Site roadmap</h1>
 <div class="meta">Where this build is going · updated 2026-10-27 · different from the <a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/ROADMAP.md" rel="noopener">course roadmap</a>, which lists which IISE topics have a course yet</div>
