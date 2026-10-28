@@ -10,16 +10,16 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Catalog, learning path and map of the IE Knowledgebase courses, with prerequisites and local progress tracking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   /* ── Warm-terminal design system (ported from my-claude.md) ───────── */
   :root {
     --bg: #1f1d18; --surface: #2a2721; --surface-2: #343028; --line: #3e392f; --line-strong: #534c3f;
     --text: #ede6da; --muted: #a79e89; --accent: #d97757; --accent-soft: rgba(217,119,87,.14);
     --green: #9cba7f; --green-soft: rgba(156,186,127,.16); --code-bg: #181612;
-    --ink: var(--text); --panel: var(--surface); --card: var(--surface); --bg-rgb: 31,29,24;
+    --ink: var(--text); --bg-rgb: 31,29,24;
     --cat: var(--accent); --built: var(--green); --todo: #5c5546; --module: #8a8170;
-    --prereq: var(--accent); --related: #6b6454; --next: var(--accent); --done-bg: var(--green-soft); --hub: var(--accent);
+    --prereq: var(--accent); --next: var(--accent); --done-bg: var(--green-soft); --hub: var(--accent);
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
     --display: "Space Grotesk", "Inter", -apple-system, sans-serif;
@@ -31,7 +31,7 @@
     --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
     --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
     --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
-    --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
+    --todo: #9a907b; --module: #8a8170;
     --shadow-1: 0 1px 2px rgba(60,40,20,.08); --shadow-2: 0 6px 24px rgba(60,40,20,.12);
   }
   @media (prefers-color-scheme: light) {
@@ -39,7 +39,7 @@
       --bg: #faf6ee; --surface: #ffffff; --surface-2: #f1ebdf; --line: #e3dccb; --line-strong: #c9bfa9;
       --text: #2a2721; --muted: #655d4f; --accent: #b0532f; --accent-soft: rgba(176,83,47,.12);
       --green: #4d7a2c; --green-soft: rgba(77,122,44,.14); --code-bg: #f1ebdf; --bg-rgb: 250,246,238;
-      --todo: #9a907b; --module: #8a8170; --related: #cfc6b3;
+      --todo: #9a907b; --module: #8a8170;
       --shadow-1: 0 1px 2px rgba(60,40,20,.08); --shadow-2: 0 6px 24px rgba(60,40,20,.12);
     }
   }
@@ -72,7 +72,7 @@
   .btn { min-height: 34px; line-height: 1; font-weight: 500; }
   .btn:hover, .graph-tools .mini:hover, .btn-secondary:hover { border-color: var(--accent); background: var(--surface-2); }
   .btn.active, .btn[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); box-shadow: none; }
-  .btn.icon { min-width: 34px; justify-content: center; }
+  .btn.icon { min-width: 34px; justify-content: center; padding: 6px 9px; }
   .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .btn svg { width: 14px; height: 14px; flex: none; }
   .toggle { display: flex; } .toggle .btn { border-radius: 0; }
@@ -89,9 +89,6 @@
     background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center / contain no-repeat; }
   .search kbd { font-family: var(--mono); font-size: 12px; line-height: 1; padding: 3px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: var(--surface-2); }
   .search:focus-within kbd { display: none; }
-  .status { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding: 6px 12px; background: var(--surface);
-    border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); white-space: nowrap; }
-  .btn.icon { padding: 6px 9px; }
   .chip button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; } .chip button:hover { text-decoration: underline; }
   .chip[hidden] { display: none; }
   .pfoot { margin: auto 0 0; padding: 0 0 var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 2; }
@@ -262,9 +259,6 @@
   .col .c.done { color: var(--muted); text-decoration: line-through; }
   .col .empty { font-size: 13px; color: var(--muted); padding: 6px 0 8px; }
   .card .cat-tag { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .legend { display: flex; gap: var(--s4); flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0 0 var(--s5); }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .sw { width: 14px; height: 10px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface-2); display: inline-block; }
 
   /* mind map */
   #graph { width: 100%; height: 100%; display: block; cursor: grab; }
@@ -336,8 +330,8 @@
   .btn-secondary { display: inline-block; margin: var(--s4) 0 0 6px; padding: 7px 12px; border-radius: 6px; background: var(--surface-2); color: var(--text); font-family: var(--mono); font-size: 12.5px; border: 1px solid var(--line); cursor: pointer; }
   .btn-secondary:hover { border-color: var(--accent); }
   .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; }
-  .pill.built, .pill.todo { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
-  .pill.next { background: var(--accent); color: var(--bg); } .pill.done { background: var(--green); color: var(--bg); }
+  .pill.todo { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .pill.done { background: var(--green); color: var(--bg); }
   @media (max-width: 900px) { .page { padding-left: var(--s4); padding-right: var(--s4); } }
   @media (pointer: coarse) {
     .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
@@ -358,11 +352,10 @@
     .view { bottom: 56px; }
   }
   @media (max-width: 640px) {
-    .more { display: none; }
     .intro { font-size: 14px; margin-bottom: var(--s3); }
     .hero { padding-top: var(--s6); } .hero .stats { gap: var(--s5); } .hero .stats .stat b { font-size: 22px; }
     header.topbar { gap: var(--s2); } .path { min-width: 0; }
-    .search { min-width: 0; flex: 1 1 100%; order: 9; } .status { white-space: normal; }
+    .search { min-width: 0; flex: 1 1 100%; order: 9; }
     .byline .chip { white-space: normal; overflow-wrap: anywhere; }
     .cat > summary { grid-template-columns: 1fr; }
     .bar { grid-column: 1; grid-row: auto; min-width: 0; white-space: normal; text-align: left; }
@@ -511,18 +504,6 @@
       <span class="n"><button type="button" class="tick" data-tick="${esc(c.id)}" aria-pressed="${d}" title="${d ? 'Mark as not done' : 'Mark as done'}" aria-label="${esc(c.label)}: ${d ? 'done, mark as not done' : 'mark as done'}">${d ? '✓' : ''}</button></span>
       <span class="body"><span class="t">${esc(c.label)}</span><span class="meta">${meta}${tag}</span></span></div>`;
   }
-  function card(c, withCat) {
-    const n = modulesOf(c.id).length;
-    const d = isDone(c.id), cat = byId.get(c.parent);
-    return `<article class="card ${stateClass(c)}" data-id="${esc(c.id)}" tabindex="0" aria-label="${esc(c.label)}: open details">
-      <div class="card-top">${c.verified ? '<span class="tag verified" title="Reviewed">verified</span>' : '<span class="tag draft" title="Written with AI assistance, not yet reviewed">draft</span>'}${withCat && cat ? `<span class="cat-tag">${esc(cat.label)}</span>` : ''}
-        <button type="button" class="tick" data-tick="${esc(c.id)}" aria-pressed="${d}" title="${d ? 'Mark as not done' : 'Mark as done'}" aria-label="${esc(c.label)}: ${d ? 'done, mark as not done' : 'mark as done'}">${d ? '✓' : ''}</button></div>
-      <h3>${esc(c.label)}</h3>
-      <div class="meta">${esc(c.length || '')}${n ? ` · ${n} modules` : ''}${isNext(c.id) ? ' · <b style="color:var(--next)">up next</b>' : ''}</div>
-      <div class="topic">${esc(c.search || c.description)}</div>
-      ${n && modsDone(c) && !isDone(c.id) ? `<div class="mprog" title="${modsDone(c)} of ${n} modules done"><i style="width:${100 * modsDone(c) / n}%"></i></div>` : ''}
-    </article>`;
-  }
 
   function renderStart() {
     const next = courses.filter(c => unlocked(c.id)).sort((a, b) => lvl(a) - lvl(b) || hours(a) - hours(b));
@@ -634,7 +615,7 @@
   const panel = document.getElementById('panel'), body = document.getElementById('panel-body');
   let selected = null;
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
-  const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
+  const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || (m.tcount === 1 ? 'topic' : 'topics')}` : '';
   // one module row for both panels: number or tick, title, time and objectives
   const modRow = (m, j, o) => { const d = doneMods.has(m.path), meta = [m.note || 'time not set', kindWord(m)].filter(Boolean).join(' · ');
     return `<a class="mod ${o.cur ? 'cur' : ''} ${d ? 'done' : ''}" href="${o.href}"${o.open ? ` data-open="${esc(m.id)}"` : ''}${o.cur ? ' aria-current="true"' : ''}><span class="n">${d ? '✓' : j}</span><span class="body"><span class="t">${esc(m.label)}</span><span class="meta">${esc(meta)}</span></span></a>`; };
