@@ -238,24 +238,18 @@
   aside .facts div { min-width: 0; overflow-wrap: anywhere; }
   aside .eyebrow a { color: var(--accent); text-decoration: none; } aside .eyebrow a:hover { text-decoration: underline; }
   .mods { display: flex; flex-direction: column; gap: 2px; }
-  .mods .mod { display: flex; gap: 10px; align-items: baseline; padding: 5px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: 13.5px; }
+  .mods .mod { display: flex; gap: 10px; align-items: baseline; padding: 6px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: 13.5px; }
+  .mods .mod .body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .mods .mod .t { font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); letter-spacing: -.01em; }
+  .mods .mod .meta { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
   .mods .mod .n { font-family: var(--mono); font-size: 12px; width: 1.4em; flex: none; }
-  .mods .mod:hover { background: var(--surface-2); color: var(--text); }
-  .mods .mod.cur { color: var(--accent); font-family: var(--display); font-weight: 500; background: var(--accent-soft); } .mods .mod.cur .n { color: var(--accent); }
+  .mods .mod:hover { background: var(--surface-2); } .mods .mod:hover .t { color: var(--accent); }
+  .mods .mod.cur { background: var(--accent-soft); } .mods .mod.cur .n, .mods .mod.cur .t { color: var(--accent); }
   .mods .mod.done .n { color: var(--green); }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
   aside h3 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: var(--s5) 0 var(--s2); }
-  .syl { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
-  .syl .row { display: flex; gap: 12px; padding: 10px 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; transition: border-color .15s; }
-  .syl .row:hover { border-color: var(--accent); }
-  .syl .row.done { background: var(--done-bg); border-color: var(--green); }
-  .syl .n { color: var(--muted); font-family: var(--mono); font-size: 12px; width: 1.4em; flex: none; padding-top: 2px; } .syl .row.done .n { color: var(--green); }
-  .syl .body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-  .syl .body a { font-family: var(--display); font-weight: 500; font-size: 14px; color: var(--text); letter-spacing: -.01em; } .syl .body a:hover { color: var(--accent); text-decoration: none; }
-  .syl .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0; }
-  .syl .topics { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
   aside ul { padding-left: 18px; margin: 4px 0; } aside li::marker { color: var(--accent); }
   .btn-primary { display: inline-block; margin-top: var(--s4); padding: 7px 12px; border-radius: 6px; background: var(--accent); color: var(--bg) !important; font-family: var(--mono); font-size: 12.5px; font-weight: 500; border: 0; cursor: pointer; }
   .btn-primary:hover { text-decoration: none; filter: brightness(1.08); }
@@ -269,7 +263,7 @@
     .btn, .graph-tools .mini, .btn-primary, .btn-secondary { min-height: 40px; }
     .card .tick { width: 28px; height: 28px; font-size: 14px; }
     aside .close { padding: 6px 12px; top: 8px; right: 8px; }
-    .syl .body a { padding: 4px 0; display: inline-block; }
+    .mods .mod { min-height: 40px; }
   }
   @media (max-width: 700px) {
     header.topbar { padding: 8px var(--s3); gap: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); }
@@ -510,6 +504,9 @@
   let selected = null;
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
   const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
+  // one module row for both panels: number or tick, title, time and objectives
+  const modRow = (m, j, o) => { const d = doneMods.has(m.path), meta = [m.note || 'time not set', kindWord(m)].filter(Boolean).join(' · ');
+    return `<a class="mod ${o.cur ? 'cur' : ''} ${d ? 'done' : ''}" href="${o.href}"${o.open ? ` data-open="${esc(m.id)}"` : ''}${o.cur ? ' aria-current="true"' : ''}><span class="n">${d ? '✓' : j}</span><span class="body"><span class="t">${esc(m.label)}</span><span class="meta">${esc(meta)}</span></span></a>`; };
   function openCourse(c) {
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
     const st = isDone(c.id) ? '<span class="chip green">done</span>' : isNext(c.id) ? '<span class="chip accent">up next</span>' : unlocked(c.id) ? '<span class="chip green">available</span>' : '<span class="chip">locked</span>';
@@ -521,8 +518,7 @@
     h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `<span class="num" data-n="${modsDone(c)}">${modsDone(c)}</span> of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
-    if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
-      return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
+    if (mods.length) h += '<h3>Syllabus</h3><div class="mods">' + mods.map((m, i) => modRow(m, i, { href: reader(c, relIn(c, m.path)) })).join('') + '</div>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener"><svg class="bi" width="13" height="13" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg> GitHub</a>`;
     body.innerHTML = h;
     body.querySelectorAll('.num').forEach(countUp);
@@ -543,7 +539,7 @@
     const chips = [`module ${i + 1} of ${mods.length}`, m.note || 'time not set', kindWord(m)].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join('') + (d ? '<span class="chip green">done</span>' : '');
     let h = `<div class="eyebrow"><a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a></div><h2>${esc(m.label)}</h2><div class="chips">${chips}</div>`;
     if (m.topics) h += `<p class="promise">${esc(m.topics)}</p>`;
-    h += '<h3>In this course</h3><div class="mods">' + mods.map((x, j) => `<a class="mod ${j === i ? 'cur' : ''} ${doneMods.has(x.path) ? 'done' : ''}" href="#${esc(x.id)}" data-open="${x.id}" ${j === i ? 'aria-current="true"' : ''}><span class="n">${doneMods.has(x.path) ? '✓' : j}</span><span>${esc(x.label)}</span></a>`).join('') + '</div>';
+    h += '<h3>In this course</h3><div class="mods">' + mods.map((x, j) => modRow(x, j, { href: '#' + esc(x.id), open: true, cur: j === i })).join('') + '</div>';
     h += `<a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a><button class="btn-secondary" data-tickmod="${esc(m.path)}">${d ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener"><svg class="bi" width="13" height="13" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg> GitHub</a>`;
     body.innerHTML = h;
   }
