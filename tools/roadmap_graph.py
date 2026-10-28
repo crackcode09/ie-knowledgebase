@@ -320,7 +320,7 @@ SITE_SOURCES = [
     ("O*NET OnLine, Industrial Engineers 17-2112.00 (U.S. Department of Labor, ETA; CC BY 4.0)", "The occupational standard for the role advisor: rated tasks, knowledge, skills and technology.", "https://www.onetonline.org/link/summary/17-2112.00"),
     ("BLS Occupational Outlook Handbook, Industrial Engineers (U.S. government work)", "Outlook, pay, entry education, employers and demand drivers for the role advisor.", "https://www.bls.gov/ooh/architecture-and-engineering/industrial-engineers.htm"),
     ("Bootstrap Icons (MIT, The Bootstrap Authors)", "Interface and category icons, vendored under tools/icons/.", "https://github.com/twbs/icons"),
-    ("D3 7.9.0, marked 12.0.2, Mermaid 10.9.1 (cdnjs)", "Mind map layout, Markdown rendering and diagrams in the reader.", "https://cdnjs.com/"),
+    ("D3 7.9.0, marked 12.0.2, DOMPurify 3.1.6, Mermaid 10.9.1, anime.js 4.5.0 (cdnjs)", "Mind map layout, Markdown rendering and sanitising, diagrams in the reader, and motion.", "https://cdnjs.com/"),
     ("Google Fonts: Inter, Space Grotesk, JetBrains Mono", "Typefaces.", "https://fonts.google.com/"),
 ]
 
