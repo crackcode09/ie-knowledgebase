@@ -90,14 +90,16 @@
   .btn.icon { padding: 6px 9px; }
   .chip button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; } .chip button:hover { text-decoration: underline; }
   .chip[hidden] { display: none; }
-  .pfoot { margin: var(--s8) 0 0; padding: var(--s4) 0; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 2; }
+  .pfoot { margin: auto 0 0; padding: 0 0 var(--s4); font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 2; }
+  .pfoot .frow:first-child { margin-top: var(--s8); padding-top: var(--s4); border-top: 1px solid var(--line); }   /* the gap above the rule travels with the footer, so a pinned footer keeps it */
   .pfoot .frow { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 18px; line-height: 1.8; } .pfoot .frow + .frow { margin-top: 4px; } .pfoot .frow.muted { opacity: .8; } .pfoot a { color: var(--muted); text-decoration: none; } .pfoot a:hover { color: var(--accent); text-decoration: underline; } .pfoot .bi { vertical-align: -.15em; }
   #search-toggle { display: none; }
 
   main { flex: 1; position: relative; min-height: 0; overflow: hidden; }
   .view { position: absolute; inset: 0; overflow: auto; display: none; }
   .view.active { display: block; }
-  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); }
+  .page { max-width: 1280px; margin: 0 auto; padding: var(--s5) var(--s7) var(--s6); box-sizing: border-box; min-height: 100%; display: flex; flex-direction: column; }
+  .page > * { flex: none; }   /* a short page still ends with the footer at the bottom of the view: the footer's margin-top is auto */
 
   /* hero */
   .hero { position: relative; padding: var(--s8) 0 var(--s6); text-align: center; }
