@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- C3h 16 px (C3f with the chevron as tall as the i stem, rows 5-12; i and e moved right 1 px to make room): pixel version for browser tabs, re-centred. All strokes 2 px, every edge on a whole pixel.
+       x: margin 1 | chevron 1-5 (5) | gap 1 | i 7-8 | gap 1 | e 10-14 (5) | margin 1.
+       y: margin 2 | dot 2-3 | gap 1 | letters 5-12 (8) | margin 3; chevron rows 5-12, same height as the i stem and the e. -->
+  <style>
+    .tile { fill: #d97757; } .ink { fill: #1f1d18; }
+    @media (prefers-color-scheme: light) { .tile { fill: #b0532f; } .ink { fill: #faf6ee; } }
+  </style>
+  <rect class="tile" width="16" height="16" rx="3"/>
+  <path class="ink" d="M1 5h2v1h-2zM2 6h2v1h-2zM3 7h2v1h-2zM4 8h2v2h-2zM3 10h2v1h-2zM2 11h2v1h-2zM1 12h2v1h-2z"/>
+  <path class="ink" d="M7 2h2v2h-2zM7 5h2v8h-2z"/>
+  <path class="ink" d="M11 5h3v1h-3zM10 6h5v1h-5zM10 7h2v1h-2zM13 7h2v1h-2zM10 8h5v2h-5zM10 10h2v1h-2zM10 11h5v1h-5zM11 12h4v1h-4z"/>
+</svg>
