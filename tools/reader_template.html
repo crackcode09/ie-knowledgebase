@@ -267,7 +267,6 @@
   if (!course) {
     $('title').textContent = 'Course not found';
     $('status').hidden = false; $('status').innerHTML = `No course called <b>${esc(params.get('c') || '')}</b>. <a href="index.html">Back to the catalog</a>.`;
-    $('dochead').querySelector('.dochead-actions').hidden = true;
     return;
   }
   const slug = course.id.slice(7), slugQ = encodeURIComponent(slug);
@@ -340,11 +339,11 @@
       const [pathq, hash] = href.split('#');
       const path = pathq.split('?')[0], frag = hash ? '#' + hash : '';
       if (!path) return;                                        // "#section" handled above; "?x" alone is not a file
-      const inCourse = resolve(file, path);               // relative to this course root
       const absolute = resolve(courseRoot + '/' + file, path); // relative to repo root
       if (/\.md$/i.test(path)) {
         if (absolute.startsWith(courseRoot + '/')) {
-          a.href = `course.html?c=${slugQ}&f=${encodeURIComponent(inCourse)}${frag}`;
+          // take the in-course path from the absolute one: a link that climbs out and back in ("../course/x.md") still lands right
+          a.href = `course.html?c=${slugQ}&f=${encodeURIComponent(absolute.slice(courseRoot.length + 1))}${frag}`;
         } else {
           const other = [...byRoot.keys()].find(r => absolute === r + '/README.md' || absolute.startsWith(r + '/'));
           a.href = other ? `course.html?c=${encodeURIComponent(byRoot.get(other).id.slice(7))}&f=${encodeURIComponent(absolute.slice(other.length + 1))}${frag}` : `${REPO}/blob/main/${absolute}${frag}`;
@@ -386,7 +385,8 @@
     mermaid.initialize({ startOnLoad: false, theme: dark ? 'dark' : 'neutral' });
     document.querySelectorAll('pre.mermaid').forEach(p => { p.removeAttribute('data-processed'); p.textContent = p.dataset.src; });
     mermaid.run().catch(err => {
-      document.querySelectorAll('pre.mermaid').forEach(p => { if (!p.querySelector('svg')) { p.textContent = p.dataset.src; p.insertAdjacentHTML('beforebegin', '<p class="status">This diagram could not be rendered; its source is shown instead.</p>'); } });
+      // a theme toggle re-runs this, so add the notice once per diagram
+      document.querySelectorAll('pre.mermaid').forEach(p => { if (!p.querySelector('svg')) { p.textContent = p.dataset.src; const prev = p.previousElementSibling; if (!(prev && prev.classList.contains('mermaid-failed'))) p.insertAdjacentHTML('beforebegin', '<p class="status mermaid-failed">This diagram could not be rendered; its source is shown instead.</p>'); } });
     });
   }
   function mount(md) {
@@ -453,8 +453,10 @@
     if (i >= 0) { const k = modKey(file), d = doneMods.has(k); mark = `<button type="button" class="btn mark ${d ? 'done' : ''}" id="markMod" title="Shortcut: d">${d ? '✓ module done' : 'mark module done'}</button>`; }
     else if (isReadme) { const d = doneCourses.has(course.id); mark = `<button type="button" class="btn mark ${d ? 'done' : ''}" id="markCourse" title="Shortcut: d">${d ? '✓ course done' : 'mark course done'}</button>`; }
     $('pager').innerHTML = `<div class="pager-row">${back}${mark}${fwd}</div>`;
-    const mm = $('markMod'); if (mm) mm.addEventListener('click', () => { const k = modKey(file); if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); save('iekb-mods', doneMods);
-      if (modules.every(m => doneMods.has(modKey(m.rel)))) doneCourses.add(course.id); else doneCourses.delete(course.id);
+    const mm = $('markMod'); if (mm) mm.addEventListener('click', () => { const k = modKey(file), all = () => modules.every(m => doneMods.has(modKey(m.rel))), wasAll = all();
+      if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); save('iekb-mods', doneMods);
+      // same rule as the catalog drawer: the last module ticked marks the course done; unticking one from a full set un-marks it; a manual course mark otherwise stays
+      if (all()) doneCourses.add(course.id); else if (wasAll) doneCourses.delete(course.id);
       save('iekb-done', doneCourses);
       renderHero(); renderToc(); renderPager(); });
     const mc = $('markCourse'); if (mc) mc.addEventListener('click', () => { if (doneCourses.has(course.id)) doneCourses.delete(course.id); else doneCourses.add(course.id); save('iekb-done', doneCourses); renderHero(); renderPager(); });
