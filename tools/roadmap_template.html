@@ -445,7 +445,7 @@
   </section>
   <aside id="panel" role="complementary" aria-label="Details"><button type="button" class="close" id="close" aria-label="Close details">__ICON:x-lg:16__</button><div id="panel-body"></div></aside>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js" integrity="sha512-dnhflec5WaXvpVYrt0oWfe0iUyWpjNiZbxkjrhNu9WAWWHLX7VqqyxCZHL7dWCrwj6lN+XGN9FtiWIBgX2b/PA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -693,7 +693,12 @@
     const tick = e.target.closest('[data-tick]');
     if (tick) { e.stopPropagation(); toggleDone(tick.dataset.tick); return; }
     const tm = e.target.closest('[data-tickmod]');
-    if (tm) { e.stopPropagation(); const k = tm.dataset.tickmod; if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); try { localStorage.setItem('iekb-mods', JSON.stringify([...doneMods])); } catch (e2) {} refresh(); return; }
+    if (tm) { e.stopPropagation(); const k = tm.dataset.tickmod; const m = nodes.find(d => d.type === 'module' && d.path === k);
+      const mods = m ? modulesOf(m.parent) : [], all = () => mods.length > 0 && mods.every(x => doneMods.has(x.path)), wasAll = all();
+      if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k);
+      // same rule as the reader: ticking the last module marks the course done; unticking one from a full set un-marks it; a manual mark otherwise stays
+      if (all()) done.add(m.parent); else if (wasAll) done.delete(m.parent);
+      saveDone(); try { localStorage.setItem('iekb-mods', JSON.stringify([...doneMods])); } catch (e2) {} refresh(); return; }
     const a = e.target.closest('[data-open]');
     if (a) { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); open(byId.get(a.dataset.open)); return; }
     const c = e.target.closest('.card[data-id], .crow[data-id]');
@@ -725,7 +730,9 @@
     if (j < 0) return; e.preventDefault(); tabs[j].focus(); showTab(tabs[j].dataset.tab);
   });
   const topSearch = document.getElementById('search'), askInput = document.getElementById('askInput');
-  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; document.getElementById('askClear').hidden = !query; renderCatalog(); if (graphReady) graphSearch(query); }
+  function setQuery(v) { query = v.trim(); if (topSearch.value !== v) topSearch.value = v; if (askInput.value !== v) askInput.value = v; document.getElementById('askClear').hidden = !query; renderCatalog(); if (graphReady) graphSearch(query);
+    if (query && tab === 'path') showTab('catalog');   // the path view has no filter, so show the results where they are
+  }
   document.getElementById('askClear').addEventListener('click', () => { setQuery(''); askInput.focus(); });
   document.addEventListener('click', e => { if (e.target.closest('[data-clear]')) setQuery(''); });
   topSearch.addEventListener('input', e => setQuery(e.target.value));
@@ -757,19 +764,26 @@
     document.getElementById('mineChip').hidden = !(done.size || doneMods.size);
     // re-rendering replaces the DOM, so remember what had focus and put it back
     const ae = document.activeElement;
-    const key = ae && ae.dataset ? (ae.dataset.tick ? ['data-tick', ae.dataset.tick] : ae.dataset.id ? ['data-id', ae.dataset.id] : null) : null;
+    const key = ae && ae.dataset ? (ae.dataset.tick ? ['data-tick', ae.dataset.tick] : ae.dataset.tickmod ? ['data-tickmod', ae.dataset.tickmod] : ae.dataset.id ? ['data-id', ae.dataset.id] : null) : null;
+    const inPanel = panel.contains(ae);
     renderStart(); renderCatalog(); renderPath();
     if (selected && panel.classList.contains('open')) renderPanel(selected);
-    if (key) { const el = document.querySelector(`.view.active [${key[0]}="${CSS.escape(key[1])}"]`) || panel.querySelector(`[${key[0]}="${CSS.escape(key[1])}"]`); if (el) el.focus(); }
+    if (key) {
+      // a tick in the drawer keeps focus in the drawer; the same tick on a card behind it may sit in a collapsed category
+      const sel = `[${key[0]}="${CSS.escape(key[1])}"]`, view = document.querySelector('.view.active');
+      const el = inPanel ? panel.querySelector(sel) || view.querySelector(sel) : view.querySelector(sel) || panel.querySelector(sel);
+      if (el) el.focus();
+    }
     if (graphReady) graphRestyle();
   }
 
   const narrow = () => matchMedia('(max-width: 700px)').matches;
 
   // ---- mind map (D3 tree, built on first open)
-  let graphReady = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {}, graphRipple = () => {};
+  let graphReady = false, graphFailed = false, graphHighlight = () => {}, graphSearch = () => {}, graphResize = () => {}, graphRestyle = () => {}, graphRipple = () => {};
   function initGraph() {
-    if (!window.d3) { document.getElementById('view-graph').insertAdjacentHTML('afterbegin', '<p class="intro" style="padding:var(--s7) var(--s5)">The mind map needs the D3 library from cdnjs, which could not be loaded. The catalog and learning path still work.</p>'); return; }
+    if (graphFailed) return;   // the notice is already showing; tab clicks and resizes must not stack copies
+    if (!window.d3) { graphFailed = true; document.getElementById('view-graph').insertAdjacentHTML('afterbegin', '<p class="intro" style="padding:var(--s7) var(--s5)">The mind map needs the D3 library from cdnjs, which could not be loaded. The catalog and learning path still work.</p>'); return; }
     const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
     const svg = d3.select('#graph'), g = svg.append('g');
     const linkLayer = g.append('g'), prereqLayer = g.append('g'), nodeLayer = g.append('g'), fxLayer = g.append('g').attr('pointer-events', 'none');
@@ -838,7 +852,8 @@
       const spring = motion && dur > 0;
       const home = n => { const p = n.parent && n.parent.depth > 0 ? (byKey.get(n.parent.data.id) || n.parent) : null; return p ? { x: p.px, y: p.py } : { x: 0, y: 0 }; };
       const exit = node.exit();
-      exit.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });
+      // springs live on the DOM element: layout() builds fresh hierarchy datums on every render
+      exit.each(function () { if (this.__spring) { this.__spring.pause(); this.__spring = null; } });
       if (spring) exit.each(function (n) { const pos = { x: n.px, y: n.py }, h = home(n), el = this; anime.animate(pos, { x: h.x, y: h.y, duration: dur, ease: 'inCubic', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`) }); });
       exit.transition().duration(dur).attr('opacity', 0).remove();
       const enter = node.enter().append('g').attr('class', 'node').attr('opacity', 0).attr('transform', n => { const h = home(n); return `translate(${h.x},${h.y})`; })
@@ -849,12 +864,12 @@
       const all = enter.merge(node);
       all.attr('aria-label', n => n.data.label);
       svg.select('#arrow path').attr('fill', css('--prereq'));
-      node.each(n => { if (n.__spring) { n.__spring.pause(); n.__spring = null; } });   // a re-layout mid-spring hands the node back to d3
+      node.each(function () { if (this.__spring) { this.__spring.pause(); this.__spring = null; } });   // a re-layout mid-spring hands the node back to d3
       all.transition().duration(dur).attr('opacity', 1);
       (spring ? node : all).transition().duration(dur).attr('transform', n => `translate(${n.px},${n.py})`);
       if (spring) enter.each(function (n) {
         const h = home(n), pos = { x: h.x, y: h.y }, el = this, label = this.querySelector('text');
-        n.__spring = anime.animate(pos, { x: n.px, y: n.py, duration: dur + 150, ease: 'outBack(1.5)', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`), onComplete: () => { n.__spring = null; } });
+        el.__spring = anime.animate(pos, { x: n.px, y: n.py, duration: dur + 150, ease: 'outBack(1.5)', onUpdate: () => el.setAttribute('transform', `translate(${pos.x},${pos.y})`), onComplete: () => { el.__spring = null; } });
         if (label) { label.style.opacity = 0; anime.animate(label, { opacity: [0, 1], duration: 260, delay: 180, ease: 'outCubic', onComplete: () => { label.style.opacity = ''; } }); }
       });
       all.select('circle').attr('r', r).attr('fill', fill).attr('stroke', strokeOf).attr('stroke-width', 1.5);
