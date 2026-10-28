@@ -1,6 +1,6 @@
 # Statistical Quality Control
 
-A free, open course in the two classic tools of statistical quality control. **Statistical process control** keeps a process stable and on target. **Acceptance sampling** decides whether to accept a lot from a sample.
+Learn the two classic tools of statistical quality control. **Statistical process control** keeps a process stable and on target. **Acceptance sampling** decides whether to accept a lot from a sample.
 
 **Length:** about 3 days (21 contact hours), or self-paced.  
 **Prerequisites:** basic algebra. A spreadsheet or Python is needed for the exercises.

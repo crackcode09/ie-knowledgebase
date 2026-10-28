@@ -1,6 +1,6 @@
 # Standard Data Systems
 
-A free, open course on building and using standard data for work standards in operations with many part numbers, small lots or frequent changeovers. It covers when standard data pays off, how to structure a data system, and how to turn past time studies into regression models you can trust and maintain.
+Learn to build and use standard data for work standards in operations with many part numbers, small lots or frequent changeovers. It covers when standard data pays off, how to structure a data system, and how to turn past time studies into regression models you can trust and maintain.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** time study basics (see [Work Measurement](../work-measurement/README.md)). Basic statistics helps for Modules 06–08.  

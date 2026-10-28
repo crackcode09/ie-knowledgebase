@@ -1,6 +1,6 @@
 # Voice of the Customer — An Open Course
 
-A free, open course on finding out what customers need — stated and unstated — and turning it into measurable requirements, specifications and targets that drive product and process design. One running case throughout: a manufacturer's spare-parts ordering service for maintenance plants, distributors and OEMs, with a 300-response survey dataset. No prerequisites.
+Learn to find out what customers need — stated and unstated — and turn it into measurable requirements, specifications and targets that drive product and process design. One running case throughout: a manufacturer's spare-parts ordering service for maintenance plants, distributors and OEMs, with a 300-response survey dataset. No prerequisites.
 
 This is the in-depth VOC course in the repository. [Process Mapping](../process-mapping/README.md) (Modules 6–10) and [Design for Six Sigma](../design-for-six-sigma/README.md) (Modules 1–2) include shorter VOC sections that link here.
 

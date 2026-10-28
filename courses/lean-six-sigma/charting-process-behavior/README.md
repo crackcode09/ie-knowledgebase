@@ -1,6 +1,6 @@
 # Charting Process Behavior — An Open SPC Course
 
-A free, open course on **Statistical Process Control (SPC)**: how to chart process behavior over time, separate routine variation from signals, and judge whether a process can meet its specifications.
+Learn **Statistical Process Control (SPC)**: how to chart process behavior over time, separate routine variation from signals, and judge whether a process can meet its specifications.
 
 No prior statistics or Lean Six Sigma knowledge is assumed. Every calculation is shown by hand, and reproduced in a small Python toolkit and in spreadsheet formulas.
 

@@ -1,6 +1,6 @@
 # Fundamentals of Hypothesis Testing — An Open Course
 
-A free, open course on using hypothesis tests to make decisions from data: what a test is, when and how to run one, and how to read the result without fooling yourself. No prerequisites. Every test is worked by hand, then reproduced with a small Python toolkit and spreadsheet formulas.
+Learn to use hypothesis tests to make decisions from data: what a test is, when and how to run one, and how to read the result without fooling yourself. No prerequisites. Every test is worked by hand, then reproduced with a small Python toolkit and spreadsheet formulas.
 
 ## What you will be able to do
 

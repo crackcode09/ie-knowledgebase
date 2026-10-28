@@ -1,6 +1,6 @@
 # Work Measurement
 
-A free, open course on work measurement. It explains why work standards matter, then shows how to set them with time study, work sampling and standard data, and how to use them in management information systems, process improvement and Lean.
+Learn work measurement. It explains why work standards matter, then shows how to set them with time study, work sampling and standard data, and how to use them in management information systems, process improvement and Lean.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** none. Basic statistics helps for Modules 05, 11 and 12.

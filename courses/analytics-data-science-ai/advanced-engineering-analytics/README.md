@@ -1,6 +1,6 @@
 # Advanced Engineering Analytics
 
-A free, open course in advanced analytics for engineers. You'll merge and prepare messy data from several systems, analyze it with ANOVA, regression, nonparametric methods and designed experiments, improve prediction accuracy, and communicate results with dashboards.
+Go beyond introductory analytics. You'll merge and prepare messy data from several systems, analyze it with ANOVA, regression, nonparametric methods and designed experiments, improve prediction accuracy, and communicate results with dashboards.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** [Introduction to Engineering Analytics](../engineering-analytics/README.md) or equivalent. Module 00 gives a fast-track review.

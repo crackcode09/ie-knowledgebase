@@ -1,6 +1,6 @@
 # Detailed Motion Time Analysis (MTM-1 Topics)
 
-A free, open course on detailed, distance- and condition-based predetermined motion time analysis, the style of work measurement that Methods-Time Measurement (MTM-1) made standard. It covers the four objectives of an MTM-1 practitioner course:
+Learn detailed, distance- and condition-based predetermined motion time analysis, the style of work measurement that Methods-Time Measurement (MTM-1) made standard. It covers the four objectives of an MTM-1 practitioner course:
 
 - perform methods analysis
 - define the motions

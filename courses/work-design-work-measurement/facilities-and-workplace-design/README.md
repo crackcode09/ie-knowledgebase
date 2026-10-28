@@ -1,6 +1,6 @@
 # Facilities and Workplace Design
 
-A free, open course on planning plant layouts, cells and workstations so that flow is short, simple and safe. It follows the topic outline of a two-day facilities and workplace design seminar, in the same order.
+Learn to plan plant layouts, cells and workstations so that flow is short, simple and safe. It follows the topic outline of a two-day facilities and workplace design seminar, in the same order.
 
 **Length:** about 2 days (14 contact hours), or self-paced.  
 **Prerequisites:** none. Basic Lean and time study help (see the related courses).
