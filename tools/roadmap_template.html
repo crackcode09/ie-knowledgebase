@@ -218,6 +218,13 @@
   aside .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; margin: var(--s4) 0 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
   aside .facts small { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
   aside .facts div { min-width: 0; overflow-wrap: anywhere; }
+  aside .eyebrow a { color: var(--accent); text-decoration: none; } aside .eyebrow a:hover { text-decoration: underline; }
+  .mods { display: flex; flex-direction: column; gap: 2px; }
+  .mods .mod { display: flex; gap: 10px; align-items: baseline; padding: 5px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: 13.5px; }
+  .mods .mod .n { font-family: var(--mono); font-size: 12px; width: 1.4em; flex: none; }
+  .mods .mod:hover { background: var(--surface-2); color: var(--text); }
+  .mods .mod.cur { color: var(--accent); font-family: var(--display); font-weight: 500; background: var(--accent-soft); } .mods .mod.cur .n { color: var(--accent); }
+  .mods .mod.done .n { color: var(--green); }
   aside .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
   aside .close:hover { color: var(--accent); }
   aside p { margin: var(--s2) 0; }
@@ -465,6 +472,7 @@
   const panel = document.getElementById('panel'), body = document.getElementById('panel-body');
   let selected = null;
   const li = n => `<li><a href="#course:${slug(n.id)}" data-open="${n.id}">${esc(n.label)}</a>${isDone(n.id) ? ' ✓' : ''}</li>`;
+  const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
   function openCourse(c) {
     const cat = byId.get(c.parent), mods = modulesOf(c.id), pre = prereqsOf(c.id), unl = unlocksOf(c.id), rel = relatedOf(c.id);
     const st = isDone(c.id) ? '<span class="chip green">done</span>' : isNext(c.id) ? '<span class="chip accent">up next</span>' : unlocked(c.id) ? '<span class="chip green">available</span>' : '<span class="chip">locked</span>';
@@ -476,7 +484,6 @@
     h += `<div class="facts"><div><small>Length</small>${c.length ? esc(c.length) : 'not set'}</div><div><small>Progress</small>${mods.length ? `${modsDone(c)} of ${mods.length} done` : (isDone(c.id) ? 'done' : 'not started')}</div><div><small>Requires</small>${req}</div></div>`;
     if (unl.length) h += `<h3>Unlocks</h3><ul>${unl.map(li).join('')}</ul>`;
     if (rel.length) h += `<h3>Related</h3><ul>${rel.map(li).join('')}</ul>`;
-    const kindWord = (m) => m.tcount ? `${m.tcount} ${({ objectives: m.tcount === 1 ? 'objective' : 'objectives', topics: m.tcount === 1 ? 'topic' : 'topics', sections: m.tcount === 1 ? 'section' : 'sections' })[m.tkind] || 'topics'}` : '';
     if (mods.length) h += '<h3>Syllabus</h3><div class="syl">' + mods.map((m, i) => { const d = doneMods.has(m.path); const meta = [m.note || 'time not set', kindWord(m), d ? 'done' : ''].filter(Boolean).join(' · ');
       return `<div class="row ${d ? 'done' : ''}"><span class="n">${d ? '✓' : i}</span><div class="body"><a href="${reader(c, relIn(c, m.path))}">${esc(m.label)}</a><span class="meta">${esc(meta)}</span>${m.topics ? `<span class="topics">${esc(m.topics)}</span>` : ''}</div></div>`; }).join('') + '</div>';
     h += `<a class="btn-primary" href="${reader(c)}">Read course</a><button class="btn-secondary" data-tick="${c.id}">${isDone(c.id) ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(c.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
@@ -494,8 +501,13 @@
     body.innerHTML = `<h2>${esc(t.label)}</h2><div class="meta"><span class="pill todo">planned</span> · ${esc(byId.get(t.parent).label)}</div><p>No course yet. See <a href="${gh('ROADMAP.md')}" target="_blank" rel="noopener">ROADMAP.md</a> to claim it.</p>`;
   }
   function openModule(m) {
-    const c = byId.get(m.parent);
-    body.innerHTML = `<h2>${esc(m.label)}</h2><div class="meta">Module of <a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>${m.note ? ' · ' + esc(m.note) : ''}</div><a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
+    const c = byId.get(m.parent), mods = modulesOf(c.id), i = mods.indexOf(m), d = doneMods.has(m.path);
+    const chips = [`module ${i + 1} of ${mods.length}`, m.note || 'time not set', kindWord(m)].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join('') + (d ? '<span class="chip green">done</span>' : '');
+    let h = `<div class="eyebrow"><a href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a></div><h2>${esc(m.label)}</h2><div class="chips">${chips}</div>`;
+    if (m.topics) h += `<p class="promise">${esc(m.topics)}</p>`;
+    h += '<h3>In this course</h3><div class="mods">' + mods.map((x, j) => `<a class="mod ${j === i ? 'cur' : ''} ${doneMods.has(x.path) ? 'done' : ''}" href="#${esc(x.id)}" data-open="${x.id}" ${j === i ? 'aria-current="true"' : ''}><span class="n">${doneMods.has(x.path) ? '✓' : j}</span><span>${esc(x.label)}</span></a>`).join('') + '</div>';
+    h += `<a class="btn-primary" href="${reader(c, relIn(c, m.path))}">Read module</a><button class="btn-secondary" data-tickmod="${esc(m.path)}">${d ? 'Mark not done' : 'Mark done'}</button> <a class="btn-secondary" href="${gh(m.path)}" target="_blank" rel="noopener">__ICON:github:13__ GitHub</a>`;
+    body.innerHTML = h;
   }
   let opener = null;
   const renderPanel = d => ({ course: openCourse, category: openCategory, topic: openTopic, module: openModule })[d.type](d);
@@ -522,6 +534,8 @@
   document.body.addEventListener('click', e => {
     const tick = e.target.closest('[data-tick]');
     if (tick) { e.stopPropagation(); toggleDone(tick.dataset.tick); return; }
+    const tm = e.target.closest('[data-tickmod]');
+    if (tm) { e.stopPropagation(); const k = tm.dataset.tickmod; if (doneMods.has(k)) doneMods.delete(k); else doneMods.add(k); try { localStorage.setItem('iekb-mods', JSON.stringify([...doneMods])); } catch (e2) {} refresh(); return; }
     const a = e.target.closest('[data-open]');
     if (a) { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); open(byId.get(a.dataset.open)); return; }
     const c = e.target.closest('.card[data-id]');
@@ -670,7 +684,12 @@
     function onClick(n) {
       const d = n.data.data;
       if (type(n) === 'group' || isCat(n)) { toggle(n.data); render(); return; }
-      if (type(n) === 'course' && (n.data.children || n.data._children)) toggle(n.data);
+      if (type(n) === 'course' && (n.data.children || n.data._children)) {
+        toggle(n.data);
+        if (panel.classList.contains('open')) open(null);   // a drawer for another node would be stale
+        graphHighlight(byId.get(n.data.id));                // marks the branch and renders; no drawer
+        return;
+      }
       selectedId = n.data.id;
       open(byId.get(n.data.id) || d);
       render();
