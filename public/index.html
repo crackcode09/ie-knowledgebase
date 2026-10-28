@@ -102,7 +102,7 @@
   /* hero */
   .hero { position: relative; padding: var(--s8) 0 var(--s6); text-align: center; }
   .hero .bgmap { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .16; pointer-events: none; }
-  .hero .hero-in { position: relative; }
+  .hero .hero-in { position: relative; max-width: 760px; margin: 0 auto; }   /* the hero's one column width; nothing inside narrows further */
   .hero h1 .type { position: relative; display: inline-block; white-space: nowrap; }
   .hero h1 .ghost { visibility: hidden; }   /* holds the full width while the live text types */
   .hero h1 .live { position: absolute; left: 0; top: 0; }
@@ -119,7 +119,7 @@
   .hero .stats { display: flex; justify-content: center; gap: var(--s6); flex-wrap: wrap; margin-top: var(--s6); }
   .hero .stats .stat b { display: block; font-family: var(--display); font-size: 28px; line-height: 1; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
   .hero .stats .stat small { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  .hero .fine { font-family: var(--mono); font-size: 11.5px; color: var(--muted); max-width: 72ch; margin: var(--s4) auto 0; line-height: 1.6; }
+  .hero .fine { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin: var(--s4) 0 0; line-height: 1.6; }
   .hero .fine b { color: var(--text); font-weight: 500; }
   h2.sec.browse { text-align: left; }
   .hero h1 { font-family: var(--display); font-size: clamp(36px, 6vw, 64px); font-weight: 700; letter-spacing: -.02em; line-height: 1.05; margin: 0; }
@@ -134,7 +134,7 @@
   .hero .stat.link { color: var(--accent); } .hero .stat.link:hover { text-decoration: underline; }
   .hero .stat button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
   .hero .stat[hidden] { display: none; }
-  .hero .lede { margin: var(--s4) auto 0; color: var(--muted); font-size: 16px; max-width: 58ch; text-wrap: balance; }
+  .hero .lede { margin: var(--s4) 0 0; color: var(--muted); font-size: 16px; text-wrap: balance; }
   .intro { color: var(--muted); margin: 0 0 var(--s4); }
 
   /* section headings carry the markdown "#" like the playbook */
@@ -199,7 +199,7 @@
   .rhead h3 { font-family: var(--display); font-size: 16px; margin: 0; }
   .rhead .m { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
   .rhead .m a { color: var(--accent); text-decoration: none; } .rhead .m a:hover { text-decoration: underline; }
-  .rail .goal { font-size: 13.5px; color: var(--muted); margin: 0 0 10px; max-width: 80ch; }
+  .rail .goal { font-size: 13.5px; color: var(--muted); margin: 0 0 10px; }
   .stations { --n: 6; position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 0 12px; padding: 4px 0 2px; }
   .stations::before { content: ""; position: absolute; left: 10px; right: 10px; top: 13px; height: 3px; background: var(--line); border-radius: 2px; }
   .stations .fill { position: absolute; left: 10px; top: 13px; height: 3px; width: var(--fill); background: var(--green); border-radius: 2px; }

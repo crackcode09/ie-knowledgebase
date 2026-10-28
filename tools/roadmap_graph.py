@@ -477,6 +477,8 @@ def lint_templates():
     because that produces two right edges. Fails the build so it cannot regress unnoticed."""
     checks = [(READER_TEMPLATE, r"\.doc\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
               (TEMPLATE, r"\.page\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)"),
+              # the home template does not prefix selectors with .page, so any text-unit max-width on a rule is a narrowed column
+              (TEMPLATE, r"\.[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|em|rem)"),
               (LEGAL_TEMPLATE, r"main\s+[a-z0-9.,#:\- ]+\{[^}]*max-width:\s*\d+(ch|px|em|rem)")]
     for path, pattern in checks:
         css = path.read_text(encoding="utf-8")
