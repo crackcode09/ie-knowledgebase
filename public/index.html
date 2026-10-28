@@ -189,6 +189,26 @@
   .pmode { display: flex; gap: 6px; margin: 0 0 var(--s4); }
   .pmode button { font-family: var(--mono); font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
   .pmode button:hover { border-color: var(--accent); } .pmode button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .roles { display: grid; grid-template-columns: 240px 1fr; gap: var(--s4); align-items: start; }
+  .rolelist { display: flex; flex-direction: column; gap: 4px; }
+  .rolebtn { text-align: left; font: inherit; font-size: 13.5px; color: var(--muted); background: none; border: 1px solid transparent; border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+  .rolebtn small { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .rolebtn:hover { background: var(--surface-2); color: var(--text); }
+  .rolebtn.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 500; } .rolebtn.on small { color: var(--accent); }
+  .roledet { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: var(--s4) var(--s5) var(--s5); min-width: 0; }
+  .roledet h3 { font-family: var(--display); font-size: 20px; margin: 8px 0 2px; }
+  .roledet .goal { font-size: 14.5px; color: var(--muted); margin: 0; }
+  .roledet .kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 13.5px; margin: var(--s3) 0; }
+  .roledet .kv b { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding-top: 3px; }
+  .roledet .kv a { color: var(--accent); text-decoration: none; } .roledet .kv a:hover { text-decoration: underline; }
+  .m.sec { letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px; margin: var(--s3) 0 4px; }
+  .rsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--s5); margin-bottom: var(--s4); }
+  .rstep { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-size: 13.5px; min-width: 0; }
+  .rstep .n { font-family: var(--mono); font-size: 11px; color: var(--accent); width: 14px; flex: none; } .rstep .t { flex: 1; min-width: 0; } .rstep small { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .rstep:hover .t { color: var(--accent); } .rstep.locked .t { color: var(--muted); }
+  .roledet .btns { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; } .roledet .btns .btn-primary { margin: 0; }
+  .linkbtn { background: none; border: 0; padding: 0; cursor: pointer; color: var(--accent); } .linkbtn:hover { text-decoration: underline; }
+  .others .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; } .others .row:first-of-type { border-top: 0; }
   .nextcard { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin: 0 0 var(--s4); }
   .nextcard .tt { font-family: var(--display); font-size: 16px; font-weight: 500; color: var(--text); text-decoration: none; display: block; margin-top: 6px; } .nextcard .tt:hover { color: var(--accent); }
   .nextcard .m { font-family: var(--mono); font-size: 12px; color: var(--muted); }
@@ -210,7 +230,7 @@
   .st.next b { color: var(--accent); } .st.done b { color: var(--muted); } .st:hover b { color: var(--accent); }
   .st.locked { opacity: .7; }
   @media (max-width: 700px) {
-    .nextcard { grid-template-columns: 1fr; }
+    .nextcard { grid-template-columns: 1fr; } .roles { grid-template-columns: 1fr; } .rsteps { grid-template-columns: 1fr; }
     .stations { grid-template-columns: 1fr; gap: 2px; padding-left: 0; }
     .stations::before { left: 10px; right: auto; top: 10px; bottom: 10px; width: 3px; height: auto; }
     .stations .fill { left: 10px; top: 10px; width: 3px; height: var(--fill); }
@@ -393,7 +413,7 @@
   <section class="view" id="view-path" role="tabpanel" aria-labelledby="tab-path"><div class="page">
     <div class="pmode" role="group" aria-label="Learning path mode"><button type="button" data-pmode="track" aria-pressed="true">follow a track</button><button type="button" data-pmode="time" aria-pressed="false">fit my time</button></div>
     <div class="pane" id="pane-track">
-      <p class="intro">One rail per destination, courses in the order to take them. Your progress fills the rail; the next station is lit.</p>
+      <p class="intro">Pick where you want to get to. Each track is one occupation, named by O*NET and priced by BLS, with the courses in the order to take them.</p>
       <div id="trackOut"></div>
     </div>
     <div class="pane" id="pane-time" hidden>
@@ -518,28 +538,60 @@
   // ---- learning path: follow a track (curated rails from roles/tracks.md) or fit my time (what fits the time you have)
   const fmtH = h => !isFinite(h) ? 'time not set' : h < 8 ? `~${h % 1 ? h.toFixed(1) : h} h` : `~${Number.isInteger(h / 8) ? h / 8 : (h / 8).toFixed(1)} day${h / 8 > 1 ? 's' : ''}`;
   const courseLink = c => `<a class="tt" href="#course:${slug(c.id)}" data-open="${esc(c.id)}">${esc(c.label)}</a>`;
+  let trackPick = null, trackOpen = new Set();
+  try { trackPick = localStorage.getItem('iekb-track'); } catch (e) {}
   function renderTracks() {
     const tracks = (DATA.tracks || []).map(tr => ({ ...tr, cs: tr.courses.map(id => byId.get(id)).filter(Boolean) })).filter(tr => tr.cs.length);
     const doneIn = tr => tr.cs.filter(c => isDone(c.id)).length;
     const totalH = tr => tr.cs.reduce((s, c) => s + (isFinite(hours(c)) ? hours(c) : 0), 0);
-    // the next station: from the track you have started, else the first track
-    const live = tracks.find(tr => doneIn(tr) > 0 && doneIn(tr) < tr.cs.length) || tracks[0];
-    let h = '';
-    if (live) {
-      const nx = live.cs.find(c => !isDone(c.id));
-      h += nx ? `<div class="nextcard"><div><span class="chip accent">your next station</span><a class="tt" href="#course:${slug(nx.id)}" data-open="${esc(nx.id)}">${esc(nx.label)}</a><span class="m">${esc(live.label)} · station ${live.cs.indexOf(nx) + 1} of ${live.cs.length} · ${fmtH(hours(nx))}${unlocked(nx.id) || isDone(nx.id) ? '' : ' · prerequisites not done yet'}</span></div><a class="btn-primary" href="${reader(nx)}">Start →</a></div>`
-             : `<div class="nextcard"><div><span class="chip green">track complete</span><span class="tt">${esc(live.label)}</span><span class="m">every station done · pick another rail below</span></div></div>`;
+    const outlookLine = tr => tr.outlook ? `${esc(tr.outlook)}${tr.source ? ` · <a href="${esc(tr.source)}" rel="noopener" title="${esc(tr.sourceLabel || 'source')}">BLS ↗</a>` : ''}` : '';
+    const out = document.getElementById('trackOut');
+    if (!tracks.length) { out.innerHTML = '<p class="intro">No tracks yet. Add one to <code>roles/tracks.md</code>.</p>'; return; }
+    const started = tracks.filter(tr => doneIn(tr) > 0);
+
+    if (!started.length) {   // ---- before you start: pick a role, read its page
+      const cur = tracks.find(tr => tr.id === trackPick) || tracks[0];
+      const first = cur.cs[0], pre = prereqsOf(first.id);
+      const list = tracks.map(tr => `<button type="button" class="rolebtn ${tr === cur ? 'on' : ''}" data-track="${esc(tr.id)}" aria-pressed="${tr === cur}">${esc(tr.label)}<small>${tr.cs.length} courses · ${fmtH(totalH(tr))}</small></button>`).join('');
+      const steps = cur.cs.map((c, i) => `<a class="rstep ${unlocked(c.id) || isDone(c.id) ? '' : 'locked'}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><span class="n">${i + 1}</span><span class="t">${esc(c.label)}</span><small>${fmtH(hours(c))}</small></a>`).join('');
+      out.innerHTML = `<div class="roles"><div class="rolelist" role="group" aria-label="Tracks">${list}</div>
+        <div class="roledet">
+          ${cur.role ? `<span class="chip">O*NET ${esc(cur.role)}</span>` : ''}
+          <h3>${esc(cur.label)}</h3>
+          ${cur.goal ? `<p class="goal">${esc(cur.goal)}</p>` : ''}
+          <div class="kv">${cur.outlook ? `<b>Outlook</b><span>${outlookLine(cur)}</span>` : ''}<b>Time</b><span>${fmtH(totalH(cur))} across ${cur.cs.length} courses</span><b>Starts from</b><span>${pre.length ? `${esc(first.label)} needs ${pre.map(q => esc(q.label)).join(', ')} first` : `${esc(first.label)}, which has no prerequisites`}</span></div>
+          <div class="m sec">the route</div>
+          <div class="rsteps">${steps}</div>
+          <div class="btns"><a class="btn-primary" href="${reader(first)}" data-track-start="${esc(cur.id)}">Start this track →</a><span class="m">Tick a course when you finish it and this page keeps your place.</span></div>
+        </div></div>`;
+      return;
     }
-    h += tracks.map(tr => {
-      const d = doneIn(tr), n = tr.cs.length, nx = tr.cs.find(c => !isDone(c.id));
-      const st = tr.cs.map((c, i) => `<a class="st ${isDone(c.id) ? 'done' : ''} ${c === nx ? 'next' : ''} ${!isDone(c.id) && !unlocked(c.id) ? 'locked' : ''}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><i></i><b>${esc(c.label)}</b><small>${fmtH(hours(c))}${isDone(c.id) ? ' ✓' : c === nx ? ' · next' : ''}</small></a>`).join('');
-      const last = tr.cs.map((c, i) => isDone(c.id) ? i : -1).reduce((a, b) => Math.max(a, b), -1);   // the rail is filled up to the last done station
+
+    // ---- in progress: next station, the started tracks as rails, the rest folded
+    // one rail: the track you chose if you have progress on it, else the one you are furthest along
+    const share = tr => doneIn(tr) / tr.cs.length;
+    const live = started.find(tr => tr.id === trackPick) || started.slice().sort((x, y) => share(y) - share(x))[0];
+    const nx = live.cs.find(c => !isDone(c.id));
+    let h = nx ? `<div class="nextcard"><div><span class="chip accent">your next station</span><a class="tt" href="#course:${slug(nx.id)}" data-open="${esc(nx.id)}">${esc(nx.label)}</a><span class="m">${esc(live.label)} · station ${live.cs.indexOf(nx) + 1} of ${live.cs.length} · ${fmtH(hours(nx))}${unlocked(nx.id) || isDone(nx.id) ? '' : ' · prerequisites not done yet'}</span></div><a class="btn-primary" href="${reader(nx)}">Continue →</a></div>`
+             : `<div class="nextcard"><div><span class="chip green">track complete</span><span class="tt">${esc(live.label)}</span><span class="m">every station done · pick another track below</span></div></div>`;
+    const rail = tr => {
+      const d = doneIn(tr), n = tr.cs.length, next = tr.cs.find(c => !isDone(c.id));
+      const st = tr.cs.map(c => `<a class="st ${isDone(c.id) ? 'done' : ''} ${c === next ? 'next' : ''} ${!isDone(c.id) && !unlocked(c.id) ? 'locked' : ''}" href="#course:${slug(c.id)}" data-open="${esc(c.id)}"><i></i><b>${esc(c.label)}</b><small>${fmtH(hours(c))}${isDone(c.id) ? ' ✓' : c === next ? ' · next' : ''}</small></a>`).join('');
+      const last = tr.cs.map((c, i) => isDone(c.id) ? i : -1).reduce((x, y) => Math.max(x, y), -1);
       const fill = n > 1 && last >= 0 ? last / (n - 1) * 100 : 0;
-      const outlook = tr.outlook ? `<div class="rhead"><span class="m">${esc(tr.outlook)}${tr.source ? ` · <a href="${esc(tr.source)}" rel="noopener" title="${esc(tr.sourceLabel || 'source')}">BLS ↗</a>` : ''}</span></div>` : '';
-      return `<div class="rail"><div class="rhead"><h3>${esc(tr.label)}</h3><span class="m">${n} courses · ${fmtH(totalH(tr))}${d ? ` · ${d} done` : ''}${tr.role ? ` · O*NET ${esc(tr.role)}` : ''}</span></div>${outlook}${tr.goal ? `<p class="goal">${esc(tr.goal)}</p>` : ''}<div class="stations" style="--n:${n};--fill:${fill}%"><span class="fill"></span>${st}</div></div>`;
-    }).join('');
-    document.getElementById('trackOut').innerHTML = h || '<p class="intro">No tracks yet. Add one to <code>roles/tracks.md</code>.</p>';
+      return `<div class="rail"><div class="rhead"><h3>${esc(tr.label)}</h3><span class="m">${n} courses · ${fmtH(totalH(tr))} · ${d} done${tr.role ? ` · O*NET ${esc(tr.role)}` : ''}</span>${tr === live ? '' : `<button type="button" class="m linkbtn" data-fold="${esc(tr.id)}">fold ↑</button>`}</div>${tr.outlook ? `<div class="rhead"><span class="m">${outlookLine(tr)}</span></div>` : ''}<div class="stations" style="--n:${n};--fill:${fill}%"><span class="fill"></span>${st}</div></div>`;
+    };
+    const shown = tracks.filter(tr => tr === live || trackOpen.has(tr.id)), rest = tracks.filter(tr => !shown.includes(tr));
+    h += shown.map(rail).join('');
+    if (rest.length) h += `<div class="others"><div class="m sec">other tracks</div>${rest.map(tr => `<div class="row"><span>${esc(tr.label)} <span class="m">· ${doneIn(tr) ? `${doneIn(tr)} of ${tr.cs.length} done` : `${tr.cs.length} courses`} · ${fmtH(totalH(tr))}${tr.role ? ` · O*NET ${esc(tr.role.split(' ')[0])}` : ''}</span></span><button type="button" class="m linkbtn" data-unfold="${esc(tr.id)}">show the stations →</button></div>`).join('')}</div>`;
+    out.innerHTML = h;
   }
+  document.addEventListener('click', e => {
+    const s0 = e.target.closest('[data-track-start]'); if (s0) { trackPick = s0.dataset.trackStart; try { localStorage.setItem('iekb-track', trackPick); } catch (e2) {} return; }
+    const r = e.target.closest('[data-track]'); if (r) { trackPick = r.dataset.track; try { localStorage.setItem('iekb-track', trackPick); } catch (e2) {} renderTracks(); return; }
+    const u = e.target.closest('[data-unfold]'); if (u) { trackOpen.add(u.dataset.unfold); renderTracks(); return; }
+    const f = e.target.closest('[data-fold]'); if (f) { trackOpen.delete(f.dataset.fold); renderTracks(); }
+  });
   function renderBudget() {
     const open = courses.filter(c => unlocked(c.id) || isDone(c.id)).sort((a, b) => hours(a) - hours(b) || a.label.localeCompare(b.label));
     const bands = [['An afternoon', 'up to 4 h', h => h <= 4], ['A day', '4 to 8 h', h => h > 4 && h <= 8], ['A few days', '1 to 3 days', h => h > 8 && h <= 24], ['A week', '3 to 5 days', h => h > 24 && h <= 40], ['Longer', 'more than a week', h => h > 40 && isFinite(h)]];
