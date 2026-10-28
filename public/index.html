@@ -525,10 +525,11 @@
       next.slice(0, 5).map(c => `<a class="chip" href="#course:${slug(c.id)}" data-open="${c.id}">${esc(c.label)}</a>`).join('');
   }
 
-  const closedCats = new Set();
+  const openCats = new Set(); let wasSearch = false;   // categories start collapsed; a search opens the ones with matches, a click opens one for the session
   function renderCatalog() {
     const q = query.toLowerCase();
-    document.querySelectorAll('#catalog details[data-cat]').forEach(d => { if (d.open) closedCats.delete(d.dataset.cat); else closedCats.add(d.dataset.cat); });
+    if (!query && !wasSearch) document.querySelectorAll('#catalog details[data-cat]').forEach(d => { if (d.open) openCats.add(d.dataset.cat); else openCats.delete(d.dataset.cat); });   // what a search opened is not a choice
+    wasSearch = !!query;
     const match = d => !q || (d.label + ' ' + (d.search || '') + ' ' + (d.description || '') + ' ' + modulesOf(d.id).map(m => m.label).join(' ')).toLowerCase().includes(q);
     const hits = q ? courses.filter(match).length : 0;
     const bar = q ? `<div class="filterbar"><span>showing <b>${hits}</b> ${hits === 1 ? 'course' : 'courses'} matching <b>${esc(query)}</b></span><button type="button" data-clear>clear search</button></div>` : '';
@@ -537,7 +538,7 @@
       const csv = cs.filter(match), tsv = ts.filter(t => !q || t.label.toLowerCase().includes(q));
       if (q && !csv.length && !tsv.length) return '';
       const total = cs.length + ts.length, mine = cs.filter(c => isDone(c.id)).length, cov = ts.filter(t => t.covered).length;
-      return `<details class="cat" data-cat="${esc(cat.id)}" ${(q || (cs.length && !closedCats.has(cat.id))) ? 'open' : ''}>
+      return `<details class="cat" data-cat="${esc(cat.id)}" ${(q || openCats.has(cat.id)) ? 'open' : ''}>
         <summary><h2>${cat.icon}${esc(cat.label)}${cat.tag ? `<span class="tag">${esc(cat.tag)}</span>` : ''}</h2><div class="desc">${esc(cat.description)}</div>
           <div class="bar">${cs.length} built${cov ? ` · ${cov} folded in` : ''} · of ${total}${mine ? ` · ${mine} done` : ''}<i><b style="width:${total ? 100 * (cs.length + cov) / total : 0}%"></b></i></div></summary>
         ${csv.length ? `<div class="mods catalog">${csv.map(row).join('')}</div>` : ''}
