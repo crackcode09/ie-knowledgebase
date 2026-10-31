@@ -43,6 +43,9 @@
     background: rgba(var(--bg-rgb), .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
   .path { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .path .dot { color: var(--green); } .path b { color: var(--text); font-weight: 500; } .path a { color: var(--muted); text-decoration: none; } .path a:hover { color: var(--accent); }
+  .logo { display: flex; align-items: center; flex: none; } .logo svg { display: block; } .logo:hover { text-decoration: none; }
+  .lg-tile, .lg-hub { fill: var(--accent); } .lg-ink { fill: var(--bg); } .lg-the { fill: var(--muted); } .lg-ie { fill: var(--text); }
+  .logo .logo-mark { display: none; } @media (max-width: 700px) { .logo .logo-full { display: none; } .logo .logo-mark { display: block; } }
   .spacer { flex: 1; }
   .status[hidden] { display: none; }
   .notice { margin: 0 0 var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13px; color: var(--muted); }
@@ -187,7 +190,8 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip" href="#rendered">Skip to content</a>
 <div class="topbar">
-  <span class="path"><span class="dot">~</span>/<a href="index.html">theiehub</a>/<span id="pathCourse"></span>/<b id="pathFile">README.md</b></span>
+  __LOGO__
+  <span class="path"><span class="dot">~</span>/<span id="pathCourse"></span>/<b id="pathFile">README.md</b></span>
   <nav class="toggle" aria-label="Site views">
     <a class="btn" href="index.html">Catalog</a>
     <a class="btn" href="index.html#tab=path">Learning path</a>
