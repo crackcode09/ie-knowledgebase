@@ -1,6 +1,6 @@
 # Vision: from a course catalog to a role advisor
 
-Recorded 2026-10-27. The public version of this page is the site's [roadmap](https://ieknowledgebase.nidhy.dev/roadmap.html).
+Recorded 2026-10-27. The public version of this page is the site's [roadmap](https://theiehub.com/roadmap.html).
 
 ## The end goal
 
@@ -39,7 +39,7 @@ How it is used, stage 3:
 4. **Focus points.** O*NET's technology list for Industrial Engineers carries no AI tools yet; the standard lags the role. The market signal (second source, to come) sharpens and overrides it, and the role page shows both columns with the date of each.
 5. **Currency.** O*NET releases quarterly; a script diffs each release against the stored profile and flags changed elements.
 
-Attribution to carry wherever the data appears: "This page includes information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 license. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA."
+Attribution to carry wherever the data appears: "This page includes information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 license. O*NET is a trademark of USDOL/ETA. The IE Hub is not affiliated with or endorsed by USDOL/ETA."
 
 ## Using the BLS Occupational Outlook Handbook (the outlook)
 
