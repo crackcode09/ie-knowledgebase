@@ -62,6 +62,9 @@
     border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
   .path { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .path .dot { color: var(--green); } .path b { color: var(--text); font-weight: 500; } .path a { color: var(--muted); } .path a:hover { color: var(--accent); text-decoration: none; }
+  .logo { display: flex; align-items: center; flex: none; } .logo svg { display: block; } .logo:hover { text-decoration: none; }
+  .lg-tile, .lg-hub { fill: var(--accent); } .lg-ink { fill: var(--bg); } .lg-the { fill: var(--muted); } .lg-ie { fill: var(--text); }
+  .logo .logo-mark { display: none; } @media (max-width: 700px) { .logo .logo-full { display: none; } .logo .logo-mark { display: block; } }
   .topbar .spacer { flex: 1; }
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text);
     background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer; text-decoration: none;
@@ -351,7 +354,8 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <header class="topbar">
-  <span class="path"><span class="dot">~</span>/<a href="index.html" id="homeLink">ie-knowledgebase</a>/<b id="pathName">catalog</b></span>
+  __LOGO:homeLink__
+  <span class="path"><span class="dot">~</span>/<b id="pathName">catalog</b></span>
   <div class="toggle" role="tablist" aria-label="View">
     <button type="button" class="btn" role="tab" id="tab-catalog" data-tab="catalog" aria-selected="true" aria-controls="view-catalog">Catalog</button>
     <button type="button" class="btn" role="tab" id="tab-path" data-tab="path" aria-selected="false" aria-controls="view-path" tabindex="-1">Learning path</button>

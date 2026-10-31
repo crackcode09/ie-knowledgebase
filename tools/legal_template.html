@@ -40,6 +40,9 @@
     background: rgba(var(--bg-rgb), .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
   .path { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .path .dot { color: var(--green); } .path b { color: var(--text); font-weight: 500; } .path a { color: var(--muted); text-decoration: none; } .path a:hover { color: var(--accent); }
+  .logo { display: flex; align-items: center; flex: none; } .logo svg { display: block; } .logo:hover { text-decoration: none; }
+  .lg-tile, .lg-hub { fill: var(--accent); } .lg-ink { fill: var(--bg); } .lg-the { fill: var(--muted); } .lg-ie { fill: var(--text); }
+  .logo .logo-mark { display: none; } @media (max-width: 700px) { .logo .logo-full { display: none; } .logo .logo-mark { display: block; } }
   .spacer { flex: 1; }
   .btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--text); background: var(--surface); border: 1px solid var(--line);
     border-radius: 6px; padding: 6px 12px; cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s, transform .08s var(--ease-out); }
@@ -116,7 +119,8 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="topbar">
-  <span class="path"><span class="dot">~</span>/<a href="index.html">ie-knowledgebase</a>/<b>__KEY__.html</b></span>
+  __LOGO__
+  <span class="path"><span class="dot">~</span>/<b>__KEY__.html</b></span>
   <nav class="toggle" aria-label="Site views">
     <a class="btn" href="index.html">Catalog</a>
     <a class="btn" href="index.html#tab=path">Learning path</a>
