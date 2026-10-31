@@ -45,6 +45,17 @@ def icon(name, size=16):
     return re.sub(r"\s*\n\s*", "", svg)
 
 
+LOGO = ROOT / "tools" / "logo" / "header.svg.html"
+
+
+def inject_logo(html):
+    """Replace __LOGO__ (or __LOGO:id__, which gives the link that id) with the header logo: one inline SVG
+    coloured by the page's CSS variables, so it follows the theme. Source: tools/logo/header.svg.html."""
+    snippet = LOGO.read_text(encoding="utf-8").strip()
+    return re.sub(r"__LOGO(?::([A-Za-z][A-Za-z0-9]*))?__",
+                  lambda m: snippet.replace("__LOGO_ATTRS__", f' id="{m.group(1)}"' if m.group(1) else ""), html)
+
+
 def inject_icons(html):
     """Replace __ICON:name__ and __ICON:name:size__ placeholders in a template."""
     return re.sub(r"__ICON:([a-z0-9-]+)(?::(\d+))?__", lambda m: icon(m.group(1), int(m.group(2) or 16)), html)
@@ -471,7 +482,7 @@ def write(path, text):
 def fill(template_path, **slots):
     # Icons go into the template before the slots: course data must never be scanned for __ICON__
     # placeholders, or a label containing one would break the JSON it sits in.
-    tpl = inject_icons(template_path.read_text(encoding="utf-8"))
+    tpl = inject_logo(inject_icons(template_path.read_text(encoding="utf-8")))
     for key, value in slots.items():
         marker = f"__{key}__"
         n = tpl.count(marker)

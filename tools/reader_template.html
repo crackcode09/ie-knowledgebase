@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IE Knowledgebase</title>
+<title>The IE Hub</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
@@ -43,6 +43,9 @@
     background: rgba(var(--bg-rgb), .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
   .path { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .path .dot { color: var(--green); } .path b { color: var(--text); font-weight: 500; } .path a { color: var(--muted); text-decoration: none; } .path a:hover { color: var(--accent); }
+  .logo { display: flex; align-items: center; flex: none; } .logo svg { display: block; } .logo:hover { text-decoration: none; }
+  .lg-tile, .lg-hub { fill: var(--accent); } .lg-ink { fill: var(--bg); } .lg-the { fill: var(--muted); } .lg-ie { fill: var(--text); }
+  .logo .logo-mark { display: none; } @media (max-width: 700px) { .logo .logo-full { display: none; } .logo .logo-mark { display: block; } }
   .spacer { flex: 1; }
   .status[hidden] { display: none; }
   .notice { margin: 0 0 var(--s5); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); font-size: 13px; color: var(--muted); }
@@ -187,7 +190,8 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip" href="#rendered">Skip to content</a>
 <div class="topbar">
-  <span class="path"><span class="dot">~</span>/<a href="index.html">ie-knowledgebase</a>/<span id="pathCourse"></span>/<b id="pathFile">README.md</b></span>
+  __LOGO__
+  <span class="path"><span class="dot">~</span>/<span id="pathCourse"></span>/<b id="pathFile">README.md</b></span>
   <nav class="toggle" aria-label="Site views">
     <a class="btn" href="index.html">Catalog</a>
     <a class="btn" href="index.html#tab=path">Learning path</a>
@@ -222,7 +226,7 @@
     <div class="pager" id="pager"></div>
   </main>
 </div>
-<footer><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>IE Knowledgebase</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
+<footer><div class="frow"><a href="index.html">catalog</a><a href="roadmap.html">site roadmap</a><a href="sources.html">sources</a><a href="https://github.com/crackcode09/ie-knowledgebase/blob/main/NOTICE.md" rel="noopener">notice</a><a href="privacy.html">privacy</a><a href="terms.html">terms</a></div><div class="frow muted"><span>The IE Hub</span><span>by Nidhin</span><a href="https://github.com/crackcode09/ie-knowledgebase" rel="noopener">__ICON:github:13__ GitHub</a><span>content CC BY 4.0</span><span>code MIT</span></div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" integrity="sha512-xeUh+KxNyTufZOje++oQHstlMQ8/rpyzPuM+gjMFYK3z5ILJGE7l2NvYL+XfliKURMpBIKKp1XoPN/qswlSMFA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yJ/01Srq6hEzZIz2xkz1e57p9ai7IeHMwEG7HpzG6NdptChif5Pg==" crossorigin="anonymous"></script>
 <script id="data" type="application/json">__DATA__</script>
@@ -279,7 +283,7 @@
     file = f; isReadme = file === 'README.md'; docLines = 0;
     const curMod = modules.find(m => m.rel === file);
     $('pathFile').textContent = curMod ? String(modules.indexOf(curMod)).padStart(2, '0') : file.split('/').pop(); $('eyebrowFile').textContent = file;
-    document.title = `${curMod ? curMod.label + ' · ' : ''}${course.label} · IE Knowledgebase`;
+    document.title = `${curMod ? curMod.label + ' · ' : ''}${course.label} · The IE Hub`;
     $('btnGithub').href = `${REPO}/blob/main/${courseRoot}/${file}`;
   }
   setFile(file);

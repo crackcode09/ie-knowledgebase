@@ -1,10 +1,10 @@
 # Notice: originality, affiliation and trademarks
 
-Effective 2026-10-27. The site version of this notice is at <https://ieknowledgebase.nidhy.dev/terms.html#originality>.
+Effective 2026-10-27. The site version of this notice is at <https://theiehub.com/terms.html#originality>.
 
 ## Not affiliated with IISE
 
-The IE Knowledgebase is not affiliated with, endorsed by, sponsored by or licensed by the Institute of Industrial and Systems Engineers (IISE) or any other training provider.
+The IE Hub is not affiliated with, endorsed by, sponsored by or licensed by the Institute of Industrial and Systems Engineers (IISE) or any other training provider.
 
 ## What was taken from the IISE catalog, and what was not
 
@@ -29,7 +29,7 @@ IISE, Institute of Industrial and Systems Engineers, MODAPTS, MTM, MTM-1, Six Si
 
 ## Licences
 
-The role profiles under `roles/onet/` include information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence; the release version and download date are stamped in each file. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.
+The role profiles under `roles/onet/` include information from the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence; the release version and download date are stamped in each file. O*NET is a trademark of USDOL/ETA. The IE Hub is not affiliated with or endorsed by USDOL/ETA.
 
 The outlook lines in `roles/tracks.md` (median pay, projected growth, number of jobs) are from the U.S. Bureau of Labor Statistics Occupational Outlook Handbook, a U.S. government work in the public domain; each track links its Handbook entry and states the Handbook's year. BLS does not endorse this site.
 
@@ -43,4 +43,4 @@ Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Code: [MIT](
 
 If you believe anything here infringes a copyright or trademark or reproduces material it should not, open an issue at <https://github.com/crackcode09/ie-knowledgebase/issues> saying which file, what the problem is and, for a rights claim, what you own and how to reach you. We will acknowledge it, take the specific material down while we look into a plausible claim, and reply with what we did. GitHub's own [DMCA process](https://docs.github.com/en/site-policy/content-removal-policies/dmca-takedown-policy) is also available.
 
-The site's [Privacy Policy](https://ieknowledgebase.nidhy.dev/privacy.html) and [Terms of Use](https://ieknowledgebase.nidhy.dev/terms.html) are generated from `tools/legal/` by `tools/roadmap_graph.py`.
+The site's [Privacy Policy](https://theiehub.com/privacy.html) and [Terms of Use](https://theiehub.com/terms.html) are generated from `tools/legal/` by `tools/roadmap_graph.py`.

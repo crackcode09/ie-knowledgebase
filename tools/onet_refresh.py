@@ -8,7 +8,7 @@ keeps the rows for the requested occupation codes, and writes one Markdown profi
 code with the release version and download date stamped on them. Standard library only.
 
 Data: O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA),
-used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. The IE Knowledgebase is not affiliated
+used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. The IE Hub is not affiliated
 with or endorsed by USDOL/ETA.
 """
 import csv
@@ -36,7 +36,7 @@ FILES = {
 }
 ATTRIBUTION = ("This file includes information from the O*NET {v} Database by the U.S. Department of Labor, Employment and "
                "Training Administration (USDOL/ETA), used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. "
-               "The IE Knowledgebase is not affiliated with or endorsed by USDOL/ETA.")
+               "The IE Hub is not affiliated with or endorsed by USDOL/ETA.")
 
 
 def fetch(name):

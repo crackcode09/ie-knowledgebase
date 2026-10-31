@@ -1,10 +1,10 @@
-<img src="public/apple-touch-icon.png" alt="IE Knowledgebase logo" width="80" align="right">
+<img src="public/apple-touch-icon.png" alt="The IE Hub logo" width="80" align="right">
 
-# IE Knowledgebase
+# The IE Hub
 
-Free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
+**theiehub.com** · home of the **IE Knowledgebase**: free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
 
-**32 courses built**, covering 33 of the 102 catalog topics. All are `draft` until a reviewer verifies them (see [Status, review and legal](#status-review-and-legal)). Read them on the site: <https://ieknowledgebase.nidhy.dev/>.
+**32 courses built**, covering 33 of the 102 catalog topics. All are `draft` until a reviewer verifies them (see [Status, review and legal](#status-review-and-legal)). Read them on the site: <https://theiehub.com/>.
 
 ## Courses
 
@@ -14,7 +14,7 @@ See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still 
 
 [![Roadmap graph](public/roadmap.svg)](public/roadmap.svg)
 
-**Interactive site:** <https://ieknowledgebase.nidhy.dev/> has:
+**Interactive site:** <https://theiehub.com/> has:
 
 - **Catalog:** every course by category, with search.
 - **Learning path:**
@@ -26,7 +26,7 @@ See [ROADMAP.md](ROADMAP.md) for a checklist of what is built and what is still 
 
 Progress ticks are kept in your browser only; there are no accounts and no tracking. Light and dark themes follow your system setting.
 
-The site is generated into `public/` by `python tools/roadmap_graph.py` (standard library only). It is published on Cloudflare Pages at <https://ieknowledgebase.nidhy.dev/>: on each push to `main`, `python tools/build_site.py` puts the pages from `public/` and the `courses/` folder side by side in `_site/`, which is what gets served. Never edit `public/` by hand; edit the templates in `tools/` and rebuild.
+The site is generated into `public/` by `python tools/roadmap_graph.py` (standard library only). It is published on Cloudflare Pages at <https://theiehub.com/>: on each push to `main`, `python tools/build_site.py` puts the pages from `public/` and the `courses/` folder side by side in `_site/`, which is what gets served. Never edit `public/` by hand; edit the templates in `tools/` and rebuild.
 
 Suggested order without a track: Measurement & Basic Statistics, Process Mapping and Voice of the Customer, then Charting Process Behavior, then Fundamentals of Hypothesis Testing, then Design for Six Sigma, then Root Cause Analysis. Kaizen Leader and Lean Methods Accelerator have no prerequisites and can be taken at any point. The tracks themselves are defined in [roles/tracks.md](roles/tracks.md).
 
@@ -124,7 +124,7 @@ O*NET data is used under CC BY 4.0 (U.S. Department of Labor, ETA); the project 
 
 ## Status, review and legal
 
-Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The review board (`/review-course <slug>` in Claude Code) does the checking and writes its report to [reviews/](reviews/README.md); a person answers its questions and signs off. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://ieknowledgebase.nidhy.dev/privacy.html), [Terms of Use](https://ieknowledgebase.nidhy.dev/terms.html) and [Sources](https://ieknowledgebase.nidhy.dev/sources.html) pages (sources in `tools/legal/`). Courses cite their references by ID from `reference/sources.md`; an entry reads verified only after a reviewer checks it.
+Every course is written with AI assistance and is marked `draft` in the tables above until a reviewer has completed [REVIEW.md](REVIEW.md); it then reads `verified (Name, YYYY-MM-DD)`. The review board (`/review-course <slug>` in Claude Code) does the checking and writes its report to [reviews/](reviews/README.md); a person answers its questions and signs off. The site shows the same status on each course. The project is not affiliated with IISE: only the public catalog's course titles and topic lists were used, as a coverage map. See [NOTICE.md](NOTICE.md), and the site's [Privacy Policy](https://theiehub.com/privacy.html), [Terms of Use](https://theiehub.com/terms.html) and [Sources](https://theiehub.com/sources.html) pages (sources in `tools/legal/`). Courses cite their references by ID from `reference/sources.md`; an entry reads verified only after a reviewer checks it.
 
 ## License
 
