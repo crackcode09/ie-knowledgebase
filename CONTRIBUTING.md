@@ -40,7 +40,7 @@ The **Checks** workflow (`.github/workflows/checks.yml`) runs on every pull requ
 ### Branches
 
 ```text
-main   what is published at ieknowledgebase.nidhy.dev (Cloudflare Pages builds from it)
+main   what is published at theiehub.com (Cloudflare Pages builds from it)
   └── dev   where every change lands first, by pull request (Cloudflare builds a preview at dev.ie-knowledgebase.pages.dev)
         └── <type>/<short-name>   one branch per change, from dev (feat/, fix/, docs/, style/, perf/, review/)
 ```
