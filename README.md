@@ -2,6 +2,9 @@
 
 # The IE Hub
 
+> [!IMPORTANT]
+> **This repository has moved to [crackcode09/theiehub](https://github.com/crackcode09/theiehub).** It is kept read-only for now and will be deleted later. Open issues and pull requests there. The site is at <https://theiehub.com/>.
+
 **theiehub.com** · home of the **IE Knowledgebase**: free, open courses on industrial engineering, quality and continuous improvement. Courses are grouped into the same categories used by the IISE professional course catalog, plus a few added for subjects it does not cover, under `courses/<category>/<course>/`.
 
 **32 courses built**, covering 33 of the 102 catalog topics. All are `draft` until a reviewer verifies them (see [Status, review and legal](#status-review-and-legal)). Read them on the site: <https://theiehub.com/>.
